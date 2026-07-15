@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Funeral Planning Companion — Quietkeep</title>
+<style>
+:root{
+  --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
+  --white:#FFFFFF; --line:#D8D6CE; --soft:#E7E5DD; --danger:#8A3B2E;
+  --serif:Charter,'Bitstream Charter',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+header{background:var(--spruce);color:var(--porcelain);padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--brass)}
+header .mark{flex:0 0 auto}
+header h1{font-family:var(--serif);font-size:1.35rem;font-weight:bold;letter-spacing:.2px}
+header .sub{font-size:.78rem;color:var(--mist);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav button{font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px 16px;border:1.5px solid var(--spruce);border-radius:999px;background:var(--white);color:var(--spruce);cursor:pointer}
+nav button.active{background:var(--spruce);color:var(--porcelain)}
+nav button:hover{border-color:var(--brass)}
+.bar{background:var(--soft);border-radius:8px;height:14px;overflow:hidden;margin:6px 0 2px}
+.bar>div{background:var(--brass);height:100%;border-radius:8px;transition:width .3s}
+.progress-label{font-size:.85rem;color:var(--spruce)}
+.review-flag{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:10px 14px;margin:12px 0 0;font-size:.9rem;color:#6b5525;display:none}
+.review-flag.show{display:block}
+section.tab{display:none;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+section.tab.active{display:block}
+h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:6px}
+h3{font-family:var(--serif);font-size:1.15rem;margin:22px 0 4px;color:var(--spruce)}
+.note{font-size:.9rem;color:#5c6660;margin-bottom:14px}
+.phase{margin-bottom:26px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 8px;border-bottom:1px solid var(--soft)}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--spruce);margin-top:3px;flex:0 0 auto;cursor:pointer}
+.task .t{font-weight:600}
+.task .why{font-size:.86rem;color:#5c6660;margin-top:2px}
+.task.done .t{color:#7a827d;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--spruce);text-align:left;padding:8px 6px;border-bottom:2px solid var(--spruce)}
+td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
+td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
+td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+td.num input{text-align:right}
+.del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
+.add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
+.add:hover{background:#2E5249}
+.totals{margin-top:12px;font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.totals strong{color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toolbar button{border:1.5px solid var(--spruce);background:var(--white);color:var(--spruce);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
+.toolbar button:hover{border-color:var(--brass)}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+.wish{margin:0 0 22px}
+.wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
+.wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
+.wish textarea{width:100%;min-height:110px;font-family:var(--sans);font-size:.95rem;line-height:1.5;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#FCFBF8;color:var(--ink);resize:vertical}
+.wish textarea:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+.warnline{font-size:.82rem;color:var(--danger);margin-top:6px;font-weight:600}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--spruce);color:var(--mist);font-size:.82rem;padding:8px 18px;display:flex;justify-content:space-between;align-items:center}
+.savebar b{color:var(--porcelain)}
+.disclaimer{font-size:.8rem;color:#6a736d;margin-top:18px;border-top:1px solid var(--soft);padding-top:10px}
+.review-box{background:#F7F6F1;border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:6px 0 16px}
+.review-box .rl{font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.review-box .rl strong{color:var(--ink)}
+#print-area{display:none}
+@media print{
+  body *{visibility:hidden}
+  #print-area,#print-area *{visibility:visible}
+  #print-area{display:block;position:absolute;top:0;left:0;width:100%;font-family:var(--serif);color:#000}
+  #print-area h1{font-size:22pt;margin-bottom:2pt}
+  #print-area .ph{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14pt;color:#333}
+  #print-area h2{font-size:13pt;margin:16pt 0 4pt;border-bottom:1pt solid #000;padding-bottom:2pt}
+  #print-area h3{font-size:11pt;margin:10pt 0 2pt}
+  #print-area table{width:100%;border-collapse:collapse;font-size:10pt;margin-top:4pt}
+  #print-area th,#print-area td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:left;vertical-align:top}
+  #print-area p{font-size:10pt;margin:4pt 0}
+  #print-area .lead{font-size:11pt;margin:6pt 0 10pt}
+  #print-area .wblock{font-size:10.5pt;margin:2pt 0 10pt;white-space:pre-wrap}
+  #print-area .foot{font-size:8.5pt;color:#333;margin-top:14pt;border-top:.5pt solid #999;padding-top:6pt}
+}
+@media(max-width:640px){
+  .wrap{padding:14px 10px 90px}
+  section.tab{padding:14px}
+  th,td{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
+    <rect x="13" y="13" width="74" height="74" rx="17" fill="none" stroke="#A5834B" stroke-width="2.5"/>
+    <circle cx="50" cy="42" r="12" fill="#24413B"/>
+    <path d="M 45 48 L 41 66 L 59 66 L 55 48 Z" fill="#24413B"/>
+    <rect x="41" y="61" width="18" height="6" rx="3" fill="#24413B"/>
+  </svg>
+  <div>
+    <h1>Funeral Planning Companion</h1>
+    <div class="sub">Quietkeep · Everything stays on your device</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="progress-label" id="overall-label">Overall progress</div>
+  <div class="bar"><div id="overall-bar" style="width:0%"></div></div>
+  <div class="review-flag" id="review-flag"></div>
+
+  <nav id="nav"></nav>
+  <div id="sections"></div>
+</div>
+
+<div class="savebar"><span>Quietkeep · Funeral Planning Companion</span><span id="save-status"><b>All changes saved on this device</b></span></div>
+<div id="print-area"></div>
+
+<script>
+"use strict";
+/* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
+   injected at build time by generators/qk_app.py from the product manifest.
+   Hard promises: single file, zero network, never a credential field. */
+const CONFIG={"name":"Funeral Planning Companion","storageKey":"qk-funeral-planning-companion","backupPrefix":"funeral-planning","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Thirty steps across four phases, at whatever pace feels right. Everything saves automatically on this device. Each step notes why it matters. This is an organizer for your wishes — it never asks for a payment or account number, and it is not a prepaid contract. What you decide here is a gift: when the time comes, your family follows a plan instead of guessing at one.","disclaimer":"This is an organizer, not legal or financial advice and not a prepaid funeral contract. For prepaid arrangements or estate decisions, consult a licensed funeral provider or attorney in your state."},"phases":[{"name":"Phase 1 · My Wishes","tasks":[["Choose burial, cremation, or donation","The first decision every family faces, and the one they most want to get right. Deciding it now is the single kindest line in this plan."],["Choose a service style","Traditional service, memorial, celebration of life, or none at all. There is no wrong answer — only your answer."],["Choose the tone you'd want","Quiet or full of stories, formal or casual. A single sentence here shapes everything else."],["Note music and readings","The songs, passages, or poems that sound like you. Write them in the Wishes tab."],["Note who you would like to speak","A person or two you'd trust with a few words. Asking them someday is easier when it's written down."],["Note flowers or a donation preference","Many families ask 'flowers, or a cause?' within the first day. Name the cause if you have one."],["Note any dress or appearance wishes","Only if it matters to you. If it doesn't, say 'family decides' and move on."],["Write anything you want said — or not said","An obituary line, a story worth telling, or a subject to leave alone. Your words, kept in your Wishes."]]},{"name":"Phase 2 · Arrangements","tasks":[["Note a preferred funeral home","Or write 'family chooses.' Either way, the decision is made — that is what spares them."],["Note cemetery, plot, or scattering wishes","If a family plot exists, record where the deed lives. If you have a place in mind, name it."],["Note an officiant or clergy preference","A name, a congregation, or simply the kind of person you'd want to lead it."],["Record what is already prepaid","Prepaid plots, policies, or plans are easy to lose track of. Add each to the Arrangements tab."],["Record where the paperwork lives","A prepaid plan your family can't find is a plan they'll pay for twice. Note the drawer, safe, or file."],["Note a realistic budget or cost ceiling","Grief makes overspending easy. A number from you is permission to keep it sensible."],["Note veteran or membership benefits","Military honors, union or fraternal benefits, faith community support. These are commonly missed and worth real money."],["Add each arrangement to the Arrangements tab","One row per decision: provider, status, cost, and where the paperwork lives."]]},{"name":"Phase 3 · The Details","tasks":[["Record your full legal name and any former names","The death certificate needs it exactly. Maiden and former names save a correction later."],["Record your date and place of birth","Asked for on the certificate and in the obituary, usually within the first day."],["Record military service","Branch, dates, and where the discharge papers (DD-214) live — the key to honors and benefits."],["List immediate family for the obituary","Spouse, children, siblings, grandchildren. The obituary writer will thank you."],["Note the life facts an obituary mentions","Occupation, hometown, the things you were known for. A few lines now spell a better story later."],["List organizations to inform","Employer, clubs, faith community. Someone will need to make those calls."],["Add your key people to the People tab","The person carrying this out, family to call first, clergy, and anyone else on the list."]]},{"name":"Phase 4 · Hand It Off","tasks":[["Choose who will carry out these arrangements — and ask them","The plan needs a person. Choose someone steady, and ask before you write their name."],["Tell them where this plan lives","A plan no one can find helps no one. One conversation completes it."],["Print the Arrangements Instruction Sheet","One click on the Instruction Sheet tab produces the plan your family will actually follow."],["Store it with your estate documents","Beside the will and the letter of instruction, so everything is found together."],["Download a backup file","From the Summary tab. Keep it somewhere safe, like a USB drive."],["Review after any change of mind or move","A new town usually means a new funeral home and cemetery. Update while it's fresh."],["Confirm prepaid paperwork still matches your wishes","Plans and providers change. Once a year, check that what's on paper is still what you want."]]}],"registers":[{"id":"arrangements","tab":"Arrangements","heading":"Arrangements Register","noun":"arrangement","intro":"The practical half of the plan: the funeral home, the cemetery or scattering place, the officiant, and what is already paid for. For anything prepaid, the most important column is where the paperwork lives — a plan your family can't find is a plan they'll pay for twice.","columns":[{"key":"name","label":"Arrangement","width":"20%","type":"text"},{"key":"place","label":"Provider / place","width":"22%","type":"text"},{"key":"status","label":"Status","width":"16%","type":"select","options":["Family decides","Decided, not paid","Prepaid","To decide"]},{"key":"cost","label":"Est. cost ($)","width":"13%","type":"num"},{"key":"paperwork","label":"Where the paperwork lives","type":"text"}],"counter":"total","counterField":"cost","totalLabel":"Estimated total","totalUnit":"planned","line":"Planned so far: {total}. Every number here is one your family won't have to decide in grief."},{"id":"people","tab":"People","heading":"People to Notify","noun":"person","nounPlural":"people","statLabel":"People to notify","counterLabel":"People listed","intro":"Who should hear it from family, and who simply needs to be told: the person carrying out these arrangements, immediate family, clergy, employer, organizations. The first few rows are the first calls.","columns":[{"key":"name","label":"Name","width":"20%","type":"text"},{"key":"role","label":"Role","width":"26%","type":"list","options":["Carries out these arrangements","Immediate family — call first","Family","Close friend","Clergy / faith community","Employer","Organization / club","Funeral home contact","Other"]},{"key":"phone","label":"Phone","width":"16%","type":"text"},{"key":"email","label":"Email","width":"20%","type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"details","tab":"Vital Details","heading":"Vital Details","noun":"detail","counterLabel":"Details recorded","statLabel":"Vital details","intro":"The facts an obituary and a death certificate ask for, usually within the first day: legal names, dates and places, service history, family. Having them in one place turns a scramble through old files into a single printed page.","columns":[{"key":"item","label":"Detail","width":"28%","type":"list","options":["Full legal name","Former / maiden names","Date of birth","Place of birth","Military service (branch, dates)","Where discharge papers (DD-214) live","Occupation","Immediate family","Faith community","Hometown / places lived","Other"]},{"key":"value","label":"Information","width":"44%","type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"}],"wishesEnabled":true,"wishes":{"tab":"My Wishes","heading":"Service & Wishes","intro":"In your own words, at your own pace. None of this is binding and all of it can change — it simply means that when the time comes, the people you love follow your wishes instead of guessing at them. Everything here prints into the Arrangements Instruction Sheet.","disclaimer":"These wishes are a guide for your family, not a contract. Nothing here binds a funeral home or holds money.","items":[{"key":"disposition","label":"Burial, cremation, or donation","prompt":"The first decision your family would otherwise face. Burial, cremation, or donation — and anything that matters about where."},{"key":"service","label":"The service itself","prompt":"Traditional, memorial, celebration of life, or none. Formal or casual, quiet or full of stories — describe the gathering you'd want, or say 'family decides.'"},{"key":"music","label":"Music & readings","prompt":"The songs, passages, or poems that sound like you."},{"key":"speakers","label":"Who should speak","prompt":"A person or two you'd trust with a few words — and anyone you'd rather it not be."},{"key":"flowers","label":"Flowers or donations","prompt":"Many families ask within the first day: flowers, or a donation somewhere? Name the cause if you have one."},{"key":"message","label":"Anything you want said — or not said","prompt":"Optional. An obituary line, a story worth telling, or a subject to leave alone. Your words carry further than you think."}]},"sheet":{"tab":"Instruction Sheet","heading":"Arrangements Instruction Sheet","button":"Print the Instruction Sheet","intro":"This compiles your wishes, the people to call first, your arrangements, and the vital details into one printable plan: “What My Family Needs to Know: My Wishes & Arrangements.” Print it, store it with your estate documents, and tell the person carrying it out where it lives.","docTitle":"What My Family Needs to Know: My Wishes & Arrangements","docTag":"An Arrangements Instruction Sheet · prepared with the Quietkeep Funeral Planning Companion","lead":"This sheet holds my funeral wishes and the arrangements already made: what I want, who to call first, what is prepaid and where the paperwork lives, and the details an obituary and death certificate will need. It is a guide from me to my family — not a contract, and it holds no money.","foot":"Prepared by me for my family. This Instruction Sheet is an organizer output, not legal or financial advice, and not a prepaid funeral contract — it records wishes and arrangements, and binds no provider. For prepaid arrangements or estate decisions, my family should consult a licensed funeral provider or attorney.","disclaimer":"The Instruction Sheet is a personal guide for your family, not a legal document and not a prepaid contract. For binding arrangements, consult a licensed funeral provider.","sections":[{"type":"wish","key":"disposition","title":"My Wishes: Burial, Cremation, or Donation","empty":"Not recorded yet. This is the first decision a family faces — the kindest line in this plan."},{"type":"register","id":"people","title":"Who to Call First"},{"type":"register","id":"arrangements","title":"Arrangements & What Is Prepaid"},{"type":"register","id":"details","title":"Vital Details (for the obituary and certificate)"},{"type":"wishes","title":"My Service Wishes, In My Words","exclude":["disposition"]}]},"summary":{"disclaimer":"The Funeral Planning Companion is an organizer. It is not legal or financial advice, and it is not a prepaid funeral contract — it holds no money and binds no provider. It never asks for a payment or account number. All information you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where the plan stands, keep it current, and back up your work to a file you control.","reviewNote":"Wishes are allowed to change. Mark today as reviewed after any pass, and again after a change of mind, a move, or new prepaid paperwork.","staleFlag":"It has been more than a year since your last review. Wishes and arrangements drift — open the Summary tab when you have a few quiet minutes."}};
+const PHASES=CONFIG.phases;
+const REGISTERS=CONFIG.registers||[];
+const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
+const STORAGE_KEY=CONFIG.storageKey;
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
+function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
+function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function regById(id){return REGISTERS.find(r=>r.id===id);}
+function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
+function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
+
+/* ---------- state ---------- */
+let state=null;
+function defaultState(){
+  const d={v:1,tasks:{},wishes:{},lastReviewed:null};
+  REGISTERS.forEach(r=>{d[r.id]=[];});
+  return d;
+}
+function load(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);state=raw?JSON.parse(raw):defaultState();}
+  catch(e){state=defaultState();}
+  REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[];});
+  if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+  if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+  if(state.lastReviewed===undefined)state.lastReviewed=null;
+}
+function save(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    document.getElementById("save-status").innerHTML="<b>All changes saved on this device</b>";}
+  catch(e){document.getElementById("save-status").innerHTML="<b>Could not save — download a backup from the Summary tab</b>";}
+}
+
+/* ---------- shell: nav + sections built from CONFIG ---------- */
+function buildShell(){
+  const nav=document.getElementById("nav");
+  const wrap=document.getElementById("sections");
+  const tabs=[{id:"tasks",label:CONFIG.tasks.tab||"Tasks"}];
+  REGISTERS.forEach(r=>tabs.push({id:r.id,label:r.tab}));
+  if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
+  tabs.push({id:"sheet",label:CONFIG.sheet.tab||"Instruction Sheet"});
+  tabs.push({id:"summary",label:"Summary & Backup"});
+  tabs.forEach((t,i)=>{
+    const b=document.createElement("button");
+    b.dataset.tab=t.id;b.textContent=t.label;if(i===0)b.className="active";
+    nav.appendChild(b);
+  });
+
+  let h="";
+  // Tasks
+  h+='<section class="tab active" id="tab-tasks"><h2>'+esc(CONFIG.tasks.heading||"Guided Tasks")+'</h2>'+
+     '<p class="note">'+esc(CONFIG.tasks.intro||"")+'</p><div id="phases"></div>'+
+     (CONFIG.tasks.disclaimer?'<p class="disclaimer">'+esc(CONFIG.tasks.disclaimer)+'</p>':"")+
+     '</section>';
+  // Registers
+  REGISTERS.forEach(r=>{
+    h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
+       '<p class="note">'+esc(r.intro||"")+'</p><table><thead><tr>';
+    r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table>'+
+       '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
+    if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
+    if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
+    if(r.disclaimer)h+='<p class="disclaimer">'+esc(r.disclaimer)+'</p>';
+    h+='</section>';
+  });
+  // Wishes
+  if(CONFIG.wishesEnabled){
+    h+='<section class="tab" id="tab-wishes"><h2>'+esc(CONFIG.wishes.heading||"Wishes & Instructions")+'</h2>'+
+       '<p class="note">'+esc(CONFIG.wishes.intro||"")+'</p><div id="wishes-body"></div>'+
+       (CONFIG.wishes.disclaimer?'<p class="disclaimer">'+esc(CONFIG.wishes.disclaimer)+'</p>':"")+
+       '</section>';
+  }
+  // Sheet
+  h+='<section class="tab" id="tab-sheet"><h2>'+esc(CONFIG.sheet.heading)+'</h2>'+
+     '<p class="note">'+esc(CONFIG.sheet.intro||"")+'</p>'+
+     '<div id="sheet-preview" class="review-box"></div>'+
+     '<div class="toolbar"><button class="primary" onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button></div>'+
+     (CONFIG.sheet.disclaimer?'<p class="disclaimer">'+esc(CONFIG.sheet.disclaimer)+'</p>':"")+
+     '</section>';
+  // Summary
+  h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
+     '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
+     '<div id="summary-stats"></div>'+
+     '<div class="review-box"><div class="rl" id="review-line">Last reviewed: <strong>not yet reviewed</strong></div>'+
+     '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
+     '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
+     '<div class="toolbar">'+
+     '<button onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button>'+
+     '<button onclick="printAll()">Print everything (all registers)</button>'+
+     '<button onclick="backup()">Download backup file</button>'+
+     '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
+     '<input type="file" id="restore-file" accept=".json" style="display:none" onchange="restore(this)">'+
+     '</div>'+
+     (CONFIG.summary.disclaimer?'<p class="disclaimer">'+esc(CONFIG.summary.disclaimer)+'</p>':"")+
+     '</section>';
+  wrap.innerHTML=h;
+  wrap.querySelectorAll("button.add").forEach(b=>b.addEventListener("click",()=>addRow(b.dataset.add)));
+}
+
+/* ---------- task engine ---------- */
+function renderTasks(){
+  const wrap=document.getElementById("phases");wrap.innerHTML="";
+  PHASES.forEach((ph,pi)=>{
+    let pDone=0;
+    const div=document.createElement("div");div.className="phase";
+    const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
+    const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
+    ph.tasks.forEach((t,ti)=>{
+      const id="p"+pi+"t"+ti;
+      const checked=!!state.tasks[id];if(checked)pDone++;
+      const row=document.createElement("div");row.className="task"+(checked?" done":"");
+      const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
+      cb.addEventListener("change",()=>{state.tasks[id]=cb.checked;save();row.classList.toggle("done",cb.checked);updateProgress();});
+      const body=document.createElement("div");
+      body.innerHTML='<div class="t"></div><div class="why"></div>';
+      body.querySelector(".t").textContent=t[0];
+      body.querySelector(".why").textContent=t[1]||"";
+      row.appendChild(cb);row.appendChild(body);div.appendChild(row);
+    });
+    fill.style.width=Math.round(pDone/ph.tasks.length*100)+"%";
+    wrap.appendChild(div);
+  });
+  updateProgress();
+}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
+function updateProgress(){
+  let total=0,done=0;
+  document.querySelectorAll("#phases .phase").forEach((div)=>{
+    let pDone=0;const boxes=div.querySelectorAll(".task input[type=checkbox]");
+    boxes.forEach(b=>{total++;if(b.checked){done++;pDone++;}});
+    div.querySelector(".bar>div").style.width=Math.round(pDone/boxes.length*100)+"%";
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+  summaryStats();
+}
+
+/* ---------- register engine ---------- */
+function fieldEl(reg,row,col){
+  const td=document.createElement("td");
+  let el;
+  if(col.type==="select"){el=document.createElement("select");
+    (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
+    el.value=row[col.key]||(col.options||[""])[0];}
+  else if(col.type==="list"){el=document.createElement("input");el.type="text";
+    const dl=document.createElement("datalist");const dlid="dl-"+reg.id+"-"+col.key+"-"+Math.random().toString(36).slice(2,8);
+    dl.id=dlid;(col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;dl.appendChild(op);});
+    el.setAttribute("list",dlid);td.appendChild(dl);
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  else{el=document.createElement("input");el.type=col.type==="num"?"number":(col.type==="date"?"date":"text");
+    if(col.type==="num"){el.step="0.01";td.className="num";}
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  el.addEventListener("input",()=>{row[col.key]=el.value;save();totals();});
+  el.addEventListener("change",()=>{row[col.key]=el.value;save();totals();});
+  td.appendChild(el);return td;
+}
+function renderTable(id){
+  const reg=regById(id);
+  const body=document.getElementById(id+"-body");body.innerHTML="";
+  state[id].forEach((row,i)=>{
+    const tr=document.createElement("tr");
+    reg.columns.forEach(c=>tr.appendChild(fieldEl(reg,row,c)));
+    const td=document.createElement("td");
+    const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
+    del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[id].splice(i,1);save();renderTable(id);totals();}});
+    td.appendChild(del);tr.appendChild(td);body.appendChild(tr);
+  });
+}
+function addRow(id){state[id].push({});save();renderTable(id);totals();}
+function categoryCounts(reg){
+  const field=reg.counterField;const cats=(colByKey(reg,field)||{}).options||[];
+  const counts={};
+  state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
+  return counts;
+}
+function regTotal(reg){const k=reg.counterField||numKey(reg);return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);}
+function totals(){
+  REGISTERS.forEach(reg=>{
+    const el=document.getElementById(reg.id+"-total");
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.counterLabel||((plural.charAt(0).toUpperCase()+plural.slice(1))+" recorded");
+    if(reg.counter==="category"&&el){
+      const cats=(colByKey(reg,reg.counterField)||{}).options||[];
+      const counts=categoryCounts(reg);
+      const bits=cats.filter(c=>counts[c]).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      const extra=Object.keys(counts).filter(c=>cats.indexOf(c)<0).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
+    }else if(reg.counter==="total"&&el){
+      const n=state[reg.id].length;
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+money(regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      const line=document.getElementById(reg.id+"-line");
+      if(line)line.textContent=n?reg.line.replace("{total}",money(regTotal(reg))):"";
+    }else if(el){
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
+    }
+  });
+  summaryStats();renderSheetPreview();
+}
+
+/* ---------- wishes ---------- */
+function renderWishes(){
+  const wrap=document.getElementById("wishes-body");if(!wrap)return;
+  wrap.innerHTML="";
+  WISHES.forEach(w=>{
+    const div=document.createElement("div");div.className="wish";
+    const lab=document.createElement("label");lab.textContent=w.label;lab.setAttribute("for","wish-"+w.key);div.appendChild(lab);
+    const pr=document.createElement("div");pr.className="prompt";pr.textContent=w.prompt||"";div.appendChild(pr);
+    const ta=document.createElement("textarea");ta.id="wish-"+w.key;ta.value=state.wishes[w.key]||"";
+    ta.addEventListener("input",()=>{state.wishes[w.key]=ta.value;save();});
+    div.appendChild(ta);
+    if(w.warn){const wn=document.createElement("div");wn.className="warnline";wn.textContent=w.warn;div.appendChild(wn);}
+    wrap.appendChild(div);
+  });
+}
+
+/* ---------- summary + review ---------- */
+function summaryStats(){
+  const c=taskCounts();
+  const el=document.getElementById("summary-stats");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.statLabel||(plural.charAt(0).toUpperCase()+plural.slice(1));
+    let s=label+": <strong>"+state[reg.id].length+"</strong>";
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="totals">Tasks complete: <strong>'+c.done+' / '+c.total+'</strong><span class="pill">'+(c.total?Math.round(c.done/c.total*100):0)+'%</span><br>'+bits.join(" · ")+'</div>';
+  renderReviewLine();
+}
+function daysSince(iso){if(!iso)return null;const then=new Date(iso+"T00:00:00");const now=new Date();return Math.floor((now-then)/86400000);}
+function renderReviewLine(){
+  const line=document.getElementById("review-line");
+  if(line){
+    if(state.lastReviewed){line.innerHTML="Last reviewed: <strong>"+new Date(state.lastReviewed+"T00:00:00").toLocaleDateString()+"</strong>";}
+    else{line.innerHTML="Last reviewed: <strong>not yet reviewed</strong>";}
+  }
+  const flag=document.getElementById("review-flag");if(!flag)return;
+  const dd=daysSince(state.lastReviewed);
+  if(dd!==null&&dd>=365){flag.classList.add("show");flag.textContent=CONFIG.summary.staleFlag||"It has been more than a year since your last review. Open the Summary tab when you have a few minutes.";}
+  else{flag.classList.remove("show");flag.textContent="";}
+}
+function markReviewed(){
+  const now=new Date();const iso=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  state.lastReviewed=iso;save();renderReviewLine();
+}
+
+/* ---------- print sheet (compiled from CONFIG.sheet.sections) ---------- */
+function registerTableHTML(reg,rows,skipKey){
+  let h='<table><tr>';
+  reg.columns.forEach(c=>{if(c.key!==skipKey)h+='<th>'+esc(c.label)+'</th>';});
+  h+='</tr>';
+  rows.forEach(r=>{h+='<tr>';
+    reg.columns.forEach(c=>{if(c.key===skipKey)return;
+      const v=c.type==="num"?money(parseFloat(r[c.key])||0):esc(r[c.key]);
+      h+='<td>'+v+'</td>';});
+    h+='</tr>';});
+  if(reg.counter==="total"){
+    h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
+    const nk=reg.counterField||numKey(reg);
+    reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
+      h+=c.key===nk?'<td><strong>'+money(regTotal(reg))+'</strong></td>':'<td></td>';});
+    h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
+    h+='</tr>';
+  }
+  return h+'</table>';
+}
+function sheetHTML(){
+  const S=CONFIG.sheet;
+  let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
+  if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
+  (S.sections||[]).forEach(sec=>{
+    h+='<h2>'+esc(sec.title)+'</h2>';
+    if(sec.type==="wish"){
+      const v=state.wishes[sec.key];
+      if(nonEmpty(v))h+='<div class="wblock">'+nl2br(v)+'</div>';
+      else h+='<p>'+esc(sec.empty||"Not recorded yet.")+'</p>';
+    }else if(sec.type==="register"){
+      const reg=regById(sec.id);const rows=state[sec.id];
+      if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
+      if(sec.groupBy){
+        const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);counts[c]=(counts[c]||0)+1;});
+        const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
+        order.forEach(c=>{
+          h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);return rc===c;}),sec.groupBy);
+        });
+      }else{
+        h+=registerTableHTML(reg,rows,null);
+      }
+    }else if(sec.type==="wishes"){
+      let any=false;const excl=sec.exclude||[];
+      WISHES.forEach(w=>{if(excl.indexOf(w.key)>=0)return;const v=state.wishes[w.key];if(!nonEmpty(v))return;any=true;
+        h+='<h3>'+esc(w.label)+'</h3><div class="wblock">'+nl2br(v)+'</div>';});
+      if(!any)h+='<p>'+esc(sec.empty||"No wishes recorded yet.")+'</p>';
+    }
+  });
+  if(S.foot)h+='<p class="foot">'+esc(S.foot)+'</p>';
+  return h;
+}
+function renderSheetPreview(){
+  const el=document.getElementById("sheet-preview");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const n=state[reg.id].length;
+    let s=n+" "+(n===1?noun:plural);
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(CONFIG.sheet.docTitle)+'</strong></div>'+
+    '<p class="note" style="margin:0">'+esc(CONFIG.sheet.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+    (CONFIG.wishesEnabled?", plus your wishes":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
+}
+function printSheet(){
+  const pa=document.getElementById("print-area");
+  pa.innerHTML=sheetHTML();window.print();
+}
+function printAll(){
+  const pa=document.getElementById("print-area");
+  let h=sheetHTML();
+  h+='<h2>Guided Task Progress</h2>';
+  PHASES.forEach((ph,pi)=>{
+    h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks["p"+pi+"t"+ti]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    h+='</table>';
+  });
+  pa.innerHTML=h;window.print();
+}
+
+/* ---------- backup / restore ---------- */
+function backup(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
+  aEl.download=CONFIG.backupPrefix+"-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(aEl);aEl.click();aEl.remove();
+}
+function restore(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{const data=JSON.parse(reader.result);
+      if(!data||typeof data!=="object")throw 0;
+      state=Object.assign(defaultState(),data);
+      REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[]});
+      if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+      save();renderAll();alert("Backup restored.");}
+    catch(e){alert("That file does not look like a valid backup.");}};
+  reader.readAsText(f);input.value="";
+}
+
+/* ---------- boot ---------- */
+document.getElementById("nav").addEventListener("click",e=>{
+  if(e.target.tagName!=="BUTTON")return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
+  e.target.classList.add("active");
+  document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
+  if(e.target.dataset.tab==="sheet")renderSheetPreview();
+});
+function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
+buildShell();load();renderAll();
+</script>
+</body>
+</html>

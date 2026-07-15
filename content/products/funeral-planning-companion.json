@@ -1,0 +1,149 @@
+{
+  "order": 4,
+  "slug": "funeral-planning-companion",
+  "name": "Funeral Planning Companion",
+  "kicker": "Funeral Planning Companion",
+  "status": "new",
+  "season": "Your wishes",
+  "price": 29,
+  "paymentLink": "https://link.fastpaydirect.com/payment-link/6a57aa98b1a0a3e48f24d2da",
+  "demoPath": "/demos/funeral-planning-companion.html",
+  "card": {
+    "oneLiner": "Your funeral wishes, arrangements, and who to call — decided calmly, in advance.",
+    "bullets": [
+      "Your wishes, decided in advance",
+      "Arrangements and who to call, in one place",
+      "Printable instruction sheet for your family",
+      "Private and fully offline"
+    ]
+  },
+  "hero": {
+    "headline": "Your family will be grieving. They shouldn't also be guessing.",
+    "lede": "Every funeral decision your family would otherwise make in grief — wishes, arrangements, and contacts, organized in advance. Offline, private, printable.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/funeral-planning-companion/wishes.png",
+    "imageAlt": "Funeral Planning Companion showing the My Wishes section"
+  },
+  "band": [
+    {
+      "label": "100% offline",
+      "sub": "zero network requests"
+    },
+    {
+      "label": "Completely private",
+      "sub": "data stays on your device"
+    },
+    {
+      "label": "$29 once",
+      "sub": "yours forever"
+    },
+    {
+      "label": "A real app",
+      "sub": "not a PDF or spreadsheet"
+    }
+  ],
+  "intro": {
+    "heading": "Your whole plan, in one gentle place",
+    "body": "Every funeral decision your family would otherwise make in the first days of grief — your wishes, the arrangements, and who to call — organized calmly, in advance."
+  },
+  "features": [
+    {
+      "title": "30 guided tasks",
+      "body": "My Wishes · Arrangements · The Details · Hand It Off"
+    },
+    {
+      "title": "Service & wishes",
+      "body": "Burial or cremation, tone, music, readings"
+    },
+    {
+      "title": "Arrangements register",
+      "body": "Funeral home, cemetery, officiant, what's prepaid"
+    },
+    {
+      "title": "Vital details",
+      "body": "What an obituary and certificate need"
+    },
+    {
+      "title": "People to notify",
+      "body": "Family, employer, clergy, organizations"
+    },
+    {
+      "title": "Instruction Sheet",
+      "body": "One click prints the plan for your family"
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/funeral-planning-companion/wishes.png",
+      "alt": "My Wishes section",
+      "captionBold": "Your wishes, in your words.",
+      "caption": "Service, music, and tone — decided calmly."
+    },
+    {
+      "img": "/images/funeral-planning-companion/arrangements.png",
+      "alt": "Arrangements register",
+      "captionBold": "Every arrangement, in one place.",
+      "caption": "Funeral home, cemetery, and what's prepaid."
+    },
+    {
+      "img": "/images/funeral-planning-companion/details.png",
+      "alt": "Vital details",
+      "captionBold": "The details they'll need.",
+      "caption": "What an obituary and certificate require."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Nothing you type ever leaves your device, and it never asks for a payment or account number by design.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+      },
+      {
+        "title": "Never a password",
+        "body": "By design, it never asks for or stores passwords or PINs. It records that accounts exist and where your written instructions live — the map, never the keys."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "the day-of and arrangements module — what a family scrambles to decide in the first 72 hours, decided calmly in advance.",
+    "bullets": [
+      "30 guided tasks across four phases: My Wishes, Arrangements, The Details, Hand It Off",
+      "A wishes section for service, burial or cremation, music, readings, and tone",
+      "An arrangements register: funeral home, cemetery, officiant, and what is prepaid",
+      "Vital details an obituary and death certificate need, in one place",
+      "People to notify, from family to employer to faith community",
+      "A one-click printable arrangements instruction sheet for whoever carries this out",
+      "Auto-save with backup and restore"
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is this a subscription?",
+      "a": "No. You pay 29 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones."
+    },
+    {
+      "q": "Is my information really private?",
+      "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control."
+    },
+    {
+      "q": "What if it doesn't work for me?",
+      "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    }
+  ],
+  "crossSell": {
+    "heading": "Getting your affairs in order, too?",
+    "body": "Fourth Quietkeep organizer; pairs naturally with the Estate Planning Organizer (before-death) as the day-of companion.",
+    "href": "/estate-planning-organizer",
+    "cta": "See the Organizer"
+  }
+}
