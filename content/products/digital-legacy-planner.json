@@ -6,7 +6,7 @@
   "status": "new",
   "season": "Your digital life",
   "price": 29,
-  "paymentLink": "TODO: GHL fastpaydirect payment link",
+  "paymentLink": "https://link.fastpaydirect.com/payment-link/6a56de2ca655fa0b802a44e6",
   "demoPath": "/demos/digital-legacy-planner.html",
   "card": {
     "oneLiner": "Every account, device, and subscription — mapped, with a plan for each. It never stores a password.",
