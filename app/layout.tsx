@@ -19,6 +19,15 @@ export const metadata: Metadata = {
   icons: { icon: "/images/brand/keyhole.png" },
 };
 
+const orgLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: `https://${site.domain}`,
+  email: site.supportEmail,
+  description: site.description,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -26,7 +35,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

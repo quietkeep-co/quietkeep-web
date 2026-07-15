@@ -1,0 +1,63 @@
+{
+  "slug": "getting-affairs-in-order",
+  "title": "How to Get Your Affairs in Order: A Calm, Practical Guide",
+  "description": "What 'getting your affairs in order' actually means, in what order to do it, and how to make sure the people who'd need your information can find it.",
+  "cluster": "Estate planning",
+  "date": "2026-07-14",
+  "updated": "2026-07-14",
+  "readingMinutes": 8,
+  "intro": [
+    "\"Get your affairs in order\" is advice everyone has heard and almost no one has a checklist for. It sounds enormous, so it gets postponed — usually until a health scare or a birthday ending in zero forces the question.",
+    "Here is the honest version: getting your affairs in order is mostly an inventory problem, not a legal problem. The legal documents matter, but they're a small fraction of the work. The bulk of it is making sure that the people who would need to step in for you could actually find things — the accounts, the policies, the passwords' hiding place, the person to call.",
+    "This guide breaks the work into five layers, ordered so that each one is useful on its own even if you stop there."
+  ],
+  "sections": [
+    {
+      "heading": "Layer 1 — The people",
+      "paragraphs": [
+        "Before any paperwork, decide who your people are. Who would handle things if you couldn't? Who should be called first? Who is your doctor, your attorney if you have one, your insurance agent, your accountant?",
+        "Write these names and numbers in one place. In a real emergency, the difference between a family that copes and a family that flounders is often just whether they know who to call."
+      ]
+    },
+    {
+      "heading": "Layer 2 — The documents",
+      "paragraphs": [
+        "There is a short list of documents that carry legal weight, and each protects you in a different situation. You don't need all of them tomorrow, but you should know which ones you have, which you're missing, and where the originals live:"
+      ],
+      "bullets": [
+        "<b>A will</b> — who gets what, and who's in charge of making it happen.",
+        "<b>Durable power of attorney</b> — who can handle your finances if you're incapacitated but alive. Many families discover too late that a will does nothing here.",
+        "<b>Healthcare proxy / medical power of attorney</b> — who speaks for you medically when you can't.",
+        "<b>Living will or advance directive</b> — what you actually want, in writing, so nobody has to guess.",
+        "<b>Beneficiary designations</b> — on retirement accounts and life insurance. These override your will, and they're the item most often left pointing at an ex-spouse or a deceased parent. Check them.",
+        "Where relevant: trusts, deeds, titles, marriage or divorce records, and military discharge papers."
+      ]
+    },
+    {
+      "heading": "Layer 3 — The money map",
+      "paragraphs": [
+        "Nobody can settle, manage, or protect what they can't find. List every financial account — checking, savings, brokerage, retirement, pensions, HSAs — plus every debt: mortgage, cards, loans. For each, record the institution and roughly what it is; account numbers can live in a more protected place.",
+        "Add the insurance policies: life, health, home, auto, disability, long-term care. Policies people don't know about pay nobody. Unclaimed life insurance is a genuinely large problem for exactly this reason.",
+        "Then the recurring bills — what gets paid automatically, from which account. If someone had to keep your household running for three months, this list is what they'd need."
+      ]
+    },
+    {
+      "heading": "Layer 4 — The digital layer",
+      "paragraphs": [
+        "Your email, photos, subscriptions, and online accounts are an estate of their own now, and they're the layer most plans miss entirely. The short version: list the accounts, decide what should happen to each, set the legacy-contact features the big platforms offer, and record where your passwords live (a manager, a safe) — without writing the passwords themselves into any planning document.",
+        "This layer is big enough that we wrote a separate guide for it: <a href=\"/guides/digital-estate-planning-checklist\">the digital estate planning checklist</a>."
+      ]
+    },
+    {
+      "heading": "Layer 5 — The handoff",
+      "paragraphs": [
+        "Everything above only works if it's findable. Pick one place — a binder, a fireproof box, a single well-marked file — where the inventory lives, and tell the one or two people who'd need it exactly where that is.",
+        "Then put a review date on the calendar. Once a year is enough: new accounts, changed beneficiaries, moved documents. Fifteen minutes a year keeps the whole thing true.",
+        "A note on what this guide is not: it's organization, not legal advice. The documents in Layer 2 have state-specific rules, and an estate attorney is the right person for them. What you can do — today, free, without an appointment — is arrive at that appointment organized. It makes the professional time shorter and cheaper, and it's the part only you can do anyway."
+      ]
+    }
+  ],
+  "takeaway": "Getting your affairs in order is five layers: the people, the documents, the money map, the digital layer, and the handoff. Most of it is inventory, not law — which means most of it can be done at your kitchen table, and each layer is worth having even if you never finish the rest.",
+  "productSlug": "estate-planning-organizer",
+  "productPitch": "The Estate Planning Organizer turns these five layers into guided tasks and registers that do the math — contacts, documents, accounts, policies, wishes — with a printable summary for the people who'd need it. One file, completely offline."
+}

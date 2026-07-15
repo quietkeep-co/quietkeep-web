@@ -18,7 +18,8 @@ export const site = {
   nav: [
     { label: "Organizers", href: "/#organizers" },
     { label: "Our promise", href: "/#promise" },
-    { label: "About", href: "/#about" },
+    { label: "Guides", href: "/guides" },
+    { label: "Free checklist", href: "/free" },
     { label: "FAQ", href: "/#faq" },
   ],
 

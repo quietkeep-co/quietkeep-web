@@ -1,0 +1,68 @@
+{
+  "slug": "digital-estate-planning-checklist",
+  "title": "The Digital Estate Planning Checklist: Mapping Your Online Life Before Someone Else Has To",
+  "description": "A practical, step-by-step checklist for inventorying your accounts, devices, and subscriptions — so your family isn't locked out of your digital life when it matters most.",
+  "cluster": "Digital estate planning",
+  "date": "2026-07-14",
+  "updated": "2026-07-14",
+  "readingMinutes": 9,
+  "intro": [
+    "Most estate plans cover the house, the bank accounts, and the will. Almost none of them cover the two hundred online accounts the average person now has — the email address that receives every password reset, the photo library in the cloud, the subscriptions quietly billing a card every month.",
+    "When someone dies without a digital plan, their family inherits a locked filing cabinet with no key. Accounts can't be found, let alone closed. Photos are lost. Subscriptions bill for months. And the one thing that would have prevented all of it is an afternoon of listing things down.",
+    "This checklist walks through that afternoon, in four phases. You don't need any special software to follow it — a notebook works. You just need to actually do it."
+  ],
+  "sections": [
+    {
+      "heading": "Phase 1 — Map every account you have",
+      "paragraphs": [
+        "The goal of this phase is simple: get every account out of your head and onto a list your family could actually find. Don't worry yet about what should happen to each one — just capture that it exists.",
+        "Work through these categories in order. Your bank and card statements are the best memory aid you have: anything that bills you will appear there."
+      ],
+      "bullets": [
+        "<b>Email addresses.</b> Start here — email is the master key to everything else. List every address you actively use, and the old ones that still receive password resets.",
+        "<b>Financial accounts and apps.</b> Banks, brokerages, retirement accounts, payment apps like Venmo or PayPal, and anything holding a balance.",
+        "<b>Social media.</b> Facebook, Instagram, LinkedIn, and anything else carrying your name and your photos.",
+        "<b>Subscriptions.</b> Streaming, software, memberships, storage. Check three months of statements — most people find ones they forgot.",
+        "<b>Cloud storage.</b> iCloud, Google Drive, Dropbox — often where the photos live.",
+        "<b>Shopping accounts with stored payment methods.</b> Amazon and any retailer that has your card on file.",
+        "<b>Domains, websites, or online businesses.</b> These expire and can be lost permanently if renewals lapse.",
+        "<b>Crypto wallets and exchanges.</b> Note only where the access instructions live — never write keys on this list.",
+        "<b>Loyalty and points programs</b> worth real money — airline miles and hotel points are frequently transferable but only if someone knows they exist.",
+        "<b>Work accounts</b> your family would need to notify — payroll, benefits, professional platforms."
+      ]
+    },
+    {
+      "heading": "Phase 2 — Devices and access",
+      "paragraphs": [
+        "An account list is only useful if someone can act on it, and acting on it usually starts with unlocking a phone. Two-factor authentication means your phone is not just a device — it's the gatekeeper to almost every account you have.",
+        "For each phone, tablet, and computer, record whose it is, what's on it that matters, and — critically — <b>where the unlock information lives</b>. Not the PIN itself; the location of the sealed envelope, the safe, or the password manager entry that holds it.",
+        "This is also the moment to set up the official channels the platforms already offer, because they work far better than any workaround after the fact:"
+      ],
+      "bullets": [
+        "<b>Apple Legacy Contact</b> — lets a person you choose access your Apple account and photos after your death, with a death certificate.",
+        "<b>Google Inactive Account Manager</b> — decides what happens to your Google account after a period of inactivity you set.",
+        "<b>Facebook Legacy Contact</b> — designates who can manage your memorialized profile.",
+        "<b>Your password manager's emergency access feature</b> — most good ones (1Password, Bitwarden, and others) let a trusted person request access with a waiting period you control."
+      ]
+    },
+    {
+      "heading": "Phase 3 — Decide what should happen to each account",
+      "paragraphs": [
+        "This is the step almost everyone skips, and it's the one that turns a list into a plan. For every account on your map, make one decision: <b>transfer, memorialize, close, let lapse, or let the family decide.</b>",
+        "Some of these decisions matter more than others. Decide deliberately about your email accounts (they're the master keys — usually the last thing to close), your photo libraries (often the thing families care most about, and the easiest to lose), and your social media (memorialized, deleted, or left alone — your call, but make it explicitly).",
+        "Then choose a <b>digital executor</b>: the specific person you want handling all of this. It doesn't have to be the same person as your legal executor — it should be whoever you'd actually trust to work through a list of accounts patiently. Ask them. Whether a digital executor has formal legal authority varies by state and by each platform's terms of service, so if you want it binding, mention digital assets in your estate documents with an attorney's help."
+      ]
+    },
+    {
+      "heading": "Phase 4 — Hand it off",
+      "paragraphs": [
+        "A plan nobody can find is not a plan. The final phase is about making sure the map reaches the right hands.",
+        "Print or write out the summary — every account, the decision for each, where access instructions live — and store it with your estate documents. Tell your digital executor where it is. Then set a yearly reminder to review it: after any new account, any new device, and any change to your legacy-contact settings.",
+        "One rule keeps this whole exercise safe: <b>the map never contains passwords.</b> A list of accounts with a what-should-happen decision for each is a gift to your family. A list of passwords is a liability sitting in a drawer. Record where your access instructions live — a password manager, a safe, a sealed envelope — and keep the keys themselves out of the document entirely."
+      ]
+    }
+  ],
+  "takeaway": "Your digital life is invisible to the people who would one day need to handle it. One honest afternoon of mapping — accounts, devices, decisions, handoff — turns a locked filing cabinet into something your family can actually follow. The map records where the keys live; it never contains the keys themselves.",
+  "productSlug": "digital-legacy-planner",
+  "productPitch": "The Digital Legacy Planner walks you through this exact checklist as a guided app — 35 tasks, an account inventory with a decision for each, a device register, and a printable instruction sheet for your family. Fully offline, and it never stores a password by design."
+}

@@ -10,6 +10,7 @@ import { Faq } from "@/components/Faq";
 import { Reveal } from "@/components/Reveal";
 import { DemoFrame } from "@/components/DemoFrame";
 import { UpdatesSection } from "@/components/UpdatesSection";
+import { JsonLd } from "@/components/JsonLd";
 import { getProduct, productSlugs } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -45,8 +46,36 @@ export default function ProductPage({
   const p = getProduct(params.product);
   if (!p) notFound();
 
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.name,
+    description: p.hero.lede,
+    image: `https://${site.domain}${p.hero.image}`,
+    url: `https://${site.domain}/${p.slug}`,
+    brand: { "@type": "Brand", name: site.name },
+    offers: {
+      "@type": "Offer",
+      price: p.price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: `https://${site.domain}/${p.slug}`,
+    },
+  };
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: p.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a.replace(/<[^>]+>/g, "") },
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={productLd} />
+      <JsonLd data={faqLd} />
       <Nav links={productNav} cta={{ label: `Get it — $${p.price}`, href: "#buy" }} />
 
       {/* Hero */}

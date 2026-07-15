@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Peace of Mind Checklist — Quietkeep</title>
+<style>
+  :root{--paper:#F2F1EC;--card:#FBFAF7;--ink:#26332E;--soft:#5C6B63;--faint:#8A968F;--ledger:#3E6B54;--brass:#A8823F;--line:#DAD8CF}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font:16px/1.55 "Seravek","Avenir Next","Segoe UI",system-ui,sans-serif;padding:32px 18px}
+  .page{max-width:760px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:44px 46px}
+  h1,h2{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+  .kicker{display:flex;align-items:center;gap:10px;color:var(--brass);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+  .kicker::before{content:"";width:26px;border-top:1px solid var(--brass)}
+  h1{font-size:32px;line-height:1.15;margin-bottom:10px}
+  .lede{color:var(--soft);margin-bottom:6px}
+  .note{color:var(--faint);font-size:13.5px;margin-bottom:28px}
+  h2{font-size:19px;margin:26px 0 10px;color:var(--ledger)}
+  label{display:flex;gap:11px;align-items:flex-start;padding:8px 2px;border-bottom:1px solid #E8E6DE;color:var(--soft);cursor:pointer}
+  label b{color:var(--ink);font-weight:600}
+  input[type=checkbox]{margin-top:4px;accent-color:var(--ledger);width:15px;height:15px;flex:none}
+  .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--faint);font-size:13px}
+  .foot a{color:var(--ledger)}
+  .btnrow{margin:26px 0 0}
+  button{background:var(--ledger);color:#fff;border:0;border-radius:8px;padding:10px 18px;font:600 15px inherit;cursor:pointer}
+  @media print{body{background:#fff;padding:0}.page{border:0;padding:12px}.btnrow{display:none}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="kicker">Quietkeep · Free</div>
+  <h1>The Peace of Mind Checklist</h1>
+  <p class="lede">Twenty things your family would need to know, find, or reach if something happened to you. Check off what's already handled; the unchecked boxes are your to-do list.</p>
+  <p class="note">This file works completely offline. Nothing you check is sent anywhere — print it, or keep it on your device. An organizational tool, not legal advice.</p>
+
+  <h2>The people</h2>
+  <label><input type="checkbox"><span><b>One person knows they'd be in charge.</b> You've asked them, and they said yes.</span></label>
+  <label><input type="checkbox"><span><b>A contact list exists</b> — doctor, attorney, insurance agent, accountant, closest family — written down in one place.</span></label>
+
+  <h2>The documents</h2>
+  <label><input type="checkbox"><span><b>A will exists</b> and the original's location is known to someone besides you.</span></label>
+  <label><input type="checkbox"><span><b>Durable power of attorney</b> is signed — someone can handle finances if you're incapacitated.</span></label>
+  <label><input type="checkbox"><span><b>Healthcare proxy</b> is named — someone can speak for you medically.</span></label>
+  <label><input type="checkbox"><span><b>Advance directive / living will</b> states your wishes in writing.</span></label>
+  <label><input type="checkbox"><span><b>Beneficiary designations</b> on retirement accounts and life insurance are current — checked within the last year.</span></label>
+
+  <h2>The money</h2>
+  <label><input type="checkbox"><span><b>Every financial account is listed</b> — bank, brokerage, retirement — by institution, findable by your person.</span></label>
+  <label><input type="checkbox"><span><b>Debts are listed</b> — mortgage, cards, loans.</span></label>
+  <label><input type="checkbox"><span><b>Insurance policies are listed</b> — life, health, home, auto — with company names.</span></label>
+  <label><input type="checkbox"><span><b>Recurring bills are listed</b> — what pays automatically, from which account.</span></label>
+
+  <h2>The digital life</h2>
+  <label><input type="checkbox"><span><b>Email accounts are listed</b> — they're the master keys to everything else.</span></label>
+  <label><input type="checkbox"><span><b>A password manager exists</b> (or one written, locked-away list) — and your person knows where access instructions live. Never in this document.</span></label>
+  <label><input type="checkbox"><span><b>Legacy contacts are set</b> — Apple, Google, and Facebook each offer one.</span></label>
+  <label><input type="checkbox"><span><b>Subscriptions are listed</b> — what your family would keep paying without a list.</span></label>
+  <label><input type="checkbox"><span><b>Photo libraries have a plan</b> — where they live and who should get them.</span></label>
+
+  <h2>The handoff</h2>
+  <label><input type="checkbox"><span><b>Everything above lives in one findable place</b> — a binder, a box, a file.</span></label>
+  <label><input type="checkbox"><span><b>Your person knows where that place is.</b></span></label>
+  <label><input type="checkbox"><span><b>A yearly review date is on the calendar.</b></span></label>
+  <label><input type="checkbox"><span><b>Funeral wishes are written down</b> — even briefly. Decisions made in grief are the hardest ones.</span></label>
+
+  <div class="btnrow"><button onclick="window.print()">Print this checklist</button></div>
+
+  <p class="foot">Made by <a href="https://quietkeep.co">Quietkeep</a> — private, offline organizers for life's hardest moments. When you're ready to go deeper than a checklist, our organizers walk you through every box above, step by step, entirely on your own device. quietkeep.co</p>
+</div>
+</body>
+</html>
