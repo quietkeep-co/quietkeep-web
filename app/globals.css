@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-sans;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto max-w-wrap px-6;
+  }
+  .btn {
+    @apply inline-block rounded-[9px] border border-ledger bg-ledger px-7 py-3.5 text-[17px] text-white no-underline transition-colors;
+  }
+  .btn:hover {
+    @apply bg-ledger-deep;
+  }
+  .btn-ghost {
+    @apply border-line bg-transparent text-ink;
+  }
+  .btn-ghost:hover {
+    @apply border-ink-soft bg-card;
+  }
+  .btn-big {
+    @apply px-9 py-[17px] text-[18px];
+  }
+  /* Double ledger rule to the left of a section heading */
+  .ledger-rule {
+    border-left: 3px double #dad8cf;
+    @apply pl-[22px];
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "order": 1,
+  "slug": "estate-settlement-companion",
+  "name": "Estate Settlement Companion",
+  "kicker": "Estate Settlement Companion",
+  "status": "live",
+  "season": "After a death",
+  "price": 39,
+  "paymentLink": "https://link.fastpaydirect.com/payment-link/6a53f3acc981f3feae6e8ad2",
+  "demoPath": "/demos/estate-settlement-companion.html",
+  "card": {
+    "oneLiner": "For executors and families settling an estate. It walks you through the whole job, first days through closing.",
+    "bullets": [
+      "47 guided tasks across four phases",
+      "Asset, debt & expense registers with running totals",
+      "One-click printable attorney summary"
+    ]
+  },
+  "hero": {
+    "headline": "You've never settled an estate before. It knows that.",
+    "lede": "A private, offline app that walks executors and families through the whole job — 47 guided tasks, the registers your attorney will ask for, and every dollar tracked. Nothing you type ever leaves your device.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/esc/hero.png",
+    "imageAlt": "Estate Settlement Companion showing tasks and running totals"
+  },
+  "band": [
+    { "label": "100% offline", "sub": "zero network requests" },
+    { "label": "Completely private", "sub": "data stays on your device" },
+    { "label": "$39 once", "sub": "yours forever" },
+    { "label": "A real app", "sub": "not a PDF or spreadsheet" }
+  ],
+  "intro": {
+    "heading": "The whole job, in the right order",
+    "body": "Settling an estate is dozens of tasks nobody hands you a list for. The Companion is that list — first days through final distribution — with the registers your attorney and the court will actually ask to see."
+  },
+  "features": [
+    { "title": "47 guided tasks", "body": "Four phases, from the first days through closing the estate. Every task explains what it is and why it matters, in plain English." },
+    { "title": "Asset & debt registers", "body": "Bank and investment accounts, property, vehicles, and every debt and expense — with running totals the estate accounting needs." },
+    { "title": "Every dollar tracked", "body": "Money in, money out, and what's left. The numbers stay reconciled so nothing surprises you at distribution." },
+    { "title": "Key people & contacts", "body": "Beneficiaries, the attorney, the accountant, the institutions you'll call again and again — one list, always current." },
+    { "title": "The attorney summary", "body": "One click compiles the whole picture into a printable summary you can hand to the professionals — which is how you keep their bills small." },
+    { "title": "Auto-save & backup", "body": "Your work saves automatically to your device. Export a backup file whenever you like; restore it on any computer." }
+  ],
+  "screens": [
+    { "img": "/images/esc/inside.png", "alt": "Guided task list", "captionBold": "The work, in order.", "caption": "Every step, first days through closing." },
+    { "img": "/images/esc/privacy.png", "alt": "Private by design", "captionBold": "Private by design.", "caption": "Nothing you enter leaves your device." },
+    { "img": "/images/esc/how.png", "alt": "How it works", "captionBold": "A real app.", "caption": "Not a PDF, not a spreadsheet." }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "You'll be recording account numbers, balances, and beneficiaries. That information should never touch the internet. In this app, it can't.",
+    "cards": [
+      { "title": "Zero network requests", "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off." },
+      { "title": "We couldn't see your data if we wanted to", "body": "No account, no login, no cloud, no sync. Nothing you type is transmitted anywhere. Your backup is a file on your own computer." },
+      { "title": "Yours forever", "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today." }
+    ]
+  },
+  "priceCard": {
+    "sub": "One executor's whole job, organized.",
+    "bullets": [
+      "The complete app — instant download",
+      "47 guided tasks across four phases",
+      "Asset, debt & expense registers with totals",
+      "One-click printable attorney summary",
+      "Free email support, free updates",
+      "No subscription. No account. Ever."
+    ]
+  },
+  "faq": [
+    { "q": "Is this a subscription?", "a": "No. You pay $39 once and the app is yours forever. There is no account, no renewal, and nothing that expires." },
+    { "q": "Do I need to install anything?", "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones." },
+    { "q": "Is this legal or financial advice?", "a": "No. The Companion is an organizational tool. It gets the estate inventoried and tracked, and frames the right questions for your attorney and accountant." },
+    { "q": "Is my information really private?", "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control." },
+    { "q": "What if it doesn't work for me?", "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message." }
+  ],
+  "crossSell": {
+    "heading": "Planning ahead instead?",
+    "body": "The <a href=\"/estate-planning-organizer\">Estate Planning Organizer</a> is this app's counterpart for getting your own affairs in order — so your family never has to go looking.",
+    "href": "/estate-planning-organizer",
+    "cta": "See the Organizer"
+  }
+}

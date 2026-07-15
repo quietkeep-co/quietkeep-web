@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estate Settlement Companion — Quietkeep</title>
+<style>
+:root{
+  --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
+  --white:#FFFFFF; --line:#D8D6CE; --soft:#E7E5DD; --danger:#8A3B2E;
+  --serif:Charter,'Bitstream Charter',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+header{background:var(--spruce);color:var(--porcelain);padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--brass)}
+header .mark{flex:0 0 auto}
+header h1{font-family:var(--serif);font-size:1.35rem;font-weight:bold;letter-spacing:.2px}
+header .sub{font-size:.78rem;color:var(--mist);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav button{font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px 16px;border:1.5px solid var(--spruce);border-radius:999px;background:var(--white);color:var(--spruce);cursor:pointer}
+nav button.active{background:var(--spruce);color:var(--porcelain)}
+nav button:hover{border-color:var(--brass)}
+.bar{background:var(--soft);border-radius:8px;height:14px;overflow:hidden;margin:6px 0 2px}
+.bar>div{background:var(--brass);height:100%;border-radius:8px;transition:width .3s}
+.progress-label{font-size:.85rem;color:var(--spruce)}
+section.tab{display:none;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+section.tab.active{display:block}
+h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:6px}
+h3{font-family:var(--serif);font-size:1.15rem;margin:22px 0 4px;color:var(--spruce)}
+.note{font-size:.9rem;color:#5c6660;margin-bottom:14px}
+.phase{margin-bottom:26px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 8px;border-bottom:1px solid var(--soft)}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--spruce);margin-top:3px;flex:0 0 auto;cursor:pointer}
+.task .t{font-weight:600}
+.task .why{font-size:.86rem;color:#5c6660;margin-top:2px}
+.task.done .t{color:#7a827d;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--spruce);text-align:left;padding:8px 6px;border-bottom:2px solid var(--spruce)}
+td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
+td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
+td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+td.num input{text-align:right}
+.del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
+.add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
+.add:hover{background:#2E5249}
+.totals{margin-top:12px;font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.totals strong{color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toolbar button{border:1.5px solid var(--spruce);background:var(--white);color:var(--spruce);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--spruce);color:var(--mist);font-size:.82rem;padding:8px 18px;display:flex;justify-content:space-between;align-items:center}
+.savebar b{color:var(--porcelain)}
+.disclaimer{font-size:.8rem;color:#6a736d;margin-top:18px;border-top:1px solid var(--soft);padding-top:10px}
+#print-area{display:none}
+@media print{
+  body *{visibility:hidden}
+  #print-area,#print-area *{visibility:visible}
+  #print-area{display:block;position:absolute;top:0;left:0;width:100%;font-family:var(--serif);color:#000}
+  #print-area h1{font-size:20pt;margin-bottom:2pt}
+  #print-area .ph{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14pt}
+  #print-area h2{font-size:13pt;margin:14pt 0 4pt;border-bottom:1pt solid #000;padding-bottom:2pt}
+  #print-area table{width:100%;border-collapse:collapse;font-size:10pt}
+  #print-area th,#print-area td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:left}
+  #print-area p{font-size:10pt;margin:3pt 0}
+}
+@media(max-width:640px){
+  .wrap{padding:14px 10px 90px}
+  section.tab{padding:14px}
+  th,td{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
+    <rect x="13" y="13" width="74" height="74" rx="17" fill="none" stroke="#A5834B" stroke-width="2.5"/>
+    <circle cx="50" cy="42" r="12" fill="#24413B"/>
+    <path d="M 45 48 L 41 66 L 59 66 L 55 48 Z" fill="#24413B"/>
+    <rect x="41" y="61" width="18" height="6" rx="3" fill="#24413B"/>
+  </svg>
+  <div>
+    <h1>Estate Settlement Companion</h1>
+    <div class="sub">Quietkeep · Everything stays on your device</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="progress-label" id="overall-label">Overall progress</div>
+  <div class="bar"><div id="overall-bar" style="width:0%"></div></div>
+
+  <nav id="nav">
+    <button data-tab="tasks" class="active">Tasks</button>
+    <button data-tab="assets">Assets</button>
+    <button data-tab="debts">Debts</button>
+    <button data-tab="expenses">Expenses</button>
+    <button data-tab="contacts">Contacts</button>
+    <button data-tab="documents">Documents</button>
+    <button data-tab="summary">Summary &amp; Backup</button>
+  </nav>
+
+  <section class="tab active" id="tab-tasks">
+    <h2>Guided Tasks</h2>
+    <p class="note">47 steps across four phases. Work at your own pace; everything saves automatically on this device. Each step notes why it matters. This is an organizer, not legal advice.</p>
+    <div id="phases"></div>
+  </section>
+
+  <section class="tab" id="tab-assets">
+    <h2>Asset Register</h2>
+    <p class="note">Everything the estate owns: accounts, property, vehicles, valuables. Estimated values are fine; the register keeps a running total.</p>
+    <table><thead><tr><th style="width:24%">Asset</th><th style="width:22%">Institution / Location</th><th style="width:18%">Account / ID</th><th style="width:14%">Est. value ($)</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="assets-body"></tbody></table>
+    <button class="add" onclick="addRow('assets')">+ Add asset</button>
+    <div class="totals">Total estimated assets: <strong id="assets-total">$0</strong></div>
+  </section>
+
+  <section class="tab" id="tab-debts">
+    <h2>Debt Register</h2>
+    <p class="note">Everything the estate owes. Do not pay anything out of order; your attorney can confirm priority under state law.</p>
+    <table><thead><tr><th style="width:24%">Creditor</th><th style="width:18%">Type</th><th style="width:14%">Balance ($)</th><th style="width:18%">Status</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="debts-body"></tbody></table>
+    <button class="add" onclick="addRow('debts')">+ Add debt</button>
+    <div class="totals">Total known debts: <strong id="debts-total">$0</strong></div>
+  </section>
+
+  <section class="tab" id="tab-expenses">
+    <h2>Expense Log</h2>
+    <p class="note">Track every estate expense and who paid it. Amounts you pay personally are usually reimbursable from the estate; the log totals them for you.</p>
+    <table><thead><tr><th style="width:14%">Date</th><th>Description</th><th style="width:13%">Amount ($)</th><th style="width:16%">Paid by</th><th style="width:14%">Reimbursable</th><th style="width:36px"></th></tr></thead><tbody id="expenses-body"></tbody></table>
+    <button class="add" onclick="addRow('expenses')">+ Add expense</button>
+    <div class="totals">Total expenses: <strong id="expenses-total">$0</strong> · Reimbursable to executor: <strong id="reimb-total">$0</strong></div>
+  </section>
+
+  <section class="tab" id="tab-contacts">
+    <h2>Contacts</h2>
+    <p class="note">Every person and institution in one place: attorney, court, banks, agencies, family.</p>
+    <table><thead><tr><th style="width:22%">Name</th><th style="width:20%">Role</th><th style="width:18%">Phone</th><th style="width:22%">Email</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="contacts-body"></tbody></table>
+    <button class="add" onclick="addRow('contacts')">+ Add contact</button>
+  </section>
+
+  <section class="tab" id="tab-documents">
+    <h2>Document Checklist</h2>
+    <p class="note">The 22 documents most estates need. Mark what you have and note where each one lives.</p>
+    <table><thead><tr><th style="width:38%">Document</th><th style="width:20%">Status</th><th>Location / Notes</th></tr></thead><tbody id="docs-body"></tbody></table>
+    <div class="totals" id="docs-count"></div>
+  </section>
+
+  <section class="tab" id="tab-summary">
+    <h2>Summary &amp; Backup</h2>
+    <p class="note">Print a clean summary to bring to your attorney, or back up your work to a file you control.</p>
+    <div id="summary-stats"></div>
+    <div class="toolbar">
+      <button class="primary" onclick="printSummary()">Print attorney summary</button>
+      <button onclick="backup()">Download backup file</button>
+      <button onclick="document.getElementById('restore-file').click()">Restore from backup</button>
+      <input type="file" id="restore-file" accept=".json" style="display:none" onchange="restore(this)">
+    </div>
+    <p class="disclaimer">The Estate Settlement Companion is an organizer. It is not legal, tax, or financial advice. Estate rules vary by state; for legal questions, consult a licensed attorney. All information you enter stays in this file's storage on your device and is never transmitted anywhere.</p>
+  </section>
+</div>
+
+<div class="savebar"><span>Quietkeep · Estate Settlement Companion</span><span id="save-status"><b>All changes saved on this device</b></span></div>
+<div id="print-area"></div>
+
+<script>
+"use strict";
+const PHASES=[
+ {name:"Phase 1 · The First Two Weeks",tasks:[
+  ["Get a legal pronouncement of death","Nothing official can move forward without it; the funeral home or hospital handles this."],
+  ["Notify immediate family and close friends","Share the load early; you should not carry the calls alone."],
+  ["Arrange care for dependents and pets","Anyone or anything that relied on the deceased needs a plan today."],
+  ["Secure the home, vehicles, and valuables","Lock up, collect spare keys, and pause deliveries; unoccupied homes are targets."],
+  ["Locate the will and any trust documents","The will names the executor and directs everything that follows. Check safes, files, and the attorney who drafted it."],
+  ["Order certified copies of the death certificate","Order at least 10; banks, insurers, and agencies each demand their own certified copy."],
+  ["Arrange the funeral or memorial service","Check for pre-arrangements or written wishes first; the estate can usually reimburse costs."],
+  ["Notify the deceased's employer","Ask about final pay, benefits, and any employer life insurance."],
+  ["Collect or forward the mail","Incoming mail reveals accounts, bills, and subscriptions you would never find otherwise."],
+  ["Notify the Social Security Administration","Stops benefit payments (which must otherwise be returned) and starts any survivor benefits."],
+  ["Confirm who the executor is","If it is you, the rest of this app is yours. If no will exists, the court appoints an administrator."],
+  ["Start keeping every receipt","Estate expenses you pay personally are usually reimbursable, but only if documented. Use the Expense log."]
+ ]},
+ {name:"Phase 2 · Opening the Estate",tasks:[
+  ["Decide whether you need a probate attorney","Many estates benefit from one; bring the printed summary from this app to make the first meeting efficient."],
+  ["Determine whether full probate is required","Small estates often qualify for simplified procedures; the court clerk or attorney can tell you."],
+  ["File the will with the probate court","Most states require filing within a set window even if probate is not needed."],
+  ["Apply for letters testamentary","This court document is your legal authority to act; institutions will ask for it constantly."],
+  ["Get an EIN for the estate from the IRS","The estate is its own taxpayer; the EIN is free and takes minutes on the IRS site."],
+  ["Open an estate bank account","All estate money flows through one account; never mix it with your own."],
+  ["Notify banks and financial institutions","Accounts are frozen or retitled to the estate; ask each what they require."],
+  ["File life insurance claims","Policies pay named beneficiaries directly; claims usually need a certified death certificate."],
+  ["Notify credit card companies and lenders","Stops new charges and interest disputes later; note every balance in the Debt register."],
+  ["Notify the three credit bureaus","A deceased alert prevents identity theft, which targets the recently deceased at scale."],
+  ["Cancel subscriptions and recurring services","The mail and bank statements will reveal them; every cancellation preserves estate money."],
+  ["Notify the DMV and cancel registrations as needed","Prevents liability from vehicles still titled to the deceased."]
+ ]},
+ {name:"Phase 3 · Managing the Estate",tasks:[
+  ["Inventory every asset","Use the Asset register. The court and beneficiaries will both need this list."],
+  ["Inventory every debt","Use the Debt register. Do not pay anything yet; debts are paid in a legal order."],
+  ["Get appraisals for real estate and valuables","Date-of-death values set the baseline for taxes and fair distribution."],
+  ["Gather the key documents","Work through the Document checklist tab; note where each item lives."],
+  ["Keep required bills current","Mortgage, utilities, and insurance on estate property must not lapse during administration."],
+  ["Confirm insurance covers the vacant home","Standard homeowner policies can lapse on unoccupied homes; call the insurer."],
+  ["Notify beneficiaries and heirs","Most states require formal notice; early communication also prevents conflict."],
+  ["Give required notice to creditors","States require published or mailed notice that starts the clock on claims."],
+  ["Pay valid debts in the correct order","State law sets priority; paying the wrong debt first can make you personally liable."],
+  ["Log every estate expense","Use the Expense log; the final accounting depends on it."],
+  ["File the deceased's final income tax return","Due the usual April deadline for the year of death; a CPA can handle it."],
+  ["Determine whether estate tax returns apply","Most estates owe none, but the check is mandatory; thresholds change."]
+ ]},
+ {name:"Phase 4 · Closing the Estate",tasks:[
+  ["Resolve remaining creditor claims","Approve valid claims, formally reject invalid ones; keep the paper trail."],
+  ["Sell or transfer property as directed","Follow the will's instructions; document every sale at fair value."],
+  ["Distribute specific bequests","Named items go to named people first, before the remainder is split."],
+  ["Prepare the final accounting","Every dollar in and out, from the registers and logs in this app."],
+  ["Share the accounting with beneficiaries","Transparency here prevents the disputes that reopen estates."],
+  ["Collect signed releases from beneficiaries","Receipts and releases protect you before the final distribution."],
+  ["Distribute the remaining assets","The last transfer of estate property, per the will or state law."],
+  ["File the estate's income tax return if required","Needed if the estate earned income during administration."],
+  ["Close the estate bank account","Only after every check has cleared and distributions are done."],
+  ["File to formally close the estate","The final report or petition ends your legal responsibility."],
+  ["Store the records","Keep everything for at least seven years; download a backup from the Summary tab."]
+ ]}
+];
+const DOCS=["Certified death certificates","Will","Trust documents","Letters testamentary","Birth certificate","Marriage certificate","Divorce decree (if any)","Military discharge (DD-214)","Social Security card","Property deeds","Vehicle titles","Mortgage statements","Bank statements","Brokerage statements","Retirement account statements","Life insurance policies","Home &amp; auto insurance policies","Recent tax returns (3 years)","Outstanding bills","Credit card statements","Safe deposit box information","Funeral pre-arrangement documents"];
+const SCHEMAS={
+ assets:["name","inst","acct","value:num","notes"],
+ debts:["creditor","type","balance:num","status:sel:Open|Disputed|Settled|Paid","notes"],
+ expenses:["date:date","desc","amount:num","paidby:sel:Estate|Executor personally|Other","reimb:sel:Yes|No"],
+ contacts:["name","role","phone","email","notes"]
+};
+let state=null;
+const DEFAULT={v:1,tasks:{},docs:{},assets:[],debts:[],expenses:[],contacts:[]};
+function load(){
+  try{const raw=localStorage.getItem("qk-estate-settlement");state=raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT));}
+  catch(e){state=JSON.parse(JSON.stringify(DEFAULT));}
+  ["assets","debts","expenses","contacts"].forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
+  if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+  if(typeof state.docs!=="object"||!state.docs)state.docs={};
+}
+function save(){
+  try{localStorage.setItem("qk-estate-settlement",JSON.stringify(state));
+    document.getElementById("save-status").innerHTML="<b>All changes saved on this device</b>";}
+  catch(e){document.getElementById("save-status").innerHTML="<b>Could not save — download a backup from the Summary tab</b>";}
+}
+function renderTasks(){
+  const wrap=document.getElementById("phases");wrap.innerHTML="";
+  let total=0,done=0;
+  PHASES.forEach((ph,pi)=>{
+    let pDone=0;
+    const div=document.createElement("div");div.className="phase";
+    const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
+    const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
+    ph.tasks.forEach((t,ti)=>{
+      const id="p"+pi+"t"+ti;total++;
+      const checked=!!state.tasks[id];if(checked){done++;pDone++;}
+      const row=document.createElement("div");row.className="task"+(checked?" done":"");
+      const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
+      cb.addEventListener("change",()=>{state.tasks[id]=cb.checked;save();row.classList.toggle("done",cb.checked);updateProgress();});
+      const body=document.createElement("div");
+      body.innerHTML='<div class="t"></div><div class="why"></div>';
+      body.querySelector(".t").textContent=t[0];
+      body.querySelector(".why").textContent=t[1];
+      row.appendChild(cb);row.appendChild(body);div.appendChild(row);
+    });
+    fill.style.width=Math.round(pDone/ph.tasks.length*100)+"%";
+    wrap.appendChild(div);
+  });
+  const pct=Math.round(done/total*100);
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+}
+function updateProgress(){
+  let total=0,done=0;
+  document.querySelectorAll("#phases .phase").forEach((div,pi)=>{
+    let pDone=0;const boxes=div.querySelectorAll(".task input[type=checkbox]");
+    boxes.forEach(b=>{total++;if(b.checked){done++;pDone++;}});
+    div.querySelector(".bar>div").style.width=Math.round(pDone/boxes.length*100)+"%";
+  });
+  const pct=Math.round(done/total*100);
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+  summaryStats();
+}
+function fieldEl(table,row,f){
+  const parts=f.split(":");const key=parts[0];const kind=parts[1]||"text";
+  const td=document.createElement("td");
+  let el;
+  if(kind==="sel"){el=document.createElement("select");
+    parts[2].split("|").forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
+    el.value=row[key]||parts[2].split("|")[0];}
+  else{el=document.createElement("input");el.type=kind==="num"?"number":(kind==="date"?"date":"text");
+    if(kind==="num"){el.step="0.01";td.className="num";}
+    el.value=row[key]!==undefined?row[key]:"";}
+  el.addEventListener("input",()=>{row[key]=el.value;save();totals();});
+  el.addEventListener("change",()=>{row[key]=el.value;save();totals();});
+  td.appendChild(el);return td;
+}
+function renderTable(name){
+  const body=document.getElementById(name+"-body");body.innerHTML="";
+  state[name].forEach((row,i)=>{
+    const tr=document.createElement("tr");
+    SCHEMAS[name].forEach(f=>tr.appendChild(fieldEl(name,row,f)));
+    const td=document.createElement("td");
+    const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
+    del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[name].splice(i,1);save();renderTable(name);totals();}});
+    td.appendChild(del);tr.appendChild(td);body.appendChild(tr);
+  });
+}
+function addRow(name){state[name].push({});save();renderTable(name);}
+function renderDocs(){
+  const body=document.getElementById("docs-body");body.innerHTML="";
+  DOCS.forEach((d,i)=>{
+    const rec=state.docs[i]||(state.docs[i]={status:"Need it",loc:""});
+    const tr=document.createElement("tr");
+    const tdN=document.createElement("td");tdN.innerHTML="<strong></strong>";tdN.querySelector("strong").innerHTML=d;tr.appendChild(tdN);
+    const tdS=document.createElement("td");const sel=document.createElement("select");
+    ["Have it","Need it","Not applicable"].forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;sel.appendChild(op);});
+    sel.value=rec.status;sel.addEventListener("change",()=>{rec.status=sel.value;save();docCount();});tdS.appendChild(sel);tr.appendChild(tdS);
+    const tdL=document.createElement("td");const inp=document.createElement("input");inp.type="text";inp.value=rec.loc||"";
+    inp.addEventListener("input",()=>{rec.loc=inp.value;save();});tdL.appendChild(inp);tr.appendChild(tdL);
+    body.appendChild(tr);
+  });
+  docCount();
+}
+function docCount(){
+  let have=0,na=0;DOCS.forEach((d,i)=>{const s=state.docs[i]&&state.docs[i].status;if(s==="Have it")have++;if(s==="Not applicable")na++;});
+  document.getElementById("docs-count").innerHTML="Collected: <strong>"+have+" of "+(DOCS.length-na)+"</strong> applicable documents";
+}
+function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function totals(){
+  const a=state.assets.reduce((s,r)=>s+(parseFloat(r.value)||0),0);
+  const d=state.debts.reduce((s,r)=>s+(parseFloat(r.balance)||0),0);
+  const e=state.expenses.reduce((s,r)=>s+(parseFloat(r.amount)||0),0);
+  const rb=state.expenses.reduce((s,r)=>s+((r.reimb==="Yes"&&r.paidby==="Executor personally")?(parseFloat(r.amount)||0):0),0);
+  document.getElementById("assets-total").textContent=money(a);
+  document.getElementById("debts-total").textContent=money(d);
+  document.getElementById("expenses-total").textContent=money(e);
+  document.getElementById("reimb-total").textContent=money(rb);
+  summaryStats();
+}
+function summaryStats(){
+  let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));
+  const a=state.assets.reduce((s,r)=>s+(parseFloat(r.value)||0),0);
+  const d=state.debts.reduce((s,r)=>s+(parseFloat(r.balance)||0),0);
+  document.getElementById("summary-stats").innerHTML=
+   '<div class="totals">Tasks complete: <strong>'+done+' / '+total+'</strong><span class="pill">'+Math.round(done/total*100)+'%</span><br>'+
+   'Estimated assets: <strong>'+money(a)+'</strong> · Known debts: <strong>'+money(d)+'</strong> · Estimated net estate: <strong>'+money(a-d)+'</strong></div>';
+}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function printSummary(){
+  const pa=document.getElementById("print-area");
+  let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));
+  const a=state.assets.reduce((s,r)=>s+(parseFloat(r.value)||0),0);
+  const d=state.debts.reduce((s,r)=>s+(parseFloat(r.balance)||0),0);
+  let h='<h1>Estate Summary</h1><div class="ph">Prepared with the Estate Settlement Companion · '+new Date().toLocaleDateString()+'</div>';
+  h+='<p><strong>Progress:</strong> '+done+' of '+total+' settlement tasks complete.</p>';
+  h+='<p><strong>Estimated assets:</strong> '+money(a)+' &nbsp; <strong>Known debts:</strong> '+money(d)+' &nbsp; <strong>Estimated net estate:</strong> '+money(a-d)+'</p>';
+  h+='<h2>Assets</h2><table><tr><th>Asset</th><th>Institution / Location</th><th>Account / ID</th><th>Est. value</th><th>Notes</th></tr>';
+  state.assets.forEach(r=>{h+='<tr><td>'+esc(r.name)+'</td><td>'+esc(r.inst)+'</td><td>'+esc(r.acct)+'</td><td>'+money(parseFloat(r.value)||0)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+  h+='</table><h2>Debts</h2><table><tr><th>Creditor</th><th>Type</th><th>Balance</th><th>Status</th><th>Notes</th></tr>';
+  state.debts.forEach(r=>{h+='<tr><td>'+esc(r.creditor)+'</td><td>'+esc(r.type)+'</td><td>'+money(parseFloat(r.balance)||0)+'</td><td>'+esc(r.status)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+  h+='</table><h2>Estate Expenses</h2><table><tr><th>Date</th><th>Description</th><th>Amount</th><th>Paid by</th><th>Reimbursable</th></tr>';
+  state.expenses.forEach(r=>{h+='<tr><td>'+esc(r.date)+'</td><td>'+esc(r.desc)+'</td><td>'+money(parseFloat(r.amount)||0)+'</td><td>'+esc(r.paidby)+'</td><td>'+esc(r.reimb)+'</td></tr>';});
+  h+='</table><h2>Key Contacts</h2><table><tr><th>Name</th><th>Role</th><th>Phone</th><th>Email</th><th>Notes</th></tr>';
+  state.contacts.forEach(r=>{h+='<tr><td>'+esc(r.name)+'</td><td>'+esc(r.role)+'</td><td>'+esc(r.phone)+'</td><td>'+esc(r.email)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+  h+='</table><h2>Document Status</h2><table><tr><th>Document</th><th>Status</th><th>Location</th></tr>';
+  DOCS.forEach((dn,i)=>{const rec=state.docs[i]||{};h+='<tr><td>'+dn+'</td><td>'+esc(rec.status||"Need it")+'</td><td>'+esc(rec.loc)+'</td></tr>';});
+  h+='</table><p style="margin-top:10pt">Prepared by the executor for review with counsel. This summary is an organizer output, not legal advice.</p>';
+  pa.innerHTML=h;window.print();
+}
+function backup(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
+  aEl.download="estate-settlement-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(aEl);aEl.click();aEl.remove();
+}
+function restore(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{const data=JSON.parse(reader.result);
+      if(!data||typeof data!=="object")throw 0;
+      state=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),data);save();renderAll();alert("Backup restored.");}
+    catch(e){alert("That file does not look like a valid backup.");}};
+  reader.readAsText(f);input.value="";
+}
+document.getElementById("nav").addEventListener("click",e=>{
+  if(e.target.tagName!=="BUTTON")return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
+  e.target.classList.add("active");
+  document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
+});
+function renderAll(){renderTasks();["assets","debts","expenses","contacts"].forEach(renderTable);renderDocs();totals();}
+load();renderAll();
+</script>
+</body>
+</html>

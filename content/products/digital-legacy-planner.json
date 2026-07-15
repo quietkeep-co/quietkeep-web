@@ -1,0 +1,150 @@
+{
+  "order": 3,
+  "slug": "digital-legacy-planner",
+  "name": "Digital Legacy Planner",
+  "kicker": "Digital Legacy Planner",
+  "status": "new",
+  "season": "Your digital life",
+  "price": 29,
+  "paymentLink": "TODO: GHL fastpaydirect payment link",
+  "demoPath": "/demos/digital-legacy-planner.html",
+  "card": {
+    "oneLiner": "Every account, device, and subscription — mapped, with a plan for each. It never stores a password.",
+    "bullets": [
+      "Every account, device & subscription in one map",
+      "What-should-happen decisions per account",
+      "Printable instruction sheet for your family",
+      "Never stores passwords"
+    ]
+  },
+  "hero": {
+    "headline": "Your digital life is invisible to the people who'd have to handle it.",
+    "lede": "Every account, device, and subscription your family would never find — inventoried, with instructions for what should happen to each. Offline, private, printable.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/digital-legacy-planner/hero.png",
+    "imageAlt": "Digital Legacy Planner showing the account inventory"
+  },
+  "band": [
+    {
+      "label": "100% offline",
+      "sub": "zero network requests"
+    },
+    {
+      "label": "Completely private",
+      "sub": "data stays on your device"
+    },
+    {
+      "label": "$29 once",
+      "sub": "yours forever"
+    },
+    {
+      "label": "A real app",
+      "sub": "not a PDF or spreadsheet"
+    }
+  ],
+  "intro": {
+    "heading": "Your whole digital life, in one map",
+    "body": "Every account, device, and subscription your family would never find — inventoried, with instructions for what should happen to each. Offline, private, printable."
+  },
+  "features": [
+    {
+      "title": "35 guided tasks",
+      "body": "Map It · Devices & Access · Decide · Hand It Off"
+    },
+    {
+      "title": "Account inventory",
+      "body": "A what-should-happen plan for every account"
+    },
+    {
+      "title": "Device register",
+      "body": "Whose it is, what's on it, where unlock info lives"
+    },
+    {
+      "title": "Subscription tracker",
+      "body": "The monthly total your family would keep paying"
+    },
+    {
+      "title": "Wishes & instructions",
+      "body": "Social media, photos, email, creative work"
+    },
+    {
+      "title": "Instruction Sheet",
+      "body": "One click prints your family's digital map"
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/digital-legacy-planner/inside.png",
+      "alt": "Account inventory",
+      "captionBold": "Your digital life, mapped.",
+      "caption": "Every account with a what-should-happen plan."
+    },
+    {
+      "img": "/images/digital-legacy-planner/privacy.png",
+      "alt": "Never stores passwords",
+      "captionBold": "Never a password.",
+      "caption": "It records the map, never the keys."
+    },
+    {
+      "img": "/images/digital-legacy-planner/how.png",
+      "alt": "How it works",
+      "captionBold": "A real app.",
+      "caption": "Instant download, fully offline."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Nothing you type ever leaves your device, and it never asks for a password by design.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+      },
+      {
+        "title": "Never a password",
+        "body": "By design, it never asks for or stores passwords or PINs. It records that accounts exist and where your written instructions live — the map, never the keys."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "third leg of the Estate Suite; the digital-life module the other two products point at.",
+    "bullets": [
+      "35 guided tasks across four phases: Map It, Devices & Access, Decide, Hand It Off",
+      "An account inventory with a what-should-happen decision for every account: transfer, memorialize, close, let lapse, or family decides",
+      "A device register: whose it is, where unlock info lives, what's on it that matters",
+      "A subscriptions register with a running monthly total — what your family would keep paying without this list",
+      "Key people in one place: digital executor, password manager emergency contact, legacy contacts",
+      "A Wishes section in your own words: social media, photos, email, creative work",
+      "A one-click printable \"What My Family Needs to Know About My Digital Life\" instruction sheet",
+      "Auto-save with backup and restore"
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is this a subscription?",
+      "a": "No. You pay 29 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones."
+    },
+    {
+      "q": "Is my information really private?",
+      "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control."
+    },
+    {
+      "q": "What if it doesn't work for me?",
+      "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    }
+  ],
+  "crossSell": {
+    "heading": "Planning the rest of your estate, too?",
+    "body": "Third leg of the Estate Suite. Product #2's digital-accounts wish section is the seed this product grows; the pairing is designed.",
+    "href": "/estate-planning-organizer",
+    "cta": "See the Organizer"
+  }
+}

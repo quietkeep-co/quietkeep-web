@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Legacy Planner — Quietkeep</title>
+<style>
+:root{
+  --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
+  --white:#FFFFFF; --line:#D8D6CE; --soft:#E7E5DD; --danger:#8A3B2E;
+  --serif:Charter,'Bitstream Charter',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+header{background:var(--spruce);color:var(--porcelain);padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--brass)}
+header .mark{flex:0 0 auto}
+header h1{font-family:var(--serif);font-size:1.35rem;font-weight:bold;letter-spacing:.2px}
+header .sub{font-size:.78rem;color:var(--mist);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav button{font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px 16px;border:1.5px solid var(--spruce);border-radius:999px;background:var(--white);color:var(--spruce);cursor:pointer}
+nav button.active{background:var(--spruce);color:var(--porcelain)}
+nav button:hover{border-color:var(--brass)}
+.bar{background:var(--soft);border-radius:8px;height:14px;overflow:hidden;margin:6px 0 2px}
+.bar>div{background:var(--brass);height:100%;border-radius:8px;transition:width .3s}
+.progress-label{font-size:.85rem;color:var(--spruce)}
+.review-flag{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:10px 14px;margin:12px 0 0;font-size:.9rem;color:#6b5525;display:none}
+.review-flag.show{display:block}
+section.tab{display:none;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+section.tab.active{display:block}
+h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:6px}
+h3{font-family:var(--serif);font-size:1.15rem;margin:22px 0 4px;color:var(--spruce)}
+.note{font-size:.9rem;color:#5c6660;margin-bottom:14px}
+.phase{margin-bottom:26px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 8px;border-bottom:1px solid var(--soft)}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--spruce);margin-top:3px;flex:0 0 auto;cursor:pointer}
+.task .t{font-weight:600}
+.task .why{font-size:.86rem;color:#5c6660;margin-top:2px}
+.task.done .t{color:#7a827d;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--spruce);text-align:left;padding:8px 6px;border-bottom:2px solid var(--spruce)}
+td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
+td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
+td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+td.num input{text-align:right}
+.del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
+.add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
+.add:hover{background:#2E5249}
+.totals{margin-top:12px;font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.totals strong{color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toolbar button{border:1.5px solid var(--spruce);background:var(--white);color:var(--spruce);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
+.toolbar button:hover{border-color:var(--brass)}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+.wish{margin:0 0 22px}
+.wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
+.wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
+.wish textarea{width:100%;min-height:110px;font-family:var(--sans);font-size:.95rem;line-height:1.5;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#FCFBF8;color:var(--ink);resize:vertical}
+.wish textarea:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+.warnline{font-size:.82rem;color:var(--danger);margin-top:6px;font-weight:600}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--spruce);color:var(--mist);font-size:.82rem;padding:8px 18px;display:flex;justify-content:space-between;align-items:center}
+.savebar b{color:var(--porcelain)}
+.disclaimer{font-size:.8rem;color:#6a736d;margin-top:18px;border-top:1px solid var(--soft);padding-top:10px}
+.review-box{background:#F7F6F1;border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:6px 0 16px}
+.review-box .rl{font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.review-box .rl strong{color:var(--ink)}
+#print-area{display:none}
+@media print{
+  body *{visibility:hidden}
+  #print-area,#print-area *{visibility:visible}
+  #print-area{display:block;position:absolute;top:0;left:0;width:100%;font-family:var(--serif);color:#000}
+  #print-area h1{font-size:22pt;margin-bottom:2pt}
+  #print-area .ph{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14pt;color:#333}
+  #print-area h2{font-size:13pt;margin:16pt 0 4pt;border-bottom:1pt solid #000;padding-bottom:2pt}
+  #print-area h3{font-size:11pt;margin:10pt 0 2pt}
+  #print-area table{width:100%;border-collapse:collapse;font-size:10pt;margin-top:4pt}
+  #print-area th,#print-area td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:left;vertical-align:top}
+  #print-area p{font-size:10pt;margin:4pt 0}
+  #print-area .lead{font-size:11pt;margin:6pt 0 10pt}
+  #print-area .wblock{font-size:10.5pt;margin:2pt 0 10pt;white-space:pre-wrap}
+  #print-area .foot{font-size:8.5pt;color:#333;margin-top:14pt;border-top:.5pt solid #999;padding-top:6pt}
+}
+@media(max-width:640px){
+  .wrap{padding:14px 10px 90px}
+  section.tab{padding:14px}
+  th,td{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
+    <rect x="13" y="13" width="74" height="74" rx="17" fill="none" stroke="#A5834B" stroke-width="2.5"/>
+    <circle cx="50" cy="42" r="12" fill="#24413B"/>
+    <path d="M 45 48 L 41 66 L 59 66 L 55 48 Z" fill="#24413B"/>
+    <rect x="41" y="61" width="18" height="6" rx="3" fill="#24413B"/>
+  </svg>
+  <div>
+    <h1>Digital Legacy Planner</h1>
+    <div class="sub">Quietkeep · Everything stays on your device</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="progress-label" id="overall-label">Overall progress</div>
+  <div class="bar"><div id="overall-bar" style="width:0%"></div></div>
+  <div class="review-flag" id="review-flag"></div>
+
+  <nav id="nav">
+    <button data-tab="tasks" class="active">Tasks</button>
+    <button data-tab="accounts">Accounts</button>
+    <button data-tab="devices">Devices</button>
+    <button data-tab="subs">Subscriptions</button>
+    <button data-tab="people">People</button>
+    <button data-tab="wishes">Wishes</button>
+    <button data-tab="sheet">Instruction Sheet</button>
+    <button data-tab="summary">Summary &amp; Backup</button>
+  </nav>
+
+  <section class="tab active" id="tab-tasks">
+    <h2>Guided Tasks</h2>
+    <p class="note">Thirty-five steps across four phases. Work at your own pace; everything saves automatically on this device. Each step notes why it matters. This planner never stores a password: it records that accounts exist, where access instructions live, and what you want done with each. A password list is a liability; an instruction map is a gift.</p>
+    <div id="phases"></div>
+    <p class="disclaimer">This is an organizer, not a password manager and not legal advice. Whether a digital executor has formal authority varies by state and by each platform's terms of service. For legal questions, consult a licensed attorney.</p>
+  </section>
+
+  <section class="tab" id="tab-accounts">
+    <h2>Account Inventory</h2>
+    <p class="note">Every account, service, and profile your family would never find on their own. For each one: what it is, what should happen to it, and where your access instructions live — the name of your password manager, a safe, a sealed envelope. Never the password itself.</p>
+    <table><thead><tr><th style="width:20%">Account / Service</th><th style="width:15%">Category</th><th style="width:15%">What should happen</th><th style="width:24%">Where access instructions live</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="accounts-body"></tbody></table>
+    <button class="add" onclick="addRow('accounts')">+ Add account</button>
+    <div class="totals" id="accounts-total"></div>
+  </section>
+
+  <section class="tab" id="tab-devices">
+    <h2>Device Register</h2>
+    <p class="note">Phones, tablets, computers, drives. Each one is both an object and an archive. Record where unlock information lives — a safe, an envelope, your password manager — never the code itself.</p>
+    <table><thead><tr><th style="width:17%">Device</th><th style="width:13%">Whose it is</th><th style="width:22%">Where unlock info lives</th><th style="width:24%">What&rsquo;s on it that matters</th><th>What should happen to it</th><th style="width:36px"></th></tr></thead><tbody id="devices-body"></tbody></table>
+    <button class="add" onclick="addRow('devices')">+ Add device</button>
+    <div class="totals" id="devices-total"></div>
+  </section>
+
+  <section class="tab" id="tab-subs">
+    <h2>Subscriptions &amp; Recurring Charges</h2>
+    <p class="note">The charges that would quietly keep billing. Check three months of bank and card statements — that is where forgotten subscriptions hide. Mark each one cancel or keep.</p>
+    <table><thead><tr><th style="width:24%">Service</th><th style="width:14%">Monthly cost ($)</th><th style="width:20%">Billing source</th><th style="width:16%">Cancel or keep</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="subs-body"></tbody></table>
+    <button class="add" onclick="addRow('subs')">+ Add subscription</button>
+    <div class="totals" id="subs-total"></div>
+    <p class="note" id="subs-line" style="margin-top:6px"></p>
+  </section>
+
+  <section class="tab" id="tab-people">
+    <h2>Key People</h2>
+    <p class="note">Who does what: the digital executor who will work through this map, your password manager&rsquo;s emergency contact, the legacy contacts you named on Apple, Google, or Facebook, who receives which device, and any professionals.</p>
+    <table><thead><tr><th style="width:22%">Name</th><th style="width:26%">Role</th><th style="width:16%">Phone</th><th style="width:20%">Email</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="people-body"></tbody></table>
+    <button class="add" onclick="addRow('people')">+ Add person</button>
+  </section>
+
+  <section class="tab" id="tab-wishes">
+    <h2>Wishes &amp; Instructions</h2>
+    <p class="note">In your own words. These sections carry the decisions a register cannot: what should be kept, what should be closed, and what matters. Everything here prints into the Digital Executor Instruction Sheet.</p>
+    <div id="wishes-body"></div>
+    <p class="disclaimer">Never write a password, PIN, seed phrase, or security answer anywhere in this planner. Record where instructions live, not the credentials themselves.</p>
+  </section>
+
+  <section class="tab" id="tab-sheet">
+    <h2>Digital Executor Instruction Sheet</h2>
+    <p class="note">This compiles your account map, devices, subscriptions, key people, and wishes into one printable packet: &ldquo;What My Family Needs to Know About My Digital Life.&rdquo; Print it, store it with your estate documents, and tell your digital executor where it lives.</p>
+    <div id="sheet-preview" class="review-box"></div>
+    <div class="toolbar">
+      <button class="primary" onclick="printSheet()">Print the Instruction Sheet</button>
+    </div>
+    <p class="disclaimer">The Instruction Sheet is a personal guide for your family, not a legal document, and it contains no passwords by design. Whether a digital executor has formal authority varies by state and by each platform's terms. For legal questions, consult a licensed attorney.</p>
+  </section>
+
+  <section class="tab" id="tab-summary">
+    <h2>Summary &amp; Backup</h2>
+    <p class="note">See where you stand, keep the map current, and back up your work to a file you control.</p>
+    <div id="summary-stats"></div>
+
+    <div class="review-box">
+      <div class="rl" id="review-line">Last reviewed: <strong>not yet reviewed</strong></div>
+      <p class="note" style="margin:6px 0 10px">Digital lives change faster than estates. Mark today as reviewed after any pass, and again after any new account, new device, or platform change.</p>
+      <div class="toolbar" style="margin-top:0">
+        <button class="primary" onclick="markReviewed()">Mark reviewed today</button>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <button onclick="printSheet()">Print the Instruction Sheet</button>
+      <button onclick="printAll()">Print full planner (all registers)</button>
+      <button onclick="backup()">Download backup file</button>
+      <button onclick="document.getElementById('restore-file').click()">Restore from backup</button>
+      <input type="file" id="restore-file" accept=".json" style="display:none" onchange="restore(this)">
+    </div>
+    <p class="disclaimer">The Digital Legacy Planner is an organizer. It is not a password manager, and it is not legal, tax, or financial advice. It never asks for and never stores a password, PIN, seed phrase, or security answer; record where written instructions live, not the credentials themselves. Whether a digital executor has formal authority varies by state and by each platform's terms of service; for legal questions, consult a licensed attorney. All information you enter stays in this file's storage on your device and is never transmitted anywhere.</p>
+  </section>
+</div>
+
+<div class="savebar"><span>Quietkeep · Digital Legacy Planner</span><span id="save-status"><b>All changes saved on this device</b></span></div>
+<div id="print-area"></div>
+
+<script>
+"use strict";
+const PHASES=[
+ {name:"Phase 1 · Map It",tasks:[
+  ["List every email address you use","Email is the master key: statements, notices, and account recovery all flow through it. Add each address to the Accounts tab."],
+  ["List your financial accounts and apps","Banks, brokerages, and payment apps like Venmo or PayPal. Your family cannot handle what they cannot find."],
+  ["List your social media accounts","Every platform where you have a profile. Each will need a decision later: memorialize, close, or let lapse."],
+  ["List your subscriptions","Check three months of bank and card statements — that is where forgotten subscriptions hide. Add each to the Subscriptions tab."],
+  ["List your cloud storage accounts","iCloud, Google Drive, Dropbox, OneDrive. This is where the photos and documents actually live."],
+  ["List shopping accounts with stored payment methods","Amazon and the like keep a card on file. Your family will want to know where charges could still come from."],
+  ["List domains, websites, or online businesses","Domains expire quietly and are hard to recover. Anything that renews or earns belongs on the map."],
+  ["List crypto wallets and exchanges","Record that they exist and where your key instructions live — never the keys or seed phrases themselves. Without a location note, crypto is simply gone."],
+  ["List loyalty and points programs worth anything","Airline miles and hotel points can be worth real money, and some can transfer. List the ones that matter."],
+  ["List work accounts your family would need to notify","An employer, clients, or a professional platform. Someone will need to tell them, and close what you control."]
+ ]},
+ {name:"Phase 2 · Devices & Access",tasks:[
+  ["Inventory your phones and tablets","The phone is usually the gateway to everything else. Add each one to the Devices tab."],
+  ["Inventory your computers","Laptops and desktops, including the old ones in a drawer that still hold files and photos."],
+  ["Note where unlock information lives for each device","The location of the written-down code — a safe, a sealed envelope — never the code itself."],
+  ["Set up, or document, a password manager","One manager holding everything beats a hundred scattered logins. If you already use one, name it in your Accounts and Wishes tabs."],
+  ["Document your password manager's emergency access","Most managers can grant a trusted person access after a waiting period. Set it up, and record who you named."],
+  ["Set legacy contacts where platforms offer them","Apple, Google, and Facebook each let you name someone in advance. Ten minutes now saves your family months of appeals."],
+  ["Note your two-factor devices and what breaks without them","If sign-in codes go to your phone, losing the phone locks the accounts. Note which accounts depend on which device."],
+  ["Record where physical backup codes live","Most services offer printable backup codes. Print them, store them somewhere safe, and record the place — not the codes — here."]
+ ]},
+ {name:"Phase 3 · Decide",tasks:[
+  ["Decide, for each financial account: transfer or close","Mark a plan for every financial account on the Accounts tab. A named plan turns a chore into a checklist."],
+  ["Decide, for each social account: memorialize or delete","Facebook and Instagram can memorialize a profile. Most others simply close. Record each choice on the Accounts tab and in your Wishes."],
+  ["Decide what happens to your photo libraries","The photos are usually what a family wants most. Decide where they should go and write it in the Wishes tab."],
+  ["Decide what happens to your email accounts","Many families keep a mailbox open for a while to catch statements, then close it. Record your preference in the Wishes tab."],
+  ["Mark each subscription cancel or keep","Work down the Subscriptions tab. The monthly total shows what your family would keep paying without this list."],
+  ["Choose a digital executor and ask them","The person who will actually work through this map. Pick someone patient with technology, and ask before you name them."],
+  ["Decide who gets each device","A device is both an object and an archive. Record a plan for each one on the Devices tab."],
+  ["Write wishes for anything creative","Writing, a channel, a site, code, projects. Decide whether each stays up, comes down, or passes to someone."],
+  ["Complete the Wishes sections","Once the Wishes tab reflects your choices, this step is done."]
+ ]},
+ {name:"Phase 4 · Hand It Off",tasks:[
+  ["Print the Digital Executor Instruction Sheet","One click on the Instruction Sheet tab produces “What My Family Needs to Know About My Digital Life.”"],
+  ["Tell your digital executor where the sheet lives","The sheet only helps if the right person can find it. A two-minute conversation completes the handoff."],
+  ["Store the sheet with your estate documents","Keep it beside your will and letter of instruction, so everything is found together."],
+  ["Download a backup file","From the Summary tab. Keep it somewhere safe, like a USB drive."],
+  ["Set your annual review date","Mark today as reviewed on the Summary tab. The planner tracks the date and flags when a year has passed."],
+  ["Review after any new account or device","A new phone or a new bank means the map has changed. Update it while it is fresh."],
+  ["Review your legacy-contact settings yearly","Platforms change these features quietly. Confirm the people you named still stand."],
+  ["Re-print the sheet after changes","A current sheet is the goal. Re-print it whenever something meaningful changes."]
+ ]}
+];
+const CATS=["Financial","Email","Social","Subscription","Utility / Bills","Shopping","Cloud storage","Work","Domain / Web","Crypto","Loyalty / Points","Other"];
+const WISHES=[
+ {key:"master",label:"Where my access instructions live",prompt:"The most important lines in this planner. Name the password manager you use, or the place written instructions live — a safe, a drawer, an attorney's file — and how your digital executor gets in.",warn:"Name the place, never the passwords themselves. No credentials anywhere in this planner."},
+ {key:"social",label:"Social media accounts",prompt:"Platform by platform: memorialize or delete. Facebook and Instagram can memorialize a profile; most other platforms simply close."},
+ {key:"photos",label:"Photo libraries",prompt:"Where your photos live — iCloud, Google Photos, a hard drive — and who should receive them."},
+ {key:"email",label:"Email accounts",prompt:"What should happen to each mailbox. Many families keep one open for a while to catch statements and notices, then close it."},
+ {key:"creative",label:"Creative work & projects",prompt:"Writing, channels, sites, code, anything you have made online. What stays up, what comes down, and who decides."},
+ {key:"message",label:"A note to whoever handles this",prompt:"Optional. A few words to the person who will work through this map. It is a real job; a kind word helps."}
+];
+const SCHEMAS={
+ accounts:["name","cat:sel:"+CATS.join("|"),"plan:sel:Family decides|Transfer|Memorialize|Close|Let lapse","access","notes"],
+ devices:["name","owner","unlock","contents","plan"],
+ subs:["name","cost:num","source","plan:sel:Family decides|Cancel|Keep","notes"],
+ people:["name","role:list:Digital executor|Backup digital executor|Password manager emergency contact|Legacy contact (Apple / Google / Facebook)|Device recipient|Attorney|Accountant / CPA|Tech-savvy friend or family|Other","phone","email","notes"]
+};
+let state=null;
+const DEFAULT={v:1,tasks:{},accounts:[],devices:[],subs:[],people:[],wishes:{},lastReviewed:null};
+function load(){
+  try{const raw=localStorage.getItem("qk-digital-legacy");state=raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT));}
+  catch(e){state=JSON.parse(JSON.stringify(DEFAULT));}
+  ["accounts","devices","subs","people"].forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
+  if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+  if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+  if(state.lastReviewed===undefined)state.lastReviewed=null;
+}
+function save(){
+  try{localStorage.setItem("qk-digital-legacy",JSON.stringify(state));
+    document.getElementById("save-status").innerHTML="<b>All changes saved on this device</b>";}
+  catch(e){document.getElementById("save-status").innerHTML="<b>Could not save — download a backup from the Summary tab</b>";}
+}
+function renderTasks(){
+  const wrap=document.getElementById("phases");wrap.innerHTML="";
+  let total=0,done=0;
+  PHASES.forEach((ph,pi)=>{
+    let pDone=0;
+    const div=document.createElement("div");div.className="phase";
+    const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
+    const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
+    ph.tasks.forEach((t,ti)=>{
+      const id="p"+pi+"t"+ti;total++;
+      const checked=!!state.tasks[id];if(checked){done++;pDone++;}
+      const row=document.createElement("div");row.className="task"+(checked?" done":"");
+      const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
+      cb.addEventListener("change",()=>{state.tasks[id]=cb.checked;save();row.classList.toggle("done",cb.checked);updateProgress();});
+      const body=document.createElement("div");
+      body.innerHTML='<div class="t"></div><div class="why"></div>';
+      body.querySelector(".t").textContent=t[0];
+      body.querySelector(".why").textContent=t[1];
+      row.appendChild(cb);row.appendChild(body);div.appendChild(row);
+    });
+    fill.style.width=Math.round(pDone/ph.tasks.length*100)+"%";
+    wrap.appendChild(div);
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+}
+function updateProgress(){
+  let total=0,done=0;
+  document.querySelectorAll("#phases .phase").forEach((div)=>{
+    let pDone=0;const boxes=div.querySelectorAll(".task input[type=checkbox]");
+    boxes.forEach(b=>{total++;if(b.checked){done++;pDone++;}});
+    div.querySelector(".bar>div").style.width=Math.round(pDone/boxes.length*100)+"%";
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+  summaryStats();
+}
+function fieldEl(table,row,f){
+  const parts=f.split(":");const key=parts[0];const kind=parts[1]||"text";
+  const td=document.createElement("td");
+  let el;
+  if(kind==="sel"){el=document.createElement("select");
+    parts[2].split("|").forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
+    el.value=row[key]||parts[2].split("|")[0];}
+  else if(kind==="list"){el=document.createElement("input");el.type="text";
+    const dl=document.createElement("datalist");const dlid="dl-"+table+"-"+key+"-"+Math.random().toString(36).slice(2,8);
+    dl.id=dlid;parts[2].split("|").forEach(o=>{const op=document.createElement("option");op.value=o;dl.appendChild(op);});
+    el.setAttribute("list",dlid);td.appendChild(dl);
+    el.value=row[key]!==undefined?row[key]:"";}
+  else{el=document.createElement("input");el.type=kind==="num"?"number":(kind==="date"?"date":"text");
+    if(kind==="num"){el.step="0.01";td.className="num";}
+    el.value=row[key]!==undefined?row[key]:"";}
+  el.addEventListener("input",()=>{row[key]=el.value;save();totals();});
+  el.addEventListener("change",()=>{row[key]=el.value;save();totals();});
+  td.appendChild(el);return td;
+}
+function renderTable(name){
+  const body=document.getElementById(name+"-body");body.innerHTML="";
+  state[name].forEach((row,i)=>{
+    const tr=document.createElement("tr");
+    SCHEMAS[name].forEach(f=>tr.appendChild(fieldEl(name,row,f)));
+    const td=document.createElement("td");
+    const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
+    del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[name].splice(i,1);save();renderTable(name);totals();}});
+    td.appendChild(del);tr.appendChild(td);body.appendChild(tr);
+  });
+}
+function addRow(name){state[name].push({});save();renderTable(name);totals();}
+function renderWishes(){
+  const wrap=document.getElementById("wishes-body");wrap.innerHTML="";
+  WISHES.forEach(w=>{
+    const div=document.createElement("div");div.className="wish";
+    const lab=document.createElement("label");lab.textContent=w.label;lab.setAttribute("for","wish-"+w.key);div.appendChild(lab);
+    const pr=document.createElement("div");pr.className="prompt";pr.textContent=w.prompt;div.appendChild(pr);
+    const ta=document.createElement("textarea");ta.id="wish-"+w.key;ta.value=state.wishes[w.key]||"";
+    ta.addEventListener("input",()=>{state.wishes[w.key]=ta.value;save();});
+    div.appendChild(ta);
+    if(w.warn){const wn=document.createElement("div");wn.className="warnline";wn.textContent=w.warn;div.appendChild(wn);}
+    wrap.appendChild(div);
+  });
+}
+function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function accountCounts(){
+  const counts={};
+  state.accounts.forEach(r=>{const c=CATS.indexOf(r.cat)>=0?r.cat:(r.cat||CATS[0]);counts[c]=(counts[c]||0)+1;});
+  return counts;
+}
+function subsMonthly(){return state.subs.reduce((s,r)=>s+(parseFloat(r.cost)||0),0);}
+function totals(){
+  const counts=accountCounts();
+  const catBits=CATS.filter(c=>counts[c]).map(c=>c+" <strong>"+counts[c]+"</strong>");
+  const extra=Object.keys(counts).filter(c=>CATS.indexOf(c)<0).map(c=>c+" <strong>"+counts[c]+"</strong>");
+  const at=document.getElementById("accounts-total");
+  if(at)at.innerHTML="Accounts recorded: <strong>"+state.accounts.length+"</strong>"+(catBits.length||extra.length?" · "+catBits.concat(extra).join(" · "):"");
+  const dt=document.getElementById("devices-total");
+  if(dt)dt.innerHTML="Devices recorded: <strong>"+state.devices.length+"</strong>";
+  const st=document.getElementById("subs-total");
+  if(st)st.innerHTML="Monthly total: <strong>"+money(subsMonthly())+"</strong><span class=\"pill\">"+state.subs.length+" subscription"+(state.subs.length===1?"":"s")+"</span>";
+  const sl=document.getElementById("subs-line");
+  if(sl)sl.textContent=state.subs.length?"Without this list, your family would keep paying "+money(subsMonthly())+" every month.":"";
+  summaryStats();renderSheetPreview();
+}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
+function summaryStats(){
+  const c=taskCounts();
+  const el=document.getElementById("summary-stats");if(!el)return;
+  el.innerHTML=
+   '<div class="totals">Tasks complete: <strong>'+c.done+' / '+c.total+'</strong><span class="pill">'+(c.total?Math.round(c.done/c.total*100):0)+'%</span><br>'+
+   'Accounts mapped: <strong>'+state.accounts.length+'</strong> · Devices: <strong>'+state.devices.length+'</strong> · Subscriptions: <strong>'+state.subs.length+'</strong> ('+money(subsMonthly())+' / month) · Key people: <strong>'+state.people.length+'</strong></div>';
+  renderReviewLine();
+}
+function daysSince(iso){if(!iso)return null;const then=new Date(iso+"T00:00:00");const now=new Date();return Math.floor((now-then)/86400000);}
+function renderReviewLine(){
+  const line=document.getElementById("review-line");
+  if(line){
+    if(state.lastReviewed){line.innerHTML="Last reviewed: <strong>"+new Date(state.lastReviewed+"T00:00:00").toLocaleDateString()+"</strong>";}
+    else{line.innerHTML="Last reviewed: <strong>not yet reviewed</strong>";}
+  }
+  const flag=document.getElementById("review-flag");if(!flag)return;
+  const dd=daysSince(state.lastReviewed);
+  if(dd!==null&&dd>=365){flag.classList.add("show");flag.textContent="It has been more than a year since your last review. Digital lives change quickly — open the Summary tab when you have a few minutes.";}
+  else{flag.classList.remove("show");flag.textContent="";}
+}
+function markReviewed(){
+  const now=new Date();const iso=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  state.lastReviewed=iso;save();renderReviewLine();
+}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
+function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
+function sheetHTML(){
+  let h='<h1>What My Family Needs to Know About My Digital Life</h1><div class="ph">A Digital Executor Instruction Sheet &middot; prepared with the Quietkeep Digital Legacy Planner &middot; '+new Date().toLocaleDateString()+'</div>';
+  h+='<p class="lead">This sheet maps my digital life: the accounts, devices, and subscriptions my family would never find on their own, and what I want done with each. It contains no passwords by design; it records where my access instructions live. It is a personal guide, not a legal document.</p>';
+
+  // 1. Where access instructions live
+  h+='<h2>Where My Access Instructions Live</h2>';
+  if(nonEmpty(state.wishes.master)){h+='<div class="wblock">'+nl2br(state.wishes.master)+'</div>';}
+  else{h+='<p>Not recorded yet. This is the most important section — where the password manager or written instructions live.</p>';}
+
+  // 2. Key people
+  h+='<h2>Key People</h2>';
+  if(state.people.length){
+    h+='<table><tr><th>Name</th><th>Role</th><th>Phone</th><th>Email</th><th>Notes</th></tr>';
+    state.people.forEach(r=>{h+='<tr><td>'+esc(r.name)+'</td><td>'+esc(r.role)+'</td><td>'+esc(r.phone)+'</td><td>'+esc(r.email)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+    h+='</table>';
+  }else{h+='<p>No people recorded yet.</p>';}
+
+  // 3. Account map by category
+  h+='<h2>Account Map</h2>';
+  if(state.accounts.length){
+    const counts=accountCounts();
+    const cats=CATS.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>CATS.indexOf(c)<0));
+    cats.forEach(c=>{
+      h+='<h3>'+esc(c)+' ('+counts[c]+')</h3><table><tr><th>Account / Service</th><th>What should happen</th><th>Where access instructions live</th><th>Notes</th></tr>';
+      state.accounts.forEach(r=>{const rc=CATS.indexOf(r.cat)>=0?r.cat:(r.cat||CATS[0]);if(rc!==c)return;
+        h+='<tr><td>'+esc(r.name)+'</td><td>'+esc(r.plan)+'</td><td>'+esc(r.access)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+      h+='</table>';
+    });
+  }else{h+='<p>No accounts recorded yet.</p>';}
+
+  // 4. Devices
+  h+='<h2>Devices</h2>';
+  if(state.devices.length){
+    h+='<table><tr><th>Device</th><th>Whose it is</th><th>Where unlock info lives</th><th>What&rsquo;s on it that matters</th><th>What should happen to it</th></tr>';
+    state.devices.forEach(r=>{h+='<tr><td>'+esc(r.name)+'</td><td>'+esc(r.owner)+'</td><td>'+esc(r.unlock)+'</td><td>'+esc(r.contents)+'</td><td>'+esc(r.plan)+'</td></tr>';});
+    h+='</table>';
+  }else{h+='<p>No devices recorded yet.</p>';}
+
+  // 5. Subscriptions
+  h+='<h2>Subscriptions &amp; Recurring Charges</h2>';
+  if(state.subs.length){
+    h+='<table><tr><th>Service</th><th>Monthly cost</th><th>Billing source</th><th>Cancel or keep</th><th>Notes</th></tr>';
+    state.subs.forEach(r=>{h+='<tr><td>'+esc(r.name)+'</td><td>'+money(parseFloat(r.cost)||0)+'</td><td>'+esc(r.source)+'</td><td>'+esc(r.plan)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+    h+='<tr><td><strong>Monthly total</strong></td><td><strong>'+money(subsMonthly())+'</strong></td><td colspan="3"></td></tr>';
+    h+='</table>';
+  }else{h+='<p>No subscriptions recorded yet.</p>';}
+
+  // 6. Wishes
+  h+='<h2>My Wishes &amp; Instructions</h2>';
+  let anyWish=false;
+  WISHES.forEach(w=>{if(w.key==="master")return;const v=state.wishes[w.key];if(!nonEmpty(v))return;anyWish=true;h+='<h3>'+esc(w.label)+'</h3><div class="wblock">'+nl2br(v)+'</div>';});
+  if(!anyWish)h+='<p>No wishes recorded yet.</p>';
+
+  h+='<p class="foot">Prepared by me for my family. This Instruction Sheet is an organizer output, not legal advice, and it contains no passwords, PINs, seed phrases, or security answers by design — it records where my instructions live, not the credentials themselves. Whether a digital executor has formal authority varies by state and by each platform&rsquo;s terms of service; for legal questions, my family should consult a licensed attorney.</p>';
+  return h;
+}
+function renderSheetPreview(){
+  const el=document.getElementById("sheet-preview");if(!el)return;
+  el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>What My Family Needs to Know About My Digital Life</strong></div>'+
+    '<p class="note" style="margin:0">This packet will include where your access instructions live, your key people ('+state.people.length+' recorded), your account map ('+state.accounts.length+' accounts), your devices ('+state.devices.length+'), your subscriptions ('+state.subs.length+', '+money(subsMonthly())+' per month), and your wishes. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
+}
+function printSheet(){
+  const pa=document.getElementById("print-area");
+  pa.innerHTML=sheetHTML();window.print();
+}
+function printAll(){
+  const pa=document.getElementById("print-area");
+  let h=sheetHTML();
+  h+='<h2>Guided Task Progress</h2>';
+  PHASES.forEach((ph,pi)=>{
+    h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks["p"+pi+"t"+ti]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    h+='</table>';
+  });
+  pa.innerHTML=h;window.print();
+}
+function backup(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
+  aEl.download="digital-legacy-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(aEl);aEl.click();aEl.remove();
+}
+function restore(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{const data=JSON.parse(reader.result);
+      if(!data||typeof data!=="object")throw 0;
+      state=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),data);
+      ["accounts","devices","subs","people"].forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
+      if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+      save();renderAll();alert("Backup restored.");}
+    catch(e){alert("That file does not look like a valid backup.");}};
+  reader.readAsText(f);input.value="";
+}
+document.getElementById("nav").addEventListener("click",e=>{
+  if(e.target.tagName!=="BUTTON")return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
+  e.target.classList.add("active");
+  document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
+  if(e.target.dataset.tab==="sheet")renderSheetPreview();
+});
+function renderAll(){renderTasks();["accounts","devices","subs","people"].forEach(renderTable);renderWishes();totals();renderReviewLine();renderSheetPreview();}
+load();renderAll();
+</script>
+</body>
+</html>
