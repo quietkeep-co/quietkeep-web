@@ -1,0 +1,61 @@
+{
+  "slug": "executors-first-30-days",
+  "title": "The Executor's First 30 Days: A Week-by-Week Plan",
+  "description": "A week-by-week plan for the first month as an executor — what to do in week one versus week four, and why pacing yourself is the whole game.",
+  "cluster": "Estate settlement",
+  "date": "2026-07-16",
+  "updated": "2026-07-16",
+  "readingMinutes": 9,
+  "intro": [
+    "Being named executor usually arrives with no training and a lot of assumptions. People imagine it's a single afternoon of paperwork. It's closer to a part-time job that runs for a year, made of dozens of small institutional processes that each move at their own pace.",
+    "The good news is that the first month has a natural shape. You don't need to solve the whole estate in week one — you need to do the things that only matter if done early, and let the slower-moving pieces queue up behind them. This guide lays out what belongs in each of the first four weeks, so you're not guessing at what's urgent and what can wait."
+  ],
+  "sections": [
+    {
+      "heading": "Week 1 — Get your footing",
+      "paragraphs": [
+        "The first week is about establishing where things stand, not making decisions. Two things matter most: finding the will, and starting the habit that will save you the most pain later."
+      ],
+      "bullets": [
+        "<b>Locate the will and any trust documents.</b> Check with the deceased's attorney if they had one, a home safe, or a safe deposit box. The will names you as executor — some states require you to file it with the probate court even if formal probate isn't needed.",
+        "<b>Order death certificates — order more than feels necessary.</b> Ten to fifteen certified copies is a common starting point; nearly every institution you'll deal with wants its own original.",
+        "<b>Start a log today.</b> Every call, every letter, every dollar spent from your own pocket. This single habit is the difference between an executor who copes and one who drowns nine months in.",
+        "<b>Secure the physical estate</b> — the home, vehicles, and any valuables. An empty house is a real risk; loop in a neighbor or install a lockbox if you're not local.",
+        "<b>Make a first pass at accounts and documents</b> — mail, bank statements, and a laptop or phone are usually the fastest way to see the shape of what you're dealing with."
+      ]
+    },
+    {
+      "heading": "Week 2 — Figure out which track you're on",
+      "paragraphs": [
+        "By the second week, you should know enough to answer the question that shapes everything else: does this estate need formal probate, and if so, in which court?",
+        "This varies enormously by state and by how the deceased's assets were titled — a well-funded trust or accounts with named beneficiaries can bypass probate almost entirely; an estate held in the deceased's name alone usually can't. One paid consultation with an estate attorney in this window is usually worth it — not to hand off the whole process, but to learn which of the two tracks you're on before you spend weeks assuming the wrong one.",
+        "This is also the week to start the formal notifications — the ones with real deadlines or real financial exposure if delayed."
+      ],
+      "bullets": [
+        "<b>Social Security</b> — confirm it's been reported (the funeral home often does this, but verify), and ask about survivor benefits rather than only reporting the death.",
+        "<b>The three credit bureaus</b> (Equifax, Experian, TransUnion) — a deceased flag blocks identity theft, which genuinely targets the recently deceased.",
+        "<b>The deceased's employer</b>, if applicable — final paycheck, group life insurance, unused benefits.",
+        "<b>Life insurance companies</b> — claims can often start immediately and pay out within weeks, which can help with the estate's near-term expenses."
+      ]
+    },
+    {
+      "heading": "Week 3 — Open the financial accounting",
+      "paragraphs": [
+        "Week three is where the paperwork volume really starts. If probate was filed, you may receive formal letters testamentary or letters of administration around now — the document that proves to banks and institutions that you have legal authority to act.",
+        "With that authority in hand (or informally, if probate isn't required), this is the week to open an estate bank account if the estate is large enough to warrant one, and to begin the account-by-account process: notifying banks and brokerages, learning each institution's specific process, and flagging or freezing accounts as appropriate.",
+        "This is also the moment to resist a very natural instinct: paying bills out of your own pocket to keep things moving. <b>Don't.</b> Debts are paid from the estate, in an order set by law — not by whichever creditor calls the loudest. Track what needs paying, but pay it from estate funds once you're able to, not your own."
+      ]
+    },
+    {
+      "heading": "Week 4 — Build the list you'll live with for the rest of the year",
+      "paragraphs": [
+        "By the end of the first month, the emergency phase is largely over, and the marathon phase begins. The most useful thing you can do in week four is turn your notes into a real inventory — the list you'll be working off for the next several months as things close, transfer, and settle.",
+        "That inventory should cover every financial account, every debt, every insurance policy, every subscription and recurring bill, and every physical asset worth tracking. It doesn't need to be complete yet — it needs to exist, so that new information has somewhere to go instead of living in scattered notes.",
+        "Set a rhythm from here: a weekly or biweekly check-in with yourself on what moved, what's still pending, and what you're waiting on. Estate settlement is rarely fast, and the executors who hold up best are the ones who stopped expecting it to be."
+      ]
+    }
+  ],
+  "takeaway": "The first 30 days as an executor have a natural shape: get your footing in week one, figure out which legal track you're on in week two, open the real financial accounting in week three, and turn everything into a working inventory by week four. Nothing about it needs to be fast — it needs to be tracked, one week at a time.",
+  "productSlug": "estate-settlement-companion",
+  "productPitch": "The Estate Settlement Companion is built around exactly this pacing — guided tasks organized by phase, not a single overwhelming list, with registers for accounts, debts, and expenses that do the math for you as the months go on."
+}
