@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caregiving Companion — Quietkeep</title>
+<style>
+:root{
+  --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
+  --white:#FFFFFF; --line:#D8D6CE; --soft:#E7E5DD; --danger:#8A3B2E;
+  --serif:Charter,'Bitstream Charter',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+header{background:var(--spruce);color:var(--porcelain);padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--brass)}
+header .mark{flex:0 0 auto}
+header h1{font-family:var(--serif);font-size:1.35rem;font-weight:bold;letter-spacing:.2px}
+header .sub{font-size:.78rem;color:var(--mist);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav button{font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px 16px;border:1.5px solid var(--spruce);border-radius:999px;background:var(--white);color:var(--spruce);cursor:pointer}
+nav button.active{background:var(--spruce);color:var(--porcelain)}
+nav button:hover{border-color:var(--brass)}
+.bar{background:var(--soft);border-radius:8px;height:14px;overflow:hidden;margin:6px 0 2px}
+.bar>div{background:var(--brass);height:100%;border-radius:8px;transition:width .3s}
+.progress-label{font-size:.85rem;color:var(--spruce)}
+.review-flag{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:10px 14px;margin:12px 0 0;font-size:.9rem;color:#6b5525;display:none}
+.review-flag.show{display:block}
+section.tab{display:none;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+section.tab.active{display:block}
+h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:6px}
+h3{font-family:var(--serif);font-size:1.15rem;margin:22px 0 4px;color:var(--spruce)}
+.note{font-size:.9rem;color:#5c6660;margin-bottom:14px}
+.phase{margin-bottom:26px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 8px;border-bottom:1px solid var(--soft)}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--spruce);margin-top:3px;flex:0 0 auto;cursor:pointer}
+.task .t{font-weight:600}
+.task .why{font-size:.86rem;color:#5c6660;margin-top:2px}
+.task.done .t{color:#7a827d;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--spruce);text-align:left;padding:8px 6px;border-bottom:2px solid var(--spruce)}
+td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
+td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
+td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+td.num input{text-align:right}
+.del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
+.add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
+.add:hover{background:#2E5249}
+.totals{margin-top:12px;font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.totals strong{color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toolbar button{border:1.5px solid var(--spruce);background:var(--white);color:var(--spruce);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
+.toolbar button:hover{border-color:var(--brass)}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+.wish{margin:0 0 22px}
+.wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
+.wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
+.wish textarea{width:100%;min-height:110px;font-family:var(--sans);font-size:.95rem;line-height:1.5;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#FCFBF8;color:var(--ink);resize:vertical}
+.wish textarea:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+.warnline{font-size:.82rem;color:var(--danger);margin-top:6px;font-weight:600}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--spruce);color:var(--mist);font-size:.82rem;padding:8px 18px;display:flex;justify-content:space-between;align-items:center}
+.savebar b{color:var(--porcelain)}
+.disclaimer{font-size:.8rem;color:#6a736d;margin-top:18px;border-top:1px solid var(--soft);padding-top:10px}
+.review-box{background:#F7F6F1;border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:6px 0 16px}
+.review-box .rl{font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.review-box .rl strong{color:var(--ink)}
+#print-area{display:none}
+@media print{
+  body *{visibility:hidden}
+  #print-area,#print-area *{visibility:visible}
+  #print-area{display:block;position:absolute;top:0;left:0;width:100%;font-family:var(--serif);color:#000}
+  #print-area h1{font-size:22pt;margin-bottom:2pt}
+  #print-area .ph{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14pt;color:#333}
+  #print-area h2{font-size:13pt;margin:16pt 0 4pt;border-bottom:1pt solid #000;padding-bottom:2pt}
+  #print-area h3{font-size:11pt;margin:10pt 0 2pt}
+  #print-area table{width:100%;border-collapse:collapse;font-size:10pt;margin-top:4pt}
+  #print-area th,#print-area td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:left;vertical-align:top}
+  #print-area p{font-size:10pt;margin:4pt 0}
+  #print-area .lead{font-size:11pt;margin:6pt 0 10pt}
+  #print-area .wblock{font-size:10.5pt;margin:2pt 0 10pt;white-space:pre-wrap}
+  #print-area .foot{font-size:8.5pt;color:#333;margin-top:14pt;border-top:.5pt solid #999;padding-top:6pt}
+}
+@media(max-width:640px){
+  .wrap{padding:14px 10px 90px}
+  section.tab{padding:14px}
+  th,td{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
+    <rect x="13" y="13" width="74" height="74" rx="17" fill="none" stroke="#A5834B" stroke-width="2.5"/>
+    <circle cx="50" cy="42" r="12" fill="#24413B"/>
+    <path d="M 45 48 L 41 66 L 59 66 L 55 48 Z" fill="#24413B"/>
+    <rect x="41" y="61" width="18" height="6" rx="3" fill="#24413B"/>
+  </svg>
+  <div>
+    <h1>Caregiving Companion</h1>
+    <div class="sub">Quietkeep · Everything stays on your device</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="progress-label" id="overall-label">Overall progress</div>
+  <div class="bar"><div id="overall-bar" style="width:0%"></div></div>
+  <div class="review-flag" id="review-flag"></div>
+
+  <nav id="nav"></nav>
+  <div id="sections"></div>
+</div>
+
+<div class="savebar"><span>Quietkeep · Caregiving Companion</span><span id="save-status"><b>All changes saved on this device</b></span></div>
+<div id="print-area"></div>
+
+<script>
+"use strict";
+/* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
+   injected at build time by generators/qk_app.py from the product manifest.
+   Hard promises: single file, zero network, never a credential field. */
+const CONFIG={"name":"Caregiving Companion","storageKey":"qk-caregiving-companion","backupPrefix":"caregiving","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Twenty-eight steps across four phases, at whatever pace your week allows — a few now, more later. Everything saves automatically on this device. Each step notes why it matters. This is an organizer for care information, not medical advice: it records what's true so the right people can act. It never asks for an insurance, Medicare, or account number — only where those cards and documents live.","disclaimer":"This is an organizer, not medical advice and not a professional care plan. It records information; it does not diagnose or dose. For medical decisions, consult the treating clinician."},"phases":[{"name":"Phase 1 · Get the Picture","tasks":[["List the health conditions that matter","The two or three a new doctor or ER should know first. You don't need a chart — just the headlines."],["Note allergies and anything an ER must know","Drug allergies especially. This is the line that can prevent a bad reaction on a hard day."],["List every medication, including over-the-counter","Prescriptions, vitamins, and the things in the kitchen cabinet. Interactions hide in the ones people forget to mention. Add each to the Medications tab."],["Record blood type if known","Not essential, but useful in an emergency and easy to record once."],["Note where the insurance / Medicare card lives","The card, not the number. 'Wallet' or 'top drawer' is enough — a card no one can find is the first delay at every visit."],["Note where an advance directive or POLST lives","If one exists, its location matters more than anything. If one doesn't, that's worth a gentle conversation someday."],["Add the health facts to the Health Facts tab","Conditions, allergies, blood type, and where the cards and documents live — the ER grab-list, in one place."]]},{"name":"Phase 2 · Build the Team","tasks":[["List the primary doctor and how to reach them","The first call when something changes. Name, practice, and the number that actually reaches a human."],["List specialists and what each treats","Cardiology, oncology, whoever. A new caregiver shouldn't have to guess which doctor handles what."],["Note the pharmacy and whether it delivers","Where refills live, and whether someone has to drive for them. Delivery changes who can help from a distance."],["List any home health or aide support","Agency, aide names, and the hours they cover. The schedule is part of the plan."],["Name family members who help, and how","Who drives to appointments, who handles bills, who visits. Writing it down is how the load gets shared instead of assumed."],["Set an emergency contact and a backup","The person to reach first, and the person to reach if the first can't be found."],["Add each person to the Care Team tab","One row per person: role, phone, and a note. This becomes the directory anyone can use."]]},{"name":"Phase 3 · Run the Day-to-Day","tasks":[["Record the medication schedule for a normal day","Morning, midday, evening, bedtime — what's taken when. A fill-in caregiver lives or dies by this."],["Note mobility needs and any equipment","Walker, wheelchair, oxygen, a shower chair. What they use, and where it is."],["Note dietary needs and food preferences","Restrictions that matter for their health, and the foods that make a hard day better."],["Note what they can and can't do alone","Bathing, cooking, driving, managing money. An honest list here is what right-sized help is built on."],["Record the weekly rhythm of appointments","Dialysis on Tuesdays, physical therapy on Thursdays. The pattern a substitute needs to keep."],["Note who covers which day or task","Even a rough split. Ambiguity is where caregiver resentment grows; a written plan defuses it."],["Add each medication to the Medications tab","Dose, schedule, prescriber, and what it's for — the list every new provider asks for."]]},{"name":"Phase 4 · Plan Ahead & Hand Off","tasks":[["Write their care wishes and preferences","How they like their day, what comforts them, what they'd want if choices arise. In the Wishes tab, in plain words."],["Note where legal and financial documents live","Power of attorney, healthcare proxy, will, and where the bills and accounts are managed — the locations, not the numbers."],["Choose a backup caregiver — and ask them","Someone who could step in for a week if you couldn't. The plan is only real if a second person knows it exists."],["Agree on when to call the doctor vs 911","A simple, shared line — 'confusion or a fall, call the doctor; chest pain or can't breathe, call 911.' Decided calmly now, not panicked later."],["Print the Care Summary Sheet","One click on the Care Summary tab produces the page a fill-in caregiver or an ER can act from immediately."],["Keep it where a fill-in caregiver would look","On the fridge, in the go-bag, with the medications. A summary no one can find helps no one."],["Review after any hospital stay or new diagnosis","Care changes fastest right after a hospital visit. Update while the discharge papers are still on the counter."]]}],"registers":[{"id":"meds","tab":"Medications","heading":"Medications","noun":"medication","statLabel":"Medications","counterLabel":"Medications listed","intro":"Every medication, including over-the-counter and vitamins — the single list a new provider, a pharmacist, and an ER all ask for first. Interactions hide in the ones people forget to mention, so include everything.","columns":[{"key":"name","label":"Medication","width":"22%","type":"text"},{"key":"dose","label":"Dose","width":"12%","type":"text"},{"key":"schedule","label":"When","width":"20%","type":"list","options":["Morning","Midday","Evening","Bedtime","Twice daily","As needed","Weekly","Other"]},{"key":"prescriber","label":"Prescriber","width":"16%","type":"text"},{"key":"purpose","label":"What it's for","type":"text"}],"counter":"count"},{"id":"team","tab":"Care Team","heading":"Care Team","noun":"person","nounPlural":"people","statLabel":"Care team","counterLabel":"People listed","intro":"Everyone who keeps this person well: the primary doctor, specialists, pharmacy, any home health support, and the family who help. The first rows are the first calls when something changes.","columns":[{"key":"name","label":"Name","width":"20%","type":"text"},{"key":"role","label":"Role","width":"26%","type":"list","options":["Primary doctor","Specialist","Pharmacy","Home health / aide","Care manager","Family caregiver","Emergency contact","Backup caregiver","Other"]},{"key":"phone","label":"Phone","width":"16%","type":"text"},{"key":"email","label":"Email","width":"18%","type":"text"},{"key":"notes","label":"Notes / what they cover","type":"text"}],"counter":"count"},{"id":"health","tab":"Health Facts","heading":"Health Facts","noun":"fact","statLabel":"Health facts","counterLabel":"Facts recorded","intro":"The essentials an ER or a new provider asks for in the first minutes: conditions, allergies, blood type, the equipment they use, and where the insurance card and advance directive live. The card and the directive matter by their location, not their numbers.","columns":[{"key":"item","label":"Fact","width":"28%","type":"list","options":["Health condition","Drug allergy","Other allergy","Blood type","Equipment / device","Insurance / Medicare card location","Advance directive / POLST location","Preferred hospital","Recent surgery or hospital stay","Other"]},{"key":"value","label":"Details","width":"44%","type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"}],"wishesEnabled":true,"wishes":{"tab":"Care Wishes","heading":"Care Wishes & Preferences","intro":"The person, not just the patient. How they like their day, the foods and comforts that help, what matters to them, and — gently — what they'd want if bigger choices arise. None of this is binding; it simply means whoever steps in cares for them the way they'd want, not the way a stranger would guess.","disclaimer":"These are preferences to guide caregivers, not medical or legal instructions. Formal healthcare decisions belong in an advance directive; note where that document lives in the Health Facts tab.","items":[{"key":"day","label":"How they like their day","prompt":"Wake and sleep times, routines, the rhythm that keeps them steady. What a good day looks like."},{"key":"food","label":"Food & comfort","prompt":"Favorite foods and drinks, what they won't touch, and the small comforts — a blanket, a show, a walk — that help on a hard day."},{"key":"matters","label":"What matters to them","prompt":"Faith, family, independence, a pet, staying in their own home. The things worth protecting as care increases."},{"key":"soothes","label":"What soothes or upsets","prompt":"For a fill-in caregiver especially: what calms them, and what to avoid. Names, topics, times of day."},{"key":"wishes","label":"Wishes if choices arise","prompt":"Optional and gentle. Anything they've said about care, hospitals, or the kind of help they'd want. Where their advance directive lives, if there is one."}]},"sheet":{"tab":"Care Summary","heading":"Care Summary Sheet","button":"Print the Care Summary","intro":"This compiles the essentials — conditions and allergies, medications, the care team, and where documents live — into one printable page: “What a New Caregiver or ER Needs to Know.” Print it, keep it where a fill-in caregiver would look, and bring it to every appointment.","docTitle":"What a New Caregiver or ER Needs to Know","docTag":"A Care Summary · prepared with the Quietkeep Caregiving Companion","lead":"This sheet holds the information a family member, a fill-in caregiver, or an emergency room needs to care for this person safely: their conditions and allergies, the medications they take, who's on their care team, and where their cards and documents live. It is an organizer output — not medical advice, and not a substitute for the treating clinician.","foot":"Prepared by their caregiver. This Care Summary is an organizer output, not medical advice and not a care plan from a licensed professional. It records information; it does not diagnose or dose. It contains no insurance or account numbers. For medical decisions, consult the treating clinician.","disclaimer":"The Care Summary is a personal information sheet for caregivers and clinicians, not a medical or legal document. For treatment decisions, consult the treating clinician; for formal healthcare choices, see the advance directive.","sections":[{"type":"register","id":"health","title":"Conditions, Allergies & Where Documents Live"},{"type":"register","id":"meds","title":"Current Medications"},{"type":"register","id":"team","title":"Care Team & Who to Call"},{"type":"wish","key":"day","title":"How They Like Their Day","empty":"Not recorded yet — the routine that keeps them steady."},{"type":"wishes","title":"Care Wishes & Preferences","exclude":["day"]}]},"summary":{"disclaimer":"The Caregiving Companion is an organizer. It is not medical advice and not a professional care plan — it records information so the right people can act, and it never diagnoses or doses. It never asks for an insurance, Medicare, or account number. Everything you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where the plan stands, keep it current, and back up your work to a file you control.","reviewNote":"Care changes fastest after a hospital stay or a new diagnosis. Mark today as reviewed after any pass, and especially after a discharge or medication change.","staleFlag":"It has been more than a few months since your last review. Medications and needs drift — open the Summary tab when you have a few quiet minutes."}};
+const PHASES=CONFIG.phases;
+const REGISTERS=CONFIG.registers||[];
+const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
+const STORAGE_KEY=CONFIG.storageKey;
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
+function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
+function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function regById(id){return REGISTERS.find(r=>r.id===id);}
+function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
+function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
+
+/* ---------- state ---------- */
+let state=null;
+function defaultState(){
+  const d={v:1,tasks:{},wishes:{},lastReviewed:null};
+  REGISTERS.forEach(r=>{d[r.id]=[];});
+  return d;
+}
+function load(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);state=raw?JSON.parse(raw):defaultState();}
+  catch(e){state=defaultState();}
+  REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[];});
+  if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+  if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+  if(state.lastReviewed===undefined)state.lastReviewed=null;
+}
+function save(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    document.getElementById("save-status").innerHTML="<b>All changes saved on this device</b>";}
+  catch(e){document.getElementById("save-status").innerHTML="<b>Could not save — download a backup from the Summary tab</b>";}
+}
+
+/* ---------- shell: nav + sections built from CONFIG ---------- */
+function buildShell(){
+  const nav=document.getElementById("nav");
+  const wrap=document.getElementById("sections");
+  const tabs=[{id:"tasks",label:CONFIG.tasks.tab||"Tasks"}];
+  REGISTERS.forEach(r=>tabs.push({id:r.id,label:r.tab}));
+  if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
+  tabs.push({id:"sheet",label:CONFIG.sheet.tab||"Instruction Sheet"});
+  tabs.push({id:"summary",label:"Summary & Backup"});
+  tabs.forEach((t,i)=>{
+    const b=document.createElement("button");
+    b.dataset.tab=t.id;b.textContent=t.label;if(i===0)b.className="active";
+    nav.appendChild(b);
+  });
+
+  let h="";
+  // Tasks
+  h+='<section class="tab active" id="tab-tasks"><h2>'+esc(CONFIG.tasks.heading||"Guided Tasks")+'</h2>'+
+     '<p class="note">'+esc(CONFIG.tasks.intro||"")+'</p><div id="phases"></div>'+
+     (CONFIG.tasks.disclaimer?'<p class="disclaimer">'+esc(CONFIG.tasks.disclaimer)+'</p>':"")+
+     '</section>';
+  // Registers
+  REGISTERS.forEach(r=>{
+    h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
+       '<p class="note">'+esc(r.intro||"")+'</p><table><thead><tr>';
+    r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table>'+
+       '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
+    if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
+    if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
+    if(r.disclaimer)h+='<p class="disclaimer">'+esc(r.disclaimer)+'</p>';
+    h+='</section>';
+  });
+  // Wishes
+  if(CONFIG.wishesEnabled){
+    h+='<section class="tab" id="tab-wishes"><h2>'+esc(CONFIG.wishes.heading||"Wishes & Instructions")+'</h2>'+
+       '<p class="note">'+esc(CONFIG.wishes.intro||"")+'</p><div id="wishes-body"></div>'+
+       (CONFIG.wishes.disclaimer?'<p class="disclaimer">'+esc(CONFIG.wishes.disclaimer)+'</p>':"")+
+       '</section>';
+  }
+  // Sheet
+  h+='<section class="tab" id="tab-sheet"><h2>'+esc(CONFIG.sheet.heading)+'</h2>'+
+     '<p class="note">'+esc(CONFIG.sheet.intro||"")+'</p>'+
+     '<div id="sheet-preview" class="review-box"></div>'+
+     '<div class="toolbar"><button class="primary" onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button></div>'+
+     (CONFIG.sheet.disclaimer?'<p class="disclaimer">'+esc(CONFIG.sheet.disclaimer)+'</p>':"")+
+     '</section>';
+  // Summary
+  h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
+     '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
+     '<div id="summary-stats"></div>'+
+     '<div class="review-box"><div class="rl" id="review-line">Last reviewed: <strong>not yet reviewed</strong></div>'+
+     '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
+     '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
+     '<div class="toolbar">'+
+     '<button onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button>'+
+     '<button onclick="printAll()">Print everything (all registers)</button>'+
+     '<button onclick="backup()">Download backup file</button>'+
+     '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
+     '<input type="file" id="restore-file" accept=".json" style="display:none" onchange="restore(this)">'+
+     '</div>'+
+     (CONFIG.summary.disclaimer?'<p class="disclaimer">'+esc(CONFIG.summary.disclaimer)+'</p>':"")+
+     '</section>';
+  wrap.innerHTML=h;
+  wrap.querySelectorAll("button.add").forEach(b=>b.addEventListener("click",()=>addRow(b.dataset.add)));
+}
+
+/* ---------- task engine ---------- */
+function renderTasks(){
+  const wrap=document.getElementById("phases");wrap.innerHTML="";
+  PHASES.forEach((ph,pi)=>{
+    let pDone=0;
+    const div=document.createElement("div");div.className="phase";
+    const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
+    const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
+    ph.tasks.forEach((t,ti)=>{
+      const id="p"+pi+"t"+ti;
+      const checked=!!state.tasks[id];if(checked)pDone++;
+      const row=document.createElement("div");row.className="task"+(checked?" done":"");
+      const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
+      cb.addEventListener("change",()=>{state.tasks[id]=cb.checked;save();row.classList.toggle("done",cb.checked);updateProgress();});
+      const body=document.createElement("div");
+      body.innerHTML='<div class="t"></div><div class="why"></div>';
+      body.querySelector(".t").textContent=t[0];
+      body.querySelector(".why").textContent=t[1]||"";
+      row.appendChild(cb);row.appendChild(body);div.appendChild(row);
+    });
+    fill.style.width=Math.round(pDone/ph.tasks.length*100)+"%";
+    wrap.appendChild(div);
+  });
+  updateProgress();
+}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
+function updateProgress(){
+  let total=0,done=0;
+  document.querySelectorAll("#phases .phase").forEach((div)=>{
+    let pDone=0;const boxes=div.querySelectorAll(".task input[type=checkbox]");
+    boxes.forEach(b=>{total++;if(b.checked){done++;pDone++;}});
+    div.querySelector(".bar>div").style.width=Math.round(pDone/boxes.length*100)+"%";
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+  summaryStats();
+}
+
+/* ---------- register engine ---------- */
+function fieldEl(reg,row,col){
+  const td=document.createElement("td");
+  let el;
+  if(col.type==="select"){el=document.createElement("select");
+    (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
+    el.value=row[col.key]||(col.options||[""])[0];}
+  else if(col.type==="list"){el=document.createElement("input");el.type="text";
+    const dl=document.createElement("datalist");const dlid="dl-"+reg.id+"-"+col.key+"-"+Math.random().toString(36).slice(2,8);
+    dl.id=dlid;(col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;dl.appendChild(op);});
+    el.setAttribute("list",dlid);td.appendChild(dl);
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  else{el=document.createElement("input");el.type=col.type==="num"?"number":(col.type==="date"?"date":"text");
+    if(col.type==="num"){el.step="0.01";td.className="num";}
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  el.addEventListener("input",()=>{row[col.key]=el.value;save();totals();});
+  el.addEventListener("change",()=>{row[col.key]=el.value;save();totals();});
+  td.appendChild(el);return td;
+}
+function renderTable(id){
+  const reg=regById(id);
+  const body=document.getElementById(id+"-body");body.innerHTML="";
+  state[id].forEach((row,i)=>{
+    const tr=document.createElement("tr");
+    reg.columns.forEach(c=>tr.appendChild(fieldEl(reg,row,c)));
+    const td=document.createElement("td");
+    const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
+    del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[id].splice(i,1);save();renderTable(id);totals();}});
+    td.appendChild(del);tr.appendChild(td);body.appendChild(tr);
+  });
+}
+function addRow(id){state[id].push({});save();renderTable(id);totals();}
+function categoryCounts(reg){
+  const field=reg.counterField;const cats=(colByKey(reg,field)||{}).options||[];
+  const counts={};
+  state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
+  return counts;
+}
+function regTotal(reg){const k=reg.counterField||numKey(reg);return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);}
+function totals(){
+  REGISTERS.forEach(reg=>{
+    const el=document.getElementById(reg.id+"-total");
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.counterLabel||((plural.charAt(0).toUpperCase()+plural.slice(1))+" recorded");
+    if(reg.counter==="category"&&el){
+      const cats=(colByKey(reg,reg.counterField)||{}).options||[];
+      const counts=categoryCounts(reg);
+      const bits=cats.filter(c=>counts[c]).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      const extra=Object.keys(counts).filter(c=>cats.indexOf(c)<0).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
+    }else if(reg.counter==="total"&&el){
+      const n=state[reg.id].length;
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+money(regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      const line=document.getElementById(reg.id+"-line");
+      if(line)line.textContent=n?reg.line.replace("{total}",money(regTotal(reg))):"";
+    }else if(el){
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
+    }
+  });
+  summaryStats();renderSheetPreview();
+}
+
+/* ---------- wishes ---------- */
+function renderWishes(){
+  const wrap=document.getElementById("wishes-body");if(!wrap)return;
+  wrap.innerHTML="";
+  WISHES.forEach(w=>{
+    const div=document.createElement("div");div.className="wish";
+    const lab=document.createElement("label");lab.textContent=w.label;lab.setAttribute("for","wish-"+w.key);div.appendChild(lab);
+    const pr=document.createElement("div");pr.className="prompt";pr.textContent=w.prompt||"";div.appendChild(pr);
+    const ta=document.createElement("textarea");ta.id="wish-"+w.key;ta.value=state.wishes[w.key]||"";
+    ta.addEventListener("input",()=>{state.wishes[w.key]=ta.value;save();});
+    div.appendChild(ta);
+    if(w.warn){const wn=document.createElement("div");wn.className="warnline";wn.textContent=w.warn;div.appendChild(wn);}
+    wrap.appendChild(div);
+  });
+}
+
+/* ---------- summary + review ---------- */
+function summaryStats(){
+  const c=taskCounts();
+  const el=document.getElementById("summary-stats");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.statLabel||(plural.charAt(0).toUpperCase()+plural.slice(1));
+    let s=label+": <strong>"+state[reg.id].length+"</strong>";
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="totals">Tasks complete: <strong>'+c.done+' / '+c.total+'</strong><span class="pill">'+(c.total?Math.round(c.done/c.total*100):0)+'%</span><br>'+bits.join(" · ")+'</div>';
+  renderReviewLine();
+}
+function daysSince(iso){if(!iso)return null;const then=new Date(iso+"T00:00:00");const now=new Date();return Math.floor((now-then)/86400000);}
+function renderReviewLine(){
+  const line=document.getElementById("review-line");
+  if(line){
+    if(state.lastReviewed){line.innerHTML="Last reviewed: <strong>"+new Date(state.lastReviewed+"T00:00:00").toLocaleDateString()+"</strong>";}
+    else{line.innerHTML="Last reviewed: <strong>not yet reviewed</strong>";}
+  }
+  const flag=document.getElementById("review-flag");if(!flag)return;
+  const dd=daysSince(state.lastReviewed);
+  if(dd!==null&&dd>=365){flag.classList.add("show");flag.textContent=CONFIG.summary.staleFlag||"It has been more than a year since your last review. Open the Summary tab when you have a few minutes.";}
+  else{flag.classList.remove("show");flag.textContent="";}
+}
+function markReviewed(){
+  const now=new Date();const iso=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  state.lastReviewed=iso;save();renderReviewLine();
+}
+
+/* ---------- print sheet (compiled from CONFIG.sheet.sections) ---------- */
+function registerTableHTML(reg,rows,skipKey){
+  let h='<table><tr>';
+  reg.columns.forEach(c=>{if(c.key!==skipKey)h+='<th>'+esc(c.label)+'</th>';});
+  h+='</tr>';
+  rows.forEach(r=>{h+='<tr>';
+    reg.columns.forEach(c=>{if(c.key===skipKey)return;
+      const v=c.type==="num"?money(parseFloat(r[c.key])||0):esc(r[c.key]);
+      h+='<td>'+v+'</td>';});
+    h+='</tr>';});
+  if(reg.counter==="total"){
+    h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
+    const nk=reg.counterField||numKey(reg);
+    reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
+      h+=c.key===nk?'<td><strong>'+money(regTotal(reg))+'</strong></td>':'<td></td>';});
+    h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
+    h+='</tr>';
+  }
+  return h+'</table>';
+}
+function sheetHTML(){
+  const S=CONFIG.sheet;
+  let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
+  if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
+  (S.sections||[]).forEach(sec=>{
+    h+='<h2>'+esc(sec.title)+'</h2>';
+    if(sec.type==="wish"){
+      const v=state.wishes[sec.key];
+      if(nonEmpty(v))h+='<div class="wblock">'+nl2br(v)+'</div>';
+      else h+='<p>'+esc(sec.empty||"Not recorded yet.")+'</p>';
+    }else if(sec.type==="register"){
+      const reg=regById(sec.id);const rows=state[sec.id];
+      if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
+      if(sec.groupBy){
+        const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);counts[c]=(counts[c]||0)+1;});
+        const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
+        order.forEach(c=>{
+          h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);return rc===c;}),sec.groupBy);
+        });
+      }else{
+        h+=registerTableHTML(reg,rows,null);
+      }
+    }else if(sec.type==="wishes"){
+      let any=false;const excl=sec.exclude||[];
+      WISHES.forEach(w=>{if(excl.indexOf(w.key)>=0)return;const v=state.wishes[w.key];if(!nonEmpty(v))return;any=true;
+        h+='<h3>'+esc(w.label)+'</h3><div class="wblock">'+nl2br(v)+'</div>';});
+      if(!any)h+='<p>'+esc(sec.empty||"No wishes recorded yet.")+'</p>';
+    }
+  });
+  if(S.foot)h+='<p class="foot">'+esc(S.foot)+'</p>';
+  return h;
+}
+function renderSheetPreview(){
+  const el=document.getElementById("sheet-preview");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const n=state[reg.id].length;
+    let s=n+" "+(n===1?noun:plural);
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(CONFIG.sheet.docTitle)+'</strong></div>'+
+    '<p class="note" style="margin:0">'+esc(CONFIG.sheet.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+    (CONFIG.wishesEnabled?", plus your wishes":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
+}
+function printSheet(){
+  const pa=document.getElementById("print-area");
+  pa.innerHTML=sheetHTML();window.print();
+}
+function printAll(){
+  const pa=document.getElementById("print-area");
+  let h=sheetHTML();
+  h+='<h2>Guided Task Progress</h2>';
+  PHASES.forEach((ph,pi)=>{
+    h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks["p"+pi+"t"+ti]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    h+='</table>';
+  });
+  pa.innerHTML=h;window.print();
+}
+
+/* ---------- backup / restore ---------- */
+function backup(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
+  aEl.download=CONFIG.backupPrefix+"-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(aEl);aEl.click();aEl.remove();
+}
+function restore(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{const data=JSON.parse(reader.result);
+      if(!data||typeof data!=="object")throw 0;
+      state=Object.assign(defaultState(),data);
+      REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[]});
+      if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+      save();renderAll();alert("Backup restored.");}
+    catch(e){alert("That file does not look like a valid backup.");}};
+  reader.readAsText(f);input.value="";
+}
+
+/* ---------- boot ---------- */
+document.getElementById("nav").addEventListener("click",e=>{
+  if(e.target.tagName!=="BUTTON")return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
+  e.target.classList.add("active");
+  document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
+  if(e.target.dataset.tab==="sheet")renderSheetPreview();
+});
+function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
+buildShell();load();renderAll();
+</script>
+</body>
+</html>

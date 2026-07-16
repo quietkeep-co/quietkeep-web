@@ -1,0 +1,149 @@
+{
+  "order": 5,
+  "slug": "caregiving-companion",
+  "name": "Caregiving Companion",
+  "kicker": "Caregiving Companion",
+  "status": "new",
+  "season": "Caring for a parent",
+  "price": 37,
+  "paymentLink": "https://link.fastpaydirect.com/payment-link/6a591ba0a655fa0b802a4a6d",
+  "demoPath": "/demos/caregiving-companion.html",
+  "card": {
+    "oneLiner": "A parent's medications, doctors, conditions, and wishes — in one place any family member can pick up.",
+    "bullets": [
+      "A parent's whole care picture in one place",
+      "Meds, doctors, and conditions any family member can pick up",
+      "Printable summary for a fill-in caregiver or the ER",
+      "Private and fully offline"
+    ]
+  },
+  "hero": {
+    "headline": "When someone else has to step in, they shouldn't have to start from zero.",
+    "lede": "Everything about caring for someone — their medications, doctors, conditions, and daily needs — in one private place any family member can pick up. Offline, printable.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/caregiving-companion/medications.png",
+    "imageAlt": "Caregiving Companion showing the Medications register"
+  },
+  "band": [
+    {
+      "label": "100% offline",
+      "sub": "zero network requests"
+    },
+    {
+      "label": "Completely private",
+      "sub": "data stays on your device"
+    },
+    {
+      "label": "$39 once",
+      "sub": "yours forever"
+    },
+    {
+      "label": "A real app",
+      "sub": "not a PDF or spreadsheet"
+    }
+  ],
+  "intro": {
+    "heading": "A parent's care, gathered in one place",
+    "body": "Everything about caring for someone — their medications, their doctors, their conditions, and how they like their day — kept in one private place any family member can pick up."
+  },
+  "features": [
+    {
+      "title": "28 guided tasks",
+      "body": "Get the Picture · Build the Team · Day-to-Day · Hand Off"
+    },
+    {
+      "title": "Medications register",
+      "body": "Dose, schedule, prescriber, and purpose for each"
+    },
+    {
+      "title": "Care team directory",
+      "body": "Doctors, pharmacy, home health, family who help"
+    },
+    {
+      "title": "Health facts",
+      "body": "Conditions, allergies, and where documents live"
+    },
+    {
+      "title": "Care wishes",
+      "body": "Daily routine, food, comfort, what matters"
+    },
+    {
+      "title": "Care Summary",
+      "body": "One click prints what a new caregiver or ER needs"
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/caregiving-companion/medications.png",
+      "alt": "Medications register",
+      "captionBold": "Every medication, in one place.",
+      "caption": "Dose, schedule, prescriber, and purpose."
+    },
+    {
+      "img": "/images/caregiving-companion/team.png",
+      "alt": "Care team directory",
+      "captionBold": "The whole care team.",
+      "caption": "Doctors, pharmacy, home health, and family."
+    },
+    {
+      "img": "/images/caregiving-companion/summary.png",
+      "alt": "Care Summary sheet",
+      "captionBold": "One page for the ER.",
+      "caption": "What a new caregiver or hospital needs to know."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Nothing you type ever leaves your device, and it never asks for an insurance, Medicare, or account number by design.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+      },
+      {
+        "title": "Never a password",
+        "body": "By design, it never asks for or stores passwords or PINs. It records that accounts exist and where your written instructions live — the map, never the keys."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "the one place a parent's whole care picture lives — medications, doctors, conditions, and wishes — so any family member or a fill-in caregiver can step in, and an ER visit isn't a scramble.",
+    "bullets": [
+      "28 guided tasks across four phases: Get the Picture, Build the Team, Run the Day-to-Day, Plan Ahead & Hand Off",
+      "A medications register — dose, schedule, prescriber, and purpose for each one",
+      "A care team directory: doctors, specialists, pharmacy, home health, and the family who help",
+      "Health facts an ER or new provider needs, and where the insurance card and advance directive live",
+      "A care wishes section: daily routine, food, comfort, and what matters to them",
+      "A one-click printable Care Summary — 'What a New Caregiver or ER Needs to Know'",
+      "Auto-save with backup and restore"
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is this a subscription?",
+      "a": "No. You pay 39 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones."
+    },
+    {
+      "q": "Is my information really private?",
+      "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control."
+    },
+    {
+      "q": "What if it doesn't work for me?",
+      "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    }
+  ],
+  "crossSell": {
+    "heading": "Thinking further ahead, too?",
+    "body": "Fifth Quietkeep organizer; the usage-life companion to the estate set — families caring for a parent are often the same ones who will later settle the estate.",
+    "href": "/estate-planning-organizer",
+    "cta": "See the Organizer"
+  }
+}
