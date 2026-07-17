@@ -26,7 +26,7 @@ export function generateMetadata({
   const p = getProduct(params.product);
   if (!p) return {};
   return {
-    title: p.name,
+    title: p.listingTitle || p.name,
     description: p.hero.lede,
   };
 }

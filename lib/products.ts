@@ -23,6 +23,8 @@ export type Product = {
   slug: string;
   name: string;
   kicker: string;
+  listingTitle?: string; // SEO/browser-tab title matched to the Etsy & Gumroad listing name; falls back to `name`
+
   status: "live" | "new";
   season: string;
   price: number;
