@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: { icon: "/images/brand/keyhole.png" },
+  other: {
+    "p:domain_verify": "0f71479f63ff5017096c0da4f18cd460",
+  },
 };
 
 const orgLd = {
