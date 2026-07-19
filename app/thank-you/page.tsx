@@ -9,9 +9,11 @@ export default function ThankYou() {
   return (
     <LegalShell title="Thank you — your organizer is on its way">
       <p>
-        Your download link is in your email inbox now (check spam if it&apos;s
-        not there in a minute or two). The file is yours forever — save it
-        somewhere you&apos;ll find it again.
+        Your download link is on its way to your email inbox now. If you
+        don&apos;t see it within a few minutes,{" "}
+        <strong>check your spam or junk folder</strong> — it sometimes lands
+        there. The file is yours forever — save it somewhere you&apos;ll find
+        it again.
       </p>
 
       <h2>Getting started</h2>
