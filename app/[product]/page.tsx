@@ -28,6 +28,13 @@ export function generateMetadata({
   return {
     title: p.listingTitle || p.name,
     description: p.hero.lede,
+    alternates: { canonical: `/${p.slug}` },
+    openGraph: {
+      title: p.listingTitle || p.name,
+      description: p.hero.lede,
+      url: `/${p.slug}`,
+      type: "website",
+    },
   };
 }
 

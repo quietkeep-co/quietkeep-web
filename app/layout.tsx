@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -15,6 +16,20 @@ export const metadata: Metadata = {
     url: `https://${site.domain}`,
     siteName: site.name,
     type: "website",
+    images: [
+      {
+        url: "/images/brand/og-default.png",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} — ${site.tagline}`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — ${site.tagline}`,
+    description: site.description,
+    images: ["/images/brand/og-default.png"],
   },
   icons: { icon: "/images/brand/keyhole.png" },
   other: {
@@ -44,6 +59,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
