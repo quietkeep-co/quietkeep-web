@@ -1,0 +1,83 @@
+{
+  "order": 6,
+  "slug": "the-estate-suite",
+  "name": "The Estate Suite",
+  "kicker": "The Estate Suite",
+  "listingTitle": "Estate Suite: Planning, Settlement, Digital Legacy Organizers (Offline Apps)",
+  "status": "new",
+  "season": "The complete set",
+  "price": 79,
+  "paymentLink": "https://link.fastpaydirect.com/payment-link/6a57c957a655fa0b802a472c",
+  "demoPath": "/demos/estate-planning-organizer.html",
+  "card": {
+    "oneLiner": "All three estate organizers — planning, settlement, and your digital life — in one set. $107 bought separately.",
+    "bullets": [
+      "Estate Planning Organizer + Estate Settlement Companion + Digital Legacy Planner",
+      "Three complete apps, three separate downloads",
+      "$79 for the set — save $28"
+    ]
+  },
+  "hero": {
+    "headline": "Three organizers. One quiet plan.",
+    "lede": "The Estate Planning Organizer for getting your affairs in order, the Digital Legacy Planner for the accounts and passwords nobody can find, and the Estate Settlement Companion for the person who will one day handle it all. Three private, offline apps — $107 bought separately, $79 as the suite.",
+    "note": "Instant download · Three apps · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/the-estate-suite/hero.png",
+    "imageAlt": "The Estate Suite — three Quietkeep organizers"
+  },
+  "band": [
+    { "label": "100% offline", "sub": "zero network requests" },
+    { "label": "Completely private", "sub": "data stays on your device" },
+    { "label": "$79 once", "sub": "save $28 on the set" },
+    { "label": "Three real apps", "sub": "not PDFs or spreadsheets" }
+  ],
+  "intro": {
+    "heading": "The whole estate picture, covered",
+    "body": "Planning ahead, the digital accounts that never make it into the will, and the settlement work that lands on someone you love — each is its own job, and each gets its own app. Together they cover the estate from both sides: the person planning, and the person who will one day carry it out."
+  },
+  "features": [
+    { "title": "Estate Planning Organizer", "body": "Get your affairs in order: documents, accounts, property, wishes — inventoried and organized so nothing is left for guesswork." },
+    { "title": "Digital Legacy Planner", "body": "The digital life nobody can see: accounts, subscriptions, devices, and what should happen to each. Points to where credentials live — never stores passwords." },
+    { "title": "Estate Settlement Companion", "body": "For the executor: 47 guided tasks from the first days through closing the estate, with the registers your attorney will ask for." },
+    { "title": "They work as a set", "body": "The Organizer records what exists, the Legacy Planner covers the digital layer, and the Companion picks the work up when the time comes. Designed as a pairing, sold as one." },
+    { "title": "Three separate downloads", "body": "Each app is its own small file. Keep the planning apps for yourself; hand the Companion to your executor whenever you choose." },
+    { "title": "Auto-save & backup", "body": "Every app saves automatically to your device and exports a backup file you control. No accounts, no cloud, nothing to renew." }
+  ],
+  "screens": [
+    { "img": "/images/epo/tasks.png", "alt": "Estate Planning Organizer tasks", "captionBold": "Plan it once.", "caption": "The Organizer gets your affairs in order." },
+    { "img": "/images/digital-legacy-planner/inside.png", "alt": "Digital Legacy Planner", "captionBold": "Cover the digital layer.", "caption": "Accounts, devices, and what happens to each." },
+    { "img": "/images/esc/inside.png", "alt": "Estate Settlement Companion tasks", "captionBold": "Hand off the hard part.", "caption": "The Companion guides your executor through it all." }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Between them, these apps will hold your accounts, your property, and your wishes. That information should never touch the internet. In these apps, it can't.",
+    "cards": [
+      { "title": "Zero network requests", "body": "Each app is a single file that runs entirely in your browser, on your device. No connections, nothing loaded from the internet. You can run them with Wi-Fi off." },
+      { "title": "We couldn't see your data if we wanted to", "body": "No account, no login, no cloud, no sync. Nothing you type is transmitted anywhere. Your backups are files on your own computer." },
+      { "title": "Yours forever", "body": "One-time purchase. All three files are yours, work offline for life, and will still open years from now, exactly as they do today." }
+    ]
+  },
+  "priceCard": {
+    "sub": "Three apps. One plan. $107 bought separately.",
+    "bullets": [
+      "Estate Planning Organizer — complete app",
+      "Digital Legacy Planner — complete app",
+      "Estate Settlement Companion — complete app",
+      "Three instant downloads in one email",
+      "Free email support, free updates",
+      "No subscription. No account. Ever."
+    ]
+  },
+  "faq": [
+    { "q": "What exactly is included?", "a": "Three complete apps as three separate downloads: the Estate Planning Organizer, the Digital Legacy Planner, and the Estate Settlement Companion. $107 bought separately; $79 as the suite." },
+    { "q": "Is this a subscription?", "a": "No. You pay $79 once and all three apps are yours forever. There is no account, no renewal, and nothing that expires." },
+    { "q": "Do the apps share my data?", "a": "No. Each app is independent and keeps its own data on your device. Nothing syncs anywhere — which also means you can give the Settlement Companion to your executor without sharing your planning files." },
+    { "q": "Do I need to install anything?", "a": "No. Each download is a small file — double-click it and it opens in the browser you already use, on Mac, Windows, tablets, and phones." },
+    { "q": "What if it doesn't work for me?", "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message." }
+  ],
+  "crossSell": {
+    "heading": "Caring for someone right now?",
+    "body": "The <a href=\"/caregiving-companion\">Caregiving Companion</a> organizes the season before this one — medications, appointments, and the care team — with the same privacy promise.",
+    "href": "/caregiving-companion",
+    "cta": "See the Caregiving Companion"
+  }
+}
