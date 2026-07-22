@@ -1,0 +1,89 @@
+{
+  "slug": "legacy-contacts-apple-google-facebook",
+  "title": "Legacy Contacts: Setting Up Apple, Google, and Facebook's Official Handoffs",
+  "description": "A step-by-step guide to setting up a legacy contact on Apple, Google, and Facebook — the official digital estate planning tools that decide who reaches your accounts, no passwords required.",
+  "cluster": "Digital estate planning",
+  "date": "2026-07-22",
+  "updated": "2026-07-22",
+  "readingMinutes": 9,
+  "intro": [
+    "One of the most useful moves in digital estate planning takes about fifteen minutes and costs nothing: telling Apple, Google, and Facebook — in advance, through their own official channels — who is allowed to reach your account after you die. Each company now offers a built-in handoff. Almost nobody uses them, because almost nobody knows they exist.",
+    "These tools exist precisely so your family never has to guess at your password, argue with a support line, or produce a court order to recover your photos. You name a trusted person now; the platform holds that instruction and honors it later, usually with a death certificate. No password ever changes hands.",
+    "This guide walks through the three that matter most — Apple's Legacy Contact, Google's Inactive Account Manager, and Facebook's legacy contact — with the exact steps for each, what each one can and can't do, and how to record your choices so they can actually be found. The settings themselves are the easy part. Remembering you set them is the part people miss."
+  ],
+  "sections": [
+    {
+      "heading": "Why the official handoffs beat a shared password",
+      "paragraphs": [
+        "The instinct is to solve this by writing your passwords on a card for your spouse. It feels simpler, and it is worse in almost every way. A password on a card goes stale the moment you change it, breaks the second a two-factor prompt appears, and often violates the terms of service you agreed to — which can get an account frozen exactly when your family needs it open.",
+        "The legacy-contact tools were built to replace that card. They share access on the platform's terms, survive password changes, and don't hand a live credential to anyone while you're alive. They also draw a clean line: the person you name gets a defined kind of access — your photos, your account data, the ability to memorialize a profile — not the run of your entire digital life.",
+        "Setting them up is one piece of a larger map, not the whole thing. If you haven't yet listed out every account your family would need to find, start with our companion guide, <b>The Digital Estate Planning Checklist</b> — the legacy contacts below are step three of that afternoon's work, not a substitute for it."
+      ]
+    },
+    {
+      "heading": "How to set up an Apple Legacy Contact",
+      "paragraphs": [
+        "Apple's Legacy Contact lets a person you choose request access to your Apple Account data — photos, messages, notes, files, and more — after your death. When they make the request, Apple asks for two things: the access key generated when you set them up, and a copy of your death certificate. It is the most complete of the three handoffs, because so much of an Apple user's life lives in iCloud.",
+        "You can add a legacy contact from an iPhone, iPad, or Mac signed in to your Apple Account with two-factor authentication turned on:"
+      ],
+      "bullets": [
+        "On iPhone or iPad, open <b>Settings</b>, tap your name at the top, then <b>Sign-In &amp; Security</b>, then <b>Legacy Contact</b>. On a Mac, it's <b>System Settings &gt; your name &gt; Sign-In &amp; Security &gt; Legacy Contact</b>.",
+        "Tap <b>Add Legacy Contact</b> and choose the person. If they're in a Family Sharing group, you can pick them directly; otherwise you can send the invitation as a message.",
+        "Apple generates an <b>access key</b>. If your contact uses Apple devices, it's stored for them automatically. Either way, choose <b>Print a Copy</b> and keep that printout with your estate documents — it's the piece your family will actually need.",
+        "Confirm and send. You can add more than one legacy contact, and you can remove one at any time."
+      ]
+    },
+    {
+      "heading": "How to set up Google's Inactive Account Manager",
+      "paragraphs": [
+        "Google's tool works differently from the other two, and the difference matters. Instead of naming someone to act after your death, you tell Google what to do after your account has been <b>inactive</b> for a period you set — three, six, twelve, or eighteen months. Google tries to reach you first, then acts. It's less about death specifically and more about an account that has clearly gone quiet.",
+        "That framing has a real advantage: your chosen people can be notified and given access without producing a death certificate, because the trigger is inactivity, not a documented death. The trade-off is the waiting period, and the need to keep it current if your habits change.",
+        "Set it up from a computer or phone browser while signed in to your Google Account:"
+      ],
+      "bullets": [
+        "Go to your Google Account, open the <b>Data &amp; privacy</b> section, and scroll to <b>Inactive Account Manager</b> (or search that phrase in your account settings).",
+        "Set the <b>inactivity period</b> — how long Google waits before treating the account as dormant — and the phone number and recovery email Google will use to check on you first.",
+        "Add up to <b>ten trusted contacts</b> and choose what each may access — Gmail, Drive, Photos, and other data can be shared selectively. You decide whether they can download your data.",
+        "Decide whether Google should <b>delete the account</b> automatically after the contacts have been notified. This is optional, and worth thinking about rather than accepting by reflex."
+      ]
+    },
+    {
+      "heading": "How to set up a Facebook legacy contact",
+      "paragraphs": [
+        "Facebook's legacy contact governs what happens to your profile once it's memorialized — the state a Facebook account enters after the company is notified of a death. A memorialized profile stays visible as a place for friends to gather, with \"Remembering\" shown before your name. Your legacy contact can manage that space in limited ways; they cannot read your private messages, and that boundary is deliberate.",
+        "What your legacy contact can do: write a pinned post at the top of your profile, respond to new friend requests, and update your profile and cover photo. What they cannot do: log in as you, read your messages, or see anything you didn't share with them while alive. You can also grant them permission to request the account's removal.",
+        "Set it from Facebook's settings, on the web or in the app:"
+      ],
+      "bullets": [
+        "Open <b>Settings &amp; privacy &gt; Settings</b>, then find <b>Memorialization settings</b> (under your account or personal-details section, depending on your app version).",
+        "Choose a friend as your <b>legacy contact</b> and, if you like, send them a short message letting them know. They won't get any access until your account is actually memorialized.",
+        "Decide the account's fate up front: you can grant your legacy contact permission to <b>download a copy</b> of what you shared, or you can instead choose to have the account <b>permanently deleted</b> after your death rather than memorialized.",
+        "Instagram, owned by the same company, has its own memorialization process handled after the fact by family or friends — worth noting if you keep photos there."
+      ]
+    },
+    {
+      "heading": "Record your choices where they'll be found",
+      "paragraphs": [
+        "Here is the quiet failure mode of all three tools: people set them up, feel a well-earned sense of relief, and never tell anyone. A legacy contact who doesn't know they were named, holding no access key and no idea a memorialized profile is theirs to manage, is not much better than no plan at all.",
+        "So close the loop with a short written record kept alongside your will and estate documents. It doesn't need to be elaborate — it needs to exist and to be findable. For each platform, note that a legacy setting is in place, who it names, and where the supporting piece lives:"
+      ],
+      "bullets": [
+        "<b>Apple</b> — the legacy contact's name, and where the printed access key is stored. Their request will also need your death certificate.",
+        "<b>Google</b> — the inactivity period you chose, who's on the contact list, and whether auto-deletion is on.",
+        "<b>Facebook</b> — who your legacy contact is, and whether you chose memorialization or deletion.",
+        "<b>A one-line heads-up to each person named</b>, so the role doesn't arrive as a surprise at the worst possible time."
+      ]
+    },
+    {
+      "heading": "Keep the rest of your accounts in mind",
+      "paragraphs": [
+        "These three cover an enormous share of most people's digital lives, but they are not everything. Your password manager likely has its own emergency-access feature — a trusted person can request entry with a waiting period you control — and it's often the single most valuable setting to turn on, because it reaches the accounts no platform-specific tool touches. Banks, brokerages, and subscriptions each have their own after-death processes that no legacy contact covers.",
+        "The pattern that holds across all of them is the same one that makes the big three work: use the official channel each service already offers, record where the access instructions live, and never write the passwords themselves into the document. A record of where the keys are kept is a gift to your family. A list of the keys themselves is a liability sitting in a drawer.",
+        "Set the three legacy contacts this week — the settings take minutes each. Then write down that you did, and tell the people you named. This guide is an organizational aid rather than legal or financial advice, and platform menus shift over time, so treat the steps as a map and confirm the current wording in each app; for anything you want to be legally binding, mention your digital assets in your estate documents with an attorney. That last, unglamorous step — recording what you set and telling the people you named — is what turns three toggled switches into a plan your family can actually use."
+      ]
+    }
+  ],
+  "takeaway": "Apple, Google, and Facebook each offer an official way to name who reaches your account after you're gone — Legacy Contact, Inactive Account Manager, and a memorialization legacy contact. Each shares access on the platform's terms, with no password ever changing hands. The settings take minutes; the part people forget is recording the choices and telling the people named, which is what makes them work.",
+  "productSlug": "digital-legacy-planner",
+  "productPitch": "The Digital Legacy Planner gives each of these handoffs a home: a place to record who you named on Apple, Google, and Facebook, where each access key lives, and a printable sheet your family can follow — fully offline, and it never stores a password by design."
+}
