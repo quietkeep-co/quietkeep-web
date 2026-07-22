@@ -6,7 +6,7 @@
   "listingTitle": "Caregiver Organizer App | Medications, Doctors, Health Info (Digital Download)",
   "status": "new",
   "season": "Caring for a parent",
-  "price": 37,
+  "price": 14.99,
   "paymentLink": "https://link.fastpaydirect.com/payment-link/6a591ba0a655fa0b802a4a6d",
   "demoPath": "/demos/caregiving-companion.html",
   "card": {
@@ -35,7 +35,7 @@
       "sub": "data stays on your device"
     },
     {
-      "label": "$37 once",
+      "label": "$14.99 once",
       "sub": "yours forever"
     },
     {
@@ -126,7 +126,7 @@
   "faq": [
     {
       "q": "Is this a subscription?",
-      "a": "No. You pay 37 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+      "a": "No. You pay $14.99 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
     },
     {
       "q": "Do I need to install anything?",

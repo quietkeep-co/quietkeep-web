@@ -6,7 +6,7 @@
   "listingTitle": "Estate Settlement Organizer | Executor Checklist, Probate Planner (Digital Download)",
   "status": "live",
   "season": "After a death",
-  "price": 37,
+  "price": 14.99,
   "paymentLink": "https://link.fastpaydirect.com/payment-link/6a53f3acc981f3feae6e8ad2",
   "demoPath": "/demos/estate-settlement-companion.html",
   "card": {
@@ -27,7 +27,7 @@
   "band": [
     { "label": "100% offline", "sub": "zero network requests" },
     { "label": "Completely private", "sub": "data stays on your device" },
-    { "label": "$37 once", "sub": "yours forever" },
+    { "label": "$14.99 once", "sub": "yours forever" },
     { "label": "A real app", "sub": "not a PDF or spreadsheet" }
   ],
   "intro": {
@@ -68,7 +68,7 @@
     ]
   },
   "faq": [
-    { "q": "Is this a subscription?", "a": "No. You pay $37 once and the app is yours forever. There is no account, no renewal, and nothing that expires." },
+    { "q": "Is this a subscription?", "a": "No. You pay $14.99 once and the app is yours forever. There is no account, no renewal, and nothing that expires." },
     { "q": "Do I need to install anything?", "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones." },
     { "q": "Is this legal or financial advice?", "a": "No. The Companion is an organizational tool. It gets the estate inventoried and tracked, and frames the right questions for your attorney and accountant." },
     { "q": "Is my information really private?", "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control." },
