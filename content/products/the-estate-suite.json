@@ -6,7 +6,7 @@
   "listingTitle": "Estate Suite: Planning, Settlement, Digital Legacy Organizers (Offline Apps)",
   "status": "new",
   "season": "The complete set",
-  "price": 39,
+  "price": 34.99,
   "paymentLink": "https://link.fastpaydirect.com/payment-link/6a57c957a655fa0b802a472c",
   "demoPath": "/demos/estate-planning-organizer.html",
   "card": {
@@ -14,12 +14,12 @@
     "bullets": [
       "Estate Planning Organizer + Estate Settlement Companion + Digital Legacy Planner",
       "Three complete apps, three separate downloads",
-      "$39 for the set — save $5.97"
+      "$34.99 for the set — save $9.98"
     ]
   },
   "hero": {
     "headline": "Three organizers. One quiet plan.",
-    "lede": "The Estate Planning Organizer for getting your affairs in order, the Digital Legacy Planner for the accounts and passwords nobody can find, and the Estate Settlement Companion for the person who will one day handle it all. Three private, offline apps — $44.97 bought separately, $39 as the suite.",
+    "lede": "The Estate Planning Organizer for getting your affairs in order, the Digital Legacy Planner for the accounts and passwords nobody can find, and the Estate Settlement Companion for the person who will one day handle it all. Three private, offline apps — $44.97 bought separately, $34.99 as the suite.",
     "note": "Instant download · Three apps · No subscription · No account · Works on Mac, Windows, tablets & phones",
     "image": "/images/the-estate-suite/hero.png",
     "imageAlt": "The Estate Suite — three Quietkeep organizers"
@@ -27,7 +27,7 @@
   "band": [
     { "label": "100% offline", "sub": "zero network requests" },
     { "label": "Completely private", "sub": "data stays on your device" },
-    { "label": "$39 once", "sub": "save $5.97 on the set" },
+    { "label": "$34.99 once", "sub": "save $9.98 on the set" },
     { "label": "Three real apps", "sub": "not PDFs or spreadsheets" }
   ],
   "intro": {
@@ -57,7 +57,7 @@
     ]
   },
   "priceCard": {
-    "sub": "Three apps. One plan. $44.97 bought separately.",
+    "sub": "Three apps. One plan. $44.97 bought separately, $34.99 as the suite.",
     "bullets": [
       "Estate Planning Organizer — complete app",
       "Digital Legacy Planner — complete app",
@@ -68,8 +68,8 @@
     ]
   },
   "faq": [
-    { "q": "What exactly is included?", "a": "Three complete apps as three separate downloads: the Estate Planning Organizer, the Digital Legacy Planner, and the Estate Settlement Companion. $44.97 bought separately; $39 as the suite." },
-    { "q": "Is this a subscription?", "a": "No. You pay $39 once and all three apps are yours forever. There is no account, no renewal, and nothing that expires." },
+    { "q": "What exactly is included?", "a": "Three complete apps as three separate downloads: the Estate Planning Organizer, the Digital Legacy Planner, and the Estate Settlement Companion. $44.97 bought separately; $34.99 as the suite." },
+    { "q": "Is this a subscription?", "a": "No. You pay $34.99 once and all three apps are yours forever. There is no account, no renewal, and nothing that expires." },
     { "q": "Do the apps share my data?", "a": "No. Each app is independent and keeps its own data on your device. Nothing syncs anywhere — which also means you can give the Settlement Companion to your executor without sharing your planning files." },
     { "q": "Do I need to install anything?", "a": "No. Each download is a small file — double-click it and it opens in the browser you already use, on Mac, Windows, tablets, and phones." },
     { "q": "What if it doesn't work for me?", "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message." }
