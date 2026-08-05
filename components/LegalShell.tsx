@@ -13,7 +13,7 @@ export function LegalShell({
 }) {
   return (
     <>
-      <Nav links={site.nav} cta={{ label: "See the organizers", href: "/#organizers" }} />
+      <Nav links={site.nav} cta={{ label: "See the organizers", href: "/organizers" }} />
       <main className="wrap py-16">
         <div className="mx-auto max-w-[720px]">
           <h1 className="mb-8 text-[clamp(32px,4vw,46px)]">{title}</h1>

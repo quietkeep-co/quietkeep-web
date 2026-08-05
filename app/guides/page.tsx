@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const guidesNav = [
-  { label: "Organizers", href: "/#organizers" },
+  { label: "Organizers", href: "/organizers" },
   { label: "Free checklist", href: "/free" },
   { label: "About", href: "/#about" },
 ];
@@ -22,7 +22,7 @@ const guidesNav = [
 export default function GuidesIndex() {
   return (
     <>
-      <Nav links={guidesNav} cta={{ label: "See the organizers", href: "/#organizers" }} />
+      <Nav links={guidesNav} cta={{ label: "See the organizers", href: "/organizers" }} />
 
       <header className="pb-6 pt-16 md:pt-[84px]">
         <div className="wrap">

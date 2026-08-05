@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Co-Parenting Companion — Quietkeep</title>
+<style>
+:root{
+  --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
+  --white:#FFFFFF; --line:#D8D6CE; --soft:#E7E5DD; --danger:#8A3B2E;
+  --serif:Charter,'Bitstream Charter',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+header{background:var(--spruce);color:var(--porcelain);padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--brass)}
+header .mark{flex:0 0 auto}
+header h1{font-family:var(--serif);font-size:1.35rem;font-weight:bold;letter-spacing:.2px}
+header .sub{font-size:.78rem;color:var(--mist);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav button{font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px 16px;border:1.5px solid var(--spruce);border-radius:999px;background:var(--white);color:var(--spruce);cursor:pointer}
+nav button.active{background:var(--spruce);color:var(--porcelain)}
+nav button:hover{border-color:var(--brass)}
+.bar{background:var(--soft);border-radius:8px;height:14px;overflow:hidden;margin:6px 0 2px}
+.bar>div{background:var(--brass);height:100%;border-radius:8px;transition:width .3s}
+.progress-label{font-size:.85rem;color:var(--spruce)}
+.review-flag{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:10px 14px;margin:12px 0 0;font-size:.9rem;color:#6b5525;display:none}
+.review-flag.show{display:block}
+section.tab{display:none;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+section.tab.active{display:block}
+h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:6px}
+h3{font-family:var(--serif);font-size:1.15rem;margin:22px 0 4px;color:var(--spruce)}
+.note{font-size:.9rem;color:#5c6660;margin-bottom:14px}
+.phase{margin-bottom:26px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 8px;border-bottom:1px solid var(--soft)}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--spruce);margin-top:3px;flex:0 0 auto;cursor:pointer}
+.task .t{font-weight:600}
+.task .why{font-size:.86rem;color:#5c6660;margin-top:2px}
+.task.done .t{color:#7a827d;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--spruce);text-align:left;padding:8px 6px;border-bottom:2px solid var(--spruce)}
+td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
+td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
+td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+td.num input{text-align:right}
+.del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
+.add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
+.add:hover{background:#2E5249}
+.totals{margin-top:12px;font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.totals strong{color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toolbar button{border:1.5px solid var(--spruce);background:var(--white);color:var(--spruce);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
+.toolbar button:hover{border-color:var(--brass)}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+.wish{margin:0 0 22px}
+.wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
+.wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
+.wish textarea{width:100%;min-height:110px;font-family:var(--sans);font-size:.95rem;line-height:1.5;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#FCFBF8;color:var(--ink);resize:vertical}
+.wish textarea:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+.warnline{font-size:.82rem;color:var(--danger);margin-top:6px;font-weight:600}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--spruce);color:var(--mist);font-size:.82rem;padding:8px 18px;display:flex;justify-content:space-between;align-items:center}
+.savebar b{color:var(--porcelain)}
+.disclaimer{font-size:.8rem;color:#6a736d;margin-top:18px;border-top:1px solid var(--soft);padding-top:10px}
+.review-box{background:#F7F6F1;border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:6px 0 16px}
+.review-box .rl{font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.review-box .rl strong{color:var(--ink)}
+/* First-open notice: storage truth + erase truth + (per product) safety guidance.
+   Shown on EVERY open, not just the first — a disclaimer that appears only at
+   first start-up is exactly what sank the defence in UPLC v. Parsons Technology. */
+.qk-veil{position:fixed;inset:0;background:rgba(31,39,36,.72);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.qk-veil[hidden]{display:none}
+.qk-notice{background:var(--white);border:1px solid var(--line);border-radius:14px;max-width:640px;width:100%;padding:26px 28px;margin:auto}
+.qk-notice h2{font-family:var(--serif);font-size:1.35rem;color:var(--spruce);margin-bottom:10px}
+.qk-notice p{font-size:.92rem;color:#3f4945;margin-bottom:12px}
+.qk-notice .hot{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:12px 14px;font-size:.92rem;color:#5d4a20;margin-bottom:14px}
+.qk-notice .hot b{color:var(--ink)}
+.qk-notice .fine{font-size:.8rem;color:#6a736d;border-top:1px solid var(--soft);padding-top:10px;margin-bottom:16px}
+.savebar .right{display:flex;align-items:center;gap:10px}
+.savebar .erase{background:none;border:1px solid var(--mist);color:var(--porcelain);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
+.savebar .erase:hover{background:var(--danger);border-color:var(--danger)}
+#print-area{display:none}
+@media print{
+  body *{visibility:hidden}
+  #print-area,#print-area *{visibility:visible}
+  #print-area{display:block;position:absolute;top:0;left:0;width:100%;font-family:var(--serif);color:#000}
+  #print-area h1{font-size:22pt;margin-bottom:2pt}
+  #print-area .ph{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14pt;color:#333}
+  #print-area h2{font-size:13pt;margin:16pt 0 4pt;border-bottom:1pt solid #000;padding-bottom:2pt}
+  #print-area h3{font-size:11pt;margin:10pt 0 2pt}
+  #print-area table{width:100%;border-collapse:collapse;font-size:10pt;margin-top:4pt}
+  #print-area th,#print-area td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:left;vertical-align:top}
+  #print-area p{font-size:10pt;margin:4pt 0}
+  #print-area .lead{font-size:11pt;margin:6pt 0 10pt}
+  #print-area .wblock{font-size:10.5pt;margin:2pt 0 10pt;white-space:pre-wrap}
+  #print-area .foot{font-size:8.5pt;color:#333;margin-top:14pt;border-top:.5pt solid #999;padding-top:6pt}
+}
+@media(max-width:640px){
+  .wrap{padding:14px 10px 90px}
+  section.tab{padding:14px}
+  th,td{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
+    <rect x="13" y="13" width="74" height="74" rx="17" fill="none" stroke="#A5834B" stroke-width="2.5"/>
+    <circle cx="50" cy="42" r="12" fill="#24413B"/>
+    <path d="M 45 48 L 41 66 L 59 66 L 55 48 Z" fill="#24413B"/>
+    <rect x="41" y="61" width="18" height="6" rx="3" fill="#24413B"/>
+  </svg>
+  <div>
+    <h1>Co-Parenting Companion</h1>
+    <div class="sub">Quietkeep · Everything stays on your device</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="progress-label" id="overall-label">Overall progress</div>
+  <div class="bar"><div id="overall-bar" style="width:0%"></div></div>
+  <div class="review-flag" id="review-flag"></div>
+
+  <nav id="nav"></nav>
+  <div id="sections"></div>
+</div>
+
+<div class="savebar"><span>Quietkeep · Co-Parenting Companion</span><span class="right"><span id="save-status"><b>All changes saved on this device</b></span><button class="erase" onclick="eraseAll()" title="Erase everything saved in this browser">Erase everything</button></span></div>
+<div id="print-area"></div>
+
+<div class="qk-veil" id="qk-veil" hidden>
+  <div class="qk-notice" role="dialog" aria-modal="true" aria-labelledby="qk-notice-h">
+    <h2 id="qk-notice-h"></h2>
+    <div id="qk-notice-body"></div>
+    <div class="toolbar" style="margin-top:0"><button class="primary" id="qk-notice-ok">Continue</button></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
+   injected at build time by generators/qk_app.py from the product manifest.
+   Hard promises: single file, zero network, never a credential field. */
+const CONFIG={"name":"Co-Parenting Companion","storageKey":"qk-coparenting","backupPrefix":"coparenting","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Twenty-eight steps across four phases, at whatever pace fits the week. Everything saves automatically on this device. Each step notes why it matters. This is an organizer for your own household, not legal advice: it holds the schedule, the costs, and your children's details so you are not running a family from memory. It does not interpret your parenting plan or tell you what your order requires — for that, ask a licensed attorney in your state. It never asks for a Social Security number, account number, or password.","disclaimer":"This is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order, calculate what anyone owes under it, or advise on custody, support, or your rights. For advice about your situation, consult a licensed attorney in your state."},"phases":[{"name":"Phase 1 · Set It Up","tasks":[["Read your parenting plan and keep it somewhere you can find it","Your order is the one document everything else answers to. Note where your copy lives — you don't upload anything here, and nothing in this file changes what your order says."],["Write down the regular schedule as it actually runs","The ordinary week or two-week rotation, in plain terms. Written down once, it stops being something either household has to reconstruct from memory."],["Note the holiday and school-break arrangements","Holidays, birthdays, and long breaks are where most scheduling friction lives. Getting them written down early means planning them, not negotiating them at short notice."],["List your children's schools and providers","School, pediatrician, dentist, and anyone else in their week. Both households usually need these numbers and rarely both have them."],["Note how the two households communicate","Whichever way you've settled on — an app, email, or text. Writing down the channel helps keep the logistics in one predictable place."],["Write down what your children need to stay steady","The routines, comfort items, and rhythms that travel between homes. This is the part that matters most and gets written down least."],["Add the schedule and contacts to the tabs","Put the rotation in Parenting Time and the providers in Your Children's Team. The rest of the phases build on this."]]},{"name":"Phase 2 · The Money","tasks":[["Note what the order says each household covers","Copy down what your own order provides, in its own words, so you're working from the document rather than memory. If what it means is unclear, that question belongs with your attorney, not with a checklist."],["List the regular recurring child costs","Activities, school fees, childcare, medical premiums, and anything else that comes around predictably. Knowing the shape of the year prevents surprises."],["Decide how you will record a shared expense","Agreeing what gets logged, and when, is worth more than any tracker. A shared rule beats two private ledgers."],["Agree how and when reimbursements get settled","Monthly, quarterly, or per-expense. Small amounts left open for months are the most common source of avoidable friction."],["Log the shared expenses from the last month","Start with a period you can still remember clearly. Once a month is in, keeping up is easy."],["Note where receipts live","A folder, an email label, a shoebox — anywhere consistent. Record the location here, not the receipts themselves."],["Add each expense to the Shared Expenses tab","One row each: what it was, the date, the amount, who paid, and whether it's settled. The running total shows you what's still open."]]},{"name":"Phase 3 · The Children's World","tasks":[["List every school and activity contact","Teachers, the school office, coaches, and activity leads. When something comes up on your day, you want the number without hunting."],["Note medical needs, allergies, and medications","Allergies, prescriptions, and conditions, plainly written. This is the single most useful thing to hand a caregiver."],["Write down each child's routines","Bedtimes, meals, homework, and what settles them after a hard day. Consistency across two homes is most of what stability means to a child."],["Note who else may pick up or care for them","Grandparents, a sitter, a friend's parent. Schools usually need this list, and so does anyone standing in for you."],["Keep a copy of insurance and medical cards","Note where each lives so either household can find them in an urgent moment. Locations, not numbers."],["Note what each child is finding hard right now","Separation is theirs too. Writing down what you're noticing helps you see a pattern and gives a professional something real to work with if you seek one."],["Add providers and routines to the tabs","Put the people in Your Children's Team and the rest in Routines & Notes, so the Reference Sheet can pull it together."]]},{"name":"Phase 4 · Keep It Running","tasks":[["Set a regular time to update this","Once a month, or whenever the schedule shifts. A record that's current is worth several that aren't."],["Settle any outstanding shared expenses","Clear what's open on the agreed rhythm. Balances that sit tend to grow into something bigger than the money."],["Review the schedule before each school term","Terms bring new activities and new conflicts. Ten minutes ahead of one saves a month of friction inside it."],["Print the Caregiver Reference Sheet","One click on the Reference Sheet tab produces the page a sitter, grandparent, or new partner needs — schedule, contacts, allergies, and routines."],["Keep the journal current in plain language","Note what happened and what was agreed, factually and briefly. This is a memory aid for your own household — not evidence, and not a place to build a case."],["Note anything to raise with your attorney or mediator","If something needs professional input, write it down as it comes up so it isn't lost by the time you have the meeting."],["Back up your file and keep it somewhere private","Use the backup button and keep the copy somewhere only you can reach. This is your household's record."]]}],"registers":[{"id":"schedule","tab":"Parenting Time","heading":"Parenting Time & Key Dates","noun":"entry","nounPlural":"entries","statLabel":"Entries","counterLabel":"Entries logged","intro":"The schedule as it actually runs: the regular rotation, plus the holidays, school breaks, and one-off changes worth planning ahead. This is your own working record of the arrangement — it does not replace or change your parenting plan, and where the two differ, your order governs.","columns":[{"key":"item","label":"What it is","width":"24%","sample":["Week on / week off","Thanksgiving","February school break","Maya's birthday"],"type":"text"},{"key":"type","label":"Type","width":"18%","type":"list","options":["Regular rotation","Holiday","School break","Birthday","Exchange / handoff","Schedule change","Other"]},{"key":"who","label":"Which household","width":"14%","type":"list","options":["Mine","Other parent's","Shared","To be arranged"]},{"key":"when","label":"When","width":"16%","type":"date"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"expenses","tab":"Shared Expenses","heading":"Shared Expenses","noun":"expense","nounPlural":"expenses","statLabel":"Logged","counterLabel":"Expenses logged","intro":"The children's shared costs, recorded as they happen: what it was, who paid, how you've agreed it splits, and whether it's been settled. This is a record of what you enter — it does not calculate or determine what anyone owes, and the split you record here is the one you entered, not one this app worked out. What your order actually requires is a question for your attorney.","columns":[{"key":"item","label":"What it was","width":"22%","sample":["Dentist visit — Maya","Soccer registration","School photos","Winter coats"],"type":"text"},{"key":"cat","label":"Category","width":"16%","type":"list","options":["Medical / dental","School","Activities / sports","Childcare","Clothing","Travel","Other"]},{"key":"when","label":"Date","width":"12%","type":"date"},{"key":"amount","label":"Amount","width":"12%","type":"num"},{"key":"paid","label":"Who paid","width":"12%","type":"list","options":["Me","Other parent","Split at the time"]},{"key":"status","label":"Settled?","type":"list","options":["Open","Submitted","Settled","Not claimable"]}],"counter":"total","counterField":"amount","totalLabel":"Total logged","totalUnit":"","line":"You have recorded {total} in shared costs. That is a total of what you entered here — not a balance owed, and not what any order requires. Keeping it current is what stops small amounts from becoming a bigger conversation."},{"id":"team","tab":"Children's Team","heading":"Your Children's Team","noun":"person","nounPlural":"people","statLabel":"Your team","counterLabel":"People listed","intro":"Everyone in your children's week: school, pediatrician, dentist, therapist, coaches, and the people who may collect them. Both households usually need these numbers, and this is the list you hand to anyone standing in for you.","columns":[{"key":"name","label":"Name","width":"20%","type":"text"},{"key":"role","label":"Role","width":"24%","type":"list","options":["School / teacher","Pediatrician","Dentist","Therapist / counselor","Coach / activity","Childcare / sitter","Emergency contact","Other"]},{"key":"phone","label":"Phone","width":"16%","type":"text"},{"key":"email","label":"Email","width":"18%","type":"text"},{"key":"notes","label":"Notes / which child","type":"text"}],"counter":"count"},{"id":"journal","tab":"Journal","heading":"Shared Journal","noun":"note","nounPlural":"notes","statLabel":"Notes","counterLabel":"Notes recorded","intro":"A plain dated record of what happened and what was agreed — a schedule swap, a doctor's visit, a decision the two of you reached. This is a memory aid for your own household so agreements don't have to be reconstructed later. It is not an evidence log and not a place to build a case: keep entries factual, brief, and about arrangements rather than people. These are your own notes, kept for your own memory. They are not evidence and not a legal record. Whether notes like these are useful — or even a good idea — in your situation is a question for your attorney. Assume the other parent may eventually see them, and write accordingly.","columns":[{"key":"when","label":"Date","width":"14%","type":"date"},{"key":"type","label":"Kind","width":"18%","type":"list","options":["Agreement reached","Schedule change","Medical / school","Handoff note","Expense discussed","Other"]},{"key":"item","label":"What happened","width":"30%","sample":["Swapped this weekend for next","Agreed to split soccer fees","Parent-teacher evening booked","Handoff moved to 6pm"],"type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"}],"wishesEnabled":true,"wishes":{"tab":"Routines","heading":"Routines & Notes","intro":"The knowledge that keeps a child steady across two homes, written down once so it travels: bedtimes, allergies, what settles them, and what the two of you have agreed on. This is also the section a caregiver reads first.","disclaimer":"These are your own household notes, not legal positions and not a record of what your order requires. Questions about your parenting plan belong with a licensed attorney in your state.","items":[{"key":"routines","label":"Daily routines","prompt":"Bedtimes, meals, homework, screen rules, and the small rituals that make an evening go smoothly. The more specific, the more useful it is to anyone standing in for you."},{"key":"medical","label":"Medical needs & allergies","prompt":"Allergies, medications, conditions, and what to do if something happens. Write it plainly enough that a sitter could act on it."},{"key":"steady","label":"What keeps each child steady","prompt":"The comfort items, the routines that travel between homes, and what helps after a hard day. Consistency across two houses is most of what stability means to a child."},{"key":"agreed","label":"What you've agreed on","prompt":"The practical understandings the two of you have reached — how you handle sick days, screen time, or a schedule swap. Your own note of an arrangement, not a legal record of it."},{"key":"notes","label":"Other notes","prompt":"Anything else worth keeping in one place: things to raise at the next school meeting, a question for your attorney, or a reminder to yourself. Optional."}]},"sheet":{"tab":"Reference Sheet","heading":"Caregiver Reference Sheet","button":"Print the Reference Sheet","intro":"This compiles what you've organized — the schedule, your children's team, their medical basics, and their routines — into one printable page for a sitter, a grandparent, a new partner, or anyone standing in for you. It is the fastest way to hand over a day without a fifteen-minute phone call.","docTitle":"What a Caregiver Needs to Know","docTag":"A Caregiver Reference Sheet · prepared with the Quietkeep Co-Parenting Companion","lead":"This sheet gathers what someone caring for these children needs on hand: the schedule, the people in their week, their medical basics, and the routines that keep them steady. It is a household reference document — not a legal document, not a parenting plan, and not a substitute for the court order that governs the arrangement.","foot":"Prepared by the account holder. This Reference Sheet is a household organizing document, not a legal document and not a statement of what any court order requires. It contains no account numbers, Social Security numbers, or passwords. For questions about your parenting plan, consult a licensed attorney in your state.","disclaimer":"The Reference Sheet is a personal organizing document for caregivers, not a legal filing, not evidence, and not legal advice. What your parenting plan requires is a question for a licensed attorney.","sections":[{"type":"wish","key":"medical","title":"Medical Needs & Allergies","empty":"Not recorded yet — allergies, medications, and what to do if something happens."},{"type":"register","id":"team","title":"Your Children's Team"},{"type":"register","id":"schedule","title":"Parenting Time & Key Dates"},{"type":"wishes","title":"Routines & Notes","exclude":["medical"]}]},"summary":{"disclaimer":"The Co-Parenting Companion is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order and does not determine what anyone owes. It never asks for an account number, Social Security number, or password. Everything you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where things stand, keep the record current, and back up your work to a file you control.","reviewNote":"Co-parenting changes with every school term — set a regular time to update the schedule and settle what's open in Shared Expenses.","staleFlag":"It's been a while since you updated this. If the schedule or the shared costs have moved on, bring the record current before it gets hard to reconstruct."},"safety":{"title":"Before you start","body":["Keep this somewhere only you can reach — a device, phone, or USB drive that isn't shared. Assume that anything written here could one day be seen by the other parent, and write accordingly.","This organizer is not legal advice and is not a substitute for the advice of an attorney. It does not interpret your parenting plan, decide what anyone owes, or tell you what your order requires. Your order says what it says; only a licensed attorney in your state can tell you what it means.","The journal here is a memory aid for your own household. It is not evidence, not a legal record, and not a place to build a case."],"hotline":["If you or your children are in danger, that comes first:","National Domestic Violence Hotline — 1-800-799-7233","Text START to 88788","Deaf/HoH video phone — 855-812-1001"],"fine":"This is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order, calculate what anyone owes under it, or advise on custody, support, or your rights. For advice about your situation, consult a licensed attorney in your state."}};
+const PHASES=CONFIG.phases;
+const REGISTERS=CONFIG.registers||[];
+const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
+const STORAGE_KEY=CONFIG.storageKey;
+const SAFETY=CONFIG.safety||{};
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
+function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
+function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function regById(id){return REGISTERS.find(r=>r.id===id);}
+function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
+function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
+
+/* ---------- state ---------- */
+let state=null;
+function defaultState(){
+  const d={v:1,tasks:{},wishes:{},lastReviewed:null};
+  REGISTERS.forEach(r=>{d[r.id]=[];});
+  return d;
+}
+function load(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);state=raw?JSON.parse(raw):defaultState();}
+  catch(e){state=defaultState();}
+  REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[];});
+  if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+  if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+  if(state.lastReviewed===undefined)state.lastReviewed=null;
+}
+function save(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    document.getElementById("save-status").innerHTML="<b>All changes saved on this device</b>";}
+  catch(e){document.getElementById("save-status").innerHTML="<b>Could not save — download a backup from the Summary tab</b>";}
+}
+
+/* ---------- shell: nav + sections built from CONFIG ---------- */
+function buildShell(){
+  const nav=document.getElementById("nav");
+  const wrap=document.getElementById("sections");
+  const tabs=[{id:"tasks",label:CONFIG.tasks.tab||"Tasks"}];
+  REGISTERS.forEach(r=>tabs.push({id:r.id,label:r.tab}));
+  if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
+  tabs.push({id:"sheet",label:CONFIG.sheet.tab||"Instruction Sheet"});
+  tabs.push({id:"summary",label:"Summary & Backup"});
+  tabs.forEach((t,i)=>{
+    const b=document.createElement("button");
+    b.dataset.tab=t.id;b.textContent=t.label;if(i===0)b.className="active";
+    nav.appendChild(b);
+  });
+
+  let h="";
+  // Tasks
+  h+='<section class="tab active" id="tab-tasks"><h2>'+esc(CONFIG.tasks.heading||"Guided Tasks")+'</h2>'+
+     '<p class="note">'+esc(CONFIG.tasks.intro||"")+'</p><div id="phases"></div>'+
+     (CONFIG.tasks.disclaimer?'<p class="disclaimer">'+esc(CONFIG.tasks.disclaimer)+'</p>':"")+
+     '</section>';
+  // Registers
+  REGISTERS.forEach(r=>{
+    h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
+       '<p class="note">'+esc(r.intro||"")+'</p><table><thead><tr>';
+    r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table>'+
+       '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
+    if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
+    if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
+    if(r.disclaimer)h+='<p class="disclaimer">'+esc(r.disclaimer)+'</p>';
+    h+='</section>';
+  });
+  // Wishes
+  if(CONFIG.wishesEnabled){
+    h+='<section class="tab" id="tab-wishes"><h2>'+esc(CONFIG.wishes.heading||"Wishes & Instructions")+'</h2>'+
+       '<p class="note">'+esc(CONFIG.wishes.intro||"")+'</p><div id="wishes-body"></div>'+
+       (CONFIG.wishes.disclaimer?'<p class="disclaimer">'+esc(CONFIG.wishes.disclaimer)+'</p>':"")+
+       '</section>';
+  }
+  // Sheet
+  h+='<section class="tab" id="tab-sheet"><h2>'+esc(CONFIG.sheet.heading)+'</h2>'+
+     '<p class="note">'+esc(CONFIG.sheet.intro||"")+'</p>'+
+     '<div id="sheet-preview" class="review-box"></div>'+
+     '<div class="toolbar"><button class="primary" onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button></div>'+
+     (CONFIG.sheet.disclaimer?'<p class="disclaimer">'+esc(CONFIG.sheet.disclaimer)+'</p>':"")+
+     '</section>';
+  // Summary
+  h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
+     '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
+     '<div id="summary-stats"></div>'+
+     '<div class="review-box"><div class="rl" id="review-line">Last reviewed: <strong>not yet reviewed</strong></div>'+
+     '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
+     '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
+     '<div class="toolbar">'+
+     '<button onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button>'+
+     '<button onclick="printAll()">Print everything (all registers)</button>'+
+     '<button onclick="backup()">Download backup file</button>'+
+     '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
+     '<input type="file" id="restore-file" accept=".json" style="display:none" onchange="restore(this)">'+
+     '</div>'+
+     (CONFIG.summary.disclaimer?'<p class="disclaimer">'+esc(CONFIG.summary.disclaimer)+'</p>':"")+
+     '</section>';
+  wrap.innerHTML=h;
+  wrap.querySelectorAll("button.add").forEach(b=>b.addEventListener("click",()=>addRow(b.dataset.add)));
+}
+
+/* ---------- task engine ---------- */
+function renderTasks(){
+  const wrap=document.getElementById("phases");wrap.innerHTML="";
+  PHASES.forEach((ph,pi)=>{
+    let pDone=0;
+    const div=document.createElement("div");div.className="phase";
+    const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
+    const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
+    ph.tasks.forEach((t,ti)=>{
+      const id="p"+pi+"t"+ti;
+      const checked=!!state.tasks[id];if(checked)pDone++;
+      const row=document.createElement("div");row.className="task"+(checked?" done":"");
+      const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
+      cb.addEventListener("change",()=>{state.tasks[id]=cb.checked;save();row.classList.toggle("done",cb.checked);updateProgress();});
+      const body=document.createElement("div");
+      body.innerHTML='<div class="t"></div><div class="why"></div>';
+      body.querySelector(".t").textContent=t[0];
+      body.querySelector(".why").textContent=t[1]||"";
+      row.appendChild(cb);row.appendChild(body);div.appendChild(row);
+    });
+    fill.style.width=Math.round(pDone/ph.tasks.length*100)+"%";
+    wrap.appendChild(div);
+  });
+  updateProgress();
+}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
+function updateProgress(){
+  let total=0,done=0;
+  document.querySelectorAll("#phases .phase").forEach((div)=>{
+    let pDone=0;const boxes=div.querySelectorAll(".task input[type=checkbox]");
+    boxes.forEach(b=>{total++;if(b.checked){done++;pDone++;}});
+    div.querySelector(".bar>div").style.width=Math.round(pDone/boxes.length*100)+"%";
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+  summaryStats();
+}
+
+/* ---------- register engine ---------- */
+function fieldEl(reg,row,col){
+  const td=document.createElement("td");
+  let el;
+  if(col.type==="select"){el=document.createElement("select");
+    (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
+    el.value=row[col.key]||(col.options||[""])[0];}
+  else if(col.type==="list"){el=document.createElement("input");el.type="text";
+    const dl=document.createElement("datalist");const dlid="dl-"+reg.id+"-"+col.key+"-"+Math.random().toString(36).slice(2,8);
+    dl.id=dlid;(col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;dl.appendChild(op);});
+    el.setAttribute("list",dlid);td.appendChild(dl);
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  else{el=document.createElement("input");el.type=col.type==="num"?"number":(col.type==="date"?"date":"text");
+    if(col.type==="num"){el.step="0.01";td.className="num";}
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  el.addEventListener("input",()=>{row[col.key]=el.value;save();totals();});
+  el.addEventListener("change",()=>{row[col.key]=el.value;save();totals();});
+  td.appendChild(el);return td;
+}
+function renderTable(id){
+  const reg=regById(id);
+  const body=document.getElementById(id+"-body");body.innerHTML="";
+  state[id].forEach((row,i)=>{
+    const tr=document.createElement("tr");
+    reg.columns.forEach(c=>tr.appendChild(fieldEl(reg,row,c)));
+    const td=document.createElement("td");
+    const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
+    del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[id].splice(i,1);save();renderTable(id);totals();}});
+    td.appendChild(del);tr.appendChild(td);body.appendChild(tr);
+  });
+}
+function addRow(id){state[id].push({});save();renderTable(id);totals();}
+function categoryCounts(reg){
+  const field=reg.counterField;const cats=(colByKey(reg,field)||{}).options||[];
+  const counts={};
+  state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
+  return counts;
+}
+function regTotal(reg){const k=reg.counterField||numKey(reg);return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);}
+function totals(){
+  REGISTERS.forEach(reg=>{
+    const el=document.getElementById(reg.id+"-total");
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.counterLabel||((plural.charAt(0).toUpperCase()+plural.slice(1))+" recorded");
+    if(reg.counter==="category"&&el){
+      const cats=(colByKey(reg,reg.counterField)||{}).options||[];
+      const counts=categoryCounts(reg);
+      const bits=cats.filter(c=>counts[c]).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      const extra=Object.keys(counts).filter(c=>cats.indexOf(c)<0).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
+    }else if(reg.counter==="total"&&el){
+      const n=state[reg.id].length;
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+money(regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      const line=document.getElementById(reg.id+"-line");
+      if(line)line.textContent=n?reg.line.replace("{total}",money(regTotal(reg))):"";
+    }else if(el){
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
+    }
+  });
+  summaryStats();renderSheetPreview();
+}
+
+/* ---------- wishes ---------- */
+function renderWishes(){
+  const wrap=document.getElementById("wishes-body");if(!wrap)return;
+  wrap.innerHTML="";
+  WISHES.forEach(w=>{
+    const div=document.createElement("div");div.className="wish";
+    const lab=document.createElement("label");lab.textContent=w.label;lab.setAttribute("for","wish-"+w.key);div.appendChild(lab);
+    const pr=document.createElement("div");pr.className="prompt";pr.textContent=w.prompt||"";div.appendChild(pr);
+    const ta=document.createElement("textarea");ta.id="wish-"+w.key;ta.value=state.wishes[w.key]||"";
+    ta.addEventListener("input",()=>{state.wishes[w.key]=ta.value;save();});
+    div.appendChild(ta);
+    if(w.warn){const wn=document.createElement("div");wn.className="warnline";wn.textContent=w.warn;div.appendChild(wn);}
+    wrap.appendChild(div);
+  });
+}
+
+/* ---------- summary + review ---------- */
+function summaryStats(){
+  const c=taskCounts();
+  const el=document.getElementById("summary-stats");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.statLabel||(plural.charAt(0).toUpperCase()+plural.slice(1));
+    let s=label+": <strong>"+state[reg.id].length+"</strong>";
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="totals">Tasks complete: <strong>'+c.done+' / '+c.total+'</strong><span class="pill">'+(c.total?Math.round(c.done/c.total*100):0)+'%</span><br>'+bits.join(" · ")+'</div>';
+  renderReviewLine();
+}
+function daysSince(iso){if(!iso)return null;const then=new Date(iso+"T00:00:00");const now=new Date();return Math.floor((now-then)/86400000);}
+function renderReviewLine(){
+  const line=document.getElementById("review-line");
+  if(line){
+    if(state.lastReviewed){line.innerHTML="Last reviewed: <strong>"+new Date(state.lastReviewed+"T00:00:00").toLocaleDateString()+"</strong>";}
+    else{line.innerHTML="Last reviewed: <strong>not yet reviewed</strong>";}
+  }
+  const flag=document.getElementById("review-flag");if(!flag)return;
+  const dd=daysSince(state.lastReviewed);
+  if(dd!==null&&dd>=365){flag.classList.add("show");flag.textContent=CONFIG.summary.staleFlag||"It has been more than a year since your last review. Open the Summary tab when you have a few minutes.";}
+  else{flag.classList.remove("show");flag.textContent="";}
+}
+function markReviewed(){
+  const now=new Date();const iso=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  state.lastReviewed=iso;save();renderReviewLine();
+}
+
+/* ---------- print sheet (compiled from CONFIG.sheet.sections) ---------- */
+function registerTableHTML(reg,rows,skipKey){
+  let h='<table><tr>';
+  reg.columns.forEach(c=>{if(c.key!==skipKey)h+='<th>'+esc(c.label)+'</th>';});
+  h+='</tr>';
+  rows.forEach(r=>{h+='<tr>';
+    reg.columns.forEach(c=>{if(c.key===skipKey)return;
+      const v=c.type==="num"?money(parseFloat(r[c.key])||0):esc(r[c.key]);
+      h+='<td>'+v+'</td>';});
+    h+='</tr>';});
+  if(reg.counter==="total"){
+    h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
+    const nk=reg.counterField||numKey(reg);
+    reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
+      h+=c.key===nk?'<td><strong>'+money(regTotal(reg))+'</strong></td>':'<td></td>';});
+    h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
+    h+='</tr>';
+  }
+  return h+'</table>';
+}
+function sheetHTML(){
+  const S=CONFIG.sheet;
+  let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
+  if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
+  (S.sections||[]).forEach(sec=>{
+    h+='<h2>'+esc(sec.title)+'</h2>';
+    if(sec.type==="wish"){
+      const v=state.wishes[sec.key];
+      if(nonEmpty(v))h+='<div class="wblock">'+nl2br(v)+'</div>';
+      else h+='<p>'+esc(sec.empty||"Not recorded yet.")+'</p>';
+    }else if(sec.type==="register"){
+      const reg=regById(sec.id);const rows=state[sec.id];
+      if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
+      if(sec.groupBy){
+        const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);counts[c]=(counts[c]||0)+1;});
+        const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
+        order.forEach(c=>{
+          h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);return rc===c;}),sec.groupBy);
+        });
+      }else{
+        h+=registerTableHTML(reg,rows,null);
+      }
+    }else if(sec.type==="wishes"){
+      let any=false;const excl=sec.exclude||[];
+      WISHES.forEach(w=>{if(excl.indexOf(w.key)>=0)return;const v=state.wishes[w.key];if(!nonEmpty(v))return;any=true;
+        h+='<h3>'+esc(w.label)+'</h3><div class="wblock">'+nl2br(v)+'</div>';});
+      if(!any)h+='<p>'+esc(sec.empty||"No wishes recorded yet.")+'</p>';
+    }
+  });
+  if(S.foot)h+='<p class="foot">'+esc(S.foot)+'</p>';
+  return h;
+}
+function renderSheetPreview(){
+  const el=document.getElementById("sheet-preview");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const n=state[reg.id].length;
+    let s=n+" "+(n===1?noun:plural);
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(CONFIG.sheet.docTitle)+'</strong></div>'+
+    '<p class="note" style="margin:0">'+esc(CONFIG.sheet.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+    (CONFIG.wishesEnabled?", plus your wishes":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
+}
+function printSheet(){
+  const pa=document.getElementById("print-area");
+  pa.innerHTML=sheetHTML();window.print();
+}
+function printAll(){
+  const pa=document.getElementById("print-area");
+  let h=sheetHTML();
+  h+='<h2>Guided Task Progress</h2>';
+  PHASES.forEach((ph,pi)=>{
+    h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks["p"+pi+"t"+ti]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    h+='</table>';
+  });
+  pa.innerHTML=h;window.print();
+}
+
+/* ---------- safety notice + erase ----------
+   Two facts every Quietkeep product must state plainly, because neither is
+   obvious and both can hurt someone: (1) "local" is not "private" when the
+   person you fear shares the device; (2) localStorage is keyed to the browser,
+   NOT to the file — deleting the .html does not delete the entries. Products
+   that need more (the divorce line) add an `app.safety` block to the manifest. */
+const DEFAULT_STORAGE_TRUTH="Nothing you type is ever sent anywhere — it is saved only in this browser, on this device. That also means anyone who can use this device and this browser can open it. It is not encrypted and not password-protected.";
+const DEFAULT_ERASE_TRUTH="Deleting this file does NOT erase what you have entered. Your entries are stored by the browser, not inside the file. To remove them, use the “Erase everything” button at the bottom of the screen.";
+
+function showNotice(){
+  document.getElementById("qk-notice-h").textContent=SAFETY.title||"Before you start";
+  let h="";
+  (SAFETY.body||[]).forEach(p=>{h+='<p>'+esc(p)+'</p>';});
+  h+='<p>'+esc(SAFETY.storage||DEFAULT_STORAGE_TRUTH)+'</p>';
+  h+='<p>'+esc(SAFETY.erase||DEFAULT_ERASE_TRUTH)+'</p>';
+  if(SAFETY.hotline&&SAFETY.hotline.length){
+    h+='<div class="hot">';
+    SAFETY.hotline.forEach((l,i)=>{h+=(i?'<br>':'')+(i?'<b>'+esc(l)+'</b>':esc(l));});
+    h+='</div>';
+  }
+  const fine=SAFETY.fine||CONFIG.summary.disclaimer||"";
+  if(fine)h+='<div class="fine">'+esc(fine)+'</div>';
+  document.getElementById("qk-notice-body").innerHTML=h;
+  const v=document.getElementById("qk-veil");
+  v.hidden=false;
+  document.getElementById("qk-notice-ok").focus();
+}
+function dismissNotice(){document.getElementById("qk-veil").hidden=true;}
+
+/* How much is actually at risk — a concrete number warns far better than
+   "everything", and lets an empty file erase without ceremony. */
+function countEntries(){
+  let n=0;
+  REGISTERS.forEach(r=>{(state[r.id]||[]).forEach(row=>{
+    if(r.columns.some(c=>nonEmpty(row[c.key])))n++;
+  });});
+  Object.keys(state.wishes||{}).forEach(k=>{if(nonEmpty(state.wishes[k]))n++;});
+  Object.keys(state.tasks||{}).forEach(k=>{if(state.tasks[k])n++;});
+  return n;
+}
+
+function eraseAll(){
+  const n=countEntries();
+  if(n===0){alert("There is nothing saved to erase yet.");return;}
+  const noun=n===1?"entry":"entries";
+  /* Two steps on purpose. This button is always on screen, so one stray click
+     must never be able to destroy someone's work — but it also has to stay fast
+     enough to use when you need the screen clear right now. */
+  if(!confirm("ERASE EVERYTHING?\n\n"
+    +"This permanently deletes all "+n+" "+noun+" you have saved in this browser for "+CONFIG.name+".\n\n"
+    +"THIS CANNOT BE UNDONE. There is no way to get it back afterwards.\n\n"
+    +"It does NOT delete any backup file you have already downloaded, or anything you have printed.\n\n"
+    +"If you want to keep a copy, press Cancel and use “Download backup file” on the Summary tab first."))return;
+  if(!confirm("Last check.\n\nReally erase all "+n+" saved "+noun+" permanently?"))return;
+  state=defaultState();
+  renderAll();
+  /* Remove AFTER re-rendering, so nothing can write the key back on the way out. */
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  document.getElementById("save-status").innerHTML="<b>Erased from this browser</b>";
+  alert("Erased. Nothing from this organizer is left in this browser.\n\n"
+    +"If you also downloaded a backup file or printed a copy, delete those separately.");
+}
+
+/* ---------- backup / restore ---------- */
+function backup(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
+  aEl.download=CONFIG.backupPrefix+"-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(aEl);aEl.click();aEl.remove();
+}
+function restore(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{const data=JSON.parse(reader.result);
+      if(!data||typeof data!=="object")throw 0;
+      state=Object.assign(defaultState(),data);
+      REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[]});
+      if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+      save();renderAll();alert("Backup restored.");}
+    catch(e){alert("That file does not look like a valid backup.");}};
+  reader.readAsText(f);input.value="";
+}
+
+/* ---------- boot ---------- */
+document.getElementById("nav").addEventListener("click",e=>{
+  if(e.target.tagName!=="BUTTON")return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
+  e.target.classList.add("active");
+  document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
+  if(e.target.dataset.tab==="sheet")renderSheetPreview();
+});
+function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
+document.getElementById("qk-notice-ok").addEventListener("click",dismissNotice);
+buildShell();load();renderAll();showNotice();
+</script>
+</body>
+</html>

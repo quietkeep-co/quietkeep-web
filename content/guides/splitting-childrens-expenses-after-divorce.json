@@ -1,0 +1,57 @@
+{
+  "slug": "splitting-childrens-expenses-after-divorce",
+  "title": "Splitting Children's Expenses After Divorce, Without the Monthly Argument",
+  "description": "A practical system for splitting children's expenses after divorce or separation — what to track, how to agree on the split, and how to keep it from becoming a monthly argument.",
+  "cluster": "Co-parenting logistics",
+  "date": "2026-08-05",
+  "updated": "2026-08-05",
+  "readingMinutes": 8,
+  "intro": [
+    "Ask almost any co-parent what causes the most day-to-day friction after a divorce, and <b>splitting children's expenses</b> usually comes up before custody schedules do. It's rarely one big disagreement — it's the accumulation of small ones: a $40 copay here, a $120 cleat purchase there, a text that goes unanswered for two weeks. None of it is really about the money. It's about a system that doesn't exist.",
+    "This guide is a practical way to build that system — what to track, how to agree on a split without re-litigating it every time, and how to keep the whole thing from turning into a running tally of grievances. It isn't legal advice about what your order requires; it's a way to make whatever your order says easier to actually live by. If the divorce itself is still ahead of you, <a href=\"/guides/what-to-bring-to-your-first-divorce-attorney-meeting\">what to bring to your first attorney meeting</a> is a useful starting point before this one."
+  ],
+  "sections": [
+    {
+      "heading": "Agree on the mechanics before the first expense comes up",
+      "paragraphs": [
+        "Most of the friction in shared expenses comes from undefined process, not disagreement about the number. A short, explicit agreement on how this works — decided once, calmly — removes most future arguments before they start."
+      ],
+      "bullets": [
+        "What counts as a shared expense (school fees, activities, medical costs) versus a personal one.",
+        "How and when a shared expense gets logged — same day, same app, same format, every time.",
+        "How often reimbursements happen — many co-parents find monthly works better than per-expense, since it batches the awkward part into one predictable conversation instead of many.",
+        "What happens with receipts — a photo, a shared folder, whatever's consistent, kept somewhere both of you can find it."
+      ]
+    },
+    {
+      "heading": "What to actually log for each expense",
+      "paragraphs": [
+        "A shared-expense record is only useful if it's complete enough that neither of you has to reconstruct anything from memory a month later. Five fields cover almost everything: what it was, the date, the amount, who paid, and whether it's been settled."
+      ],
+      "bullets": [
+        "<b>What it was</b> — specific enough to recognize later (\"cleats for soccer,\" not \"stuff\").",
+        "<b>The date</b> — expenses drift out of memory fast; the date anchors it.",
+        "<b>The amount</b> — the actual number, not a rounded guess.",
+        "<b>Who paid</b> — this is the number the running total depends on.",
+        "<b>Settled or not</b> — a simple status so nothing sits open indefinitely without either of you noticing."
+      ]
+    },
+    {
+      "heading": "How to talk about it without it becoming a fight",
+      "paragraphs": [
+        "The tone of these conversations tends to matter more than the dollar amounts. A running total that either of you can check at any time removes the need for a confrontational \"you owe me\" conversation — the number is just there, neutral, and both of you can see how it got there.",
+        "It helps to treat the log as a shared record you both maintain, not a ledger one of you keeps on the other. If something looks wrong, the calm version of that conversation is \"I'm not sure this matches what we agreed — can we look at it together,\" not a dispute conducted through the children or through a lawyer, both of which cost more than the expense in question."
+      ]
+    },
+    {
+      "heading": "What a shared-expense record is not",
+      "paragraphs": [
+        "It's worth being clear about what this kind of tracking is and isn't. A log of shared costs is a record of what you entered — it does not calculate or determine what anyone actually owes under your parenting plan or custody order, and it isn't a legal document. If the two of you genuinely disagree about what your order requires for a given expense, that's a question for your attorney or mediator, not something a spreadsheet or app can resolve on its own.",
+        "It's also worth saying plainly: this kind of record is a coordination tool for your own household, not a place to build a case against the other parent. Keep entries factual and about the logistics, not about anyone's conduct — and it's reasonable to assume the other parent may eventually see whatever you write."
+      ]
+    }
+  ],
+  "takeaway": "Most of the friction in splitting children's expenses comes from process, not disagreement about the money. A short upfront agreement on what counts, how it's logged, and how often it settles — plus a running total both parents can see — turns a recurring argument into a routine you barely have to think about.",
+  "productSlug": "co-parenting-companion",
+  "productPitch": "The Co-Parenting Companion holds exactly this record: a shared-expense tracker with a running total, alongside the parenting schedule and your children's care team, all in one private, offline file — a one-time purchase, not another subscription."
+}

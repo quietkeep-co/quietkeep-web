@@ -1,0 +1,150 @@
+{
+  "order": 6,
+  "slug": "divorce-organizer",
+  "category": "divorce",
+  "name": "Divorce Organizer",
+  "kicker": "Divorce Organizer",
+  "status": "new",
+  "season": "Starting over",
+  "price": 29,
+  "paymentLink": "https://link.fastpaydirect.com/payment-link/6a7393977b99151a54042837",
+  "demoPath": "/demos/divorce-organizer.html",
+  "card": {
+    "oneLiner": "Assets and debts that total themselves, records tracked to done, and a one-click attorney summary.",
+    "bullets": [
+      "Assets and debts that add themselves up",
+      "Every record to change, tracked to done",
+      "One click prints your attorney summary",
+      "Private and fully offline"
+    ]
+  },
+  "hero": {
+    "headline": "Walk in with the inventory already built — and already totalled.",
+    "lede": "Your assets and debts total themselves as you type, every record that needs changing is tracked to done, and one click prints the summary you hand your attorney — so the meeting starts with the work already finished. Private and fully offline.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/divorce-organizer/assets.png",
+    "imageAlt": "Divorce Organizer showing the Assets & Debts register"
+  },
+  "band": [
+    {
+      "label": "100% offline",
+      "sub": "zero network requests"
+    },
+    {
+      "label": "Completely private",
+      "sub": "data stays on your device"
+    },
+    {
+      "label": "$29 once",
+      "sub": "yours forever"
+    },
+    {
+      "label": "A real app",
+      "sub": "not a PDF or spreadsheet"
+    }
+  ],
+  "intro": {
+    "heading": "The work, already done",
+    "body": "Walk into your first attorney meeting with the inventory already built, already totalled, and already printed. Not a folder of statements and a list of things you meant to look up — one page, in order."
+  },
+  "features": [
+    {
+      "title": "28 guided tasks",
+      "body": "Take Stock · Money & Property · Home & Children · Your Team"
+    },
+    {
+      "title": "Assets & debts",
+      "body": "Accounts, property, retirement, and debts, totalled as you go"
+    },
+    {
+      "title": "Records to update",
+      "body": "Beneficiaries, deeds, passwords, your will — none missed"
+    },
+    {
+      "title": "Your team",
+      "body": "Attorney, mediator, financial advisor, therapist"
+    },
+    {
+      "title": "Priorities & questions",
+      "body": "What matters most, and what to ask your attorney"
+    },
+    {
+      "title": "Prep Summary",
+      "body": "One click prints what you've gathered for your attorney"
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/divorce-organizer/assets.png",
+      "alt": "Assets & Debts register",
+      "captionBold": "The whole financial picture.",
+      "caption": "Accounts, property, and debts, totalled as you go."
+    },
+    {
+      "img": "/images/divorce-organizer/update.png",
+      "alt": "Accounts to update",
+      "captionBold": "Nothing slips through.",
+      "caption": "Every beneficiary, deed, and account to change."
+    },
+    {
+      "img": "/images/divorce-organizer/tasks.png",
+      "alt": "Guided tasks",
+      "captionBold": "Twenty-eight guided steps.",
+      "caption": "Four phases, at whatever pace you can manage."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Nothing you type is ever sent anywhere — it's saved only in this browser, on this device, and it never asks for a Social Security number, account number, or password by design. That also means anyone who can use this device and this browser can open it: it isn't encrypted or password-protected, so keep it somewhere only you can reach.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+      },
+      {
+        "title": "Never a password",
+        "body": "By design, it never asks for or stores passwords or PINs. It records that accounts exist and where your written instructions live — the map, never the keys."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "the one private place to organize everything a divorce touches — assets, debts, accounts, documents, and the logistics of separating two lives — so you walk into every attorney or mediator meeting prepared, and nothing important gets missed.",
+    "bullets": [
+      "28 guided tasks across four phases: Take Stock, Money & Property, Home & Children, Your Team & the Path Forward",
+      "An assets & debts register that totals itself — accounts, property, retirement, and debts on one screen, adding up as you go",
+      "An 'accounts & records to update' list — beneficiaries, joint accounts, deeds, passwords, your will — so nothing is missed",
+      "A team directory: attorney, mediator, financial advisor, accountant, and therapist",
+      "A priorities & questions section — what matters most, and what to ask your attorney",
+      "A one-click printable Prep Summary — 'What I've Gathered for My Attorney or Mediator'",
+      "Auto-save with backup and restore"
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is this a subscription?",
+      "a": "No. You pay 29 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones."
+    },
+    {
+      "q": "Is my information really private?",
+      "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control."
+    },
+    {
+      "q": "What if it doesn't work for me?",
+      "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    }
+  ],
+  "crossSell": {
+    "heading": "Rebuilding your plan afterward?",
+    "body": "Sixth Quietkeep organizer and the first outside the estate family — a new life-transition lane. Divorce reshapes exactly the paperwork Quietkeep already organizes (beneficiaries, wills, deeds, accounts), so it cross-sells naturally to the Estate Planning Organizer and Digital Legacy Planner once the dust settles.",
+    "href": "/estate-planning-organizer",
+    "cta": "See the Organizer"
+  }
+}

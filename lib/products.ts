@@ -18,6 +18,30 @@ export type Screen = { img: string; alt: string; captionBold: string; caption: s
 export type PrivacyCard = { title: string; body: string };
 export type Faq = { q: string; a: string }; // `a` may contain simple inline HTML (links)
 
+// A product's shelf. Adding a lane means: extend this union, add an entry to
+// CATEGORY_META below, and set `category` on each product's content JSON.
+export type Category = "estate" | "divorce";
+
+export const CATEGORY_META: Record<
+  Category,
+  { slug: string; label: string; kicker: string; blurb: string }
+> = {
+  estate: {
+    slug: "estate-and-legacy",
+    label: "Estate & Legacy",
+    kicker: "Before and after a death",
+    blurb:
+      "Getting your affairs in order, settling someone else's, and everything in between — planning ahead, digital accounts, funeral wishes, and caregiving.",
+  },
+  divorce: {
+    slug: "divorce-and-separation",
+    label: "Divorce & Separation",
+    kicker: "Preparing, co-parenting, starting over",
+    blurb:
+      "Organizing a divorce touches its own set of details — assets to list, a schedule to keep straight, a decree's worth of loose ends. Private, and never legal advice.",
+  },
+};
+
 export type Product = {
   order: number;
   slug: string;
@@ -25,6 +49,7 @@ export type Product = {
   kicker: string;
   listingTitle?: string; // SEO/browser-tab title matched to the Etsy & Gumroad listing name; falls back to `name`
 
+  category: Category;
   status: "live" | "new";
   season: string;
   price: number;
@@ -49,6 +74,7 @@ const PRODUCTS_DIR = path.join(process.cwd(), "content", "products");
 const REQUIRED: (keyof Product)[] = [
   "slug",
   "name",
+  "category",
   "price",
   "paymentLink",
   "demoPath",
@@ -104,3 +130,21 @@ export function getProduct(slug: string): Product | undefined {
 }
 
 export const productSlugs = products.map((p) => p.slug);
+
+// Category slug ("estate-and-legacy") -> internal key ("estate"), for the
+// dynamic /organizers/[category] route.
+const CATEGORY_BY_SLUG: Record<string, Category> = Object.fromEntries(
+  (Object.entries(CATEGORY_META) as [Category, (typeof CATEGORY_META)[Category]][]).map(
+    ([key, meta]) => [meta.slug, key]
+  )
+);
+
+export function getCategoryByPath(categorySlug: string): Category | undefined {
+  return CATEGORY_BY_SLUG[categorySlug];
+}
+
+export function productsByCategory(category: Category): Product[] {
+  return products.filter((p) => p.category === category);
+}
+
+export const categorySlugs = Object.values(CATEGORY_META).map((m) => m.slug);

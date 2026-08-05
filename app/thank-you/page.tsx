@@ -30,7 +30,7 @@ export default function ThankYou() {
       </p>
 
       <p>
-        <Link className="btn" href="/#organizers">
+        <Link className="btn" href="/organizers">
           Back to the organizers
         </Link>
       </p>

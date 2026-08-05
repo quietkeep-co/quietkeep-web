@@ -16,7 +16,7 @@ export const site = {
   ghlFormEmbedUrl: process.env.NEXT_PUBLIC_GHL_FORM_URL ?? "",
 
   nav: [
-    { label: "Organizers", href: "/#organizers" },
+    { label: "Organizers", href: "/organizers" },
     { label: "Our promise", href: "/#promise" },
     { label: "Guides", href: "/guides" },
     { label: "Free checklist", href: "/free" },

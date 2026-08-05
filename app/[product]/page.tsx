@@ -39,7 +39,7 @@ export function generateMetadata({
 }
 
 const productNav = [
-  { label: "All organizers", href: "/#organizers" },
+  { label: "All organizers", href: "/organizers" },
   { label: "What's inside", href: "#inside" },
   { label: "Try it live", href: "#demo" },
   { label: "FAQ", href: "#faq" },
@@ -98,9 +98,23 @@ export default function ProductPage({
               {p.hero.lede}
             </p>
             <div className="flex flex-wrap items-center gap-3.5">
-              <a className="btn btn-big" href={p.paymentLink}>
-                Get it — ${p.price} once
-              </a>
+              {/* qk_website.py writes a "TODO: …" placeholder into paymentLink
+                  until the payment link exists. Rendering that straight into
+                  href produces a live-looking Buy button that goes nowhere, so
+                  guard it: an unconfigured product shows as not-yet-buyable
+                  rather than shipping a broken checkout. */}
+              {/^https?:\/\//i.test(p.paymentLink ?? "") ? (
+                <a className="btn btn-big" href={p.paymentLink}>
+                  Get it — ${p.price} once
+                </a>
+              ) : (
+                <span
+                  className="btn btn-big cursor-not-allowed opacity-60"
+                  aria-disabled="true"
+                >
+                  Coming soon
+                </span>
+              )}
               <Link className="btn btn-ghost btn-big" href="#demo">
                 Try it live first
               </Link>
@@ -227,9 +241,18 @@ export default function ProductPage({
                 </li>
               ))}
             </ul>
-            <a className="btn btn-big" href={p.paymentLink}>
-              Get it — ${p.price}
-            </a>
+            {/^https?:\/\//i.test(p.paymentLink ?? "") ? (
+              <a className="btn btn-big" href={p.paymentLink}>
+                Get it — ${p.price}
+              </a>
+            ) : (
+              <span
+                className="btn btn-big cursor-not-allowed opacity-60"
+                aria-disabled="true"
+              >
+                Coming soon
+              </span>
+            )}
             <p className="mt-4 text-[14px] text-ink-faint">
               If anything doesn&apos;t work, email us and we&apos;ll make it
               right:{" "}

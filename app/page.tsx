@@ -9,7 +9,7 @@ import { ProductCard, ComingSoonCard } from "@/components/ProductCard";
 import { Faq } from "@/components/Faq";
 import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
-import { products } from "@/lib/products";
+import { CATEGORY_META, productsByCategory } from "@/lib/products";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -81,21 +81,47 @@ export default function HomePage() {
         <PromiseBand items={homeBand} />
       </header>
 
-      {/* Organizers grid */}
+      {/* Organizers grid, grouped by category */}
       <section id="organizers" className="py-[88px]">
         <div className="wrap">
-          <SectionHead title="The organizers">
-            Guided steps in plain English. Registers that do the math. Printable
-            summaries when you need to hand something to a professional. Pick the
-            season you&apos;re in.
-          </SectionHead>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[22px]">
-            {products.map((p) => (
-              <ProductCard key={p.slug} product={p} />
-            ))}
-            <ComingSoonCard />
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <SectionHead title="The organizers">
+              Guided steps in plain English. Registers that do the math.
+              Printable summaries when you need to hand something to a
+              professional. Pick the season you&apos;re in.
+            </SectionHead>
+            <Link href="/organizers" className="mb-12 whitespace-nowrap text-[15px] text-ledger">
+              See all organizers →
+            </Link>
           </div>
-          <Reveal className="mt-[26px] flex flex-wrap items-center justify-between gap-3.5 rounded-2xl border border-line bg-ledger-soft px-[30px] py-[26px]">
+
+          {(Object.entries(CATEGORY_META) as [
+            keyof typeof CATEGORY_META,
+            (typeof CATEGORY_META)[keyof typeof CATEGORY_META]
+          ][]).map(([key, meta], i) => {
+            const items = productsByCategory(key);
+            if (!items.length) return null;
+            return (
+              <div key={key} className={i > 0 ? "mt-[52px]" : undefined}>
+                <div className="mb-5 flex flex-wrap items-baseline justify-between gap-3">
+                  <h3 className="text-[13px] font-bold uppercase tracking-[0.14em] text-brass">
+                    {meta.label}
+                  </h3>
+                  <Link href={`/organizers/${meta.slug}`} className="text-[14.5px] text-ledger">
+                    See all {meta.label} →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[22px]">
+                  {items.map((p) => (
+                    <ProductCard key={p.slug} product={p} />
+                  ))}
+                  {key === "estate" && <ComingSoonCard />}
+                </div>
+              </div>
+            );
+          })}
+
+          <Reveal className="mt-[38px] flex flex-wrap items-center justify-between gap-3.5 rounded-2xl border border-line bg-ledger-soft px-[30px] py-[26px]">
             <div>
               <b className="font-serif text-[19px]">The estate pair.</b>
               <p className="text-[15px] text-ink-soft">

@@ -31,7 +31,7 @@ export function generateMetadata({
 
 const guideNav = [
   { label: "All guides", href: "/guides" },
-  { label: "Organizers", href: "/#organizers" },
+  { label: "Organizers", href: "/organizers" },
   { label: "Free checklist", href: "/free" },
 ];
 
@@ -55,7 +55,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
   return (
     <>
       <JsonLd data={articleLd} />
-      <Nav links={guideNav} cta={{ label: "See the organizers", href: "/#organizers" }} />
+      <Nav links={guideNav} cta={{ label: "See the organizers", href: "/organizers" }} />
 
       <article className="pb-[72px] pt-16 md:pt-[84px]">
         <div className="wrap max-w-[760px]">

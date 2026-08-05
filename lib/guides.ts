@@ -9,6 +9,7 @@
 // Server-only: reads the filesystem; never import from a Client Component.
 import fs from "fs";
 import path from "path";
+import { getProduct, type Category } from "./products";
 
 export type GuideSection = {
   heading: string;
@@ -95,3 +96,10 @@ export function getGuide(slug: string): Guide | undefined {
 }
 
 export const guideSlugs = guides.map((g) => g.slug);
+
+// A guide belongs to whichever category its `productSlug` leads to, so this
+// stays in sync with lib/products.ts automatically — no cluster-name allowlist
+// to maintain in two places.
+export function guidesByCluster(category: Category): Guide[] {
+  return guides.filter((g) => getProduct(g.productSlug)?.category === category);
+}

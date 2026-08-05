@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 const freeNav = [
-  { label: "Organizers", href: "/#organizers" },
+  { label: "Organizers", href: "/organizers" },
   { label: "Guides", href: "/guides" },
   { label: "About", href: "/#about" },
 ];
@@ -22,7 +22,7 @@ const freeNav = [
 export default function FreePage() {
   return (
     <>
-      <Nav links={freeNav} cta={{ label: "See the organizers", href: "/#organizers" }} />
+      <Nav links={freeNav} cta={{ label: "See the organizers", href: "/organizers" }} />
 
       <header className="pb-12 pt-16 md:pt-[84px]">
         <div className="wrap max-w-[760px]">
