@@ -81,6 +81,79 @@ export default function HomePage() {
         <PromiseBand items={homeBand} />
       </header>
 
+      {/* See it working — real screenshots, up front, before the pitch continues */}
+      <section className="py-[88px] pt-[72px]">
+        <div className="wrap">
+          <SectionHead title="See it working">
+            No mockups. These are real screens from the Estate Planning
+            Organizer, loaded with a fictional sample plan — the same app you
+            get after you buy.
+          </SectionHead>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-[22px]">
+            <Reveal>
+              <figure className="m-0">
+                <Image
+                  src="/images/epo/tasks.png"
+                  alt="Guided task checklist with progress"
+                  width={900}
+                  height={675}
+                  className="rounded-[10px] border border-line shadow-card"
+                />
+                <figcaption className="mt-3 pl-0.5 text-[14.5px] text-ink-soft">
+                  <b className="text-ink">Guided tasks, in order.</b> Each step
+                  explained in plain English, checked off as you go.
+                </figcaption>
+              </figure>
+            </Reveal>
+            <Reveal>
+              <figure className="m-0">
+                <Image
+                  src="/images/epo/inventory.png"
+                  alt="Asset inventory register with a running total"
+                  width={900}
+                  height={675}
+                  className="rounded-[10px] border border-line shadow-card"
+                />
+                <figcaption className="mt-3 pl-0.5 text-[14.5px] text-ink-soft">
+                  <b className="text-ink">Registers that do the math.</b> Enter
+                  what you know; the running total updates itself.
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center gap-3.5">
+            <Link className="btn btn-big" href="/estate-planning-organizer#demo">
+              Try a live demo
+            </Link>
+            <Link className="btn btn-ghost btn-big" href="/#organizers">
+              See all organizers
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* What's inside every organizer */}
+      <section className="border-y border-line bg-card py-[64px]">
+        <div className="wrap">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-x-6 gap-y-8 text-center">
+            {[
+              { n: "1", t: "Guided tasks", d: "Plain-English steps, in order, checked off as you go." },
+              { n: "2", t: "Registers", d: "Structured tables that total, sum, and calculate for you." },
+              { n: "3", t: "Printable outputs", d: "A clean summary to hand to your attorney or family." },
+              { n: "4", t: "Offline, forever", d: "One file, on your device, that still opens years from now." },
+            ].map((s) => (
+              <div key={s.n}>
+                <div className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full border border-brass text-[14px] text-brass">
+                  {s.n}
+                </div>
+                <h3 className="mb-1.5 font-serif text-[18px]">{s.t}</h3>
+                <p className="text-[14.5px] text-ink-soft">{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Organizers grid, grouped by category */}
       <section id="organizers" className="py-[88px]">
         <div className="wrap">
@@ -144,7 +217,7 @@ export default function HomePage() {
           </SectionHead>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[18px]">
             {[
-              { t: "Zero network requests", b: "Every Quietkeep organizer is a single file that runs entirely in your browser, on your device. No connections, no servers, nothing loaded from the internet. You can run them with Wi-Fi off." },
+              { t: "Zero network requests", b: "Every Quietkeep organizer is a single file that runs entirely in your browser, on your device. No connections, no servers, nothing loaded from the internet. Turn off Wi-Fi, open the file, and it still works — because it's built so nothing can leave." },
               { t: "We couldn't see your data if we wanted to", b: "No account, no login, no cloud, no sync. Nothing you type is transmitted anywhere. Your backup is a file on your own computer, under your control." },
               { t: "Yours forever", b: "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today." },
             ].map((c) => (

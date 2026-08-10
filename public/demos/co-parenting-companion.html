@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<!-- Quietkeep build co-parenting-companion-48256e8131 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Co-Parenting Companion — Quietkeep</title>
+<title>Co-Parenting Companion — Live Demo — Quietkeep</title>
 <style>
 :root{
   --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
@@ -55,6 +56,15 @@ td.num input{text-align:right}
 .toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
 .toolbar button:hover{border-color:var(--brass)}
 .pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+/* Wide registers (Home Inventory's 13-column inventory table is the worst
+   case in the catalogue) squeeze every column to illegibility when forced
+   into the 1040px wrap at width:100% — a number input's spinner arrows alone
+   can eat a 5%-wide column, so the digit inside never renders at all. Give
+   the table room to be its natural width and let the wrapper scroll instead
+   of compressing. Found by actually looking at a screenshot, not by reading
+   the column list. */
+.table-wrap{overflow-x:auto;margin-top:10px}
+.table-wrap table{margin-top:0}
 .wish{margin:0 0 22px}
 .wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
 .wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
@@ -104,7 +114,7 @@ td.num input{text-align:right}
 }
 </style>
 </head>
-<body>
+<body><div style="position:relative;z-index:5;background:#A5834B;color:#1F2724;text-align:center;font:600 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;padding:9px 14px;">Live demo — sample data only. Nothing you enter here is saved, and it resets when you leave. <a href="#buy" style="color:#1F2724;text-decoration:underline;">Buy to keep your own copy.</a></div>
 <header>
   <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
@@ -144,25 +154,95 @@ td.num input{text-align:right}
 /* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
    injected at build time by generators/qk_app.py from the product manifest.
    Hard promises: single file, zero network, never a credential field. */
-const CONFIG={"name":"Co-Parenting Companion","storageKey":"qk-coparenting","backupPrefix":"coparenting","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Twenty-eight steps across four phases, at whatever pace fits the week. Everything saves automatically on this device. Each step notes why it matters. This is an organizer for your own household, not legal advice: it holds the schedule, the costs, and your children's details so you are not running a family from memory. It does not interpret your parenting plan or tell you what your order requires — for that, ask a licensed attorney in your state. It never asks for a Social Security number, account number, or password.","disclaimer":"This is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order, calculate what anyone owes under it, or advise on custody, support, or your rights. For advice about your situation, consult a licensed attorney in your state."},"phases":[{"name":"Phase 1 · Set It Up","tasks":[["Read your parenting plan and keep it somewhere you can find it","Your order is the one document everything else answers to. Note where your copy lives — you don't upload anything here, and nothing in this file changes what your order says."],["Write down the regular schedule as it actually runs","The ordinary week or two-week rotation, in plain terms. Written down once, it stops being something either household has to reconstruct from memory."],["Note the holiday and school-break arrangements","Holidays, birthdays, and long breaks are where most scheduling friction lives. Getting them written down early means planning them, not negotiating them at short notice."],["List your children's schools and providers","School, pediatrician, dentist, and anyone else in their week. Both households usually need these numbers and rarely both have them."],["Note how the two households communicate","Whichever way you've settled on — an app, email, or text. Writing down the channel helps keep the logistics in one predictable place."],["Write down what your children need to stay steady","The routines, comfort items, and rhythms that travel between homes. This is the part that matters most and gets written down least."],["Add the schedule and contacts to the tabs","Put the rotation in Parenting Time, the providers in Your Children's Team, and how you communicate and what keeps your kids steady in Routines & Notes. The rest of the phases build on this."]]},{"name":"Phase 2 · The Money","tasks":[["Note what the order says each household covers","Copy down what your own order provides, in its own words, so you're working from the document rather than memory. If what it means is unclear, that question belongs with your attorney, not with a checklist."],["List the regular recurring child costs","Activities, school fees, childcare, medical premiums, and anything else that comes around predictably. Knowing the shape of the year prevents surprises."],["Decide how you will record a shared expense","Agreeing what gets logged, and when, is worth more than any tracker. A shared rule beats two private ledgers."],["Agree how and when reimbursements get settled","Monthly, quarterly, or per-expense. Small amounts left open for months are the most common source of avoidable friction."],["Log the shared expenses from the last month","Start with a period you can still remember clearly. Once a month is in, keeping up is easy."],["Note where receipts live","A folder, an email label, a shoebox — anywhere consistent. Record the location here, not the receipts themselves."],["Add each expense to the Shared Expenses tab","One row each: what it was, the date, the amount, who paid, and whether it's settled. The running total shows you what's still open. Keep what the order covers and where receipts live in Other Notes, so you're not searching for either later."]]},{"name":"Phase 3 · The Children's World","tasks":[["List every school and activity contact","Teachers, the school office, coaches, and activity leads. When something comes up on your day, you want the number without hunting."],["Note medical needs, allergies, and medications","Allergies, prescriptions, and conditions, plainly written. This is the single most useful thing to hand a caregiver."],["Write down each child's routines","Bedtimes, meals, homework, and what settles them after a hard day. Consistency across two homes is most of what stability means to a child."],["Note who else may pick up or care for them","Grandparents, a sitter, a friend's parent. Schools usually need this list, and so does anyone standing in for you."],["Keep a copy of insurance and medical cards","Note where each lives so either household can find them in an urgent moment. Locations, not numbers."],["Note what each child is finding hard right now","Separation is theirs too. Writing down what you're noticing helps you see a pattern and gives a professional something real to work with if you seek one."],["Add providers and routines to the tabs","Put the people in Your Children's Team, and everything else — routines, medical needs, and what's feeling hard for a child right now — in Routines & Notes, so the Reference Sheet can pull it together."]]},{"name":"Phase 4 · Keep It Running","tasks":[["Set a regular time to update this","Once a month, or whenever the schedule shifts. A record that's current is worth several that aren't."],["Settle any outstanding shared expenses","Clear what's open on the agreed rhythm. Balances that sit tend to grow into something bigger than the money."],["Review the schedule before each school term","Terms bring new activities and new conflicts. Ten minutes ahead of one saves a month of friction inside it."],["Print the Caregiver Reference Sheet","One click on the Reference Sheet tab produces the page a sitter, grandparent, or new partner needs — schedule, contacts, allergies, and routines."],["Keep the journal current in plain language","Note what happened and what was agreed, factually and briefly. This is a memory aid for your own household — not evidence, and not a place to build a case."],["Note anything to raise with your attorney or mediator","If something needs professional input, add it to Other Notes as it comes up so it isn't lost by the time you have the meeting."],["Back up your file and keep it somewhere private","Use the backup button and keep the copy somewhere only you can reach. This is your household's record."]]}],"registers":[{"id":"schedule","tab":"Parenting Time","heading":"Parenting Time & Key Dates","noun":"entry","nounPlural":"entries","statLabel":"Entries","counterLabel":"Entries logged","intro":"The schedule as it actually runs: the regular rotation, plus the holidays, school breaks, and one-off changes worth planning ahead. This is your own working record of the arrangement — it does not replace or change your parenting plan, and where the two differ, your order governs.","columns":[{"key":"item","label":"What it is","width":"24%","sample":["Week on / week off","Thanksgiving","February school break","Maya's birthday"],"type":"text"},{"key":"type","label":"Type","width":"18%","type":"list","options":["Regular rotation","Holiday","School break","Birthday","Exchange / handoff","Schedule change","Other"]},{"key":"who","label":"Which household","width":"14%","type":"list","options":["Mine","Other parent's","Shared","To be arranged"]},{"key":"when","label":"When","width":"16%","type":"date"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"expenses","tab":"Shared Expenses","heading":"Shared Expenses","noun":"expense","nounPlural":"expenses","statLabel":"Logged","counterLabel":"Expenses logged","intro":"The children's shared costs, recorded as they happen: what it was, who paid, how you've agreed it splits, and whether it's been settled. This is a record of what you enter — it does not calculate or determine what anyone owes, and the split you record here is the one you entered, not one this app worked out. What your order actually requires is a question for your attorney.","columns":[{"key":"item","label":"What it was","width":"22%","sample":["Dentist visit — Maya","Soccer registration","School photos","Winter coats"],"type":"text"},{"key":"cat","label":"Category","width":"16%","type":"list","options":["Medical / dental","School","Activities / sports","Childcare","Clothing","Travel","Other"]},{"key":"when","label":"Date","width":"12%","type":"date"},{"key":"amount","label":"Amount","width":"12%","type":"num"},{"key":"paid","label":"Who paid","width":"12%","type":"list","options":["Me","Other parent","Split at the time"]},{"key":"status","label":"Settled?","type":"list","options":["Open","Submitted","Settled","Not claimable"]}],"counter":"total","counterField":"amount","totalLabel":"Total logged","totalUnit":"","line":"You have recorded {total} in shared costs. That is a total of what you entered here — not a balance owed, and not what any order requires. Keeping it current is what stops small amounts from becoming a bigger conversation."},{"id":"team","tab":"Children's Team","heading":"Your Children's Team","noun":"person","nounPlural":"people","statLabel":"Your team","counterLabel":"People listed","intro":"Everyone in your children's week: school, pediatrician, dentist, therapist, coaches, and the people who may collect them. Both households usually need these numbers, and this is the list you hand to anyone standing in for you.","columns":[{"key":"name","label":"Name","width":"20%","type":"text"},{"key":"role","label":"Role","width":"24%","type":"list","options":["School / teacher","Pediatrician","Dentist","Therapist / counselor","Coach / activity","Childcare / sitter","Emergency contact","Other"]},{"key":"phone","label":"Phone","width":"16%","type":"text"},{"key":"email","label":"Email","width":"18%","type":"text"},{"key":"notes","label":"Notes / which child","type":"text"}],"counter":"count"},{"id":"journal","tab":"Journal","heading":"Shared Journal","noun":"note","nounPlural":"notes","statLabel":"Notes","counterLabel":"Notes recorded","intro":"A plain dated record of what happened and what was agreed — a schedule swap, a doctor's visit, a decision the two of you reached. This is a memory aid for your own household so agreements don't have to be reconstructed later. It is not an evidence log and not a place to build a case: keep entries factual, brief, and about arrangements rather than people. These are your own notes, kept for your own memory. They are not evidence and not a legal record. Whether notes like these are useful — or even a good idea — in your situation is a question for your attorney. Assume the other parent may eventually see them, and write accordingly.","columns":[{"key":"when","label":"Date","width":"14%","type":"date"},{"key":"type","label":"Kind","width":"18%","type":"list","options":["Agreement reached","Schedule change","Medical / school","Handoff note","Expense discussed","Other"]},{"key":"item","label":"What happened","width":"30%","sample":["Swapped this weekend for next","Agreed to split soccer fees","Parent-teacher evening booked","Handoff moved to 6pm"],"type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"}],"wishesEnabled":true,"wishes":{"tab":"Routines","heading":"Routines & Notes","intro":"The knowledge that keeps a child steady across two homes, written down once so it travels: bedtimes, allergies, what settles them, and what the two of you have agreed on. This is also the section a caregiver reads first.","disclaimer":"These are your own household notes, not legal positions and not a record of what your order requires. Questions about your parenting plan belong with a licensed attorney in your state.","items":[{"key":"routines","label":"Daily routines","prompt":"Bedtimes, meals, homework, screen rules, and the small rituals that make an evening go smoothly. The more specific, the more useful it is to anyone standing in for you."},{"key":"medical","label":"Medical needs & allergies","prompt":"Allergies, medications, conditions, and what to do if something happens. Write it plainly enough that a sitter could act on it."},{"key":"steady","label":"What keeps each child steady","prompt":"The comfort items, the routines that travel between homes, and what helps after a hard day. Consistency across two houses is most of what stability means to a child."},{"key":"agreed","label":"What you've agreed on","prompt":"The practical understandings the two of you have reached — how you handle sick days, screen time, or a schedule swap. Your own note of an arrangement, not a legal record of it."},{"key":"notes","label":"Other notes","prompt":"Anything else worth keeping in one place: things to raise at the next school meeting, a question for your attorney, or a reminder to yourself. Optional."}]},"sheet":{"tab":"Reference Sheet","heading":"Caregiver Reference Sheet","button":"Print the Reference Sheet","intro":"This compiles what you've organized — the schedule, your children's team, their medical basics, and their routines — into one printable page for a sitter, a grandparent, a new partner, or anyone standing in for you. It is the fastest way to hand over a day without a fifteen-minute phone call.","docTitle":"What a Caregiver Needs to Know","docTag":"A Caregiver Reference Sheet · prepared with the Quietkeep Co-Parenting Companion","lead":"This sheet gathers what someone caring for these children needs on hand: the schedule, the people in their week, their medical basics, and the routines that keep them steady. It is a household reference document — not a legal document, not a parenting plan, and not a substitute for the court order that governs the arrangement.","foot":"Prepared by the account holder. This Reference Sheet is a household organizing document, not a legal document and not a statement of what any court order requires. It contains no account numbers, Social Security numbers, or passwords. For questions about your parenting plan, consult a licensed attorney in your state.","disclaimer":"The Reference Sheet is a personal organizing document for caregivers, not a legal filing, not evidence, and not legal advice. What your parenting plan requires is a question for a licensed attorney.","sections":[{"type":"wish","key":"medical","title":"Medical Needs & Allergies","empty":"Not recorded yet — allergies, medications, and what to do if something happens."},{"type":"register","id":"team","title":"Your Children's Team"},{"type":"register","id":"schedule","title":"Parenting Time & Key Dates"},{"type":"wishes","title":"Routines & Notes","exclude":["medical"]}]},"summary":{"disclaimer":"The Co-Parenting Companion is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order and does not determine what anyone owes. It never asks for an account number, Social Security number, or password. Everything you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where things stand, keep the record current, and back up your work to a file you control.","reviewNote":"Co-parenting changes with every school term — set a regular time to update the schedule and settle what's open in Shared Expenses.","staleFlag":"It's been a while since you updated this. If the schedule or the shared costs have moved on, bring the record current before it gets hard to reconstruct."},"safety":{"title":"Before you start","body":["Keep this somewhere only you can reach — a device, phone, or USB drive that isn't shared. Assume that anything written here could one day be seen by the other parent, and write accordingly.","This organizer is not legal advice and is not a substitute for the advice of an attorney. It does not interpret your parenting plan, decide what anyone owes, or tell you what your order requires. Your order says what it says; only a licensed attorney in your state can tell you what it means.","The journal here is a memory aid for your own household. It is not evidence, not a legal record, and not a place to build a case."],"hotline":["If you or your children are in danger, that comes first:","National Domestic Violence Hotline — 1-800-799-7233","Text START to 88788","Deaf/HoH video phone — 855-812-1001"],"fine":"This is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order, calculate what anyone owes under it, or advise on custody, support, or your rights. For advice about your situation, consult a licensed attorney in your state."}};
+const CONFIG={"name":"Co-Parenting Companion","storageKey":"qk-coparenting","backupPrefix":"coparenting","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Thirty-one steps across four phases, at whatever pace fits the week. Everything saves automatically on this device. Each step notes why it matters. This is an organizer for your own household, not legal advice: it holds the schedule, the costs, and your children's details so you are not running a family from memory. It does not interpret your parenting plan or tell you what your order requires — for that, ask a licensed attorney in your state. It never asks for a Social Security number, account number, or password.","disclaimer":"This is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order, calculate what anyone owes under it, or advise on custody, support, or your rights. For advice about your situation, consult a licensed attorney in your state."},"phases":[{"name":"Phase 1 · Set It Up","tasks":[["Read your parenting plan and keep it somewhere you can find it","Your order is the one document everything else answers to. Note where your copy lives — you don't upload anything here, and nothing in this file changes what your order says."],["Write down the regular schedule as it actually runs","The ordinary week or two-week rotation, in plain terms. Written down once, it stops being something either household has to reconstruct from memory."],["Note the holiday and school-break arrangements","Holidays, birthdays, term dates and long breaks are where most scheduling friction lives. Getting them into Parenting Time early — and marking the ones that still need arranging — means planning them rather than negotiating them at short notice."],["List your children's schools and providers","School, pediatrician, dentist, and anyone else in their week. Both households usually need these numbers and rarely both have them."],["Note how the two households communicate","Whichever way you've settled on — an app, email, or text. Writing down the channel helps keep the logistics in one predictable place."],["Write down what your children need to stay steady","The routines, comfort items, and rhythms that travel between homes. This is the part that matters most and gets written down least."],["Add the schedule and contacts to the tabs","Put the rotation in Parenting Time, the providers in Your Children's Team, and how you communicate and what keeps your kids steady in Routines & Notes. The rest of the phases build on this."]]},{"name":"Phase 2 · The Money","tasks":[["Note what the order says each household covers","Copy down what your own order provides, in its own words, so you're working from the document rather than memory. If what it means is unclear, that question belongs with your attorney, not with a checklist."],["List the regular recurring child costs","Activities, school fees, childcare, medical premiums, and anything else that comes around predictably. Knowing the shape of the year prevents surprises."],["Decide how you will record a shared expense","Agreeing what gets logged, and when, is worth more than any tracker. A shared rule beats two private ledgers."],["Agree how and when reimbursements get settled","Monthly, quarterly, or per-expense. Small amounts left open for months are the most common source of avoidable friction — the 'Sent over on' date in Shared Expenses shows you what has been sitting."],["Record each payment as it's made","Every time money actually moves between the two households, put a row in Reimbursements: the date, which way it went, how much, and what it covered. Costs live on one tab and payments on the other, so neither has to be reconstructed from the other."],["Log the shared expenses from the last month","Start with a period you can still remember clearly. Once a month is in, keeping up is easy."],["Note where receipts live","A folder, an email label, a shoebox — anywhere consistent. Record the location here, not the receipts themselves."],["Add each expense to the Shared Expenses tab","One row each: what it was, the date, the amount, who paid, when you sent it over, and whether it's settled. The running total shows what you've logged; payments that have actually been made go in Reimbursements. Keep what the order covers and where receipts live in Other Notes, so you're not searching for either later."]]},{"name":"Phase 3 · The Children's World","tasks":[["List every school and activity contact","Teachers, the school office, coaches, and activity leads. When something comes up on your day, you want the number without hunting."],["Note medical needs, allergies, and medications","Allergies, prescriptions, and conditions, plainly written. This is the single most useful thing to hand a caregiver."],["Write down each child's routines","Bedtimes, meals, homework, and what settles them after a hard day. Consistency across two homes is most of what stability means to a child."],["Note who else may pick up or care for them","Grandparents, a sitter, a friend's parent. Schools usually need this list, and so does anyone standing in for you."],["List what travels between the houses","Medication, the school bag, the retainer, the comfort toy, the gear for Saturday. Put them in What Travels with where each one lives. It turns a handover from a memory test into a list, and it is the thing children notice most when it goes wrong."],["Keep a copy of insurance and medical cards","Note where each lives so either household can find them in an urgent moment. Locations, not numbers."],["Note what each child is finding hard right now","Separation is theirs too. Writing down what you're noticing helps you see a pattern and gives a professional something real to work with if you seek one."],["Add providers and routines to the tabs","Put the people in Your Children's Team, and everything else — routines, medical needs, and what's feeling hard for a child right now — in Routines & Notes, so the Reference Sheet can pull it together."]]},{"name":"Phase 4 · Keep It Running","tasks":[["Set a regular time to update this","Once a month, or whenever the schedule shifts. A record that's current is worth several that aren't."],["Settle any outstanding shared expenses","Clear what's open on the agreed rhythm. Balances that sit tend to grow into something bigger than the money."],["Print the Shared Costs Summary when you settle up","One click on the Shared Costs tab prints the logged costs and the payments made, for whatever period you're settling. Settling from a printed record is shorter, and calmer, than settling from memory."],["Review the schedule before each school term","Terms bring new activities and new conflicts. Ten minutes ahead of one saves a month of friction inside it."],["Print the Caregiver Reference Sheet","One click on the Reference Sheet tab produces the page a sitter, grandparent, or new partner needs — schedule, contacts, allergies, routines, and what travels with them. It is also the page to hand a new school or provider."],["Keep the journal current in plain language","Note what happened and what was agreed, factually and briefly. This is a memory aid for your own household — not evidence, and not a place to build a case."],["Note anything to raise with your attorney or mediator","If something needs professional input, add it to Other Notes as it comes up so it isn't lost by the time you have the meeting."],["Back up your file and keep it somewhere private","Use the backup button and keep the copy somewhere only you can reach. This is your household's record."]]}],"registers":[{"id":"schedule","tab":"Parenting Time","heading":"Parenting Time & Key Dates","noun":"entry","nounPlural":"entries","statLabel":"Entries","counterLabel":"Entries logged","intro":"The schedule as it actually runs: the regular rotation, plus the holidays, school breaks, term dates, activity seasons and one-off changes worth planning ahead. Marking each one agreed, confirmed, or still needing arranging is what turns a list into something you can act on — the needs-arranging ones are the friction, and they are easier to handle a month out than a week out. This is your own working record of the arrangement — it does not replace or change your parenting plan, and where the two differ, your order governs.","columns":[{"key":"item","label":"What it is","width":"24%","sample":["Week on / week off","Thanksgiving","February school break","Maya's birthday"],"type":"text"},{"key":"type","label":"Type","width":"18%","type":"list","options":["Regular rotation","Holiday","School break","Birthday","Exchange / handoff","Schedule change","School event","Activity season","Registration deadline","Medical appointment","Travel","Other"]},{"key":"who","label":"Which household","width":"14%","type":"list","options":["Mine","Other parent's","Shared","To be arranged"]},{"key":"when","label":"When","width":"16%","type":"date"},{"key":"status","label":"Where it stands","width":"16%","type":"list","options":["Agreed","Confirmed","Needs arranging","Changed"],"sample":["Agreed","Confirmed","Needs arranging","Agreed"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"status"},{"id":"expenses","tab":"Shared Expenses","heading":"Shared Expenses","noun":"expense","nounPlural":"expenses","statLabel":"Logged","counterLabel":"Expenses logged","intro":"The children's shared costs, recorded as they happen: what it was, who paid, when you sent it over, how you've agreed it splits, and whether it's been settled. This is a record of what you enter — it does not calculate or determine what anyone owes, and the split you record here is the one you entered, not one this app worked out. What your order actually requires is a question for your attorney. Money that has actually changed hands goes on the Reimbursements tab, kept separate so one tab is what things cost and the other is what has been paid.","columns":[{"key":"item","label":"What it was","width":"22%","sample":["Dentist visit — Maya","Soccer registration","School photos","Winter coats"],"type":"text"},{"key":"cat","label":"Category","width":"16%","type":"list","options":["Medical / dental","School","Activities / sports","Childcare","Clothing","Travel","Other"],"sample":["Medical / dental","Activities / sports","School","Clothing"]},{"key":"when","label":"Date","width":"12%","type":"date"},{"key":"amount","label":"Amount","width":"12%","type":"num"},{"key":"paid","label":"Who paid","width":"12%","type":"list","options":["Me","Other parent","Split at the time"]},{"key":"submitted","label":"Sent over on","width":"12%","type":"date"},{"key":"status","label":"Settled?","type":"list","options":["Open","Submitted","Settled","Not claimable"]}],"counter":"total","counterField":"amount","totalLabel":"Total logged","totalUnit":"","line":"You have recorded {total} in shared costs. That is a total of what you entered here — not a balance owed, and not what any order requires. The date you sent each one over is the useful column: it shows what has been sitting."},{"id":"settled","tab":"Reimbursements","heading":"Reimbursements","noun":"payment","statLabel":"Payments","counterLabel":"Payments recorded","intro":"Money that has actually moved between the two households: the date, which way it went, how much, and what it covered. Kept apart from Shared Expenses on purpose — that tab is what things cost, this one is what has been paid. Neither is a statement of what anyone owes, and neither works out a balance for you; both are records of what you entered. Logging a payment when it happens is what stops the question coming back six months later.","columns":[{"key":"when","label":"Date","width":"13%","type":"date"},{"key":"direction","label":"Which way","width":"21%","type":"list","options":["I paid the other parent","Other parent paid me"],"sample":["Other parent paid me","I paid the other parent","Other parent paid me","I paid the other parent"]},{"key":"amount","label":"Amount","width":"13%","type":"num","sample":["62.50","140","37.25","18.50"]},{"key":"covers","label":"What it covered","width":"26%","sample":["Half the dentist visit","Soccer registration","School photos","Half the winter coats"],"type":"text"},{"key":"how","label":"How","width":"15%","type":"list","options":["Bank transfer","Cash","App / online","Cheque","Offset against another cost","Other"],"sample":["Bank transfer","App / online","Cash","Venmo"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"total","counterField":"amount","totalLabel":"Recorded as paid","totalUnit":"","line":"You have recorded {total} in payments between the two households. That is a total of the payments you entered here — not a balance, and not a statement of what anyone owes."},{"id":"team","tab":"Children's Team","heading":"Your Children's Team","noun":"person","nounPlural":"people","statLabel":"Your team","counterLabel":"People listed","intro":"Everyone in your children's week: school, pediatrician, dentist, therapist, coaches, and the people who may collect them. Both households usually need these numbers, and this is the list you hand to anyone standing in for you.","columns":[{"key":"name","label":"Name","width":"20%","type":"text"},{"key":"role","label":"Role","width":"24%","type":"list","options":["School / teacher","Pediatrician","Dentist","Therapist / counselor","Coach / activity","Childcare / sitter","Emergency contact","Other"]},{"key":"phone","label":"Phone","width":"16%","type":"text"},{"key":"email","label":"Email","width":"18%","type":"text"},{"key":"notes","label":"Notes / which child","type":"text"}],"counter":"count"},{"id":"travels","tab":"What Travels","heading":"What Travels Between Houses","noun":"item","statLabel":"Items","counterLabel":"Items listed","intro":"The things that move with the children and the things that stay put: medication, the school bag, the retainer, the comfort toy, the cleats for Saturday. Written down once, a handover stops depending on somebody remembering at the door — and when something goes missing, you can see where it lives rather than working out whose fault it is. This is a household packing list, not a record of anyone's conduct.","columns":[{"key":"item","label":"What it is","width":"26%","sample":["Inhaler and spacer","Reading folder","Blue rabbit","Soccer cleats"],"type":"text"},{"key":"child","label":"Whose","width":"13%","sample":["Maya","Sam","Maya","Sam"],"type":"text"},{"key":"kind","label":"Kind","width":"18%","type":"list","options":["Medication","School","Activity gear","Comfort item","Device / charger","Clothing","Document","Other"],"sample":["Medication","School","Comfort item","Activity gear"]},{"key":"where","label":"Where it lives","width":"20%","type":"list","options":["Travels both ways","Stays at my house","Stays at the other house","Missing"],"sample":["Travels both ways","Travels both ways","Travels both ways","Missing"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"where"},{"id":"journal","tab":"Journal","heading":"Shared Journal","noun":"note","nounPlural":"notes","statLabel":"Notes","counterLabel":"Notes recorded","intro":"A plain dated record of what happened and what was agreed — a schedule swap, a doctor's visit, a decision the two of you reached. This is a memory aid for your own household so agreements don't have to be reconstructed later. It is not an evidence log and not a place to build a case: keep entries factual, brief, and about arrangements rather than people. These are your own notes, kept for your own memory. They are not evidence and not a legal record. Whether notes like these are useful — or even a good idea — in your situation is a question for your attorney. Assume the other parent may eventually see them, and write accordingly.","columns":[{"key":"when","label":"Date","width":"14%","type":"date"},{"key":"type","label":"Kind","width":"18%","type":"list","options":["Agreement reached","Schedule change","Medical / school","Handoff note","Expense discussed","Appointment","Prescription change","Follow-up needed","Other"],"sample":["Schedule change","Agreement reached","Appointment","Handoff note"]},{"key":"item","label":"What happened","width":"30%","sample":["Swapped this weekend for next","Agreed to split soccer fees","Parent-teacher evening booked","Handoff moved to 6pm"],"type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"}],"wishesEnabled":true,"wishes":{"tab":"Routines","heading":"Routines & Notes","intro":"The knowledge that keeps a child steady across two homes, written down once so it travels: bedtimes, allergies, what settles them, and what the two of you have agreed on. This is also the section a caregiver reads first.","disclaimer":"These are your own household notes, not legal positions and not a record of what your order requires. Questions about your parenting plan belong with a licensed attorney in your state.","items":[{"key":"routines","label":"Daily routines","prompt":"Bedtimes, meals, homework, screen rules, and the small rituals that make an evening go smoothly. The more specific, the more useful it is to anyone standing in for you."},{"key":"medical","label":"Medical needs & allergies","prompt":"Allergies, medications, conditions, and what to do if something happens. Write it plainly enough that a sitter could act on it."},{"key":"steady","label":"What keeps each child steady","prompt":"The comfort items, the routines that travel between homes, and what helps after a hard day. Consistency across two houses is most of what stability means to a child."},{"key":"agreed","label":"What you've agreed on","prompt":"The practical understandings the two of you have reached — how you handle sick days, screen time, or a schedule swap. Your own note of an arrangement, not a legal record of it."},{"key":"notes","label":"Other notes","prompt":"Anything else worth keeping in one place: things to raise at the next school meeting, a question for your attorney, or a reminder to yourself. Optional."}]},"sheet":null,"sheets":[{"tab":"Reference Sheet","heading":"Caregiver Reference Sheet","button":"Print the Reference Sheet","intro":"This compiles what you've organized — the schedule, your children's team, their medical basics, their routines, and what travels with them — into one printable page for a sitter, a grandparent, a new partner, or anyone standing in for you. It is also the page to hand a new school or a new provider. It is the fastest way to hand over a day without a fifteen-minute phone call.","docTitle":"What a Caregiver Needs to Know","docTag":"A Caregiver Reference Sheet · prepared with the Quietkeep Co-Parenting Companion","lead":"This sheet gathers what someone caring for these children needs on hand: the schedule, the people in their week, their medical basics, and the routines that keep them steady. It is a household reference document — not a legal document, not a parenting plan, and not a substitute for the court order that governs the arrangement.","foot":"Prepared by the account holder. This Reference Sheet is a household organizing document, not a legal document and not a statement of what any court order requires. It contains no account numbers, Social Security numbers, or passwords. For questions about your parenting plan, consult a licensed attorney in your state.","disclaimer":"The Reference Sheet is a personal organizing document for caregivers, not a legal filing, not evidence, and not legal advice. What your parenting plan requires is a question for a licensed attorney.","sections":[{"type":"wish","key":"medical","title":"Medical Needs & Allergies","empty":"Not recorded yet — allergies, medications, and what to do if something happens."},{"type":"register","id":"team","title":"Your Children's Team"},{"type":"register","id":"schedule","title":"Parenting Time & Key Dates"},{"type":"wishes","title":"Routines & Notes","exclude":["medical"]},{"type":"register","id":"travels","title":"What Travels Between Houses"}]},{"tab":"Shared Costs","heading":"Shared Costs Summary","button":"Print the Shared Costs Summary","intro":"This compiles the two money tabs — the shared costs you've logged and the payments that have actually been made — into one printable page for the period you're settling up. It is a record of what you entered, printed neatly, so settling up is a document rather than a conversation from memory.","docTitle":"Shared Costs — A Record of What I Entered","docTag":"A Shared Costs Summary · prepared with the Quietkeep Co-Parenting Companion","lead":"This sheet gathers the children's shared costs as I have recorded them, and the payments that have passed between the two households. It is a household record of what I entered — not a bill, not a demand, not evidence, and not a statement of what anyone owes under any order.","foot":"Prepared by the account holder. This Shared Costs Summary is a household organizing document. It is not a bill, not a legal document, not evidence, and not a statement of what any court order requires — the figures are the ones the account holder entered, and no balance has been calculated. It contains no account numbers, Social Security numbers, or passwords. For questions about your parenting plan, consult a licensed attorney in your state.","disclaimer":"The Shared Costs Summary prints the costs and payments you entered. It does not work out a balance, does not determine what anyone owes, and is not legal advice or a substitute for the advice of an attorney. What your parenting plan requires is a question for a licensed attorney.","sections":[{"type":"register","id":"expenses","title":"Shared Expenses"},{"type":"register","id":"settled","title":"Reimbursements"}]}],"summary":{"disclaimer":"The Co-Parenting Companion is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order and does not determine what anyone owes. It never asks for an account number, Social Security number, or password. Everything you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where things stand, keep the record current, and back up your work to a file you control.","reviewNote":"Co-parenting changes with every school term — set a regular time to update the schedule and settle what's open in Shared Expenses.","staleFlag":"It's been a while since you updated this. If the schedule or the shared costs have moved on, bring the record current before it gets hard to reconstruct."},"safety":{"title":"Before you start","body":["Keep this somewhere only you can reach — a device, phone, or USB drive that isn't shared. Assume that anything written here could one day be seen by the other parent, and write accordingly.","This organizer is not legal advice and is not a substitute for the advice of an attorney. It does not interpret your parenting plan, decide what anyone owes, or tell you what your order requires. Your order says what it says; only a licensed attorney in your state can tell you what it means.","The journal here is a memory aid for your own household. It is not evidence, not a legal record, and not a place to build a case."],"hotline":["If you or your children are in danger, that comes first:","National Domestic Violence Hotline — 1-800-799-7233","Text START to 88788","Deaf/HoH video phone — 855-812-1001"],"fine":"This is an organizer, not legal advice and not a substitute for the advice of an attorney or mediator. It does not interpret your parenting plan or court order, calculate what anyone owes under it, or advise on custody, support, or your rights. For advice about your situation, consult a licensed attorney in your state."},"legacyTasks":[["Read your parenting plan and keep it somewhere you can find it","Write down the regular schedule as it actually runs","Note the holiday and school-break arrangements","List your children's schools and providers","Note how the two households communicate","Write down what your children need to stay steady","Add the schedule and contacts to the tabs"],["Note what the order says each household covers","List the regular recurring child costs","Decide how you will record a shared expense","Agree how and when reimbursements get settled","Log the shared expenses from the last month","Note where receipts live","Add each expense to the Shared Expenses tab"],["List every school and activity contact","Note medical needs, allergies, and medications","Write down each child's routines","Note who else may pick up or care for them","Keep a copy of insurance and medical cards","Note what each child is finding hard right now","Add providers and routines to the tabs"],["Set a regular time to update this","Settle any outstanding shared expenses","Review the schedule before each school term","Print the Caregiver Reference Sheet","Keep the journal current in plain language","Note anything to raise with your attorney or mediator","Back up your file and keep it somewhere private"]]};
 const PHASES=CONFIG.phases;
 const REGISTERS=CONFIG.registers||[];
 const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
 const STORAGE_KEY=CONFIG.storageKey;
 const SAFETY=CONFIG.safety||{};
+/* A product may declare several printable outputs (`sheets`) rather than one.
+   Special Needs needs this for a real reason, not tidiness: a single packet
+   that compiles benefits status AND guardianship wishes is right for a future
+   guardian and wrong to hand a third-grade teacher. `sheet` stays supported so
+   the ten products built before this keep generating byte-identical output. */
+const SHEETS=(CONFIG.sheets&&CONFIG.sheets.length)?CONFIG.sheets:(CONFIG.sheet?[CONFIG.sheet]:[]);
+
+/* ---------- task identity ----------
+   Task completion used to be stored by POSITION ("p0t3"). That meant inserting
+   a task in the middle of a phase silently moved every tick below it onto a
+   different task — a buyer saw work marked done that they had never done, and
+   lost credit for work they had. On products whose whole promise is "nothing
+   important gets missed", that is worse than losing the data outright.
+
+   Keys are now a slug of the task title, which survives reordering, insertion
+   and deletion. Verified unique within every product in the catalogue.
+   `migrateTaskKeys()` converts an existing buyer's positional ticks exactly
+   once, using the task order as it stood when they saved. */
+function slugKey(s){
+  return String(s == null ? "" : s).toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-")
+    .replace(/^-|-$/g, "").slice(0, 48);
+}
 
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
 function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
 function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function plain(n){return (Math.round(n*100)/100).toLocaleString("en-US");}
+/* Totals are money by default — the estate and divorce lines all count dollars.
+   Some registers count minutes or plain units instead (service delivery, for
+   one), so a register may set totalFormat:"plain" with totalUnit:"minutes". */
+function fmtTotal(reg,n){
+  return reg.totalFormat==="plain"
+    ? plain(n)+(reg.totalUnit?" "+reg.totalUnit:"")
+    : money(n);
+}
+function fmtCell(col,v){
+  if(col.format==="plain")return plain(parseFloat(v)||0);
+  return money(parseFloat(v)||0);
+}
+/* A "calc" column is derived and never stored: calc:["a","b"] with op "*" or
+   "-". It keeps the arithmetic a buyer would otherwise do by hand — quantity
+   x cost-each, or actual minus normal — inside the engine, where it stays
+   correct as rows change instead of going stale the moment anything is edited. */
+function calcVal(reg,row,col){
+  const a=(col.calc||[])[0],b=(col.calc||[])[1];
+  const x=parseFloat(row[a])||0,y=parseFloat(row[b])||0;
+  return col.op==="-"?(x-y):(x*y);
+}
+function cellVal(reg,row,col){return col.type==="calc"?calcVal(reg,row,col):row[col.key];}
 function regById(id){return REGISTERS.find(r=>r.id===id);}
 function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
 function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
 
 /* ---------- state ---------- */
 let state=null;
+/* Stable per-task keys, computed once from the current phase order. */
+const TASK_KEYS=PHASES.map(ph=>(ph.tasks||[]).map(t=>slugKey(t[0])));
+
+/* Convert positional task ticks to stable keys, once, on first open of an
+   updated file. `legacyTasks` is the task order AS THE BUYER HAS IT — needed
+   only when a release reorders tasks in the same version that introduces this
+   migration. Otherwise the current order is the buyer's order, so it is the
+   correct fallback and the migration is exact. */
+function migrateTaskKeys(){
+  if(state.tkv>=2){return;}
+  const legacy=CONFIG.legacyTasks||PHASES.map(ph=>(ph.tasks||[]).map(t=>t[0]));
+  const out={};
+  (legacy||[]).forEach((ph,pi)=>(ph||[]).forEach((title,ti)=>{
+    if(state.tasks&&state.tasks["p"+pi+"t"+ti])out[slugKey(title)]=true;
+  }));
+  /* Preserve any keys that are already slugs — a re-restored backup, or a file
+     opened by a newer build first. Never drop a tick we cannot explain. */
+  Object.keys(state.tasks||{}).forEach(k=>{
+    if(!/^p\d+t\d+$/.test(k)&&state.tasks[k])out[k]=true;
+  });
+  state.tasks=out;
+  state.tkv=2;
+}
+
 function defaultState(){
-  const d={v:1,tasks:{},wishes:{},lastReviewed:null};
+  const d={v:1,tkv:2,tasks:{},wishes:{},lastReviewed:null};
   REGISTERS.forEach(r=>{d[r.id]=[];});
   return d;
 }
@@ -173,6 +253,7 @@ function load(){
   if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
   if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
   if(state.lastReviewed===undefined)state.lastReviewed=null;
+  migrateTaskKeys();
 }
 function save(){
   try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
@@ -187,7 +268,7 @@ function buildShell(){
   const tabs=[{id:"tasks",label:CONFIG.tasks.tab||"Tasks"}];
   REGISTERS.forEach(r=>tabs.push({id:r.id,label:r.tab}));
   if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
-  tabs.push({id:"sheet",label:CONFIG.sheet.tab||"Instruction Sheet"});
+  SHEETS.forEach((s,i)=>tabs.push({id:"sheet"+i,label:s.tab||"Instruction Sheet"}));
   tabs.push({id:"summary",label:"Summary & Backup"});
   tabs.forEach((t,i)=>{
     const b=document.createElement("button");
@@ -203,10 +284,25 @@ function buildShell(){
      '</section>';
   // Registers
   REGISTERS.forEach(r=>{
+    /* A register may carry a `warn` — one prominent, red, shown-once line under
+       the intro. Wishes already had this; registers did not, so a prohibition
+       as load-bearing as "never the codes themselves" could only be muted grey
+       prose. Deliberately register-level, not per-column: a warning repeated on
+       every row of a table stops being read by row three. */
     h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
-       '<p class="note">'+esc(r.intro||"")+'</p><table><thead><tr>';
+       '<p class="note">'+esc(r.intro||"")+'</p>'+
+       (r.warn?'<p class="warnline">'+esc(r.warn)+'</p>':"")+
+       // A many-column register needs real pixel width to stay legible — 70px
+       // per column is roughly what a narrow text/number input needs, so a
+       // 13-column table gets ~910px minimum rather than being crushed into
+       // whatever fraction of 1040px is left after padding.
+       // 70px/column still clipped a 2-digit number input to its first digit
+       // (spinner arrows + input padding eat more of a narrow cell than the
+       // math suggested) — verified by looking at the actual render, not by
+       // recomputing the math a second time. 85px holds up on inspection.
+       '<div class="table-wrap"><table style="min-width:'+(85*(r.columns.length+1))+'px"><thead><tr>';
     r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
-    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table>'+
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table></div>'+
        '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
     if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
     if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
@@ -221,12 +317,14 @@ function buildShell(){
        '</section>';
   }
   // Sheet
-  h+='<section class="tab" id="tab-sheet"><h2>'+esc(CONFIG.sheet.heading)+'</h2>'+
-     '<p class="note">'+esc(CONFIG.sheet.intro||"")+'</p>'+
-     '<div id="sheet-preview" class="review-box"></div>'+
-     '<div class="toolbar"><button class="primary" onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button></div>'+
-     (CONFIG.sheet.disclaimer?'<p class="disclaimer">'+esc(CONFIG.sheet.disclaimer)+'</p>':"")+
-     '</section>';
+  SHEETS.forEach((S,i)=>{
+    h+='<section class="tab" id="tab-sheet'+i+'"><h2>'+esc(S.heading)+'</h2>'+
+       '<p class="note">'+esc(S.intro||"")+'</p>'+
+       '<div id="sheet-preview-'+i+'" class="review-box"></div>'+
+       '<div class="toolbar"><button class="primary" onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button></div>'+
+       (S.disclaimer?'<p class="disclaimer">'+esc(S.disclaimer)+'</p>':"")+
+       '</section>';
+  });
   // Summary
   h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
      '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
@@ -235,7 +333,7 @@ function buildShell(){
      '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
      '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
      '<div class="toolbar">'+
-     '<button onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button>'+
+     SHEETS.map((S,i)=>'<button onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button>').join("")+
      '<button onclick="printAll()">Print everything (all registers)</button>'+
      '<button onclick="backup()">Download backup file</button>'+
      '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
@@ -256,7 +354,7 @@ function renderTasks(){
     const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
     const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
     ph.tasks.forEach((t,ti)=>{
-      const id="p"+pi+"t"+ti;
+      const id=TASK_KEYS[pi][ti];
       const checked=!!state.tasks[id];if(checked)pDone++;
       const row=document.createElement("div");row.className="task"+(checked?" done":"");
       const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
@@ -272,7 +370,7 @@ function renderTasks(){
   });
   updateProgress();
 }
-function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks[TASK_KEYS[pi][ti]])done++;}));return{total,done};}
 function updateProgress(){
   let total=0,done=0;
   document.querySelectorAll("#phases .phase").forEach((div)=>{
@@ -289,6 +387,14 @@ function updateProgress(){
 /* ---------- register engine ---------- */
 function fieldEl(reg,row,col){
   const td=document.createElement("td");
+  /* Derived cells are output, not input — render as read-only text so nobody
+     types into a number that is about to be recomputed. refreshCalc() keeps
+     them current as the columns they depend on are edited. */
+  if(col.type==="calc"){
+    td.className="num";
+    td.textContent=fmtCell(col,calcVal(reg,row,col));
+    return td;
+  }
   let el;
   if(col.type==="select"){el=document.createElement("select");
     (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
@@ -324,8 +430,30 @@ function categoryCounts(reg){
   state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
   return counts;
 }
-function regTotal(reg){const k=reg.counterField||numKey(reg);return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);}
+function regTotal(reg){
+  const k=reg.counterField||numKey(reg);
+  const col=colByKey(reg,k);
+  if(col&&col.type==="calc")return state[reg.id].reduce((s,r)=>s+calcVal(reg,r,col),0);
+  return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);
+}
+/* Repaint derived cells in place. Re-rendering the whole table would steal
+   focus from the field being typed into, which is why this updates the td
+   text directly rather than calling renderTable(). */
+function refreshCalc(){
+  REGISTERS.forEach(reg=>{
+    if(!reg.columns.some(c=>c.type==="calc"))return;
+    const body=document.getElementById(reg.id+"-body");if(!body)return;
+    Array.prototype.forEach.call(body.rows,(tr,i)=>{
+      const row=state[reg.id][i];if(!row)return;
+      reg.columns.forEach((c,ci)=>{
+        if(c.type!=="calc")return;
+        const td=tr.cells[ci];if(td)td.textContent=fmtCell(c,calcVal(reg,row,c));
+      });
+    });
+  });
+}
 function totals(){
+  refreshCalc();
   REGISTERS.forEach(reg=>{
     const el=document.getElementById(reg.id+"-total");
     const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
@@ -338,9 +466,9 @@ function totals(){
       el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
     }else if(reg.counter==="total"&&el){
       const n=state[reg.id].length;
-      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+money(regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+fmtTotal(reg,regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
       const line=document.getElementById(reg.id+"-line");
-      if(line)line.textContent=n?reg.line.replace("{total}",money(regTotal(reg))):"";
+      if(line)line.textContent=n?reg.line.replace("{total}",fmtTotal(reg,regTotal(reg))).replace("{n}",n):"";
     }else if(el){
       el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
     }
@@ -402,21 +530,21 @@ function registerTableHTML(reg,rows,skipKey){
   h+='</tr>';
   rows.forEach(r=>{h+='<tr>';
     reg.columns.forEach(c=>{if(c.key===skipKey)return;
-      const v=c.type==="num"?money(parseFloat(r[c.key])||0):esc(r[c.key]);
+      const v=(c.type==="num"||c.type==="calc")?fmtCell(c,cellVal(reg,r,c)):esc(r[c.key]);
       h+='<td>'+v+'</td>';});
     h+='</tr>';});
   if(reg.counter==="total"){
     h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
     const nk=reg.counterField||numKey(reg);
     reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
-      h+=c.key===nk?'<td><strong>'+money(regTotal(reg))+'</strong></td>':'<td></td>';});
+      h+=c.key===nk?'<td><strong>'+fmtTotal(reg,regTotal(reg))+'</strong></td>':'<td></td>';});
     h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
     h+='</tr>';
   }
   return h+'</table>';
 }
-function sheetHTML(){
-  const S=CONFIG.sheet;
+function sheetHTML(idx){
+  const S=SHEETS[idx||0]||{};
   let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
   if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
   (S.sections||[]).forEach(sec=>{
@@ -430,11 +558,15 @@ function sheetHTML(){
       if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
       if(sec.groupBy){
         const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
-        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);counts[c]=(counts[c]||0)+1;});
+        /* Grouping by a column that has no `options` (a date, or free text) is
+           legitimate — but then cats is empty, and a blank cell used to fall
+           through to cats[0] === undefined and print "undefined (3)" as a
+           heading on the buyer's printed sheet. Bucket those explicitly. */
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");counts[c]=(counts[c]||0)+1;});
         const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
         order.forEach(c=>{
           h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
-          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);return rc===c;}),sec.groupBy);
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");return rc===c;}),sec.groupBy);
         });
       }else{
         h+=registerTableHTML(reg,rows,null);
@@ -450,21 +582,29 @@ function sheetHTML(){
   return h;
 }
 function renderSheetPreview(){
-  const el=document.getElementById("sheet-preview");if(!el)return;
-  const bits=REGISTERS.map(reg=>{
-    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
-    const n=state[reg.id].length;
-    let s=n+" "+(n===1?noun:plural);
-    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
-    return s;
+  SHEETS.forEach((S,i)=>{
+    const el=document.getElementById("sheet-preview-"+i);if(!el)return;
+    /* Preview only the registers this particular sheet actually compiles —
+       otherwise a teacher-facing sheet would advertise the benefits and
+       guardianship data it deliberately leaves out. */
+    const ids=(S.sections||[]).filter(s=>s.type==="register").map(s=>s.id);
+    const regs=ids.length?REGISTERS.filter(r=>ids.indexOf(r.id)>=0):REGISTERS;
+    const bits=regs.map(reg=>{
+      const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+      const n=state[reg.id].length;
+      let s=n+" "+(n===1?noun:plural);
+      if(reg.counter==="total")s+=" ("+fmtTotal(reg,regTotal(reg))+")";
+      return s;
+    });
+    const hasWishes=(S.sections||[]).some(s=>s.type==="wish"||s.type==="wishes");
+    el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(S.docTitle)+'</strong></div>'+
+      '<p class="note" style="margin:0">'+esc(S.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+      (hasWishes?", plus what you've written in your own words":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
   });
-  el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(CONFIG.sheet.docTitle)+'</strong></div>'+
-    '<p class="note" style="margin:0">'+esc(CONFIG.sheet.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
-    (CONFIG.wishesEnabled?", plus your wishes":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
 }
-function printSheet(){
+function printSheet(idx){
   const pa=document.getElementById("print-area");
-  pa.innerHTML=sheetHTML();window.print();
+  pa.innerHTML=sheetHTML(idx||0);window.print();
 }
 function printAll(){
   const pa=document.getElementById("print-area");
@@ -472,7 +612,7 @@ function printAll(){
   h+='<h2>Guided Task Progress</h2>';
   PHASES.forEach((ph,pi)=>{
     h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
-    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks["p"+pi+"t"+ti]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks[TASK_KEYS[pi][ti]]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
     h+='</table>';
   });
   pa.innerHTML=h;window.print();
@@ -568,11 +708,11 @@ document.getElementById("nav").addEventListener("click",e=>{
   document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
   e.target.classList.add("active");
   document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
-  if(e.target.dataset.tab==="sheet")renderSheetPreview();
+  if(String(e.target.dataset.tab||"").indexOf("sheet")===0)renderSheetPreview();
 });
 function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
 document.getElementById("qk-notice-ok").addEventListener("click",dismissNotice);
 buildShell();load();renderAll();showNotice();
 </script>
-</body>
+<script>(function(){state={"v": 1, "tasks": {"p0t0": true, "p0t1": true, "p0t2": true, "p0t3": true, "p0t4": true, "p0t5": true, "p0t6": true, "p1t0": true, "p1t1": true, "p1t2": true, "p1t3": true}, "wishes": {"routines": "A few notes to start with — more to add as things become clearer.", "medical": "A few notes to start with — more to add as things become clearer."}, "lastReviewed": null, "schedule": [{"item": "Week on / week off", "type": "Regular rotation", "who": "Mine", "when": "2026-04-13", "status": "Agreed", "notes": ""}, {"item": "Thanksgiving", "type": "Holiday", "who": "Other parent's", "when": "2026-05-14", "status": "Confirmed", "notes": ""}, {"item": "February school break", "type": "School break", "who": "Shared", "when": "2026-06-15", "status": "Needs arranging", "notes": ""}, {"item": "Maya's birthday", "type": "Birthday", "who": "To be arranged", "when": "2026-07-16", "status": "Agreed", "notes": ""}], "expenses": [{"item": "Dentist visit — Maya", "cat": "Medical / dental", "when": "2026-04-13", "amount": "1200", "paid": "Me", "submitted": "2026-09-18", "status": "Open"}, {"item": "Soccer registration", "cat": "Activities / sports", "when": "2026-05-14", "amount": "450", "paid": "Other parent", "submitted": "2026-01-10", "status": "Submitted"}, {"item": "School photos", "cat": "School", "when": "2026-06-15", "amount": "85", "paid": "Split at the time", "submitted": "2026-02-11", "status": "Settled"}, {"item": "Winter coats", "cat": "Clothing", "when": "2026-07-16", "amount": "1200", "paid": "Me", "submitted": "2026-03-12", "status": "Not claimable"}], "settled": [{"when": "2026-04-13", "direction": "Other parent paid me", "amount": "62.50", "covers": "Half the dentist visit", "how": "Bank transfer", "notes": ""}, {"when": "2026-05-14", "direction": "I paid the other parent", "amount": "140", "covers": "Soccer registration", "how": "App / online", "notes": ""}, {"when": "2026-06-15", "direction": "Other parent paid me", "amount": "37.25", "covers": "School photos", "how": "Cash", "notes": ""}, {"when": "2026-07-16", "direction": "I paid the other parent", "amount": "18.50", "covers": "Half the winter coats", "how": "Venmo", "notes": ""}], "team": [{"name": "Jordan Miller", "role": "School / teacher", "phone": "(555) 010-1234", "email": "alex@example.com", "notes": ""}, {"name": "Sam Rivera", "role": "Pediatrician", "phone": "(555) 010-5678", "email": "jordan@example.com", "notes": ""}, {"name": "Alex Chen", "role": "Dentist", "phone": "(555) 010-9012", "email": "sam@example.com", "notes": ""}, {"name": "Casey Morgan", "role": "Therapist / counselor", "phone": "(555) 010-1234", "email": "alex@example.com", "notes": ""}], "travels": [{"item": "Inhaler and spacer", "child": "Maya", "kind": "Medication", "where": "Travels both ways", "notes": ""}, {"item": "Reading folder", "child": "Sam", "kind": "School", "where": "Travels both ways", "notes": ""}, {"item": "Blue rabbit", "child": "Maya", "kind": "Comfort item", "where": "Travels both ways", "notes": ""}, {"item": "Soccer cleats", "child": "Sam", "kind": "Activity gear", "where": "Missing", "notes": ""}], "journal": [{"when": "2026-04-13", "type": "Schedule change", "item": "Swapped this weekend for next", "notes": ""}, {"when": "2026-05-14", "type": "Agreement reached", "item": "Agreed to split soccer fees", "notes": ""}, {"when": "2026-06-15", "type": "Appointment", "item": "Parent-teacher evening booked", "notes": ""}, {"when": "2026-07-16", "type": "Handoff note", "item": "Handoff moved to 6pm", "notes": ""}]};if(typeof migrateTaskKeys==="function"){try{migrateTaskKeys();}catch(e){}}renderAll();save=function(){var e=document.getElementById("save-status");if(e)e.innerHTML="<b>Demo mode — the full version saves automatically</b>";};backup=function(){alert("Backup is included in the full version.");};restore=function(i){if(i)i.value="";alert("Restore is included in the full version.");};save();})();</script></body>
 </html>

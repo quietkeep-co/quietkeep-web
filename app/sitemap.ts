@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { products } from "@/lib/products";
+import { products, CATEGORY_META } from "@/lib/products";
 import { guides } from "@/lib/guides";
 import { site } from "@/lib/site";
 
@@ -9,6 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const base = `https://${site.domain}`;
   return [
     { url: base, changeFrequency: "weekly", priority: 1 },
+    { url: `${base}/organizers`, changeFrequency: "weekly", priority: 0.9 },
+    ...Object.values(CATEGORY_META).map((meta) => ({
+      url: `${base}/organizers/${meta.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     { url: `${base}/guides`, changeFrequency: "weekly", priority: 0.8 },
     { url: `${base}/free`, changeFrequency: "monthly", priority: 0.7 },
     ...products.map((p) => ({

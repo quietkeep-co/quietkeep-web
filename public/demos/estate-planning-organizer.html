@@ -1,6 +1,5 @@
-<!-- /demo-organizer page: the REAL app in demo mode (seeded fictional plan, persistence disabled).
-     Paste the whole thing into a Custom HTML element on a new page at path /demo-organizer. -->
 <!DOCTYPE html>
+<!-- Quietkeep build estate-planning-organizer-3a7c5a4288 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -90,9 +89,23 @@ td.num input{text-align:right}
   section.tab{padding:14px}
   th,td{font-size:.85rem}
 }
+
+/* --- Quietkeep safety retrofit (2026-08-05) --- */
+.qk-veil{position:fixed;inset:0;background:rgba(31,39,36,.72);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.qk-veil[hidden]{display:none}
+.qk-notice{background:var(--white,#FFFFFF);border:1px solid var(--line,#D8D6CE);border-radius:14px;max-width:640px;width:100%;padding:26px 28px;margin:auto}
+.qk-notice h2{font-family:var(--serif,Georgia,serif);font-size:1.35rem;color:var(--spruce,#24413B);margin-bottom:10px}
+.qk-notice p{font-size:.92rem;color:#3f4945;margin-bottom:12px}
+.qk-notice .hot{background:#FBF3E2;border:1px solid var(--brass,#A5834B);border-radius:10px;padding:12px 14px;font-size:.92rem;color:#5d4a20;margin-bottom:14px}
+.qk-notice .hot b{color:var(--ink,#1F2724)}
+.qk-notice .fine{font-size:.8rem;color:#6a736d;border-top:1px solid var(--soft,#E7E5DD);padding-top:10px;margin-bottom:16px}
+.qk-notice .qk-ok{background:var(--spruce,#24413B);color:var(--porcelain,#F1F0EB);border:1.5px solid var(--spruce,#24413B);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.savebar .right{display:flex;align-items:center;gap:10px}
+.savebar .erase{background:none;border:1px solid var(--mist,#9DB4AC);color:var(--porcelain,#F1F0EB);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
+.savebar .erase:hover{background:var(--danger,#8A3B2E);border-color:var(--danger,#8A3B2E)}
 </style>
 </head>
-<body>
+<body><div style="position:relative;z-index:5;background:#A5834B;color:#1F2724;text-align:center;font:600 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;padding:9px 14px;">Live demo — sample data only. Nothing you enter here is saved, and it resets when you leave. <a href="#buy" style="color:#1F2724;text-decoration:underline;">Buy to keep your own copy.</a></div>
 <header>
   <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
@@ -117,6 +130,7 @@ td.num input{text-align:right}
     <button data-tab="inventory">Inventory</button>
     <button data-tab="debts">Debts</button>
     <button data-tab="people">People</button>
+    <button data-tab="benefdesig">Beneficiary Forms</button>
     <button data-tab="documents">Documents</button>
     <button data-tab="wishes">Wishes</button>
     <button data-tab="letter">Letter</button>
@@ -151,6 +165,15 @@ td.num input{text-align:right}
     <p class="note">Everyone your family would need to reach: executor, the agents under your powers of attorney, guardians, beneficiaries, and professionals. Use the Role field or pick from the list.</p>
     <table><thead><tr><th style="width:22%">Name</th><th style="width:22%">Role</th><th style="width:16%">Phone</th><th style="width:20%">Email</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="people-body"></tbody></table>
     <button class="add" onclick="addRow('people')">+ Add person</button>
+  </section>
+
+  <section class="tab" id="tab-benefdesig">
+    <h2>Beneficiary Forms</h2>
+    <p class="note">Some accounts carry their own beneficiary form, filed with the company that holds the account: retirement accounts, life insurance, annuities, and payable-on-death or transfer-on-death registrations. Record what each form says now and the date you last confirmed it, so you can see at a glance which ones you have checked and which you have not. Ask your attorney how these fit with the rest of your plan.</p>
+    <table><thead><tr><th style="width:16%">Account (nickname or last 4)</th><th style="width:14%">Company that holds it</th><th style="width:15%">Kind</th><th style="width:14%">Named on the form</th><th style="width:10%">Backup named?</th><th style="width:11%">Last confirmed</th><th style="width:13%">Status</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="benefdesig-body"></tbody></table>
+    <button class="add" onclick="addRow('benefdesig')">+ Add an account</button>
+    <div class="totals" id="benefdesig-count"></div>
+    <p class="disclaimer">Record what the form actually says today, not what you intend it to say. Whether a designation is right for your situation, and how it works alongside your other documents, is a question for a licensed attorney. Never record account numbers in full, and never record passwords or PINs.</p>
   </section>
 
   <section class="tab" id="tab-documents">
@@ -201,7 +224,7 @@ td.num input{text-align:right}
   </section>
 </div>
 
-<div class="savebar"><span>Quietkeep · Estate Planning Organizer</span><span id="save-status"><b>All changes saved on this device</b></span></div>
+<div class="savebar"><span>Quietkeep · Estate Planning Organizer</span><span class="right"><span id="save-status"><b>All changes saved on this device</b></span><button class="erase" onclick="qkEraseAll()" title="Erase everything saved in this browser">Erase everything</button></span></div>
 <div id="print-area"></div>
 
 <script>
@@ -220,12 +243,12 @@ const PHASES=[
  ]},
  {name:"Phase 2 · The Core Documents",tasks:[
   ["Locate or decide on a will","The will directs who receives what and names your executor. If you do not have one, that is the first question to bring to an attorney."],
-  ["Understand whether a trust fits your situation","A trust can keep some assets out of probate. Whether one fits you is a question for an attorney, not this organizer."],
+  ["Understand whether a trust fits your situation","Whether a trust fits your situation is a question for an attorney, not this organizer."],
   ["Set up a durable financial power of attorney","This names who can handle money matters if you cannot. Bring it to an attorney to execute properly."],
   ["Set up a healthcare power of attorney or proxy","This names who speaks for your medical care if you cannot. The rules vary by state; confirm yours with an attorney."],
   ["Complete an advance directive or living will","This records your wishes for end-of-life care so no one has to guess under pressure."],
-  ["Check beneficiary designations on retirement accounts","Beneficiary forms override your will. Confirm each one still names the person you intend."],
-  ["Check beneficiary designations on life insurance","The same rule holds: the form controls, not the will. Confirm every policy."],
+  ["Check beneficiary designations on retirement accounts","Confirm each form still names the person you intend, and ask your attorney how it fits with your will. Record each account and the date you confirmed it on the Beneficiary Forms tab."],
+  ["Check beneficiary designations on life insurance","Confirm every policy still names the person you intend, and raise any mismatch with your attorney. Record each policy and the date you confirmed it on the Beneficiary Forms tab."],
   ["Check transfer-on-death options where your state allows","Some accounts, vehicles, and property can pass directly to a named person. Ask an attorney whether your state offers this."],
   ["Record guardianship nominations for minor children","If you have minor children, naming a guardian is one of the most important things you can do."],
   ["Record where every executed document lives","A signed document no one can find helps no one. Note the location of each in the Documents tab."]
@@ -276,14 +299,21 @@ const WISHES=[
 const SCHEMAS={
  assets:["name","type:sel:Financial account|Property|Vehicle|Valuable / heirloom|Business|Other","inst","acct","value:num","notes"],
  debts:["creditor","type:sel:Mortgage|Auto loan|Student loan|Personal loan|Credit card|Medical|Recurring obligation|Other","balance:num","notes"],
- people:["name","role:list:Executor|Alternate executor|Financial POA agent|Healthcare agent|Guardian for minor children|Beneficiary|Attorney|Accountant / CPA|Financial advisor|Insurance agent|Other","phone","email","notes"]
+ people:["name","role:list:Executor|Alternate executor|Financial POA agent|Healthcare agent|Guardian for minor children|Beneficiary|Attorney|Accountant / CPA|Financial advisor|Insurance agent|Other","phone","email","notes"],
+ benefdesig:["account","custodian","kind:sel:Retirement account|Life insurance|Annuity|Bank account (POD)|Brokerage (TOD)|Vehicle or property (TOD)|Other","primaryOnForm","contingentNamed:sel:Not sure|Yes|No","lastConfirmed:date","status:sel:Not checked yet|Form requested|Needs updating|Confirmed current","notes"]
 };
 let state=null;
-const DEFAULT={v:1,tasks:{},docs:{},assets:[],debts:[],people:[],wishes:{},lastReviewed:null};
+/* Register ids and column keys are the ones a future manifest will use. They
+   are chosen once and never renamed: everything a buyer types is stored under
+   them in this browser, so a rename makes existing data stop rendering. A new
+   register id has to appear in DEFAULT, in REGISTERS, and nowhere else — keep
+   it that way. */
+const DEFAULT={v:1,tasks:{},docs:{},assets:[],debts:[],people:[],benefdesig:[],wishes:{},lastReviewed:null};
+const REGISTERS=["assets","debts","people","benefdesig"];
 function load(){
   try{const raw=localStorage.getItem("qk-estate-planning");state=raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT));}
   catch(e){state=JSON.parse(JSON.stringify(DEFAULT));}
-  ["assets","debts","people"].forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
+  REGISTERS.forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
   if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
   if(typeof state.docs!=="object"||!state.docs)state.docs={};
   if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
@@ -402,7 +432,19 @@ function totals(){
   const d=state.debts.reduce((s,r)=>s+(parseFloat(r.balance)||0),0);
   const at=document.getElementById("assets-total");if(at)at.textContent=money(a);
   const dt=document.getElementById("debts-total");if(dt)dt.textContent=money(d);
+  benefCount();
   summaryStats();renderLetterPreview();
+}
+/* Rows are created empty, so a status the buyer has not touched yet reads as
+   the first option rather than as nothing. */
+function benefCount(){
+  const el=document.getElementById("benefdesig-count");if(!el)return;
+  const opts=SCHEMAS.benefdesig[6].split(":")[2].split("|");
+  const counts={};opts.forEach(o=>counts[o]=0);
+  state.benefdesig.forEach(r=>{counts[Object.prototype.hasOwnProperty.call(counts,r.status)?r.status:opts[0]]++;});
+  const n=state.benefdesig.length;
+  const parts=opts.filter(o=>counts[o]>0).map(o=>counts[o]+" "+o.toLowerCase());
+  el.innerHTML=n?("<strong>"+n+"</strong> account"+(n===1?"":"s")+" · "+parts.join(" · ")):"Nothing recorded here yet.";
 }
 function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
 function summaryStats(){
@@ -474,6 +516,14 @@ function letterHTML(forPrint){
     h+='</table>';
   }else{h+='<p>No debts recorded yet.</p>';}
 
+  // Beneficiary forms
+  h+='<h2>Accounts With Their Own Beneficiary Form</h2>';
+  if(state.benefdesig.length){
+    h+='<table><tr><th>Account</th><th>Company that holds it</th><th>Kind</th><th>Named on the form</th><th>Backup named?</th><th>Last confirmed</th><th>Status</th><th>Notes</th></tr>';
+    state.benefdesig.forEach(r=>{h+='<tr><td>'+esc(r.account)+'</td><td>'+esc(r.custodian)+'</td><td>'+esc(r.kind)+'</td><td>'+esc(r.primaryOnForm)+'</td><td>'+esc(r.contingentNamed)+'</td><td>'+esc(r.lastConfirmed)+'</td><td>'+esc(r.status||"Not checked yet")+'</td><td>'+esc(r.notes)+'</td></tr>';});
+    h+='</table><p>These are what the forms said when I last confirmed them. My family should ask the company that holds each account for the current form.</p>';
+  }else{h+='<p>No accounts recorded yet.</p>';}
+
   // Wishes
   h+='<h2>My Wishes &amp; Instructions</h2>';
   let anyWish=false;
@@ -504,8 +554,29 @@ function printAll(){
   });
   pa.innerHTML=h;window.print();
 }
+/* --- Quietkeep backup stamp (2026-08-06) ---
+   The Estate Settlement Companion and this app both track a document checklist
+   by position in their own list, and the two lists are not the same list.
+   Loading the other app's backup here used to succeed silently and reattach
+   every document status and location to the wrong document. Backups now carry
+   a stamp. Backups downloaded before today carry none, so those are also
+   checked for the shape of the other app before anything is overwritten. */
+var QK_BACKUP_APP="qk-estate-planning";
+var QK_WRONG_APP_MSG="\n\nIt has not been restored, and nothing here has changed. The two organizers keep their document checklists in a different order, so loading this one would have attached your notes to the wrong documents.\n\nOpen it in the organizer that created it.";
+function qkBackupIsOurs(data){
+  if(data.qkApp&&data.qkApp!==QK_BACKUP_APP){
+    alert("This backup was made by a different Quietkeep organizer"+(data.qkProduct?" (the "+data.qkProduct+")":"")+"."+QK_WRONG_APP_MSG);
+    return false;
+  }
+  if(!data.qkApp&&data.expenses&&data.contacts&&data.people===undefined){
+    alert("This looks like an Estate Settlement Companion backup, not an Estate Planning Organizer backup."+QK_WRONG_APP_MSG);
+    return false;
+  }
+  return true;
+}
 function backup(){
-  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const payload=Object.assign({qkApp:QK_BACKUP_APP,qkProduct:QK_PRODUCT},state);
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
   const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
   aEl.download="estate-planning-backup-"+new Date().toISOString().slice(0,10)+".json";
   document.body.appendChild(aEl);aEl.click();aEl.remove();
@@ -515,9 +586,12 @@ function restore(input){
   const reader=new FileReader();
   reader.onload=()=>{try{const data=JSON.parse(reader.result);
       if(!data||typeof data!=="object")throw 0;
+      if(!qkBackupIsOurs(data))return;
+      delete data.qkApp;delete data.qkProduct;
       state=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),data);
-      ["assets","debts","people"].forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
+      REGISTERS.forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
       if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+      if(typeof state.docs!=="object"||!state.docs)state.docs={};
       save();renderAll();alert("Backup restored.");}
     catch(e){alert("That file does not look like a valid backup.");}};
   reader.readAsText(f);input.value="";
@@ -530,20 +604,54 @@ document.getElementById("nav").addEventListener("click",e=>{
   document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
   if(e.target.dataset.tab==="letter")renderLetterPreview();
 });
-function renderAll(){renderTasks();["assets","debts","people"].forEach(renderTable);renderDocs();renderWishes();totals();renderReviewLine();renderLetterPreview();}
-load();renderAll();
-</script>
+function renderAll(){renderTasks();REGISTERS.forEach(renderTable);renderDocs();renderWishes();totals();renderReviewLine();renderLetterPreview();}
 
-<script>
-/* DEMO MODE: fictional sample plan, nothing persists */
-(function(){
-  state = Object.assign(JSON.parse(JSON.stringify(DEFAULT)), {"v": 1, "tasks": {"p0t0": true, "p0t1": true, "p0t2": true, "p0t3": true, "p0t4": true, "p0t5": true, "p0t6": true, "p0t7": true, "p0t8": true, "p1t0": true, "p1t1": true, "p1t2": true, "p1t3": true, "p1t4": true, "p2t0": true, "p2t1": true, "p2t2": true}, "docs": {"0": {"status": "Have it", "loc": "Fireproof safe - home office"}, "4": {"status": "Have it", "loc": "Copy with Dr. Meyer's office"}, "8": {"status": "Have it", "loc": "Safe deposit box - First National"}, "11": {"status": "Have it", "loc": "Policy binder - den bookshelf"}}, "assets": [{"name": "Checking & savings", "type": "Financial account", "inst": "First National Bank", "acct": "x4471", "value": "38200", "notes": "Joint account"}, {"name": "401(k)", "type": "Financial account", "inst": "Fidelity", "acct": "x9032", "value": "412000", "notes": "Beneficiary: spouse"}, {"name": "Home", "type": "Property", "inst": "42 Linden Ave", "acct": "", "value": "385000", "notes": "Deed in safe"}], "debts": [{"creditor": "First National Mortgage", "type": "Mortgage", "balance": "182400", "notes": "Auto-pay, 15-yr"}], "people": [{"name": "Daniel Reyes", "role": "Executor", "phone": "555-0142", "email": "dreyes@example.com", "notes": "Brother; has asked & accepted"}, {"name": "Sarah Chen", "role": "Healthcare agent", "phone": "555-0187", "email": "schen@example.com", "notes": "Knows my wishes"}], "wishes": {"funeral": "Cremation. A simple gathering at the lake house, nothing formal.", "pets": "Biscuit (beagle) goes to Daniel. Vet is Lakeside Animal Clinic."}, "lastReviewed": "2026-07-13"});
-  save = function(){ document.getElementById("save-status").innerHTML = "<b>Demo mode — the full version saves automatically</b>"; };
-  backup = function(){ alert("Backup is included in the full version."); };
-  restore = function(i){ if(i) i.value=""; alert("Restore is included in the full version."); };
-  renderAll();
-  save();
-})();
+/* --- Quietkeep safety retrofit (2026-08-05) ---
+   Two facts every product must state plainly, because neither is obvious and
+   both can hurt someone: (1) "local" is not "private" when the person you fear
+   shares the device; (2) localStorage is keyed to the browser, NOT to the file,
+   so deleting the .html does not delete the entries. */
+var QK_STORAGE_KEY="qk-estate-planning";
+var QK_PRODUCT="Estate Planning Organizer";
+function qkShowNotice(){
+  if(document.getElementById("qk-veil"))return;
+  var v=document.createElement("div");
+  v.className="qk-veil";v.id="qk-veil";
+  v.innerHTML='<div class="qk-notice" role="dialog" aria-modal="true">'
+    +'<h2>Before you start</h2>'
+    +'<p>Keep this somewhere only you can reach \u2014 a device, phone, or USB drive that is not shared.</p>'
+    +'<p>Nothing you type is ever sent anywhere \u2014 it is saved only in this browser, on this device. That also means anyone who can use this device and this browser can open it. It is not encrypted and not password-protected.</p>'
+    +'<p>Deleting this file does NOT erase what you have entered. Your entries are stored by the browser, not inside the file. To remove them, use the \u201cErase everything\u201d button at the bottom of the screen.</p>'
+    +'<div class="hot">If you are in danger, your safety comes before any of this:<br>'
+    +'<b>National Domestic Violence Hotline \u2014 1-800-799-7233</b><br>'
+    +'<b>Text START to 88788</b><br>'
+    +'<b>Deaf/HoH video phone \u2014 855-812-1001</b></div>'
+    +'<div class="fine">This is an organizer. It is not legal, medical, or financial advice, and it is not a substitute for the advice of an attorney. For advice about your situation, consult a licensed professional in your state.</div>'
+    +'<div style="margin-top:0"><button class="qk-ok" id="qk-notice-ok">Continue</button></div>'
+    +'</div>';
+  document.body.appendChild(v);
+  var ok=document.getElementById("qk-notice-ok");
+  ok.addEventListener("click",function(){v.hidden=true;});
+  ok.focus();
+}
+function qkEraseAll(){
+  /* Two steps on purpose. This button is always on screen, so one stray click
+     must never destroy someone's work \u2014 but it also has to stay fast enough
+     to use when you need the screen clear right now. */
+  if(!confirm("ERASE EVERYTHING?\n\n"
+    +"This permanently deletes everything you have saved in this browser for "+QK_PRODUCT+".\n\n"
+    +"THIS CANNOT BE UNDONE. There is no way to get it back afterwards.\n\n"
+    +"It does NOT delete any backup file you have already downloaded, or anything you have printed.\n\n"
+    +"If you want to keep a copy, press Cancel and download a backup first."))return;
+  if(!confirm("Last check.\n\nReally erase everything permanently?"))return;
+  try{localStorage.removeItem(QK_STORAGE_KEY);}catch(e){}
+  alert("Erased. Nothing from this organizer is left in this browser.\n\n"
+    +"If you also downloaded a backup file or printed a copy, delete those separately.\n\n"
+    +"This page will now reload.");
+  location.reload();
+}
+
+load();renderAll();qkShowNotice();
 </script>
-</body>
+<script>(function(){state={"v": 1, "tasks": {"p0t0": true, "p0t1": true, "p0t2": true, "p0t3": true, "p0t4": true, "p0t5": true, "p0t6": true, "p0t7": true, "p0t8": true, "p1t0": true, "p1t1": true, "p1t2": true, "p1t3": true, "p1t4": true, "p2t0": true, "p2t1": true, "p2t2": true}, "docs": {"0": {"status": "Have it", "loc": "Fireproof safe - home office"}, "4": {"status": "Have it", "loc": "Copy with Dr. Meyer's office"}, "8": {"status": "Have it", "loc": "Safe deposit box - First National"}, "11": {"status": "Have it", "loc": "Policy binder - den bookshelf"}}, "assets": [{"name": "Checking & savings", "type": "Financial account", "inst": "First National Bank", "acct": "x4471", "value": "38200", "notes": "Joint account"}, {"name": "401(k)", "type": "Financial account", "inst": "Fidelity", "acct": "x9032", "value": "412000", "notes": "Beneficiary: spouse"}, {"name": "Home", "type": "Property", "inst": "42 Linden Ave", "acct": "", "value": "385000", "notes": "Deed in safe"}], "debts": [{"creditor": "First National Mortgage", "type": "Mortgage", "balance": "182400", "notes": "Auto-pay, 15-yr"}], "people": [{"name": "Daniel Reyes", "role": "Executor", "phone": "555-0142", "email": "dreyes@example.com", "notes": "Brother; has asked & accepted"}, {"name": "Sarah Chen", "role": "Healthcare agent", "phone": "555-0187", "email": "schen@example.com", "notes": "Knows my wishes"}], "benefdesig": [{"account": "401(k) — Fidelity x9032", "custodian": "Fidelity", "kind": "Retirement account", "primaryOnForm": "Spouse", "contingentNamed": "Yes", "lastConfirmed": "2026-06-15", "status": "Confirmed current", "notes": "Checked after last year's beneficiary review"}], "wishes": {"funeral": "Cremation. A simple gathering at the lake house, nothing formal.", "pets": "Biscuit (beagle) goes to Daniel. Vet is Lakeside Animal Clinic."}, "lastReviewed": "2026-07-13"};if(typeof migrateTaskKeys==="function"){try{migrateTaskKeys();}catch(e){}}renderAll();save=function(){var e=document.getElementById("save-status");if(e)e.innerHTML="<b>Demo mode — the full version saves automatically</b>";};backup=function(){alert("Backup is included in the full version.");};restore=function(i){if(i)i.value="";alert("Restore is included in the full version.");};save();})();</script></body>
 </html>

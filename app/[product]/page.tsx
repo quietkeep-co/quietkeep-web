@@ -12,6 +12,8 @@ import { DemoFrame } from "@/components/DemoFrame";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import { JsonLd } from "@/components/JsonLd";
 import { getProduct, productSlugs } from "@/lib/products";
+import { guidesForProduct } from "@/lib/guides";
+import { GuideCard } from "@/components/GuideCard";
 import { site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -52,6 +54,7 @@ export default function ProductPage({
 }) {
   const p = getProduct(params.product);
   if (!p) notFound();
+  const relatedGuides = guidesForProduct(p.slug);
 
   const productLd = {
     "@context": "https://schema.org",
@@ -278,6 +281,21 @@ export default function ProductPage({
           )}
         </div>
       </section>
+
+      {relatedGuides.length > 0 && (
+        <section className="border-t border-line py-[72px]">
+          <div className="wrap">
+            <SectionHead title="Related reading">
+              Free guides on the same topic, no purchase required.
+            </SectionHead>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[18px]">
+              {relatedGuides.map((g) => (
+                <GuideCard key={g.slug} guide={g} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <UpdatesSection />
 

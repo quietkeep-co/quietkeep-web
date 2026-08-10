@@ -1,11 +1,11 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-import { SectionHead } from "@/components/SectionHead";
 import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
-import { guides } from "@/lib/guides";
+import { GuideCard } from "@/components/GuideCard";
+import { guideClusters } from "@/lib/guides";
+import { CATEGORY_META } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Guides",
@@ -20,6 +20,13 @@ const guidesNav = [
 ];
 
 export default function GuidesIndex() {
+  const sections = (
+    Object.entries(CATEGORY_META) as [
+      keyof typeof CATEGORY_META,
+      (typeof CATEGORY_META)[keyof typeof CATEGORY_META]
+    ][]
+  ).map(([key, meta]) => ({ key, meta, clusters: guideClusters(key) }));
+
   return (
     <>
       <Nav links={guidesNav} cta={{ label: "See the organizers", href: "/organizers" }} />
@@ -37,37 +44,59 @@ export default function GuidesIndex() {
             No jargon, no scare tactics, no upsell funnels. Just the practical
             steps, written the way we&apos;d explain them to a friend.
           </p>
+          {sections.length > 1 && (
+            <div className="mt-6 flex flex-wrap gap-3">
+              {sections.map(
+                ({ key, meta, clusters }) =>
+                  clusters.length > 0 && (
+                    <a
+                      key={key}
+                      href={`#${meta.slug}`}
+                      className="rounded-full border border-line px-4 py-1.5 text-[14px] text-ink-soft hover:border-ledger hover:text-ledger"
+                    >
+                      {meta.label}
+                    </a>
+                  )
+              )}
+            </div>
+          )}
         </div>
       </header>
 
-      <section className="py-[56px]">
-        <div className="wrap">
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[22px]">
-            {guides.map((g) => (
-              <Reveal
-                key={g.slug}
-                className="flex flex-col rounded-xl border border-line bg-card p-[26px]"
-              >
-                <div className="mb-3 text-[12.5px] uppercase tracking-[0.12em] text-brass">
-                  {g.cluster}
+      {sections.map(({ key, meta, clusters }, i) => {
+        if (!clusters.length) return null;
+        return (
+          <section
+            key={key}
+            id={meta.slug}
+            className={`py-[56px]${i > 0 ? " border-t border-line" : ""}`}
+          >
+            <div className="wrap">
+              <div className="mb-7 flex items-baseline justify-between gap-3">
+                <h2 className="font-serif text-[26px]">{meta.label}</h2>
+                <a
+                  href={`/organizers/${meta.slug}`}
+                  className="whitespace-nowrap text-[14.5px] text-ledger"
+                >
+                  See the organizers →
+                </a>
+              </div>
+              {clusters.map((c) => (
+                <div key={c.cluster} className="mb-9 last:mb-0">
+                  <h3 className="mb-4 text-[13px] font-bold uppercase tracking-[0.12em] text-brass">
+                    {c.cluster}
+                  </h3>
+                  <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[18px]">
+                    {c.guides.map((g) => (
+                      <GuideCard key={g.slug} guide={g} />
+                    ))}
+                  </div>
                 </div>
-                <h2 className="mb-2.5 text-[21px] leading-snug">
-                  <Link href={`/guides/${g.slug}`} className="text-ink no-underline hover:text-ledger">
-                    {g.title}
-                  </Link>
-                </h2>
-                <p className="mb-4 text-[15.5px] text-ink-soft">{g.description}</p>
-                <div className="mt-auto flex items-center justify-between text-[14px] text-ink-faint">
-                  <span>{g.readingMinutes} min read</span>
-                  <Link href={`/guides/${g.slug}`} className="text-ledger">
-                    Read the guide →
-                  </Link>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+              ))}
+            </div>
+          </section>
+        );
+      })}
 
       <UpdatesSection />
       <Footer />

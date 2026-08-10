@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<!-- Quietkeep build funeral-planning-companion-299f4d6bd1 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Funeral Planning Companion — Quietkeep</title>
+<title>Funeral Planning Companion — Live Demo — Quietkeep</title>
 <style>
 :root{
   --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
@@ -55,6 +56,15 @@ td.num input{text-align:right}
 .toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
 .toolbar button:hover{border-color:var(--brass)}
 .pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+/* Wide registers (Home Inventory's 13-column inventory table is the worst
+   case in the catalogue) squeeze every column to illegibility when forced
+   into the 1040px wrap at width:100% — a number input's spinner arrows alone
+   can eat a 5%-wide column, so the digit inside never renders at all. Give
+   the table room to be its natural width and let the wrapper scroll instead
+   of compressing. Found by actually looking at a screenshot, not by reading
+   the column list. */
+.table-wrap{overflow-x:auto;margin-top:10px}
+.table-wrap table{margin-top:0}
 .wish{margin:0 0 22px}
 .wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
 .wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
@@ -67,6 +77,20 @@ td.num input{text-align:right}
 .review-box{background:#F7F6F1;border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:6px 0 16px}
 .review-box .rl{font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
 .review-box .rl strong{color:var(--ink)}
+/* First-open notice: storage truth + erase truth + (per product) safety guidance.
+   Shown on EVERY open, not just the first — a disclaimer that appears only at
+   first start-up is exactly what sank the defence in UPLC v. Parsons Technology. */
+.qk-veil{position:fixed;inset:0;background:rgba(31,39,36,.72);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.qk-veil[hidden]{display:none}
+.qk-notice{background:var(--white);border:1px solid var(--line);border-radius:14px;max-width:640px;width:100%;padding:26px 28px;margin:auto}
+.qk-notice h2{font-family:var(--serif);font-size:1.35rem;color:var(--spruce);margin-bottom:10px}
+.qk-notice p{font-size:.92rem;color:#3f4945;margin-bottom:12px}
+.qk-notice .hot{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:12px 14px;font-size:.92rem;color:#5d4a20;margin-bottom:14px}
+.qk-notice .hot b{color:var(--ink)}
+.qk-notice .fine{font-size:.8rem;color:#6a736d;border-top:1px solid var(--soft);padding-top:10px;margin-bottom:16px}
+.savebar .right{display:flex;align-items:center;gap:10px}
+.savebar .erase{background:none;border:1px solid var(--mist);color:var(--porcelain);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
+.savebar .erase:hover{background:var(--danger);border-color:var(--danger)}
 #print-area{display:none}
 @media print{
   body *{visibility:hidden}
@@ -90,7 +114,7 @@ td.num input{text-align:right}
 }
 </style>
 </head>
-<body>
+<body><div style="position:relative;z-index:5;background:#A5834B;color:#1F2724;text-align:center;font:600 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;padding:9px 14px;">Live demo — sample data only. Nothing you enter here is saved, and it resets when you leave. <a href="#buy" style="color:#1F2724;text-decoration:underline;">Buy to keep your own copy.</a></div>
 <header>
   <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
@@ -114,32 +138,111 @@ td.num input{text-align:right}
   <div id="sections"></div>
 </div>
 
-<div class="savebar"><span>Quietkeep · Funeral Planning Companion</span><span id="save-status"><b>All changes saved on this device</b></span></div>
+<div class="savebar"><span>Quietkeep · Funeral Planning Companion</span><span class="right"><span id="save-status"><b>All changes saved on this device</b></span><button class="erase" onclick="eraseAll()" title="Erase everything saved in this browser">Erase everything</button></span></div>
 <div id="print-area"></div>
+
+<div class="qk-veil" id="qk-veil" hidden>
+  <div class="qk-notice" role="dialog" aria-modal="true" aria-labelledby="qk-notice-h">
+    <h2 id="qk-notice-h"></h2>
+    <div id="qk-notice-body"></div>
+    <div class="toolbar" style="margin-top:0"><button class="primary" id="qk-notice-ok">Continue</button></div>
+  </div>
+</div>
 
 <script>
 "use strict";
 /* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
    injected at build time by generators/qk_app.py from the product manifest.
    Hard promises: single file, zero network, never a credential field. */
-const CONFIG={"name":"Funeral Planning Companion","storageKey":"qk-funeral-planning-companion","backupPrefix":"funeral-planning","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Thirty steps across four phases, at whatever pace feels right. Everything saves automatically on this device. Each step notes why it matters. This is an organizer for your wishes — it never asks for a payment or account number, and it is not a prepaid contract. What you decide here is a gift: when the time comes, your family follows a plan instead of guessing at one.","disclaimer":"This is an organizer, not legal or financial advice and not a prepaid funeral contract. For prepaid arrangements or estate decisions, consult a licensed funeral provider or attorney in your state."},"phases":[{"name":"Phase 1 · My Wishes","tasks":[["Choose burial, cremation, or donation","The first decision every family faces, and the one they most want to get right. Deciding it now is the single kindest line in this plan."],["Choose a service style","Traditional service, memorial, celebration of life, or none at all. There is no wrong answer — only your answer."],["Choose the tone you'd want","Quiet or full of stories, formal or casual. A single sentence here shapes everything else."],["Note music and readings","The songs, passages, or poems that sound like you. Write them in the Wishes tab."],["Note who you would like to speak","A person or two you'd trust with a few words. Asking them someday is easier when it's written down."],["Note flowers or a donation preference","Many families ask 'flowers, or a cause?' within the first day. Name the cause if you have one."],["Note any dress or appearance wishes","Only if it matters to you. If it doesn't, say 'family decides' and move on."],["Write anything you want said — or not said","An obituary line, a story worth telling, or a subject to leave alone. Your words, kept in your Wishes."]]},{"name":"Phase 2 · Arrangements","tasks":[["Note a preferred funeral home","Or write 'family chooses.' Either way, the decision is made — that is what spares them."],["Note cemetery, plot, or scattering wishes","If a family plot exists, record where the deed lives. If you have a place in mind, name it."],["Note an officiant or clergy preference","A name, a congregation, or simply the kind of person you'd want to lead it."],["Record what is already prepaid","Prepaid plots, policies, or plans are easy to lose track of. Add each to the Arrangements tab."],["Record where the paperwork lives","A prepaid plan your family can't find is a plan they'll pay for twice. Note the drawer, safe, or file."],["Note a realistic budget or cost ceiling","Grief makes overspending easy. A number from you is permission to keep it sensible."],["Note veteran or membership benefits","Military honors, union or fraternal benefits, faith community support. These are commonly missed and worth real money."],["Add each arrangement to the Arrangements tab","One row per decision: provider, status, cost, and where the paperwork lives."]]},{"name":"Phase 3 · The Details","tasks":[["Record your full legal name and any former names","The death certificate needs it exactly. Maiden and former names save a correction later."],["Record your date and place of birth","Asked for on the certificate and in the obituary, usually within the first day."],["Record military service","Branch, dates, and where the discharge papers (DD-214) live — the key to honors and benefits."],["List immediate family for the obituary","Spouse, children, siblings, grandchildren. The obituary writer will thank you."],["Note the life facts an obituary mentions","Occupation, hometown, the things you were known for. A few lines now spell a better story later."],["List organizations to inform","Employer, clubs, faith community. Someone will need to make those calls."],["Add your key people to the People tab","The person carrying this out, family to call first, clergy, and anyone else on the list."]]},{"name":"Phase 4 · Hand It Off","tasks":[["Choose who will carry out these arrangements — and ask them","The plan needs a person. Choose someone steady, and ask before you write their name."],["Tell them where this plan lives","A plan no one can find helps no one. One conversation completes it."],["Print the Arrangements Instruction Sheet","One click on the Instruction Sheet tab produces the plan your family will actually follow."],["Store it with your estate documents","Beside the will and the letter of instruction, so everything is found together."],["Download a backup file","From the Summary tab. Keep it somewhere safe, like a USB drive."],["Review after any change of mind or move","A new town usually means a new funeral home and cemetery. Update while it's fresh."],["Confirm prepaid paperwork still matches your wishes","Plans and providers change. Once a year, check that what's on paper is still what you want."]]}],"registers":[{"id":"arrangements","tab":"Arrangements","heading":"Arrangements Register","noun":"arrangement","intro":"The practical half of the plan: the funeral home, the cemetery or scattering place, the officiant, and what is already paid for. For anything prepaid, the most important column is where the paperwork lives — a plan your family can't find is a plan they'll pay for twice.","columns":[{"key":"name","label":"Arrangement","width":"20%","type":"text"},{"key":"place","label":"Provider / place","width":"22%","type":"text"},{"key":"status","label":"Status","width":"16%","type":"select","options":["Family decides","Decided, not paid","Prepaid","To decide"]},{"key":"cost","label":"Est. cost ($)","width":"13%","type":"num"},{"key":"paperwork","label":"Where the paperwork lives","type":"text"}],"counter":"total","counterField":"cost","totalLabel":"Estimated total","totalUnit":"planned","line":"Planned so far: {total}. Every number here is one your family won't have to decide in grief."},{"id":"people","tab":"People","heading":"People to Notify","noun":"person","nounPlural":"people","statLabel":"People to notify","counterLabel":"People listed","intro":"Who should hear it from family, and who simply needs to be told: the person carrying out these arrangements, immediate family, clergy, employer, organizations. The first few rows are the first calls.","columns":[{"key":"name","label":"Name","width":"20%","type":"text"},{"key":"role","label":"Role","width":"26%","type":"list","options":["Carries out these arrangements","Immediate family — call first","Family","Close friend","Clergy / faith community","Employer","Organization / club","Funeral home contact","Other"]},{"key":"phone","label":"Phone","width":"16%","type":"text"},{"key":"email","label":"Email","width":"20%","type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"details","tab":"Vital Details","heading":"Vital Details","noun":"detail","counterLabel":"Details recorded","statLabel":"Vital details","intro":"The facts an obituary and a death certificate ask for, usually within the first day: legal names, dates and places, service history, family. Having them in one place turns a scramble through old files into a single printed page.","columns":[{"key":"item","label":"Detail","width":"28%","type":"list","options":["Full legal name","Former / maiden names","Date of birth","Place of birth","Military service (branch, dates)","Where discharge papers (DD-214) live","Occupation","Immediate family","Faith community","Hometown / places lived","Other"]},{"key":"value","label":"Information","width":"44%","type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"}],"wishesEnabled":true,"wishes":{"tab":"My Wishes","heading":"Service & Wishes","intro":"In your own words, at your own pace. None of this is binding and all of it can change — it simply means that when the time comes, the people you love follow your wishes instead of guessing at them. Everything here prints into the Arrangements Instruction Sheet.","disclaimer":"These wishes are a guide for your family, not a contract. Nothing here binds a funeral home or holds money.","items":[{"key":"disposition","label":"Burial, cremation, or donation","prompt":"The first decision your family would otherwise face. Burial, cremation, or donation — and anything that matters about where."},{"key":"service","label":"The service itself","prompt":"Traditional, memorial, celebration of life, or none. Formal or casual, quiet or full of stories — describe the gathering you'd want, or say 'family decides.'"},{"key":"music","label":"Music & readings","prompt":"The songs, passages, or poems that sound like you."},{"key":"speakers","label":"Who should speak","prompt":"A person or two you'd trust with a few words — and anyone you'd rather it not be."},{"key":"flowers","label":"Flowers or donations","prompt":"Many families ask within the first day: flowers, or a donation somewhere? Name the cause if you have one."},{"key":"message","label":"Anything you want said — or not said","prompt":"Optional. An obituary line, a story worth telling, or a subject to leave alone. Your words carry further than you think."}]},"sheet":{"tab":"Instruction Sheet","heading":"Arrangements Instruction Sheet","button":"Print the Instruction Sheet","intro":"This compiles your wishes, the people to call first, your arrangements, and the vital details into one printable plan: “What My Family Needs to Know: My Wishes & Arrangements.” Print it, store it with your estate documents, and tell the person carrying it out where it lives.","docTitle":"What My Family Needs to Know: My Wishes & Arrangements","docTag":"An Arrangements Instruction Sheet · prepared with the Quietkeep Funeral Planning Companion","lead":"This sheet holds my funeral wishes and the arrangements already made: what I want, who to call first, what is prepaid and where the paperwork lives, and the details an obituary and death certificate will need. It is a guide from me to my family — not a contract, and it holds no money.","foot":"Prepared by me for my family. This Instruction Sheet is an organizer output, not legal or financial advice, and not a prepaid funeral contract — it records wishes and arrangements, and binds no provider. For prepaid arrangements or estate decisions, my family should consult a licensed funeral provider or attorney.","disclaimer":"The Instruction Sheet is a personal guide for your family, not a legal document and not a prepaid contract. For binding arrangements, consult a licensed funeral provider.","sections":[{"type":"wish","key":"disposition","title":"My Wishes: Burial, Cremation, or Donation","empty":"Not recorded yet. This is the first decision a family faces — the kindest line in this plan."},{"type":"register","id":"people","title":"Who to Call First"},{"type":"register","id":"arrangements","title":"Arrangements & What Is Prepaid"},{"type":"register","id":"details","title":"Vital Details (for the obituary and certificate)"},{"type":"wishes","title":"My Service Wishes, In My Words","exclude":["disposition"]}]},"summary":{"disclaimer":"The Funeral Planning Companion is an organizer. It is not legal or financial advice, and it is not a prepaid funeral contract — it holds no money and binds no provider. It never asks for a payment or account number. All information you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where the plan stands, keep it current, and back up your work to a file you control.","reviewNote":"Wishes are allowed to change. Mark today as reviewed after any pass, and again after a change of mind, a move, or new prepaid paperwork.","staleFlag":"It has been more than a year since your last review. Wishes and arrangements drift — open the Summary tab when you have a few quiet minutes."}};
+const CONFIG={"name":"Funeral Planning Companion","storageKey":"qk-funeral-planning-companion","backupPrefix":"funeral-planning","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Forty-three steps across five phases, at whatever pace fits. Everything saves automatically on this device, and each step notes why it matters. There are two ways into this file. If someone has died, start at Phase 1 — it covers the first days, and nothing before it is urgent tonight. If you are planning ahead, start at Phase 2 and take as long as you like. Because the file holds both paths, the progress count will not reach 100% on either one; that is expected, not unfinished. This is an organizer for wishes and arrangements. It never asks for a payment or account number, and it is not a prepaid contract. What you decide here is a gift: when the time comes, your family follows a plan instead of guessing at one.","disclaimer":"This is an organizer, not legal or financial advice and not a prepaid funeral contract. For prepaid arrangements or estate decisions, consult a licensed funeral provider or attorney in your state."},"phases":[{"name":"Phase 1 · If Someone Has Died","tasks":[["Write down who has already been called","In the first hours several people call several others. A list here is how the same person doesn't get the news twice, and the one who should have heard first isn't missed. Add them to the People tab as you go."],["Confirm what they wanted — burial, cremation, or donation","If it was written down, it is in My Wishes or in a document somewhere. If it wasn't, the family decides it once, records it here, and stops revisiting it. Everything else waits on this one."],["Ask each funeral home for its itemized price list","Funeral homes give an itemized price list to anyone who asks, in person or by telephone, and it is yours to keep. Two providers a mile apart can price the same item very differently. The Compare Providers tab holds the numbers beside each other."],["Gather what the funeral home will ask for","Full legal name and any former names, dates and places, parents' names, occupation, marital status, and discharge papers if they served. It goes in Vital Details and prints on one page you can carry in."],["Decide how many certified copies of the death certificate to order","Nearly every institution holding something in their name wants a certified copy, and most keep the one they are given. List who needs one in the Death Certificates tab; it totals them, so they can be ordered together rather than one at a time."],["Note where the obituary will run, and what it will cost","Papers and websites price obituaries differently — usually by length — and each keeps its own cutoff. Ask both questions before anyone starts writing. The facts go in Vital Details, the words in My Wishes."],["Note which benefits to ask about, and who to ask","Veterans, Social Security, an employer, a union, a fraternal order, an old policy. The Benefits tab records the question, the document they will want, and where that document lives. What anyone qualifies for is answered by the office itself, never here."],["Let the rest wait","Accounts, the will, the house, the thank-you notes — none of it is better for being done today. Write down whatever is nagging at you, then close the file. It will keep."]]},{"name":"Phase 2 · My Wishes","tasks":[["Choose burial, cremation, or donation","The first decision every family faces, and the one they most want to get right. Deciding it now is the single kindest line in this plan."],["Choose a service style","Traditional service, memorial, celebration of life, or none at all. There is no wrong answer — only your answer."],["Choose the tone you'd want","Quiet or full of stories, formal or casual. A single sentence here shapes everything else."],["Note music and readings","The songs, passages, or poems that sound like you. Write them in the Wishes tab."],["Note who you would like to speak","A person or two you'd trust with a few words. Asking them someday is easier when it's written down."],["Note flowers or a donation preference","Many families ask 'flowers, or a cause?' within the first day. Name the cause if you have one."],["Note any dress or appearance wishes","Only if it matters to you. If it doesn't, say 'family decides' and move on."],["Write anything you want said — or not said","An obituary line, a story worth telling, or a subject to leave alone. Your words, kept in your Wishes."]]},{"name":"Phase 3 · Arrangements","tasks":[["Note a preferred funeral home","Or write 'family chooses.' Either way, the decision is made — that is what spares them."],["Note cemetery, plot, or scattering wishes","If a family plot exists, record where the deed lives. If you have a place in mind, name it."],["Note an officiant or clergy preference","A name, a congregation, or simply the kind of person you'd want to lead it."],["Record what is already prepaid","Prepaid plots, policies, or plans are easy to lose track of. Add each to the Arrangements tab."],["Record where the paperwork lives","A prepaid plan your family can't find is a plan they'll pay for twice. Note the drawer, safe, or file."],["Note a realistic budget or cost ceiling","Grief makes overspending easy. A number from you is permission to keep it sensible."],["Note veteran or membership benefits","Military honors, union or fraternal benefits, faith community support. These are commonly missed and worth real money."],["Add each arrangement to the Arrangements tab","One row per decision: provider, status, cost, and where the paperwork lives."],["Compare at least two providers before deciding","One row per item per provider in Compare Providers, and the tab does the subtraction. It is the least comfortable half-hour in this file and reliably the most valuable one."],["Record what a prepaid plan actually covers — and what it doesn't","Whether the price is guaranteed, whether it moves with you if you move, and what happens if the provider closes. Write the answers in the Arrangements tab beside the plan, so nobody has to reconstruct them later."]]},{"name":"Phase 4 · The Details","tasks":[["Record your full legal name and any former names","The death certificate needs it exactly. Maiden and former names save a correction later."],["Record your date and place of birth","Asked for on the certificate and in the obituary, usually within the first day."],["Record military service","Branch, dates, and where the discharge papers (DD-214) live — the key to honors and benefits."],["List immediate family for the obituary","Spouse, children, siblings, grandchildren. The obituary writer will thank you."],["Note the life facts an obituary mentions","Occupation, hometown, the things you were known for. A few lines now spell a better story later."],["List organizations to inform","Employer, clubs, faith community. Someone will need to make those calls."],["Add your key people to the People tab","The person carrying this out, family to call first, clergy, and anyone else on the list."],["Record the extra facts a death certificate asks for","Parents' names including a mother's maiden name, marital status, the address at the time of death, and level of education. They are asked for early and are easy to get wrong from memory."],["Draft the obituary facts, and a few lines in plain words","Both live in the Wishes tab. The Obituary Worksheet prints them together with the family list and the details already gathered, ready to hand over."]]},{"name":"Phase 5 · Hand It Off","tasks":[["Choose who will carry out these arrangements — and ask them","The plan needs a person. Choose someone steady, and ask before you write their name."],["Tell them where this plan lives","A plan no one can find helps no one. One conversation completes it."],["Print the Arrangements Instruction Sheet","One click on the Instruction Sheet tab produces the plan your family will actually follow."],["Store it with your estate documents","Beside the will and the letter of instruction, so everything is found together."],["Download a backup file","From the Summary tab. Keep it somewhere safe, like a USB drive."],["Review after any change of mind or move","A new town usually means a new funeral home and cemetery. Update while it's fresh."],["Confirm prepaid paperwork still matches your wishes","Plans and providers change. Once a year, check that what's on paper is still what you want."],["Print the Arrangement Conference Sheet too","The Instruction Sheet is for the family. This one is for the funeral home: one page holding the decisions, the facts, and the prices gathered. Printing it now means nobody builds it later."]]}],"registers":[{"id":"arrangements","tab":"Arrangements","heading":"Arrangements Register","noun":"arrangement","intro":"The practical half of the plan: the funeral home, the cemetery or scattering place, the officiant, and what is already paid for. Put your expected figure in Est. cost and the real one in Actual as it lands — the Over / under column keeps the drift visible while it is still small. For anything prepaid, the most important columns are what the plan actually covers and where the paperwork lives: a plan your family can't find is a plan they'll pay for twice.","columns":[{"key":"name","label":"Arrangement","width":"16%","sample":["Burial plot","Casket","Headstone","Cremation service"],"type":"text"},{"key":"place","label":"Provider / place","width":"17%","sample":["Rest Haven Cemetery","Riverside Funeral Home","Sunset Monument Co.","Riverside Funeral Home"],"type":"text"},{"key":"status","label":"Status","width":"14%","type":"select","options":["Family decides","Decided, not paid","Prepaid","To decide","Prepaid — price guaranteed","Prepaid — price not guaranteed"],"sample":["Family decides","Decided, not paid","Prepaid — price guaranteed","Prepaid — price not guaranteed"]},{"key":"cost","label":"Est. cost ($)","width":"11%","type":"num","sample":["2500","3200","1800","1200"]},{"key":"actual","label":"Actual ($)","width":"11%","type":"num","sample":["2650","3200","1750","1200"]},{"key":"overUnder","label":"Over / under","width":"11%","type":"calc","calc":["actual","cost"],"op":"-"},{"key":"prepaidWhat","label":"What the plan covers","width":"13%","sample":["Not prepaid","Not prepaid","Full service, guaranteed price","Cremation only, price may change"],"type":"text"},{"key":"paperwork","label":"Where the paperwork lives","type":"text"}],"counter":"total","counterField":"cost","totalLabel":"Estimated total","totalUnit":"planned","line":"Planned so far: {total}. Every number here is one your family won't have to decide in grief."},{"id":"quotes","tab":"Compare Providers","heading":"Compare Providers","noun":"quote","nounPlural":"quotes","statLabel":"Quotes gathered","counterLabel":"Quotes gathered","intro":"One row per item per funeral home. Ask each provider for the itemized price list it gives to anyone who asks — in person or by telephone, and yours to keep; that transparency is what the Federal Trade Commission's Funeral Rule is for. Then put the numbers beside each other here. Two providers a mile apart can price the same item very differently, and side by side is the only way to see it. Put this provider's figure in one column and the best you have found elsewhere in the other; the Difference column subtracts for you. Gathering three or four is an uncomfortable hour that regularly changes the total by more than anything else in this file.","columns":[{"key":"provider","label":"Provider","width":"17%","sample":["Riverside Funeral Home","Sunset Family Funeral Home","Cedar Grove Funeral Services","Riverside Funeral Home"],"type":"text"},{"key":"item","label":"Item","width":"23%","type":"list","options":["Basic services fee (charged on every funeral)","Transfer of remains","Embalming","Refrigeration or alternative","Other preparation of the body","Facilities & staff — viewing","Facilities & staff — ceremony","Graveside service","Hearse","Service or utility vehicle","Casket","Alternative container","Outer burial container or vault","Urn","Direct cremation","Immediate burial","Forwarding remains to another home","Receiving remains from another home","Third-party item billed through the home","Cemetery or crematory charge","Package or bundled price","Other"]},{"key":"quoted","label":"Their price ($)","width":"12%","type":"num","sample":["2200","350","795","175"]},{"key":"otherQuoted","label":"Best elsewhere ($)","width":"12%","type":"num","sample":["1800","295","650","150"]},{"key":"difference","label":"Difference","width":"11%","type":"calc","calc":["quoted","otherQuoted"],"op":"-"},{"key":"gpl","label":"Price list","width":"13%","type":"list","options":["Got the list to keep","Quoted by telephone","Quoted in person, no copy","On their website","Not asked yet"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"total","counterField":"difference","totalLabel":"Difference across the quotes gathered","line":"Difference so far: {total}. Every extra quote makes that number more honest — and it is money that stays with the family."},{"id":"people","tab":"People","heading":"People to Notify","noun":"person","nounPlural":"people","statLabel":"People to notify","counterLabel":"People listed","intro":"Who should hear it from family, and who simply needs to be told: the person carrying out these arrangements, immediate family, clergy, employer, organizations. The first few rows are the first calls. Once the news is being passed along, the Told? column is what stops one person being called twice while another is missed — the count below shows how many are left.","columns":[{"key":"name","label":"Name","width":"14%","type":"text"},{"key":"role","label":"Role","width":"17%","type":"list","options":["Carries out these arrangements","Immediate family — call first","Family","Close friend","Clergy / faith community","Employer","Organization / club","Funeral home contact","Other"]},{"key":"phone","label":"Phone","width":"11%","type":"text"},{"key":"email","label":"Email","width":"13%","type":"text"},{"key":"told","label":"Told?","width":"13%","type":"list","options":["Not yet","Called","Left a message","Told in person","Someone else told them","No need to tell"],"sample":["Called","Left a message","Told in person","Not yet"]},{"key":"toldDate","label":"When","width":"9%","type":"date","sample":["2026-01-10","2026-01-11","2026-01-12",""]},{"key":"whoTold","label":"By whom","width":"10%","sample":["Me","My sister","Called together","Employer notified separately"],"type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"told"},{"id":"details","tab":"Vital Details","heading":"Vital Details","noun":"detail","counterLabel":"Details recorded","statLabel":"Vital details","intro":"The facts an obituary and a death certificate ask for, usually within the first day: legal names, dates and places, parents' names, service history, family. Several of these are asked for early and are easy to get wrong from memory. Where a document is involved, record where it is kept rather than what it says — this file holds locations, never numbers. Having it all in one place turns a scramble through old files into a single printed page.","columns":[{"key":"item","label":"Detail","width":"28%","type":"list","options":["Full legal name","Former / maiden names","Date of birth","Place of birth","Military service (branch, dates)","Where discharge papers (DD-214) live","Occupation","Immediate family","Faith community","Hometown / places lived","Parents' names (incl. mother's maiden name)","Marital status / surviving spouse","Address at the time of death","Highest level of education","Survived by","Preceded in death by","Where the birth certificate is kept","Where the Social Security card is kept","Where the marriage certificate is kept","Where the cemetery deed is kept","Where an insurance policy is kept","Clothing and personal items for the funeral home","A recent photograph","Other"]},{"key":"value","label":"Information","width":"44%","sample":["James Robert Aldridge","None","March 3, 1951","Columbus, Ohio"],"type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"certificates","tab":"Death Certificates","heading":"Certified Copies","noun":"recipient","nounPlural":"recipients","statLabel":"Certified copies","counterLabel":"Who needs one","intro":"Almost every institution holding something in a person's name asks for a certified copy of the death certificate, and most of them keep the one they are given rather than handing it back. List who will need one and how many each will take. The figure at the bottom is the number to order in a single batch instead of going back for more one at a time — the funeral home usually orders the first batch for you, so it is worth knowing the number before that conversation.","columns":[{"key":"who","label":"Who needs one","width":"26%","type":"list","options":["Bank or credit union","Life insurance policy","Employer or pension","Social Security","Veterans Affairs","Vehicle title or DMV","County recorder or property","Brokerage or retirement plan","Utility, lease, or membership","Attorney or tax preparer","The family's own copy","Other"]},{"key":"copiesNeeded","label":"Copies","width":"9%","type":"num","format":"plain","sample":["1","2","1","3"]},{"key":"sent","label":"Sent","width":"13%","type":"date","sample":["2026-01-15","2026-02-03","2026-01-22",""]},{"key":"outcome","label":"What happened to it","width":"19%","type":"list","options":["Kept by them","Handed back","Still with us","Not sent yet","Unknown"],"sample":["Kept by them","Handed back","Still with us","Not sent yet"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"total","counterField":"copiesNeeded","totalFormat":"plain","totalUnit":"certified copies","totalLabel":"Copies to order","line":"Copies to order: {total}. Ordering them in one batch saves going back for more."},{"id":"benefits","tab":"Benefits","heading":"Benefits to Ask About","noun":"benefit","statLabel":"Benefits tracked","counterLabel":"Benefits tracked","intro":"A place to track questions, not answers. Who qualifies for what, for how much, and by when is decided by the office that administers it, varies with the particular case, and changes over time — nothing here predicts any of that, and you should take no figure from this file into a conversation with them. What this tab holds is the question worth asking, who to ask it of, which document they will want, where that document lives, and how far the asking has got. The paperwork is usually the slow part, and discharge papers nobody can find are the commonest delay of all.","columns":[{"key":"program","label":"What to ask about","width":"24%","type":"list","options":["Veterans — burial or plot allowance","Veterans — headstone, marker, or medallion","Veterans — burial flag","Veterans — national cemetery","Veterans — memorial certificate","Veterans — military honours","Social Security — reporting the death","Social Security — survivor benefits","Employer or union benefit","Fraternal or membership benefit","Life insurance policy","Prepaid funeral plan","Other"]},{"key":"whoToAsk","label":"Who to ask","width":"16%","sample":["VA regional office","Local Social Security office","HR department","Funeral home director"],"type":"text"},{"key":"documentNeeded","label":"Document they want","width":"19%","type":"list","options":["Discharge papers (DD-214)","Certified death certificate","Marriage certificate","Birth certificate","Policy or contract","Membership card","Not sure yet","Other"]},{"key":"whereItLives","label":"Where it lives","width":"16%","type":"text"},{"key":"status","label":"How far it's got","width":"14%","type":"list","options":["To ask about","Asked — waiting","Paperwork sent","Closed out","Not applicable"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"status"}],"wishesEnabled":true,"wishes":{"tab":"My Wishes","heading":"Service & Wishes","intro":"In your own words, at your own pace. None of this is binding and all of it can change — it simply means that when the time comes, the people you love follow your wishes instead of guessing at them. Everything here prints into the Arrangements Instruction Sheet.","disclaimer":"These wishes are a guide for your family, not a contract. Nothing here binds a funeral home or holds money.","items":[{"key":"disposition","label":"Burial, cremation, or donation","prompt":"The first decision your family would otherwise face. Burial, cremation, or donation — and anything that matters about where."},{"key":"service","label":"The service itself","prompt":"Traditional, memorial, celebration of life, or none. Formal or casual, quiet or full of stories — describe the gathering you'd want, or say 'family decides.'"},{"key":"music","label":"Music & readings","prompt":"The songs, passages, or poems that sound like you."},{"key":"speakers","label":"Who should speak","prompt":"A person or two you'd trust with a few words — and anyone you'd rather it not be."},{"key":"flowers","label":"Flowers or donations","prompt":"Many families ask within the first day: flowers, or a donation somewhere? Name the cause if you have one."},{"key":"message","label":"Anything you want said — or not said","prompt":"Optional. An obituary line, a story worth telling, or a subject to leave alone. Your words carry further than you think."},{"key":"obitFacts","label":"Obituary facts","prompt":"The plain facts an obituary is built from: where they were born, the places lived, the work, the service, the faith community, and the people who come first in the list. Written down once, they stop being a phone tree at midnight."},{"key":"obitDraft","label":"A few lines in plain words","prompt":"Optional, and not a finished obituary — just the sentences worth keeping. Papers and websites price obituaries by length and each keeps its own cutoff, so having the words ready is worth more than it sounds."}]},"sheet":null,"sheets":[{"tab":"Instruction Sheet","heading":"Arrangements Instruction Sheet","button":"Print the Instruction Sheet","intro":"This compiles your wishes, the people to call first, your arrangements, and the vital details into one printable plan: “What My Family Needs to Know: My Wishes & Arrangements.” Print it, store it with your estate documents, and tell the person carrying it out where it lives. Two more sheets sit beside it: one to carry into a funeral home, and an obituary worksheet.","docTitle":"What My Family Needs to Know: My Wishes & Arrangements","docTag":"An Arrangements Instruction Sheet · prepared with the Quietkeep Funeral Planning Companion","lead":"This sheet holds my funeral wishes and the arrangements already made: what I want, who to call first, what is prepaid and where the paperwork lives, and the details an obituary and death certificate will need. It is a guide from me to my family — not a contract, and it holds no money.","foot":"Prepared by me for my family. This Instruction Sheet is an organizer output, not legal or financial advice, and not a prepaid funeral contract — it records wishes and arrangements, and binds no provider. For prepaid arrangements or estate decisions, my family should consult a licensed funeral provider or attorney.","disclaimer":"The Instruction Sheet is a personal guide for your family, not a legal document and not a prepaid contract. For binding arrangements, consult a licensed funeral provider.","sections":[{"type":"wish","key":"disposition","title":"My Wishes: Burial, Cremation, or Donation","empty":"Not recorded yet. This is the first decision a family faces — the kindest line in this plan."},{"type":"register","id":"people","title":"Who to Call First"},{"type":"register","id":"arrangements","title":"Arrangements & What Is Prepaid"},{"type":"register","id":"details","title":"Vital Details (for the obituary and certificate)"},{"type":"wishes","title":"My Service Wishes, In My Words","exclude":["disposition","obitFacts","obitDraft"]}]},{"tab":"Conference Sheet","heading":"Arrangement Conference Sheet","button":"Print the Conference Sheet","intro":"The page to carry into a funeral home. It compiles what was decided about burial or cremation, the facts they will ask for, the arrangements already made or already paid for, the prices gathered from other providers, and how many certified copies to order — so the meeting is a conversation rather than a memory test.","docTitle":"What to Bring to the Funeral Home","docTag":"An Arrangement Conference Sheet · prepared with the Quietkeep Funeral Planning Companion","lead":"This sheet is for the arrangement meeting. It holds the decision already made about burial or cremation, the facts a funeral home and a death certificate ask for, the arrangements already in place and what is already paid, the prices gathered from other providers, and the number of certified copies to order. It is an organizer output — not a contract, and it commits nobody to anything.","foot":"Prepared by the family. This Conference Sheet is an organizer output, not legal or financial advice and not a prepaid funeral contract — it records decisions, facts, and prices already gathered, and binds no provider. For binding arrangements, consult a licensed funeral provider.","disclaimer":"The Conference Sheet records what has been decided and what has been quoted. It is not a contract and it does not commit any provider to a price.","sections":[{"type":"wish","key":"disposition","title":"The Decision Already Made","empty":"Not recorded yet — this is the one to settle before the meeting."},{"type":"register","id":"details","title":"Facts They Will Ask For"},{"type":"register","id":"arrangements","title":"Arrangements & What Is Prepaid"},{"type":"register","id":"quotes","title":"Prices Gathered Elsewhere"},{"type":"register","id":"certificates","title":"Certified Copies to Order"}]},{"tab":"Obituary Worksheet","heading":"Obituary Worksheet","button":"Print the Obituary Worksheet","intro":"The facts and the words in one place, ready to hand to a funeral home or type into a newspaper's form. Obituaries are usually priced by length, so having this settled in advance is worth both the money and the midnight hour it saves.","docTitle":"Obituary Worksheet","docTag":"An Obituary Worksheet · prepared with the Quietkeep Funeral Planning Companion","lead":"Everything an obituary is built from, gathered in one place: the life facts, the words worth keeping, the details a paper will check, and the family to be named. Obituaries are usually priced by length and each publication keeps its own cutoff — ask both before writing.","foot":"Prepared by the family. This worksheet is an organizer output, not legal or financial advice. It gathers facts and words for whoever writes and places the notice.","disclaimer":"A worksheet, not a finished obituary — the paper or funeral home will have its own form and its own limits on length.","sections":[{"type":"wish","key":"obitFacts","title":"The Life Facts","empty":"Not recorded yet — birthplace, the places lived, the work, the service, the faith community."},{"type":"wish","key":"obitDraft","title":"In Plain Words","empty":"Not written yet. A few sentences are enough."},{"type":"register","id":"details","title":"Details a Paper Will Check"},{"type":"register","id":"people","title":"Family and People to Name"}]}],"summary":{"disclaimer":"The Funeral Planning Companion is an organizer. It is not legal or financial advice, and it is not a prepaid funeral contract — it holds no money and binds no provider. It never asks for a payment or account number. All information you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where the plan stands, keep it current, and back up your work to a file you control. The counts below cover both paths through this file, so a complete plan will still read as partly done.","reviewNote":"Wishes are allowed to change. Mark today as reviewed after any pass, and again after a change of mind, a move, or new prepaid paperwork.","staleFlag":"It has been more than a year since your last review. Wishes and arrangements drift — open the Summary tab when you have a few quiet minutes."},"safety":{"title":"Before you start","body":["Keep this somewhere only you can reach — a device, phone, or USB drive that isn't shared. If you are worried about someone in your household finding it, use a device only you can get to, or a computer at a library.","This is an organizer. It is not legal, medical, or financial advice, and it is not a substitute for the advice of an attorney."],"hotline":["If you are in danger, your safety comes before any of this:","National Domestic Violence Hotline — 1-800-799-7233","Text START to 88788","Deaf/HoH video phone — 855-812-1001"],"fine":"This is an organizer, not legal or financial advice and not a prepaid funeral contract. For prepaid arrangements or estate decisions, consult a licensed funeral provider or attorney in your state."},"legacyTasks":[["Choose burial, cremation, or donation","Choose a service style","Choose the tone you'd want","Note music and readings","Note who you would like to speak","Note flowers or a donation preference","Note any dress or appearance wishes","Write anything you want said — or not said"],["Note a preferred funeral home","Note cemetery, plot, or scattering wishes","Note an officiant or clergy preference","Record what is already prepaid","Record where the paperwork lives","Note a realistic budget or cost ceiling","Note veteran or membership benefits","Add each arrangement to the Arrangements tab"],["Record your full legal name and any former names","Record your date and place of birth","Record military service","List immediate family for the obituary","Note the life facts an obituary mentions","List organizations to inform","Add your key people to the People tab"],["Choose who will carry out these arrangements — and ask them","Tell them where this plan lives","Print the Arrangements Instruction Sheet","Store it with your estate documents","Download a backup file","Review after any change of mind or move","Confirm prepaid paperwork still matches your wishes"]]};
 const PHASES=CONFIG.phases;
 const REGISTERS=CONFIG.registers||[];
 const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
 const STORAGE_KEY=CONFIG.storageKey;
+const SAFETY=CONFIG.safety||{};
+/* A product may declare several printable outputs (`sheets`) rather than one.
+   Special Needs needs this for a real reason, not tidiness: a single packet
+   that compiles benefits status AND guardianship wishes is right for a future
+   guardian and wrong to hand a third-grade teacher. `sheet` stays supported so
+   the ten products built before this keep generating byte-identical output. */
+const SHEETS=(CONFIG.sheets&&CONFIG.sheets.length)?CONFIG.sheets:(CONFIG.sheet?[CONFIG.sheet]:[]);
+
+/* ---------- task identity ----------
+   Task completion used to be stored by POSITION ("p0t3"). That meant inserting
+   a task in the middle of a phase silently moved every tick below it onto a
+   different task — a buyer saw work marked done that they had never done, and
+   lost credit for work they had. On products whose whole promise is "nothing
+   important gets missed", that is worse than losing the data outright.
+
+   Keys are now a slug of the task title, which survives reordering, insertion
+   and deletion. Verified unique within every product in the catalogue.
+   `migrateTaskKeys()` converts an existing buyer's positional ticks exactly
+   once, using the task order as it stood when they saved. */
+function slugKey(s){
+  return String(s == null ? "" : s).toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-")
+    .replace(/^-|-$/g, "").slice(0, 48);
+}
 
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
 function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
 function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function plain(n){return (Math.round(n*100)/100).toLocaleString("en-US");}
+/* Totals are money by default — the estate and divorce lines all count dollars.
+   Some registers count minutes or plain units instead (service delivery, for
+   one), so a register may set totalFormat:"plain" with totalUnit:"minutes". */
+function fmtTotal(reg,n){
+  return reg.totalFormat==="plain"
+    ? plain(n)+(reg.totalUnit?" "+reg.totalUnit:"")
+    : money(n);
+}
+function fmtCell(col,v){
+  if(col.format==="plain")return plain(parseFloat(v)||0);
+  return money(parseFloat(v)||0);
+}
+/* A "calc" column is derived and never stored: calc:["a","b"] with op "*" or
+   "-". It keeps the arithmetic a buyer would otherwise do by hand — quantity
+   x cost-each, or actual minus normal — inside the engine, where it stays
+   correct as rows change instead of going stale the moment anything is edited. */
+function calcVal(reg,row,col){
+  const a=(col.calc||[])[0],b=(col.calc||[])[1];
+  const x=parseFloat(row[a])||0,y=parseFloat(row[b])||0;
+  return col.op==="-"?(x-y):(x*y);
+}
+function cellVal(reg,row,col){return col.type==="calc"?calcVal(reg,row,col):row[col.key];}
 function regById(id){return REGISTERS.find(r=>r.id===id);}
 function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
 function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
 
 /* ---------- state ---------- */
 let state=null;
+/* Stable per-task keys, computed once from the current phase order. */
+const TASK_KEYS=PHASES.map(ph=>(ph.tasks||[]).map(t=>slugKey(t[0])));
+
+/* Convert positional task ticks to stable keys, once, on first open of an
+   updated file. `legacyTasks` is the task order AS THE BUYER HAS IT — needed
+   only when a release reorders tasks in the same version that introduces this
+   migration. Otherwise the current order is the buyer's order, so it is the
+   correct fallback and the migration is exact. */
+function migrateTaskKeys(){
+  if(state.tkv>=2){return;}
+  const legacy=CONFIG.legacyTasks||PHASES.map(ph=>(ph.tasks||[]).map(t=>t[0]));
+  const out={};
+  (legacy||[]).forEach((ph,pi)=>(ph||[]).forEach((title,ti)=>{
+    if(state.tasks&&state.tasks["p"+pi+"t"+ti])out[slugKey(title)]=true;
+  }));
+  /* Preserve any keys that are already slugs — a re-restored backup, or a file
+     opened by a newer build first. Never drop a tick we cannot explain. */
+  Object.keys(state.tasks||{}).forEach(k=>{
+    if(!/^p\d+t\d+$/.test(k)&&state.tasks[k])out[k]=true;
+  });
+  state.tasks=out;
+  state.tkv=2;
+}
+
 function defaultState(){
-  const d={v:1,tasks:{},wishes:{},lastReviewed:null};
+  const d={v:1,tkv:2,tasks:{},wishes:{},lastReviewed:null};
   REGISTERS.forEach(r=>{d[r.id]=[];});
   return d;
 }
@@ -150,6 +253,7 @@ function load(){
   if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
   if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
   if(state.lastReviewed===undefined)state.lastReviewed=null;
+  migrateTaskKeys();
 }
 function save(){
   try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
@@ -164,7 +268,7 @@ function buildShell(){
   const tabs=[{id:"tasks",label:CONFIG.tasks.tab||"Tasks"}];
   REGISTERS.forEach(r=>tabs.push({id:r.id,label:r.tab}));
   if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
-  tabs.push({id:"sheet",label:CONFIG.sheet.tab||"Instruction Sheet"});
+  SHEETS.forEach((s,i)=>tabs.push({id:"sheet"+i,label:s.tab||"Instruction Sheet"}));
   tabs.push({id:"summary",label:"Summary & Backup"});
   tabs.forEach((t,i)=>{
     const b=document.createElement("button");
@@ -180,10 +284,25 @@ function buildShell(){
      '</section>';
   // Registers
   REGISTERS.forEach(r=>{
+    /* A register may carry a `warn` — one prominent, red, shown-once line under
+       the intro. Wishes already had this; registers did not, so a prohibition
+       as load-bearing as "never the codes themselves" could only be muted grey
+       prose. Deliberately register-level, not per-column: a warning repeated on
+       every row of a table stops being read by row three. */
     h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
-       '<p class="note">'+esc(r.intro||"")+'</p><table><thead><tr>';
+       '<p class="note">'+esc(r.intro||"")+'</p>'+
+       (r.warn?'<p class="warnline">'+esc(r.warn)+'</p>':"")+
+       // A many-column register needs real pixel width to stay legible — 70px
+       // per column is roughly what a narrow text/number input needs, so a
+       // 13-column table gets ~910px minimum rather than being crushed into
+       // whatever fraction of 1040px is left after padding.
+       // 70px/column still clipped a 2-digit number input to its first digit
+       // (spinner arrows + input padding eat more of a narrow cell than the
+       // math suggested) — verified by looking at the actual render, not by
+       // recomputing the math a second time. 85px holds up on inspection.
+       '<div class="table-wrap"><table style="min-width:'+(85*(r.columns.length+1))+'px"><thead><tr>';
     r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
-    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table>'+
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table></div>'+
        '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
     if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
     if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
@@ -198,12 +317,14 @@ function buildShell(){
        '</section>';
   }
   // Sheet
-  h+='<section class="tab" id="tab-sheet"><h2>'+esc(CONFIG.sheet.heading)+'</h2>'+
-     '<p class="note">'+esc(CONFIG.sheet.intro||"")+'</p>'+
-     '<div id="sheet-preview" class="review-box"></div>'+
-     '<div class="toolbar"><button class="primary" onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button></div>'+
-     (CONFIG.sheet.disclaimer?'<p class="disclaimer">'+esc(CONFIG.sheet.disclaimer)+'</p>':"")+
-     '</section>';
+  SHEETS.forEach((S,i)=>{
+    h+='<section class="tab" id="tab-sheet'+i+'"><h2>'+esc(S.heading)+'</h2>'+
+       '<p class="note">'+esc(S.intro||"")+'</p>'+
+       '<div id="sheet-preview-'+i+'" class="review-box"></div>'+
+       '<div class="toolbar"><button class="primary" onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button></div>'+
+       (S.disclaimer?'<p class="disclaimer">'+esc(S.disclaimer)+'</p>':"")+
+       '</section>';
+  });
   // Summary
   h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
      '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
@@ -212,7 +333,7 @@ function buildShell(){
      '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
      '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
      '<div class="toolbar">'+
-     '<button onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button>'+
+     SHEETS.map((S,i)=>'<button onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button>').join("")+
      '<button onclick="printAll()">Print everything (all registers)</button>'+
      '<button onclick="backup()">Download backup file</button>'+
      '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
@@ -233,7 +354,7 @@ function renderTasks(){
     const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
     const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
     ph.tasks.forEach((t,ti)=>{
-      const id="p"+pi+"t"+ti;
+      const id=TASK_KEYS[pi][ti];
       const checked=!!state.tasks[id];if(checked)pDone++;
       const row=document.createElement("div");row.className="task"+(checked?" done":"");
       const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
@@ -249,7 +370,7 @@ function renderTasks(){
   });
   updateProgress();
 }
-function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks[TASK_KEYS[pi][ti]])done++;}));return{total,done};}
 function updateProgress(){
   let total=0,done=0;
   document.querySelectorAll("#phases .phase").forEach((div)=>{
@@ -266,6 +387,14 @@ function updateProgress(){
 /* ---------- register engine ---------- */
 function fieldEl(reg,row,col){
   const td=document.createElement("td");
+  /* Derived cells are output, not input — render as read-only text so nobody
+     types into a number that is about to be recomputed. refreshCalc() keeps
+     them current as the columns they depend on are edited. */
+  if(col.type==="calc"){
+    td.className="num";
+    td.textContent=fmtCell(col,calcVal(reg,row,col));
+    return td;
+  }
   let el;
   if(col.type==="select"){el=document.createElement("select");
     (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
@@ -301,8 +430,30 @@ function categoryCounts(reg){
   state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
   return counts;
 }
-function regTotal(reg){const k=reg.counterField||numKey(reg);return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);}
+function regTotal(reg){
+  const k=reg.counterField||numKey(reg);
+  const col=colByKey(reg,k);
+  if(col&&col.type==="calc")return state[reg.id].reduce((s,r)=>s+calcVal(reg,r,col),0);
+  return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);
+}
+/* Repaint derived cells in place. Re-rendering the whole table would steal
+   focus from the field being typed into, which is why this updates the td
+   text directly rather than calling renderTable(). */
+function refreshCalc(){
+  REGISTERS.forEach(reg=>{
+    if(!reg.columns.some(c=>c.type==="calc"))return;
+    const body=document.getElementById(reg.id+"-body");if(!body)return;
+    Array.prototype.forEach.call(body.rows,(tr,i)=>{
+      const row=state[reg.id][i];if(!row)return;
+      reg.columns.forEach((c,ci)=>{
+        if(c.type!=="calc")return;
+        const td=tr.cells[ci];if(td)td.textContent=fmtCell(c,calcVal(reg,row,c));
+      });
+    });
+  });
+}
 function totals(){
+  refreshCalc();
   REGISTERS.forEach(reg=>{
     const el=document.getElementById(reg.id+"-total");
     const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
@@ -315,9 +466,9 @@ function totals(){
       el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
     }else if(reg.counter==="total"&&el){
       const n=state[reg.id].length;
-      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+money(regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+fmtTotal(reg,regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
       const line=document.getElementById(reg.id+"-line");
-      if(line)line.textContent=n?reg.line.replace("{total}",money(regTotal(reg))):"";
+      if(line)line.textContent=n?reg.line.replace("{total}",fmtTotal(reg,regTotal(reg))).replace("{n}",n):"";
     }else if(el){
       el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
     }
@@ -379,21 +530,21 @@ function registerTableHTML(reg,rows,skipKey){
   h+='</tr>';
   rows.forEach(r=>{h+='<tr>';
     reg.columns.forEach(c=>{if(c.key===skipKey)return;
-      const v=c.type==="num"?money(parseFloat(r[c.key])||0):esc(r[c.key]);
+      const v=(c.type==="num"||c.type==="calc")?fmtCell(c,cellVal(reg,r,c)):esc(r[c.key]);
       h+='<td>'+v+'</td>';});
     h+='</tr>';});
   if(reg.counter==="total"){
     h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
     const nk=reg.counterField||numKey(reg);
     reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
-      h+=c.key===nk?'<td><strong>'+money(regTotal(reg))+'</strong></td>':'<td></td>';});
+      h+=c.key===nk?'<td><strong>'+fmtTotal(reg,regTotal(reg))+'</strong></td>':'<td></td>';});
     h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
     h+='</tr>';
   }
   return h+'</table>';
 }
-function sheetHTML(){
-  const S=CONFIG.sheet;
+function sheetHTML(idx){
+  const S=SHEETS[idx||0]||{};
   let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
   if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
   (S.sections||[]).forEach(sec=>{
@@ -407,11 +558,15 @@ function sheetHTML(){
       if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
       if(sec.groupBy){
         const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
-        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);counts[c]=(counts[c]||0)+1;});
+        /* Grouping by a column that has no `options` (a date, or free text) is
+           legitimate — but then cats is empty, and a blank cell used to fall
+           through to cats[0] === undefined and print "undefined (3)" as a
+           heading on the buyer's printed sheet. Bucket those explicitly. */
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");counts[c]=(counts[c]||0)+1;});
         const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
         order.forEach(c=>{
           h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
-          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);return rc===c;}),sec.groupBy);
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");return rc===c;}),sec.groupBy);
         });
       }else{
         h+=registerTableHTML(reg,rows,null);
@@ -427,21 +582,29 @@ function sheetHTML(){
   return h;
 }
 function renderSheetPreview(){
-  const el=document.getElementById("sheet-preview");if(!el)return;
-  const bits=REGISTERS.map(reg=>{
-    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
-    const n=state[reg.id].length;
-    let s=n+" "+(n===1?noun:plural);
-    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
-    return s;
+  SHEETS.forEach((S,i)=>{
+    const el=document.getElementById("sheet-preview-"+i);if(!el)return;
+    /* Preview only the registers this particular sheet actually compiles —
+       otherwise a teacher-facing sheet would advertise the benefits and
+       guardianship data it deliberately leaves out. */
+    const ids=(S.sections||[]).filter(s=>s.type==="register").map(s=>s.id);
+    const regs=ids.length?REGISTERS.filter(r=>ids.indexOf(r.id)>=0):REGISTERS;
+    const bits=regs.map(reg=>{
+      const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+      const n=state[reg.id].length;
+      let s=n+" "+(n===1?noun:plural);
+      if(reg.counter==="total")s+=" ("+fmtTotal(reg,regTotal(reg))+")";
+      return s;
+    });
+    const hasWishes=(S.sections||[]).some(s=>s.type==="wish"||s.type==="wishes");
+    el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(S.docTitle)+'</strong></div>'+
+      '<p class="note" style="margin:0">'+esc(S.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+      (hasWishes?", plus what you've written in your own words":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
   });
-  el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(CONFIG.sheet.docTitle)+'</strong></div>'+
-    '<p class="note" style="margin:0">'+esc(CONFIG.sheet.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
-    (CONFIG.wishesEnabled?", plus your wishes":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
 }
-function printSheet(){
+function printSheet(idx){
   const pa=document.getElementById("print-area");
-  pa.innerHTML=sheetHTML();window.print();
+  pa.innerHTML=sheetHTML(idx||0);window.print();
 }
 function printAll(){
   const pa=document.getElementById("print-area");
@@ -449,10 +612,73 @@ function printAll(){
   h+='<h2>Guided Task Progress</h2>';
   PHASES.forEach((ph,pi)=>{
     h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
-    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks["p"+pi+"t"+ti]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks[TASK_KEYS[pi][ti]]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
     h+='</table>';
   });
   pa.innerHTML=h;window.print();
+}
+
+/* ---------- safety notice + erase ----------
+   Two facts every Quietkeep product must state plainly, because neither is
+   obvious and both can hurt someone: (1) "local" is not "private" when the
+   person you fear shares the device; (2) localStorage is keyed to the browser,
+   NOT to the file — deleting the .html does not delete the entries. Products
+   that need more (the divorce line) add an `app.safety` block to the manifest. */
+const DEFAULT_STORAGE_TRUTH="Nothing you type is ever sent anywhere — it is saved only in this browser, on this device. That also means anyone who can use this device and this browser can open it. It is not encrypted and not password-protected.";
+const DEFAULT_ERASE_TRUTH="Deleting this file does NOT erase what you have entered. Your entries are stored by the browser, not inside the file. To remove them, use the “Erase everything” button at the bottom of the screen.";
+
+function showNotice(){
+  document.getElementById("qk-notice-h").textContent=SAFETY.title||"Before you start";
+  let h="";
+  (SAFETY.body||[]).forEach(p=>{h+='<p>'+esc(p)+'</p>';});
+  h+='<p>'+esc(SAFETY.storage||DEFAULT_STORAGE_TRUTH)+'</p>';
+  h+='<p>'+esc(SAFETY.erase||DEFAULT_ERASE_TRUTH)+'</p>';
+  if(SAFETY.hotline&&SAFETY.hotline.length){
+    h+='<div class="hot">';
+    SAFETY.hotline.forEach((l,i)=>{h+=(i?'<br>':'')+(i?'<b>'+esc(l)+'</b>':esc(l));});
+    h+='</div>';
+  }
+  const fine=SAFETY.fine||CONFIG.summary.disclaimer||"";
+  if(fine)h+='<div class="fine">'+esc(fine)+'</div>';
+  document.getElementById("qk-notice-body").innerHTML=h;
+  const v=document.getElementById("qk-veil");
+  v.hidden=false;
+  document.getElementById("qk-notice-ok").focus();
+}
+function dismissNotice(){document.getElementById("qk-veil").hidden=true;}
+
+/* How much is actually at risk — a concrete number warns far better than
+   "everything", and lets an empty file erase without ceremony. */
+function countEntries(){
+  let n=0;
+  REGISTERS.forEach(r=>{(state[r.id]||[]).forEach(row=>{
+    if(r.columns.some(c=>nonEmpty(row[c.key])))n++;
+  });});
+  Object.keys(state.wishes||{}).forEach(k=>{if(nonEmpty(state.wishes[k]))n++;});
+  Object.keys(state.tasks||{}).forEach(k=>{if(state.tasks[k])n++;});
+  return n;
+}
+
+function eraseAll(){
+  const n=countEntries();
+  if(n===0){alert("There is nothing saved to erase yet.");return;}
+  const noun=n===1?"entry":"entries";
+  /* Two steps on purpose. This button is always on screen, so one stray click
+     must never be able to destroy someone's work — but it also has to stay fast
+     enough to use when you need the screen clear right now. */
+  if(!confirm("ERASE EVERYTHING?\n\n"
+    +"This permanently deletes all "+n+" "+noun+" you have saved in this browser for "+CONFIG.name+".\n\n"
+    +"THIS CANNOT BE UNDONE. There is no way to get it back afterwards.\n\n"
+    +"It does NOT delete any backup file you have already downloaded, or anything you have printed.\n\n"
+    +"If you want to keep a copy, press Cancel and use “Download backup file” on the Summary tab first."))return;
+  if(!confirm("Last check.\n\nReally erase all "+n+" saved "+noun+" permanently?"))return;
+  state=defaultState();
+  renderAll();
+  /* Remove AFTER re-rendering, so nothing can write the key back on the way out. */
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  document.getElementById("save-status").innerHTML="<b>Erased from this browser</b>";
+  alert("Erased. Nothing from this organizer is left in this browser.\n\n"
+    +"If you also downloaded a backup file or printed a copy, delete those separately.");
 }
 
 /* ---------- backup / restore ---------- */
@@ -482,10 +708,11 @@ document.getElementById("nav").addEventListener("click",e=>{
   document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
   e.target.classList.add("active");
   document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
-  if(e.target.dataset.tab==="sheet")renderSheetPreview();
+  if(String(e.target.dataset.tab||"").indexOf("sheet")===0)renderSheetPreview();
 });
 function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
-buildShell();load();renderAll();
+document.getElementById("qk-notice-ok").addEventListener("click",dismissNotice);
+buildShell();load();renderAll();showNotice();
 </script>
-</body>
+<script>(function(){state={"v": 1, "tasks": {"p0t0": true, "p0t1": true, "p0t2": true, "p0t3": true, "p0t4": true, "p0t5": true, "p0t6": true, "p0t7": true, "p1t0": true, "p1t1": true, "p1t2": true, "p1t3": true}, "wishes": {"disposition": "A few notes to start with — more to add as things become clearer.", "service": "A few notes to start with — more to add as things become clearer."}, "lastReviewed": null, "arrangements": [{"name": "Burial plot", "place": "Rest Haven Cemetery", "status": "Family decides", "cost": "2500", "actual": "2650", "overUnder": "See the folder in the filing cabinet", "prepaidWhat": "Not prepaid", "paperwork": "See the folder in the filing cabinet"}, {"name": "Casket", "place": "Riverside Funeral Home", "status": "Decided, not paid", "cost": "3200", "actual": "3200", "overUnder": "With the estate documents", "prepaidWhat": "Not prepaid", "paperwork": "With the estate documents"}, {"name": "Headstone", "place": "Sunset Monument Co.", "status": "Prepaid — price guaranteed", "cost": "1800", "actual": "1750", "overUnder": "Ask the family attorney's office", "prepaidWhat": "Full service, guaranteed price", "paperwork": "Ask the family attorney's office"}, {"name": "Cremation service", "place": "Riverside Funeral Home", "status": "Prepaid — price not guaranteed", "cost": "1200", "actual": "1200", "overUnder": "Written instructions in the home safe", "prepaidWhat": "Cremation only, price may change", "paperwork": "Written instructions in the home safe"}], "quotes": [{"provider": "Riverside Funeral Home", "item": "Basic services fee (charged on every funeral)", "quoted": "2200", "otherQuoted": "1800", "difference": "See the folder in the filing cabinet", "gpl": "Got the list to keep", "notes": ""}, {"provider": "Sunset Family Funeral Home", "item": "Transfer of remains", "quoted": "350", "otherQuoted": "295", "difference": "With the estate documents", "gpl": "Quoted by telephone", "notes": ""}, {"provider": "Cedar Grove Funeral Services", "item": "Embalming", "quoted": "795", "otherQuoted": "650", "difference": "Ask the family attorney's office", "gpl": "Quoted in person, no copy", "notes": ""}, {"provider": "Riverside Funeral Home", "item": "Refrigeration or alternative", "quoted": "175", "otherQuoted": "150", "difference": "Written instructions in the home safe", "gpl": "On their website", "notes": ""}], "people": [{"name": "Jordan Miller", "role": "Carries out these arrangements", "phone": "(555) 010-1234", "email": "alex@example.com", "told": "Called", "toldDate": "2026-01-10", "whoTold": "Me", "notes": ""}, {"name": "Sam Rivera", "role": "Immediate family — call first", "phone": "(555) 010-5678", "email": "jordan@example.com", "told": "Left a message", "toldDate": "2026-01-11", "whoTold": "My sister", "notes": ""}, {"name": "Alex Chen", "role": "Family", "phone": "(555) 010-9012", "email": "sam@example.com", "told": "Told in person", "toldDate": "2026-01-12", "whoTold": "Called together", "notes": ""}, {"name": "Casey Morgan", "role": "Close friend", "phone": "(555) 010-1234", "email": "alex@example.com", "told": "Not yet", "toldDate": "", "whoTold": "Employer notified separately", "notes": ""}], "details": [{"item": "Full legal name", "value": "James Robert Aldridge", "notes": ""}, {"item": "Former / maiden names", "value": "None", "notes": ""}, {"item": "Date of birth", "value": "March 3, 1951", "notes": ""}, {"item": "Place of birth", "value": "Columbus, Ohio", "notes": ""}], "certificates": [{"who": "Bank or credit union", "copiesNeeded": "1", "sent": "2026-01-15", "outcome": "Kept by them", "notes": ""}, {"who": "Life insurance policy", "copiesNeeded": "2", "sent": "2026-02-03", "outcome": "Handed back", "notes": ""}, {"who": "Employer or pension", "copiesNeeded": "1", "sent": "2026-01-22", "outcome": "Still with us", "notes": ""}, {"who": "Social Security", "copiesNeeded": "3", "sent": "", "outcome": "Not sent yet", "notes": ""}], "benefits": [{"program": "Veterans — burial or plot allowance", "whoToAsk": "VA regional office", "documentNeeded": "Discharge papers (DD-214)", "whereItLives": "Written instructions in the home safe", "status": "To ask about", "notes": ""}, {"program": "Veterans — headstone, marker, or medallion", "whoToAsk": "Local Social Security office", "documentNeeded": "Certified death certificate", "whereItLives": "See the folder in the filing cabinet", "status": "Asked — waiting", "notes": ""}, {"program": "Veterans — burial flag", "whoToAsk": "HR department", "documentNeeded": "Marriage certificate", "whereItLives": "With the estate documents", "status": "Paperwork sent", "notes": ""}, {"program": "Veterans — national cemetery", "whoToAsk": "Funeral home director", "documentNeeded": "Birth certificate", "whereItLives": "Ask the family attorney's office", "status": "Closed out", "notes": ""}]};if(typeof migrateTaskKeys==="function"){try{migrateTaskKeys();}catch(e){}}renderAll();save=function(){var e=document.getElementById("save-status");if(e)e.innerHTML="<b>Demo mode — the full version saves automatically</b>";};backup=function(){alert("Backup is included in the full version.");};restore=function(i){if(i)i.value="";alert("Restore is included in the full version.");};save();})();</script></body>
 </html>

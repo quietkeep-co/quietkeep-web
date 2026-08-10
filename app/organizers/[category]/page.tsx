@@ -1,11 +1,9 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SectionHead } from "@/components/SectionHead";
 import { ProductCard, ComingSoonCard } from "@/components/ProductCard";
-import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import {
   CATEGORY_META,
@@ -15,6 +13,7 @@ import {
   type Category,
 } from "@/lib/products";
 import { guidesByCluster } from "@/lib/guides";
+import { GuideCard } from "@/components/GuideCard";
 
 export function generateStaticParams() {
   return categorySlugs.map((category) => ({ category }));
@@ -91,20 +90,7 @@ export default function CategoryPage({
             </SectionHead>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[18px]">
               {relatedGuides.map((g) => (
-                <Reveal
-                  key={g.slug}
-                  className="flex flex-col rounded-xl border border-line bg-card p-[22px]"
-                >
-                  <h3 className="mb-2 text-[18px] leading-snug">
-                    <Link href={`/guides/${g.slug}`} className="text-ink no-underline hover:text-ledger">
-                      {g.title}
-                    </Link>
-                  </h3>
-                  <p className="mb-3 text-[14.5px] text-ink-soft">{g.description}</p>
-                  <Link href={`/guides/${g.slug}`} className="mt-auto text-[14px] text-ledger">
-                    Read the guide →
-                  </Link>
-                </Reveal>
+                <GuideCard key={g.slug} guide={g} />
               ))}
             </div>
           </div>

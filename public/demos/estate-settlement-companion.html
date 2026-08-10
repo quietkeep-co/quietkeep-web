@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<!-- Quietkeep build estate-settlement-companion-48316e8930 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Estate Settlement Companion — Quietkeep</title>
+<title>Estate Settlement Companion — Live Demo — Quietkeep</title>
 <style>
 :root{
   --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
@@ -43,6 +44,7 @@ td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
 td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
 td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
 td.num input{text-align:right}
+td.calc{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:var(--spruce);padding-right:10px}
 .del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
 .add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
 .add:hover{background:#2E5249}
@@ -72,9 +74,23 @@ td.num input{text-align:right}
   section.tab{padding:14px}
   th,td{font-size:.85rem}
 }
+
+/* --- Quietkeep safety retrofit (2026-08-05) --- */
+.qk-veil{position:fixed;inset:0;background:rgba(31,39,36,.72);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.qk-veil[hidden]{display:none}
+.qk-notice{background:var(--white,#FFFFFF);border:1px solid var(--line,#D8D6CE);border-radius:14px;max-width:640px;width:100%;padding:26px 28px;margin:auto}
+.qk-notice h2{font-family:var(--serif,Georgia,serif);font-size:1.35rem;color:var(--spruce,#24413B);margin-bottom:10px}
+.qk-notice p{font-size:.92rem;color:#3f4945;margin-bottom:12px}
+.qk-notice .hot{background:#FBF3E2;border:1px solid var(--brass,#A5834B);border-radius:10px;padding:12px 14px;font-size:.92rem;color:#5d4a20;margin-bottom:14px}
+.qk-notice .hot b{color:var(--ink,#1F2724)}
+.qk-notice .fine{font-size:.8rem;color:#6a736d;border-top:1px solid var(--soft,#E7E5DD);padding-top:10px;margin-bottom:16px}
+.qk-notice .qk-ok{background:var(--spruce,#24413B);color:var(--porcelain,#F1F0EB);border:1.5px solid var(--spruce,#24413B);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.savebar .right{display:flex;align-items:center;gap:10px}
+.savebar .erase{background:none;border:1px solid var(--mist,#9DB4AC);color:var(--porcelain,#F1F0EB);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
+.savebar .erase:hover{background:var(--danger,#8A3B2E);border-color:var(--danger,#8A3B2E)}
 </style>
 </head>
-<body>
+<body><div style="position:relative;z-index:5;background:#A5834B;color:#1F2724;text-align:center;font:600 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;padding:9px 14px;">Live demo — sample data only. Nothing you enter here is saved, and it resets when you leave. <a href="#buy" style="color:#1F2724;text-decoration:underline;">Buy to keep your own copy.</a></div>
 <header>
   <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
@@ -97,8 +113,11 @@ td.num input{text-align:right}
     <button data-tab="tasks" class="active">Tasks</button>
     <button data-tab="assets">Assets</button>
     <button data-tab="debts">Debts</button>
+    <button data-tab="receipts">Money In</button>
     <button data-tab="expenses">Expenses</button>
     <button data-tab="contacts">Contacts</button>
+    <button data-tab="notify">Who I've Notified</button>
+    <button data-tab="certcopies">Certified Copies</button>
     <button data-tab="documents">Documents</button>
     <button data-tab="summary">Summary &amp; Backup</button>
   </nav>
@@ -119,10 +138,18 @@ td.num input{text-align:right}
 
   <section class="tab" id="tab-debts">
     <h2>Debt Register</h2>
-    <p class="note">Everything the estate owes. Do not pay anything out of order; your attorney can confirm priority under state law.</p>
+    <p class="note">Everything the estate owes. Do not pay anything out of order; your attorney can confirm what order applies.</p>
     <table><thead><tr><th style="width:24%">Creditor</th><th style="width:18%">Type</th><th style="width:14%">Balance ($)</th><th style="width:18%">Status</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="debts-body"></tbody></table>
     <button class="add" onclick="addRow('debts')">+ Add debt</button>
     <div class="totals">Total known debts: <strong id="debts-total">$0</strong></div>
+  </section>
+
+  <section class="tab" id="tab-receipts">
+    <h2>Money In</h2>
+    <p class="note">Money that comes in to the estate after the death: a final paycheck, a refund, a dividend, rent, the proceeds of a sale. The Expense log is what goes out; this is what comes in. Keeping both means you can show the whole picture later instead of rebuilding it from statements.</p>
+    <table><thead><tr><th style="width:13%">Date</th><th style="width:20%">Source</th><th style="width:18%">What it was</th><th style="width:13%">Amount ($)</th><th style="width:16%">Deposited</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="receipts-body"></tbody></table>
+    <button class="add" onclick="addRow('receipts')">+ Add money received</button>
+    <div class="totals">Total received into the estate: <strong id="receipts-total">$0</strong></div>
   </section>
 
   <section class="tab" id="tab-expenses">
@@ -138,6 +165,22 @@ td.num input{text-align:right}
     <p class="note">Every person and institution in one place: attorney, court, banks, agencies, family.</p>
     <table><thead><tr><th style="width:22%">Name</th><th style="width:20%">Role</th><th style="width:18%">Phone</th><th style="width:22%">Email</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody id="contacts-body"></tbody></table>
     <button class="add" onclick="addRow('contacts')">+ Add contact</button>
+  </section>
+
+  <section class="tab" id="tab-notify">
+    <h2>Who I've Notified</h2>
+    <p class="note">One line per bank, insurer, employer, agency, or company. Record who you spoke with, the date, what they asked you to send, and whether it is done. Settling an estate takes months, and you will not remember in month nine what you were told in month two.</p>
+    <table><thead><tr><th style="width:16%">Organization</th><th style="width:13%">Kind</th><th style="width:10%">Contacted</th><th style="width:9%">How</th><th style="width:12%">Spoke with</th><th>What they asked for</th><th style="width:10%">Sent on</th><th style="width:11%">Confirmation</th><th style="width:15%">Status</th><th style="width:36px"></th></tr></thead><tbody id="notify-body"></tbody></table>
+    <button class="add" onclick="addRow('notify')">+ Add organization</button>
+    <div class="totals" id="notify-count"></div>
+  </section>
+
+  <section class="tab" id="tab-certcopies">
+    <h2>Certified Copies</h2>
+    <p class="note">Certified copies of the death certificate get sent out one at a time and do not always come back. Record where each one went and how many returned; the register keeps a running count of how many are still out, so you know when to order more before you run short.</p>
+    <table><thead><tr><th style="width:20%">Sent to</th><th>What it was for</th><th style="width:11%">Date sent</th><th style="width:10%">Copies sent</th><th style="width:11%">Copies back</th><th style="width:10%">Still out</th><th style="width:16%">Do they return it?</th><th style="width:36px"></th></tr></thead><tbody id="certcopies-body"></tbody></table>
+    <button class="add" onclick="addRow('certcopies')">+ Add a copy sent</button>
+    <div class="totals">Certified copies still out: <strong id="certcopies-total">0</strong></div>
   </section>
 
   <section class="tab" id="tab-documents">
@@ -161,7 +204,7 @@ td.num input{text-align:right}
   </section>
 </div>
 
-<div class="savebar"><span>Quietkeep · Estate Settlement Companion</span><span id="save-status"><b>All changes saved on this device</b></span></div>
+<div class="savebar"><span>Quietkeep · Estate Settlement Companion</span><span class="right"><span id="save-status"><b>All changes saved on this device</b></span><button class="erase" onclick="qkEraseAll()" title="Erase everything saved in this browser">Erase everything</button></span></div>
 <div id="print-area"></div>
 
 <script>
@@ -184,7 +227,7 @@ const PHASES=[
  {name:"Phase 2 · Opening the Estate",tasks:[
   ["Decide whether you need a probate attorney","Many estates benefit from one; bring the printed summary from this app to make the first meeting efficient."],
   ["Determine whether full probate is required","Small estates often qualify for simplified procedures; the court clerk or attorney can tell you."],
-  ["File the will with the probate court","Most states require filing within a set window even if probate is not needed."],
+  ["File the will with the probate court","Ask the probate court clerk what filing window applies to you, and note the date you are given."],
   ["Apply for letters testamentary","This court document is your legal authority to act; institutions will ask for it constantly."],
   ["Get an EIN for the estate from the IRS","The estate is its own taxpayer; the EIN is free and takes minutes on the IRS site."],
   ["Open an estate bank account","All estate money flows through one account; never mix it with your own."],
@@ -202,9 +245,9 @@ const PHASES=[
   ["Gather the key documents","Work through the Document checklist tab; note where each item lives."],
   ["Keep required bills current","Mortgage, utilities, and insurance on estate property must not lapse during administration."],
   ["Confirm insurance covers the vacant home","Standard homeowner policies can lapse on unoccupied homes; call the insurer."],
-  ["Notify beneficiaries and heirs","Most states require formal notice; early communication also prevents conflict."],
+  ["Notify beneficiaries and heirs","Ask your attorney or the court clerk who needs to be told, and how. Early communication also prevents conflict."],
   ["Give required notice to creditors","States require published or mailed notice that starts the clock on claims."],
-  ["Pay valid debts in the correct order","State law sets priority; paying the wrong debt first can make you personally liable."],
+  ["Pay valid debts in the correct order","The order debts are paid in matters, and it is not the executor's call to guess. Ask your attorney what order applies before paying anything."],
   ["Log every estate expense","Use the Expense log; the final accounting depends on it."],
   ["File the deceased's final income tax return","Due the usual April deadline for the year of death; a CPA can handle it."],
   ["Determine whether estate tax returns apply","Most estates owe none, but the check is mandatory; thresholds change."]
@@ -216,7 +259,7 @@ const PHASES=[
   ["Prepare the final accounting","Every dollar in and out, from the registers and logs in this app."],
   ["Share the accounting with beneficiaries","Transparency here prevents the disputes that reopen estates."],
   ["Collect signed releases from beneficiaries","Receipts and releases protect you before the final distribution."],
-  ["Distribute the remaining assets","The last transfer of estate property, per the will or state law."],
+  ["Distribute the remaining assets","The last transfer of estate property. Confirm with your attorney what the will and your state require before distributing."],
   ["File the estate's income tax return if required","Needed if the estate earned income during administration."],
   ["Close the estate bank account","Only after every check has cleared and distributions are done."],
   ["File to formally close the estate","The final report or petition ends your legal responsibility."],
@@ -224,18 +267,28 @@ const PHASES=[
  ]}
 ];
 const DOCS=["Certified death certificates","Will","Trust documents","Letters testamentary","Birth certificate","Marriage certificate","Divorce decree (if any)","Military discharge (DD-214)","Social Security card","Property deeds","Vehicle titles","Mortgage statements","Bank statements","Brokerage statements","Retirement account statements","Life insurance policies","Home &amp; auto insurance policies","Recent tax returns (3 years)","Outstanding bills","Credit card statements","Safe deposit box information","Funeral pre-arrangement documents"];
+/* Register ids and column keys below are the ones a future manifest will use.
+   They are chosen once and never renamed: everything a buyer types is stored
+   under them in this browser, so a rename makes existing data stop rendering.
+   Adding a register means adding its id in exactly three more places —
+   DEFAULT, the load() guard, and renderAll(). Miss one and every existing
+   buyer gets an error on open. */
 const SCHEMAS={
  assets:["name","inst","acct","value:num","notes"],
  debts:["creditor","type","balance:num","status:sel:Open|Disputed|Settled|Paid","notes"],
+ receipts:["date:date","source","kind:sel:Final paycheck|Refund|Insurance proceeds paid to the estate|Dividend or interest|Rent|Proceeds of a sale|Benefit payment|Other","amount:num","deposited:sel:Into the estate account|Not deposited yet|Elsewhere — see notes","notes"],
  expenses:["date:date","desc","amount:num","paidby:sel:Estate|Executor personally|Other","reimb:sel:Yes|No"],
- contacts:["name","role","phone","email","notes"]
+ contacts:["name","role","phone","email","notes"],
+ notify:["org","kind:sel:Bank|Brokerage|Insurer|Employer|Government agency|Credit card or lender|Utility|Subscription|Other","contacted:date","method:sel:Phone|Mail|Online|In person","spokeWith","theyAsked","sentOn:date","confirmation","status:sel:Not started|Contacted|They asked for documents|Documents sent|Waiting on them|Resolved|Not applicable"],
+ certcopies:["org","purpose","dateSent:date","copiesSent:num","copiesBack:num","stillOut:calc:copiesSent-copiesBack","returnPolicy:sel:Not sure|They return it|They keep it"]
 };
 let state=null;
-const DEFAULT={v:1,tasks:{},docs:{},assets:[],debts:[],expenses:[],contacts:[]};
+const DEFAULT={v:1,tasks:{},docs:{},assets:[],debts:[],receipts:[],expenses:[],contacts:[],notify:[],certcopies:[]};
+const REGISTERS=["assets","debts","receipts","expenses","contacts","notify","certcopies"];
 function load(){
   try{const raw=localStorage.getItem("qk-estate-settlement");state=raw?JSON.parse(raw):JSON.parse(JSON.stringify(DEFAULT));}
   catch(e){state=JSON.parse(JSON.stringify(DEFAULT));}
-  ["assets","debts","expenses","contacts"].forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
+  REGISTERS.forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
   if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
   if(typeof state.docs!=="object"||!state.docs)state.docs={};
 }
@@ -283,9 +336,21 @@ function updateProgress(){
   document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
   summaryStats();
 }
-function fieldEl(table,row,f){
+/* A calc column is derived and read-only: it is never written into the row, so
+   it adds no storage key. "stillOut:calc:copiesSent-copiesBack" subtracts the
+   second field from the first. */
+function calcVal(row,expr){
+  const p=expr.split("-");
+  return (parseFloat(row[p[0]])||0)-(parseFloat(row[p[1]])||0);
+}
+function fieldEl(table,row,f,refresh){
   const parts=f.split(":");const key=parts[0];const kind=parts[1]||"text";
   const td=document.createElement("td");
+  if(kind==="calc"){
+    td.className="num calc";td.dataset.calcExpr=parts[2];
+    td.textContent=calcVal(row,parts[2]).toLocaleString("en-US");
+    return td;
+  }
   let el;
   if(kind==="sel"){el=document.createElement("select");
     parts[2].split("|").forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
@@ -293,15 +358,17 @@ function fieldEl(table,row,f){
   else{el=document.createElement("input");el.type=kind==="num"?"number":(kind==="date"?"date":"text");
     if(kind==="num"){el.step="0.01";td.className="num";}
     el.value=row[key]!==undefined?row[key]:"";}
-  el.addEventListener("input",()=>{row[key]=el.value;save();totals();});
-  el.addEventListener("change",()=>{row[key]=el.value;save();totals();});
+  el.addEventListener("input",()=>{row[key]=el.value;save();if(refresh)refresh();totals();});
+  el.addEventListener("change",()=>{row[key]=el.value;save();if(refresh)refresh();totals();});
   td.appendChild(el);return td;
 }
 function renderTable(name){
   const body=document.getElementById(name+"-body");body.innerHTML="";
   state[name].forEach((row,i)=>{
     const tr=document.createElement("tr");
-    SCHEMAS[name].forEach(f=>tr.appendChild(fieldEl(name,row,f)));
+    const refresh=()=>{tr.querySelectorAll("td.calc").forEach(td=>{
+      td.textContent=calcVal(row,td.dataset.calcExpr).toLocaleString("en-US");});};
+    SCHEMAS[name].forEach(f=>tr.appendChild(fieldEl(name,row,f,refresh)));
     const td=document.createElement("td");
     const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
     del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[name].splice(i,1);save();renderTable(name);totals();}});
@@ -329,24 +396,46 @@ function docCount(){
   document.getElementById("docs-count").innerHTML="Collected: <strong>"+have+" of "+(DOCS.length-na)+"</strong> applicable documents";
 }
 function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function sumField(name,key){return state[name].reduce((s,r)=>s+(parseFloat(r[key])||0),0);}
 function totals(){
-  const a=state.assets.reduce((s,r)=>s+(parseFloat(r.value)||0),0);
-  const d=state.debts.reduce((s,r)=>s+(parseFloat(r.balance)||0),0);
-  const e=state.expenses.reduce((s,r)=>s+(parseFloat(r.amount)||0),0);
+  const a=sumField("assets","value");
+  const d=sumField("debts","balance");
+  const e=sumField("expenses","amount");
+  const rc=sumField("receipts","amount");
+  const so=state.certcopies.reduce((s,r)=>s+calcVal(r,"copiesSent-copiesBack"),0);
   const rb=state.expenses.reduce((s,r)=>s+((r.reimb==="Yes"&&r.paidby==="Executor personally")?(parseFloat(r.amount)||0):0),0);
   document.getElementById("assets-total").textContent=money(a);
   document.getElementById("debts-total").textContent=money(d);
   document.getElementById("expenses-total").textContent=money(e);
   document.getElementById("reimb-total").textContent=money(rb);
+  document.getElementById("receipts-total").textContent=money(rc);
+  document.getElementById("certcopies-total").textContent=so.toLocaleString("en-US");
+  notifyCount();
   summaryStats();
+}
+/* Rows are created empty, so a status the buyer has not touched yet reads as
+   the first option rather than as nothing. */
+function notifyCount(){
+  const opts=SCHEMAS.notify[SCHEMAS.notify.length-1].split(":")[2].split("|");
+  const counts={};opts.forEach(o=>counts[o]=0);
+  state.notify.forEach(r=>{counts[Object.prototype.hasOwnProperty.call(counts,r.status)?r.status:opts[0]]++;});
+  const n=state.notify.length;
+  const parts=opts.filter(o=>counts[o]>0).map(o=>counts[o]+" "+o.toLowerCase());
+  document.getElementById("notify-count").innerHTML=n
+    ?("<strong>"+n+"</strong> organization"+(n===1?"":"s")+" · "+parts.join(" · "))
+    :"Nothing recorded here yet.";
 }
 function summaryStats(){
   let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));
   const a=state.assets.reduce((s,r)=>s+(parseFloat(r.value)||0),0);
   const d=state.debts.reduce((s,r)=>s+(parseFloat(r.balance)||0),0);
+  const rc=sumField("receipts","amount");
+  const e=sumField("expenses","amount");
+  const so=state.certcopies.reduce((s,r)=>s+calcVal(r,"copiesSent-copiesBack"),0);
   document.getElementById("summary-stats").innerHTML=
    '<div class="totals">Tasks complete: <strong>'+done+' / '+total+'</strong><span class="pill">'+Math.round(done/total*100)+'%</span><br>'+
-   'Estimated assets: <strong>'+money(a)+'</strong> · Known debts: <strong>'+money(d)+'</strong> · Estimated net estate: <strong>'+money(a-d)+'</strong></div>';
+   'Estimated assets: <strong>'+money(a)+'</strong> · Known debts: <strong>'+money(d)+'</strong> · Estimated net estate: <strong>'+money(a-d)+'</strong><br>'+
+   'Received into the estate: <strong>'+money(rc)+'</strong> · Estate expenses logged: <strong>'+money(e)+'</strong> · Certified copies still out: <strong>'+so.toLocaleString("en-US")+'</strong></div>';
 }
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function printSummary(){
@@ -361,8 +450,16 @@ function printSummary(){
   state.assets.forEach(r=>{h+='<tr><td>'+esc(r.name)+'</td><td>'+esc(r.inst)+'</td><td>'+esc(r.acct)+'</td><td>'+money(parseFloat(r.value)||0)+'</td><td>'+esc(r.notes)+'</td></tr>';});
   h+='</table><h2>Debts</h2><table><tr><th>Creditor</th><th>Type</th><th>Balance</th><th>Status</th><th>Notes</th></tr>';
   state.debts.forEach(r=>{h+='<tr><td>'+esc(r.creditor)+'</td><td>'+esc(r.type)+'</td><td>'+money(parseFloat(r.balance)||0)+'</td><td>'+esc(r.status)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+  h+='</table><h2>Money Received Into the Estate</h2><table><tr><th>Date</th><th>Source</th><th>What it was</th><th>Amount</th><th>Deposited</th><th>Notes</th></tr>';
+  state.receipts.forEach(r=>{h+='<tr><td>'+esc(r.date)+'</td><td>'+esc(r.source)+'</td><td>'+esc(r.kind)+'</td><td>'+money(parseFloat(r.amount)||0)+'</td><td>'+esc(r.deposited)+'</td><td>'+esc(r.notes)+'</td></tr>';});
+  h+='<tr><td colspan="3"><strong>Total received</strong></td><td><strong>'+money(sumField("receipts","amount"))+'</strong></td><td></td><td></td></tr>';
   h+='</table><h2>Estate Expenses</h2><table><tr><th>Date</th><th>Description</th><th>Amount</th><th>Paid by</th><th>Reimbursable</th></tr>';
   state.expenses.forEach(r=>{h+='<tr><td>'+esc(r.date)+'</td><td>'+esc(r.desc)+'</td><td>'+money(parseFloat(r.amount)||0)+'</td><td>'+esc(r.paidby)+'</td><td>'+esc(r.reimb)+'</td></tr>';});
+  h+='</table><h2>Who Has Been Notified</h2><table><tr><th>Organization</th><th>Kind</th><th>Contacted</th><th>How</th><th>Spoke with</th><th>What they asked for</th><th>Sent on</th><th>Confirmation</th><th>Status</th></tr>';
+  state.notify.forEach(r=>{h+='<tr><td>'+esc(r.org)+'</td><td>'+esc(r.kind)+'</td><td>'+esc(r.contacted)+'</td><td>'+esc(r.method)+'</td><td>'+esc(r.spokeWith)+'</td><td>'+esc(r.theyAsked)+'</td><td>'+esc(r.sentOn)+'</td><td>'+esc(r.confirmation)+'</td><td>'+esc(r.status||"Not started")+'</td></tr>';});
+  h+='</table><h2>Certified Copies Sent</h2><table><tr><th>Sent to</th><th>What it was for</th><th>Date sent</th><th>Copies sent</th><th>Copies back</th><th>Still out</th><th>Do they return it?</th></tr>';
+  state.certcopies.forEach(r=>{h+='<tr><td>'+esc(r.org)+'</td><td>'+esc(r.purpose)+'</td><td>'+esc(r.dateSent)+'</td><td>'+esc(r.copiesSent)+'</td><td>'+esc(r.copiesBack)+'</td><td>'+calcVal(r,"copiesSent-copiesBack").toLocaleString("en-US")+'</td><td>'+esc(r.returnPolicy)+'</td></tr>';});
+  h+='<tr><td colspan="5"><strong>Certified copies still out</strong></td><td><strong>'+state.certcopies.reduce((s,r)=>s+calcVal(r,"copiesSent-copiesBack"),0).toLocaleString("en-US")+'</strong></td><td></td></tr>';
   h+='</table><h2>Key Contacts</h2><table><tr><th>Name</th><th>Role</th><th>Phone</th><th>Email</th><th>Notes</th></tr>';
   state.contacts.forEach(r=>{h+='<tr><td>'+esc(r.name)+'</td><td>'+esc(r.role)+'</td><td>'+esc(r.phone)+'</td><td>'+esc(r.email)+'</td><td>'+esc(r.notes)+'</td></tr>';});
   h+='</table><h2>Document Status</h2><table><tr><th>Document</th><th>Status</th><th>Location</th></tr>';
@@ -370,8 +467,29 @@ function printSummary(){
   h+='</table><p style="margin-top:10pt">Prepared by the executor for review with counsel. This summary is an organizer output, not legal advice.</p>';
   pa.innerHTML=h;window.print();
 }
+/* --- Quietkeep backup stamp (2026-08-06) ---
+   The Estate Planning Organizer and this app both track a document checklist
+   by position in their own list, and the two lists are not the same list.
+   Loading the other app's backup here used to succeed silently and reattach
+   every document status and location to the wrong document. Backups now carry
+   a stamp. Backups downloaded before today carry none, so those are also
+   checked for the shape of the other app before anything is overwritten. */
+var QK_BACKUP_APP="qk-estate-settlement";
+var QK_WRONG_APP_MSG="\n\nIt has not been restored, and nothing here has changed. The two organizers keep their document checklists in a different order, so loading this one would have attached your notes to the wrong documents.\n\nOpen it in the organizer that created it.";
+function qkBackupIsOurs(data){
+  if(data.qkApp&&data.qkApp!==QK_BACKUP_APP){
+    alert("This backup was made by a different Quietkeep organizer"+(data.qkProduct?" (the "+data.qkProduct+")":"")+"."+QK_WRONG_APP_MSG);
+    return false;
+  }
+  if(!data.qkApp&&data.wishes&&data.people&&data.expenses===undefined){
+    alert("This looks like an Estate Planning Organizer backup, not an Estate Settlement Companion backup."+QK_WRONG_APP_MSG);
+    return false;
+  }
+  return true;
+}
 function backup(){
-  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const payload=Object.assign({qkApp:QK_BACKUP_APP,qkProduct:QK_PRODUCT},state);
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
   const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
   aEl.download="estate-settlement-backup-"+new Date().toISOString().slice(0,10)+".json";
   document.body.appendChild(aEl);aEl.click();aEl.remove();
@@ -381,7 +499,13 @@ function restore(input){
   const reader=new FileReader();
   reader.onload=()=>{try{const data=JSON.parse(reader.result);
       if(!data||typeof data!=="object")throw 0;
-      state=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),data);save();renderAll();alert("Backup restored.");}
+      if(!qkBackupIsOurs(data))return;
+      delete data.qkApp;delete data.qkProduct;
+      state=Object.assign(JSON.parse(JSON.stringify(DEFAULT)),data);
+      REGISTERS.forEach(k=>{if(!Array.isArray(state[k]))state[k]=[]});
+      if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+      if(typeof state.docs!=="object"||!state.docs)state.docs={};
+      save();renderAll();alert("Backup restored.");}
     catch(e){alert("That file does not look like a valid backup.");}};
   reader.readAsText(f);input.value="";
 }
@@ -392,8 +516,54 @@ document.getElementById("nav").addEventListener("click",e=>{
   e.target.classList.add("active");
   document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
 });
-function renderAll(){renderTasks();["assets","debts","expenses","contacts"].forEach(renderTable);renderDocs();totals();}
-load();renderAll();
+function renderAll(){renderTasks();REGISTERS.forEach(renderTable);renderDocs();totals();}
+
+/* --- Quietkeep safety retrofit (2026-08-05) ---
+   Two facts every product must state plainly, because neither is obvious and
+   both can hurt someone: (1) "local" is not "private" when the person you fear
+   shares the device; (2) localStorage is keyed to the browser, NOT to the file,
+   so deleting the .html does not delete the entries. */
+var QK_STORAGE_KEY="qk-estate-settlement";
+var QK_PRODUCT="Estate Settlement Companion";
+function qkShowNotice(){
+  if(document.getElementById("qk-veil"))return;
+  var v=document.createElement("div");
+  v.className="qk-veil";v.id="qk-veil";
+  v.innerHTML='<div class="qk-notice" role="dialog" aria-modal="true">'
+    +'<h2>Before you start</h2>'
+    +'<p>Keep this somewhere only you can reach \u2014 a device, phone, or USB drive that is not shared.</p>'
+    +'<p>Nothing you type is ever sent anywhere \u2014 it is saved only in this browser, on this device. That also means anyone who can use this device and this browser can open it. It is not encrypted and not password-protected.</p>'
+    +'<p>Deleting this file does NOT erase what you have entered. Your entries are stored by the browser, not inside the file. To remove them, use the \u201cErase everything\u201d button at the bottom of the screen.</p>'
+    +'<div class="hot">If you are in danger, your safety comes before any of this:<br>'
+    +'<b>National Domestic Violence Hotline \u2014 1-800-799-7233</b><br>'
+    +'<b>Text START to 88788</b><br>'
+    +'<b>Deaf/HoH video phone \u2014 855-812-1001</b></div>'
+    +'<div class="fine">This is an organizer. It is not legal, medical, or financial advice, and it is not a substitute for the advice of an attorney. For advice about your situation, consult a licensed professional in your state.</div>'
+    +'<div style="margin-top:0"><button class="qk-ok" id="qk-notice-ok">Continue</button></div>'
+    +'</div>';
+  document.body.appendChild(v);
+  var ok=document.getElementById("qk-notice-ok");
+  ok.addEventListener("click",function(){v.hidden=true;});
+  ok.focus();
+}
+function qkEraseAll(){
+  /* Two steps on purpose. This button is always on screen, so one stray click
+     must never destroy someone's work \u2014 but it also has to stay fast enough
+     to use when you need the screen clear right now. */
+  if(!confirm("ERASE EVERYTHING?\n\n"
+    +"This permanently deletes everything you have saved in this browser for "+QK_PRODUCT+".\n\n"
+    +"THIS CANNOT BE UNDONE. There is no way to get it back afterwards.\n\n"
+    +"It does NOT delete any backup file you have already downloaded, or anything you have printed.\n\n"
+    +"If you want to keep a copy, press Cancel and download a backup first."))return;
+  if(!confirm("Last check.\n\nReally erase everything permanently?"))return;
+  try{localStorage.removeItem(QK_STORAGE_KEY);}catch(e){}
+  alert("Erased. Nothing from this organizer is left in this browser.\n\n"
+    +"If you also downloaded a backup file or printed a copy, delete those separately.\n\n"
+    +"This page will now reload.");
+  location.reload();
+}
+
+load();renderAll();qkShowNotice();
 </script>
-</body>
+<script>(function(){state={"v": 1, "tasks": {"p0t0": true, "p0t1": true, "p0t2": true, "p0t3": true, "p0t4": true, "p1t0": true, "p1t1": true, "p1t2": true, "p1t3": false}, "docs": {}, "assets": [{"name": "Checking — First National", "inst": "First National Bank", "acct": "…1234", "value": "18240", "notes": "Transferred"}, {"name": "Savings — First National", "inst": "First National Bank", "acct": "…5678", "value": "42600", "notes": ""}, {"name": "Brokerage", "inst": "Vanguard", "acct": "…9012", "value": "214750", "notes": "Valued"}, {"name": "Home — 44 Chestnut St", "inst": "Erie County, NY", "acct": "", "value": "385000", "notes": "Appraisal ordered"}, {"name": "2019 Honda CR-V", "inst": "", "acct": "", "value": "17500", "notes": "In transfer"}], "debts": [{"creditor": "Mortgage — First National", "type": "Mortgage", "balance": "96400", "status": "Open", "notes": ""}, {"creditor": "Visa card", "type": "Credit card", "balance": "2830", "status": "Settled", "notes": ""}, {"creditor": "Utility final bill", "type": "Utility", "balance": "310", "status": "Paid", "notes": ""}], "expenses": [{"date": "2026-05-14", "desc": "Certified death certificates (8)", "amount": "96", "paidby": "Executor personally", "reimb": "Yes"}, {"date": "2026-05-20", "desc": "Probate filing fee", "amount": "210", "paidby": "Estate", "reimb": "No"}, {"date": "2026-06-02", "desc": "Appraisal — house", "amount": "450", "paidby": "Estate", "reimb": "No"}, {"date": "2026-06-11", "desc": "Locksmith & lawn care", "amount": "185", "paidby": "Executor personally", "reimb": "Yes"}], "contacts": [{"name": "Jordan Miller", "role": "Co-executor", "phone": "(555) 010-1234", "email": "jordan@example.com", "notes": ""}, {"name": "Casey Morgan, Esq.", "role": "Estate attorney", "phone": "(555) 010-5678", "email": "casey@example.com", "notes": ""}, {"name": "Sam Rivera, CPA", "role": "Accountant", "phone": "(555) 010-9012", "email": "sam@example.com", "notes": "Final tax return"}]};if(typeof migrateTaskKeys==="function"){try{migrateTaskKeys();}catch(e){}}renderAll();save=function(){var e=document.getElementById("save-status");if(e)e.innerHTML="<b>Demo mode — the full version saves automatically</b>";};backup=function(){alert("Backup is included in the full version.");};restore=function(i){if(i)i.value="";alert("Restore is included in the full version.");};save();})();</script></body>
 </html>

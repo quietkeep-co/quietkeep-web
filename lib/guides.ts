@@ -103,3 +103,31 @@ export const guideSlugs = guides.map((g) => g.slug);
 export function guidesByCluster(category: Category): Guide[] {
   return guides.filter((g) => getProduct(g.productSlug)?.category === category);
 }
+
+// Guides that name this exact product as the one they lead to — used on the
+// product page itself so a buyer researching the topic (and Google) can move
+// guide <-> product in both directions, not just category -> guide.
+export function guidesForProduct(slug: string): Guide[] {
+  return guides.filter((g) => g.productSlug === slug);
+}
+
+export type GuideCluster = { cluster: string; guides: Guide[] };
+
+// Two-level grouping for /guides: category (the same Estate & Legacy /
+// Divorce & Separation split used everywhere else on the site), then cluster
+// (the keyword-cluster label each guide already carries) within it. As the
+// library grows past a handful of guides per category, the cluster level is
+// what keeps it scannable instead of one long list.
+export function guideClusters(category: Category): GuideCluster[] {
+  const items = guidesByCluster(category);
+  const order: string[] = [];
+  const byCluster = new Map<string, Guide[]>();
+  for (const g of items) {
+    if (!byCluster.has(g.cluster)) {
+      byCluster.set(g.cluster, []);
+      order.push(g.cluster);
+    }
+    byCluster.get(g.cluster)!.push(g);
+  }
+  return order.map((cluster) => ({ cluster, guides: byCluster.get(cluster)! }));
+}

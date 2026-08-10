@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<!-- Quietkeep build post-divorce-transition-a7235754f3 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Post-Divorce Transition Organizer — Quietkeep</title>
+<title>Post-Divorce Transition Organizer — Live Demo — Quietkeep</title>
 <style>
 :root{
   --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
@@ -55,6 +56,15 @@ td.num input{text-align:right}
 .toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
 .toolbar button:hover{border-color:var(--brass)}
 .pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+/* Wide registers (Home Inventory's 13-column inventory table is the worst
+   case in the catalogue) squeeze every column to illegibility when forced
+   into the 1040px wrap at width:100% — a number input's spinner arrows alone
+   can eat a 5%-wide column, so the digit inside never renders at all. Give
+   the table room to be its natural width and let the wrapper scroll instead
+   of compressing. Found by actually looking at a screenshot, not by reading
+   the column list. */
+.table-wrap{overflow-x:auto;margin-top:10px}
+.table-wrap table{margin-top:0}
 .wish{margin:0 0 22px}
 .wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
 .wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
@@ -104,7 +114,7 @@ td.num input{text-align:right}
 }
 </style>
 </head>
-<body>
+<body><div style="position:relative;z-index:5;background:#A5834B;color:#1F2724;text-align:center;font:600 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;padding:9px 14px;">Live demo — sample data only. Nothing you enter here is saved, and it resets when you leave. <a href="#buy" style="color:#1F2724;text-decoration:underline;">Buy to keep your own copy.</a></div>
 <header>
   <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
@@ -144,25 +154,95 @@ td.num input{text-align:right}
 /* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
    injected at build time by generators/qk_app.py from the product manifest.
    Hard promises: single file, zero network, never a credential field. */
-const CONFIG={"name":"Post-Divorce Transition Organizer","storageKey":"qk-transition","backupPrefix":"transition","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Twenty-eight steps across four phases, at whatever pace the confirmations arrive. Everything saves automatically on this device. Each step notes why it matters. This is a checklist to organize your own follow-through, not legal advice: it helps you list what's left and track it to done. It does not tell you what your decree requires or when you may act — and some changes are restricted while a case is pending, while others need a separate court order. List them here, then confirm each one with your attorney before you act. It never asks for a Social Security number, account number, or password.\n\nYour decree controls. If anything in this list conflicts with it, your decree wins — this is a general list of what divorces commonly touch, not a list of what your case requires. And if your divorce is not final yet, do not change anything here before asking your attorney: in many states, filing automatically restricts changes to beneficiaries, insurance, and titles, and those restrictions take effect without anyone telling you.","disclaimer":"This is an organizer, not legal advice and not a substitute for the advice of an attorney. It does not tell you what your decree requires, what you are entitled to, or when you may make a change. Confirm every step with a licensed attorney in your state before you act."},"phases":[{"name":"Phase 1 · Start From the Decree","tasks":[["Get a certified copy of your decree and note where it lives","Almost every institution you deal with will want to see it, and some want a certified copy specifically. Note where yours is kept — you don't upload anything here."],["Read it through once with a notepad","Not to interpret it, but to find every place it leaves you something to do. Anything you're unsure of goes on the question list rather than into a decision."],["List every action it leaves you to take","Accounts, titles, beneficiaries, insurance, and your name. Getting the whole list visible in one place is most of the work; the rest is just sequence."],["Ask your attorney what is safe to do now","The single most important step on this list. Timing is not obvious: while a case is pending, courts in many states restrict changes to assets, titles, and beneficiary designations, and acting early can cause real problems. Ask before you change anything."],["Note any separate orders you are waiting on","Some things — a retirement account in particular — generally cannot be divided or redirected by agreement alone and need their own court order. If yours is still pending, note it and wait; your attorney handles that process."],["Set a realistic order of work","Deadlines first (insurance usually has one), then anything blocked on a document, then the long tail. A few a week finishes it faster than a heroic weekend."],["Add what you've listed to the To Change tab","One row each: what it is, what needs doing, where it's managed, and its status — including anything you're waiting on a separate court order for, logged with 'Waiting on a document.' That list is the spine of everything that follows."]]},{"name":"Phase 2 · Money & Accounts","tasks":[["List every joint bank and credit account","Checking, savings, credit cards, store cards, and anything with an authorized user. Joint accounts left open are the most common thing people find years later."],["Confirm with your attorney what may be separated and when","Which accounts can be closed or split, and at what point, depends on your order and your state. Note the answer next to each account rather than deciding for yourself."],["Sort out accounts in your name alone","A checking account, a savings account, and a card in your own name are the foundation of the new household. Ask your attorney whether anything about your case affects the timing, then note here where each stands — the rest of the money steps depend on it."],["Check your credit report for joint accounts you forgot","You are entitled to free reports from each bureau, and they are the reliable way to find the account nobody remembered. Note what you find; the numbers stay on the report."],["Note any account your decree assigns to someone else","If an account or debt is allocated to your former spouse, note it and confirm with your attorney what protects you if it goes unpaid — being off the account and being off the loan are not the same thing."],["Note what your decree says about retirement accounts","Write down what your own order provides, in its own words. Retirement plans generally cannot be split or redirected just by asking the plan — that usually needs a separate qualified court order, which is your attorney's process, not a form you file."],["Log each account and its status in the To Change tab","One row per account: what needs doing, where it's managed, and whether it's done, pending, or waiting on something. Use the notes column for what your decree actually says about it — retirement accounts especially. The status column is what makes this finishable."]]},{"name":"Phase 3 · Property, Documents & Identity","tasks":[["Note what your decree provides about the home","Sale, transfer, refinance, or one of you staying — write down what your order says. Moving a deed and moving a mortgage are separate steps, and a title company or your attorney handles the paperwork. Add the home as a row in the To Change tab so it's tracked to done like everything else."],["List vehicles and other titled property","Cars, boats, trailers, and anything else with a title. Each has its own process through your state's motor vehicle agency, and each is easy to leave half-done."],["Note whether you are changing your name","Some decrees provide for restoring a former name; otherwise it is usually a separate court process. Confirm which applies to you before you start telling institutions about it — the order of operations matters."],["List every place your name or address appears","Employer, bank, insurance, doctors, schools, voter registration, subscriptions, and the passport or license. Longer than anyone expects; better as a list than as a memory. Add each one to the Name & Address tab and check them off as you go."],["Gather the confirmations as each change completes","A letter, an email, or a screenshot. When an institution later says it never happened, the confirmation is the whole argument — note where each one is filed."],["Note where each document is stored","The decree, any separate orders, new titles and deeds, and the confirmations. One consistent place, noted here, so you never search twice."],["Add each document to the Documents tab","One row each: what it is, where it lives, and whether you have a certified copy. This is what you'll reach for every time something is questioned."]]},{"name":"Phase 4 · Insurance, Benefits & Your New Baseline","tasks":[["Confirm your health insurance and any coverage deadline","If you were on a former spouse's plan, coverage usually ends and the window to elect a continuation or a new plan is short and strictly enforced. Find out your date first — this is the most time-sensitive item on the list."],["Review life and auto insurance for your new household","Policies written for two people rarely fit one. Note what you have and what it should be, and get advice from a licensed agent on the coverage itself."],["Check the beneficiaries on everything you own","Life insurance, retirement accounts, and any payable-on-death designation. These are not changed by a divorce decree on their own and are the single most commonly missed item — but confirm with your attorney what you may change and when, since restrictions can apply while anything is still pending."],["Note that your will and powers of attorney need rewriting","Your old documents likely name a former spouse as executor, agent, and heir. Rewriting them is an attorney's job — your task here is to record that it needs doing, ask when you may do it, and make the appointment."],["Build the budget for a household of one","One income against the full cost of a household is a genuinely different arithmetic. Put the real numbers in the Budget tab and look at the total honestly — it is easier to plan around a number than around a worry."],["Note what you want to have settled in six months","The two or three things that would make this feel finished. Naming them keeps the long tail from expanding to fill the year."],["Print the Progress Summary and back up your file","One click on the Progress Summary tab shows what's done and what's left. Back the file up and keep the copy somewhere only you can reach."]]}],"registers":[{"id":"accounts","tab":"To Change","heading":"Accounts & Records to Change","noun":"item","statLabel":"To change","counterLabel":"Items to change","intro":"Every account, designation, title, and login that a divorce eventually touches — joint accounts to separate, beneficiaries to review, deeds and titles to move, logins to change, and your name if it's changing. List them all here first; what you may change, and when, is a question for your attorney, and some changes are restricted while anything is still pending. Record where each is managed and what needs doing — never the numbers or passwords.","columns":[{"key":"item","label":"Account / record","width":"24%","type":"text"},{"key":"action","label":"What needs doing","width":"22%","type":"list","options":["Remove former spouse","Close account","Split / transfer","Review beneficiary","Update will / POA","Update deed / title","Update name","Update address","Change password","Other"]},{"key":"where","label":"Where it's managed","width":"20%","type":"text"},{"key":"status","label":"Status","width":"16%","type":"list","options":["To do","Asked my attorney","In progress","Waiting on a document","Done"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"documents","tab":"Documents","heading":"Documents & Filings","noun":"document","statLabel":"Documents","counterLabel":"Documents tracked","intro":"The paper trail of the transition: your decree, any separate orders, new deeds and titles, and the confirmation from every institution that actually made a change. Record what each document is and where it lives — this file holds the map, not the documents themselves.","columns":[{"key":"item","label":"Document","width":"26%","type":"text"},{"key":"type","label":"Type","width":"18%","type":"list","options":["Decree / judgment","Separate court order","Deed / title","Confirmation letter","Insurance document","Identity document","Other"]},{"key":"where","label":"Where it's kept","width":"22%","type":"text"},{"key":"status","label":"Do you have it?","width":"16%","type":"list","options":["Have a copy","Have certified copy","Requested","Not yet"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"places","tab":"Name & Address","heading":"Name & Address Updates","noun":"place","statLabel":"Places","counterLabel":"Places updated","intro":"Every place your name or address appears — easy to lose track of, and each one is its own small task. Employer, bank, insurance, doctors, schools, voter registration, subscriptions, your license or passport.","columns":[{"key":"item","label":"Where","width":"40%","sample":["Employer HR","Bank accounts","Driver's license","Voter registration"],"type":"text"},{"key":"status","label":"Status","width":"24%","type":"list","options":["Not started","In progress","Done"],"sample":["Not started","In progress","Done","Not started"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"budget","tab":"New Budget","heading":"Your New Budget","noun":"line","nounPlural":"lines","statLabel":"Monthly","counterLabel":"Budget lines","intro":"The first budget of a one-person household. Put in what comes in and what goes out, monthly, using real numbers rather than hopeful ones. The total at the bottom is the number worth knowing — it is easier to plan around a figure than around a worry.","columns":[{"key":"item","label":"What it is","width":"26%","type":"text"},{"key":"cat","label":"Category","width":"18%","type":"list","options":["Income","Housing","Utilities","Food","Transport","Insurance","Children","Debt payment","Savings","Other"]},{"key":"amount","label":"Monthly amount","width":"16%","type":"num"},{"key":"certainty","label":"How firm","width":"14%","type":"list","options":["Fixed","Varies","Estimate","Ends soon"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"total","counterField":"amount","totalLabel":"Monthly total","totalUnit":"/ month","line":"Your listed lines total {total} a month. Seeing the real number is the first step to planning around it."}],"wishesEnabled":true,"wishes":{"tab":"Priorities","heading":"Priorities & Questions","intro":"What you want settled first, what still feels unfinished, and the questions to bring to your attorney. The administrative tail of a divorce ends when you decide it does — naming the finish line is how that happens.","disclaimer":"These are your own notes and goals, not legal positions or advice. What your decree requires, and what you may do and when, are questions for a licensed attorney in your state.","items":[{"key":"first","label":"What you want settled first","prompt":"The two or three items that would take the most weight off. Deadlines usually belong here — insurance especially — followed by whatever you think about most often."},{"key":"unfinished","label":"What still feels unfinished","prompt":"The loose ends you keep noticing: a name on something, a document you never received, a conversation not had. Writing them down is how they stop circling."},{"key":"questions","label":"Questions for your attorney","prompt":"Everything you're unsure of, especially anything about timing — what you may change now, what waits, and what needs a separate order. Questions asked from a list cost less and get answered better."},{"key":"sixmonths","label":"Where you want to be in six months","prompt":"What 'done' actually looks like for you. Not a resolution — a description, specific enough that you'll know when you've reached it."},{"key":"notes","label":"Other notes","prompt":"Anything else worth keeping in one place: reminders, dates, or things you want to remember about how this went. Optional."}]},"sheet":{"tab":"Progress Summary","heading":"Transition Progress Summary","button":"Print the Progress Summary","intro":"This compiles what you've organized — the records still to change, your documents, your new budget, and your priorities — into one printable page showing what's done and what's left. It is useful for an attorney meeting, a financial advisor, or simply for seeing that the list is shorter than it feels.","docTitle":"What's Done and What's Left","docTag":"A Transition Progress Summary · prepared with the Quietkeep Post-Divorce Transition Organizer","lead":"This sheet gathers the state of a post-divorce transition: the accounts and records still to change, the documents on file, the new household budget, and the priorities and open questions. It is an organizer output — not legal advice, not a legal document, and not a statement of what any decree requires.","foot":"Prepared by the account holder. This Progress Summary is an organizing document, not legal advice and not a legal document. It contains no account numbers, Social Security numbers, or passwords. What a decree requires, and when a change may be made, are questions for a licensed attorney in your state.","disclaimer":"The Progress Summary is a personal organizing document, not a legal filing and not legal advice. Some changes are restricted while a case is pending or require a separate court order — confirm each step with a licensed attorney before you act.","sections":[{"type":"register","id":"accounts","title":"Accounts & Records to Change"},{"type":"register","id":"documents","title":"Documents & Filings"},{"type":"register","id":"places","title":"Name & Address Updates"},{"type":"register","id":"budget","title":"Your New Budget"},{"type":"wish","key":"first","title":"What to Settle First","empty":"Not recorded yet — the two or three items that would take the most weight off."},{"type":"wishes","title":"Priorities & Questions","exclude":["first"]}]},"summary":{"disclaimer":"The Post-Divorce Transition Organizer is an organizer, not legal advice and not a substitute for the advice of an attorney. It does not tell you what your decree requires or when you may make a change; some changes are restricted while a case is pending or require a separate court order. It never asks for an account number, Social Security number, or password. Everything you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See how much of the transition is closed out, keep it current as confirmations arrive, and back up your work to a file you control.","reviewNote":"This list finishes in stages — come back each time a confirmation arrives or your attorney clears the next step, and mark it done.","staleFlag":"It's been a while since you updated this. If changes have completed since, mark them off — the list is probably shorter than it feels."},"safety":{"title":"Before you start","body":["Keep this somewhere only you can reach — a device, phone, or USB drive that isn't shared.","This is a checklist to organize your own follow-through. It is not legal advice and is not a substitute for the advice of an attorney. It does not tell you what your decree requires, what you are entitled to, or when you are allowed to change something.","Important: if your divorce is not final yet, do not change anything on this list before asking your attorney. In many states, filing for divorce automatically restricts changing beneficiaries, insurance, and titles until the case is over — and those restrictions take effect without anyone telling you. List things here now; act only when your attorney says you can."],"hotline":["If you are in danger, that comes before any paperwork:","National Domestic Violence Hotline — 1-800-799-7233","Text START to 88788","Deaf/HoH video phone — 855-812-1001"],"fine":"This is an organizer, not legal advice and not a substitute for the advice of an attorney. If anything in this list conflicts with your decree, your decree governs. This is a general list of things divorces commonly touch — not a list of what your case requires. Confirm every step with a licensed attorney in your state before you act."}};
+const CONFIG={"name":"Post-Divorce Transition Organizer","storageKey":"qk-transition","backupPrefix":"transition","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Thirty steps across four phases, at whatever pace the confirmations arrive. Everything saves automatically on this device. Each step notes why it matters. This is a checklist to organize your own follow-through, not legal advice: it helps you list what's left and track it to done. It does not tell you what your decree requires or when you may act — and some changes are restricted while a case is pending, while others need a separate court order. List them here, then confirm each one with your attorney before you act. It never asks for a Social Security number, account number, or password.\n\nYour decree controls. If anything in this list conflicts with it, your decree wins — this is a general list of what divorces commonly touch, not a list of what your case requires. And if your divorce is not final yet, do not change anything here before asking your attorney: in many states, filing automatically restricts changes to beneficiaries, insurance, and titles, and those restrictions take effect without anyone telling you.","disclaimer":"This is an organizer, not legal advice and not a substitute for the advice of an attorney. It does not tell you what your decree requires, what you are entitled to, or when you may make a change. Confirm every step with a licensed attorney in your state before you act."},"phases":[{"name":"Phase 1 · Start From the Decree","tasks":[["Get a certified copy of your decree and note where it lives","Almost every institution you deal with will want to see it, and some want a certified copy specifically. Note where yours is kept — you don't upload anything here."],["Read it through once with a notepad","Not to interpret it, but to find every place it leaves you something to do. Anything you're unsure of goes on the question list rather than into a decision."],["List every action it leaves you to take","Accounts, titles, beneficiaries, insurance, and your name. Getting the whole list visible in one place is most of the work; the rest is just sequence."],["Ask your attorney what is safe to do now","The single most important step on this list. Timing is not obvious: while a case is pending, courts in many states restrict changes to assets, titles, and beneficiary designations, and acting early can cause real problems. Ask before you change anything, and log the answer against each row rather than deciding for yourself."],["Write down every date you've been given","Anything with a date attached goes on the Dates tab: what has to happen, where the date came from, and whether it's finished. Copy them from your order in its own words, or from whoever gave them to you — this file can't work a date out for you, and a date nobody wrote down is the one that passes unnoticed."],["Note any separate orders you are waiting on","Some things — a retirement account in particular — generally cannot be divided or redirected by agreement alone and need their own court order. If yours is still pending, note it on the Dates tab and wait; your attorney handles that process."],["Set a realistic order of work","Deadlines first (insurance usually has one), then anything blocked on a document, then the long tail. A few a week finishes it faster than a heroic weekend."],["List everyone you'll be dealing with","Your attorney, the title company, the lender, HR or benefits, your insurance agent. Put them in Your Team as you go. Most of what's left is one phone call each, and having the number already saves the worst ten minutes of every one of them."],["Add what you've listed to the To Change tab","One row each: what it is, what needs doing, where it's managed, and its status — including anything you're waiting on a separate court order for, logged with 'Waiting on a document.' That list is the spine of everything that follows."]]},{"name":"Phase 2 · Money & Accounts","tasks":[["List every joint bank and credit account","Checking, savings, credit cards, store cards, and anything with an authorized user. Joint accounts left open are the most common thing people find years later."],["Confirm with your attorney what may be separated and when","Which accounts can be closed or split, and at what point, depends on your order and your state. Note the answer next to each account rather than deciding for yourself."],["Sort out accounts in your name alone","A checking account, a savings account, and a card in your own name are the foundation of the new household. Ask your attorney whether anything about your case affects the timing, then note here where each stands — the rest of the money steps depend on it."],["Check your credit report for joint accounts you forgot","Free reports are available from each bureau, and they are the reliable way to find the account nobody remembered. Note what you find; the numbers stay on the report."],["Note any account your decree assigns to someone else","If an account or debt is allocated to your former spouse, note it and confirm with your attorney what protects you if it goes unpaid — being off the account and being off the loan are not the same thing."],["Note what your decree says about retirement accounts","Write down what your own order provides, in its own words. Retirement plans generally cannot be split or redirected just by asking the plan — that usually needs a separate qualified court order, which is your attorney's process, not a form you file."],["Log each account and its status in the To Change tab","One row per account: what needs doing, where it's managed, and whether it's done, pending, or waiting on something. Use the notes column for what your decree actually says about it — retirement accounts especially. The status column is what makes this finishable."]]},{"name":"Phase 3 · Property, Documents & Identity","tasks":[["Note what your decree provides about the home","Sale, transfer, refinance, or one of you staying — write down what your order says. Moving a deed and moving a mortgage are separate steps, done by different people, and finishing one does not finish the other; a title company or your attorney handles the paperwork. Give each one its own row in the To Change tab, and put any date your order names on the Dates tab."],["List vehicles and other titled property","Cars, boats, trailers, and anything else with a title. Each has its own process through your state's motor vehicle agency, and each is easy to leave half-done."],["Note whether you are changing your name","Some decrees provide for restoring a former name; otherwise it is usually a separate court process. Confirm which applies to you before you start telling institutions about it — the order of operations matters."],["List every place your name or address appears","Employer, bank, insurance, doctors, schools, voter registration, subscriptions, and the passport or license. Longer than anyone expects; better as a list than as a memory. Add each one to the Name & Address tab and check them off as you go."],["Gather the confirmations as each change completes","A letter, an email, or a screenshot. When an institution later says it never happened, the confirmation is the whole argument — note where each one is filed."],["Note where each document is stored","The decree, any separate orders, new titles and deeds, and the confirmations. One consistent place, noted here, so you never search twice."],["Add each document to the Documents tab","One row each: what it is, where it lives, and whether you have a certified copy. This is what you'll reach for every time something is questioned."]]},{"name":"Phase 4 · Insurance, Benefits & Your New Baseline","tasks":[["Confirm your health insurance and any coverage deadline","If you were on a former spouse's plan, coverage usually ends, and the window to elect a continuation or a new plan is short and strictly enforced. Find out your date first, put it on the Dates tab, and mark it confirmed in writing once it's sorted — this is the most time-sensitive item on the list."],["Review life and auto insurance for your new household","Policies written for two people rarely fit one. Note what you have and what it should be, and get advice from a licensed agent on the coverage itself."],["Check the beneficiaries on everything you own","Life insurance, retirement accounts, and any payable-on-death designation. These are not changed by a divorce decree on their own and are the single most commonly missed item — but confirm with your attorney what you may change and when, since restrictions can apply while anything is still pending."],["Note that your will and powers of attorney need rewriting","Your old documents likely name a former spouse as executor, agent, and heir. Rewriting them is an attorney's job — your task here is to record that it needs doing, ask when you may do it, and make the appointment."],["Build the budget for a household of one","One income against the full cost of a household is a genuinely different arithmetic. Put the real numbers in the Budget tab and look at the total honestly — it is easier to plan around a number than around a worry."],["Note what you want to have settled in six months","The two or three things that would make this feel finished. Naming them keeps the long tail from expanding to fill the year."],["Print the Progress Summary and back up your file","One click on the Progress Summary tab shows what's done and what's left. Back the file up and keep the copy somewhere only you can reach."]]}],"registers":[{"id":"accounts","tab":"To Change","heading":"Accounts & Records to Change","noun":"item","statLabel":"To change","counterLabel":"Items to change","intro":"Every account, designation, title, and login that a divorce eventually touches — joint accounts to separate, beneficiaries to review, deeds and titles to move, logins to change, and your name if it's changing. List them all here first; what you may change, and when, is a question for your attorney, and some changes are restricted while anything is still pending. Note the moving of a deed and the moving of a mortgage as two separate rows — they are two separate pieces of work, done by different people, and finishing one does not finish the other. If a row has a date attached to it, put it in the date column and it will also sit on the Dates tab. Record where each is managed and what needs doing — never the numbers or passwords.","columns":[{"key":"item","label":"Account / record","width":"24%","sample":["Joint checking account","Life insurance policy","Utility account","House deed"],"type":"text"},{"key":"action","label":"What needs doing","width":"22%","type":"list","options":["Remove former spouse","Close account","Split / transfer","Review beneficiary","Update will / POA","Update deed / title","Confirm I'm off the loan","Refinance / remove me from the loan","Record the new deed","Update name","Update address","Change password","Other"],"sample":["Remove former spouse","Review beneficiary","Update name","Record the new deed"]},{"key":"where","label":"Where it's managed","width":"20%","type":"text"},{"key":"due","label":"Date it's due","width":"12%","type":"date"},{"key":"status","label":"Status","width":"16%","type":"list","options":["To do","Asked my attorney","In progress","Waiting on a document","Done"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"status"},{"id":"dates","tab":"Dates","heading":"Dates & Deadlines","noun":"date","statLabel":"Dates","counterLabel":"Dates tracked","intro":"Every date you have actually been given — written in your order in its own words, handed to you by an institution, or told to you by your attorney — with where it came from and whether it's finished. This organizer does not read your decree and cannot work a date out for you: write down what you have been told, and put anything you're unsure about on the question list rather than into a guess. Some of these matter a great deal if they pass unnoticed, which is the whole reason for having them on one screen. 'Confirmed in writing' is the status worth reaching — an institution's own confirmation is the thing you'll want later.","columns":[{"key":"item","label":"What has to happen","width":"27%","sample":["Refinance the house","Elect continuing health coverage","Separate retirement order submitted","Transfer the car title"],"type":"text"},{"key":"source","label":"Where the date came from","width":"21%","type":"list","options":["My order names this date","An institution gave me this date","My attorney told me","My own target"],"sample":["My order names this date","An institution gave me this date","My attorney told me","My own target"]},{"key":"when","label":"Date","width":"13%","type":"date"},{"key":"status","label":"Status","width":"18%","type":"list","options":["Not started","Ask my attorney","In progress","Done","Confirmed in writing"],"sample":["In progress","Not started","Ask my attorney","Done"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"status"},{"id":"documents","tab":"Documents","heading":"Documents & Filings","noun":"document","statLabel":"Documents","counterLabel":"Documents tracked","intro":"The paper trail of the transition: your decree, any separate orders, new deeds and titles, and the confirmation from every institution that actually made a change. Record what each document is and where it lives — this file holds the map, not the documents themselves.","columns":[{"key":"item","label":"Document","width":"26%","sample":["Marriage certificate","Divorce decree","Deed to the house","Life insurance policy"],"type":"text"},{"key":"type","label":"Type","width":"18%","type":"list","options":["Decree / judgment","Separate court order","Deed / title","Confirmation letter","Insurance document","Identity document","Other"],"sample":["Identity document","Decree / judgment","Deed / title","Insurance document"]},{"key":"where","label":"Where it's kept","width":"22%","type":"text"},{"key":"status","label":"Do you have it?","width":"16%","type":"list","options":["Have a copy","Have certified copy","Requested","Not yet"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"places","tab":"Name & Address","heading":"Name & Address Updates","noun":"place","statLabel":"Places","counterLabel":"Places updated","intro":"Every place your name or address appears — easy to lose track of, and each one is its own small task. Employer, bank, insurance, doctors, schools, voter registration, subscriptions, your license or passport.","columns":[{"key":"item","label":"Where","width":"40%","sample":["Employer HR","Bank accounts","Driver's license","Voter registration"],"type":"text"},{"key":"status","label":"Status","width":"24%","type":"list","options":["Not started","In progress","Done"],"sample":["Not started","In progress","Done","Not started"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"team","tab":"Your Team","heading":"Your Team","noun":"person","nounPlural":"people","statLabel":"Your team","counterLabel":"People listed","intro":"Everyone you'll be dealing with to finish this: your attorney first, then the title company, the lender, HR or benefits, your insurance agent, and whoever holds each account. Almost every row on the To Change tab is one phone call to one of these people — this is the list of numbers, so you never hunt for the same one twice.","columns":[{"key":"name","label":"Name","width":"20%","type":"text"},{"key":"role","label":"Role","width":"26%","type":"list","options":["Attorney","Title / escrow company","Mortgage lender","HR / benefits contact","Insurance agent","Financial advisor","Accountant / CPA","Motor vehicle agency","Other"]},{"key":"phone","label":"Phone","width":"16%","type":"text"},{"key":"email","label":"Email","width":"18%","type":"text"},{"key":"notes","label":"Notes / what they help with","type":"text"}],"counter":"count"},{"id":"income","tab":"Money In","heading":"Money Coming In","noun":"source","statLabel":"Sources","counterLabel":"Sources listed","intro":"Pay, benefits, support you actually receive, anything else that arrives regularly. Kept apart from costs so neither number quietly absorbs the other.","columns":[{"key":"item","label":"What","width":"30%","sample":["My salary","Child support received","Side work","Freelance work"],"type":"text"},{"key":"amount","label":"Amount ($ / month)","width":"18%","type":"num","sample":["3200","600","250","400"]},{"key":"certainty","label":"How steady","width":"20%","type":"list","options":["Fixed","Varies","Estimate","Ends soon"],"sample":["Fixed","Varies","Estimate","Varies"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"total","counterField":"amount","totalLabel":"Money in each month","totalUnit":"","line":"What you have listed comes to {total} a month. Your own figures, for your own planning."},{"id":"budget","tab":"Monthly Costs","heading":"Your Monthly Costs","noun":"line","nounPlural":"lines","statLabel":"Monthly","counterLabel":"Budget lines","intro":"What your month actually costs now that it is yours alone — housing, utilities, food, transport, insurance, the children, debt payments. Money coming in goes on the Money In tab, kept separate on purpose so each number means one thing.","columns":[{"key":"item","label":"What it is","width":"26%","sample":["Rent","Car payment","Groceries","Health insurance"],"type":"text"},{"key":"cat","label":"Category","width":"18%","type":"list","options":["Housing","Utilities","Food","Transport","Insurance","Children","Debt payment","Savings","Other"],"sample":["Housing","Transport","Food","Insurance"]},{"key":"amount","label":"Monthly amount","width":"16%","type":"num"},{"key":"certainty","label":"How firm","width":"14%","type":"list","options":["Fixed","Varies","Estimate","Ends soon"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"total","counterField":"amount","totalLabel":"Monthly costs","totalUnit":"/ month","line":"Your listed costs come to {total} a month. That is the sum of the outgoings you entered — money coming in is totalled separately on the Money In tab."}],"wishesEnabled":true,"wishes":{"tab":"Priorities","heading":"Priorities & Questions","intro":"What you want settled first, what still feels unfinished, and the questions to bring to your attorney. The administrative tail of a divorce ends when you decide it does — naming the finish line is how that happens.","disclaimer":"These are your own notes and goals, not legal positions or advice. What your decree requires, and what you may do and when, are questions for a licensed attorney in your state.","items":[{"key":"first","label":"What you want settled first","prompt":"The two or three items that would take the most weight off. Deadlines usually belong here — insurance especially — followed by whatever you think about most often."},{"key":"unfinished","label":"What still feels unfinished","prompt":"The loose ends you keep noticing: a name on something, a document you never received, a conversation not had. Writing them down is how they stop circling."},{"key":"questions","label":"Questions for your attorney","prompt":"Everything you're unsure of, especially anything about timing — what you may change now, what waits, and what needs a separate order. Questions asked from a list cost less and get answered better."},{"key":"sixmonths","label":"Where you want to be in six months","prompt":"What 'done' actually looks like for you. Not a resolution — a description, specific enough that you'll know when you've reached it."},{"key":"notes","label":"Other notes","prompt":"Anything else worth keeping in one place: reminders, dates, or things you want to remember about how this went. Optional."}]},"sheet":{"tab":"Progress Summary","heading":"Transition Progress Summary","button":"Print the Progress Summary","intro":"This compiles what you've organized — the records still to change, the dates you're working to, your documents, who you're dealing with, and your new monthly figures — into one printable page showing what's done and what's left. It is useful for an attorney meeting, a financial advisor, or simply for seeing that the list is shorter than it feels.","docTitle":"What's Done and What's Left","docTag":"A Transition Progress Summary · prepared with the Quietkeep Post-Divorce Transition Organizer","lead":"This sheet gathers the state of a post-divorce transition: the accounts and records still to change, the dates being worked to, the documents on file, the people involved, the new household figures, and the priorities and open questions. It is an organizer output — not legal advice, not a legal document, and not a statement of what any decree requires.","foot":"Prepared by the account holder. This Progress Summary is an organizing document, not legal advice and not a legal document. It contains no account numbers, Social Security numbers, or passwords. What a decree requires, and when a change may be made, are questions for a licensed attorney in your state.","disclaimer":"The Progress Summary is a personal organizing document, not a legal filing and not legal advice. Some changes are restricted while a case is pending or require a separate court order — confirm each step with a licensed attorney before you act.","sections":[{"type":"register","id":"accounts","title":"Accounts & Records to Change"},{"type":"register","id":"dates","title":"Dates & Deadlines"},{"type":"register","id":"documents","title":"Documents & Filings"},{"type":"register","id":"places","title":"Name & Address Updates"},{"type":"register","id":"team","title":"Your Team"},{"type":"register","id":"income","title":"Money Coming In"},{"type":"register","id":"budget","title":"Monthly Costs"},{"type":"wish","key":"first","title":"What to Settle First","empty":"Not recorded yet — the two or three items that would take the most weight off."},{"type":"wishes","title":"Priorities & Questions","exclude":["first"]}]},"sheets":[],"summary":{"disclaimer":"The Post-Divorce Transition Organizer is an organizer, not legal advice and not a substitute for the advice of an attorney. It does not tell you what your decree requires or when you may make a change; some changes are restricted while a case is pending or require a separate court order. It never asks for an account number, Social Security number, or password. Everything you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See how much of the transition is closed out, keep it current as confirmations arrive, and back up your work to a file you control.","reviewNote":"This list finishes in stages — come back each time a confirmation arrives or your attorney clears the next step, and mark it done.","staleFlag":"It's been a while since you updated this. If changes have completed since, mark them off — the list is probably shorter than it feels."},"safety":{"title":"Before you start","body":["Keep this somewhere only you can reach — a device, phone, or USB drive that isn't shared.","This is a checklist to organize your own follow-through. It is not legal advice and is not a substitute for the advice of an attorney. It does not tell you what your decree requires, what you are entitled to, or when you are allowed to change something.","Important: if your divorce is not final yet, do not change anything on this list before asking your attorney. In many states, filing for divorce automatically restricts changing beneficiaries, insurance, and titles until the case is over — and those restrictions take effect without anyone telling you. List things here now; act only when your attorney says you can."],"hotline":["If you are in danger, that comes before any paperwork:","National Domestic Violence Hotline — 1-800-799-7233","Text START to 88788","Deaf/HoH video phone — 855-812-1001"],"fine":"This is an organizer, not legal advice and not a substitute for the advice of an attorney. If anything in this list conflicts with your decree, your decree governs. This is a general list of things divorces commonly touch — not a list of what your case requires. Confirm every step with a licensed attorney in your state before you act."},"legacyTasks":[["Get a certified copy of your decree and note where it lives","Read it through once with a notepad","List every action it leaves you to take","Ask your attorney what is safe to do now","Note any separate orders you are waiting on","Set a realistic order of work","Add what you've listed to the To Change tab"],["List every joint bank and credit account","Confirm with your attorney what may be separated and when","Sort out accounts in your name alone","Check your credit report for joint accounts you forgot","Note any account your decree assigns to someone else","Note what your decree says about retirement accounts","Log each account and its status in the To Change tab"],["Note what your decree provides about the home","List vehicles and other titled property","Note whether you are changing your name","List every place your name or address appears","Gather the confirmations as each change completes","Note where each document is stored","Add each document to the Documents tab"],["Confirm your health insurance and any coverage deadline","Review life and auto insurance for your new household","Check the beneficiaries on everything you own","Note that your will and powers of attorney need rewriting","Build the budget for a household of one","Note what you want to have settled in six months","Print the Progress Summary and back up your file"]]};
 const PHASES=CONFIG.phases;
 const REGISTERS=CONFIG.registers||[];
 const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
 const STORAGE_KEY=CONFIG.storageKey;
 const SAFETY=CONFIG.safety||{};
+/* A product may declare several printable outputs (`sheets`) rather than one.
+   Special Needs needs this for a real reason, not tidiness: a single packet
+   that compiles benefits status AND guardianship wishes is right for a future
+   guardian and wrong to hand a third-grade teacher. `sheet` stays supported so
+   the ten products built before this keep generating byte-identical output. */
+const SHEETS=(CONFIG.sheets&&CONFIG.sheets.length)?CONFIG.sheets:(CONFIG.sheet?[CONFIG.sheet]:[]);
+
+/* ---------- task identity ----------
+   Task completion used to be stored by POSITION ("p0t3"). That meant inserting
+   a task in the middle of a phase silently moved every tick below it onto a
+   different task — a buyer saw work marked done that they had never done, and
+   lost credit for work they had. On products whose whole promise is "nothing
+   important gets missed", that is worse than losing the data outright.
+
+   Keys are now a slug of the task title, which survives reordering, insertion
+   and deletion. Verified unique within every product in the catalogue.
+   `migrateTaskKeys()` converts an existing buyer's positional ticks exactly
+   once, using the task order as it stood when they saved. */
+function slugKey(s){
+  return String(s == null ? "" : s).toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-")
+    .replace(/^-|-$/g, "").slice(0, 48);
+}
 
 function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
 function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
 function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
 function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function plain(n){return (Math.round(n*100)/100).toLocaleString("en-US");}
+/* Totals are money by default — the estate and divorce lines all count dollars.
+   Some registers count minutes or plain units instead (service delivery, for
+   one), so a register may set totalFormat:"plain" with totalUnit:"minutes". */
+function fmtTotal(reg,n){
+  return reg.totalFormat==="plain"
+    ? plain(n)+(reg.totalUnit?" "+reg.totalUnit:"")
+    : money(n);
+}
+function fmtCell(col,v){
+  if(col.format==="plain")return plain(parseFloat(v)||0);
+  return money(parseFloat(v)||0);
+}
+/* A "calc" column is derived and never stored: calc:["a","b"] with op "*" or
+   "-". It keeps the arithmetic a buyer would otherwise do by hand — quantity
+   x cost-each, or actual minus normal — inside the engine, where it stays
+   correct as rows change instead of going stale the moment anything is edited. */
+function calcVal(reg,row,col){
+  const a=(col.calc||[])[0],b=(col.calc||[])[1];
+  const x=parseFloat(row[a])||0,y=parseFloat(row[b])||0;
+  return col.op==="-"?(x-y):(x*y);
+}
+function cellVal(reg,row,col){return col.type==="calc"?calcVal(reg,row,col):row[col.key];}
 function regById(id){return REGISTERS.find(r=>r.id===id);}
 function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
 function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
 
 /* ---------- state ---------- */
 let state=null;
+/* Stable per-task keys, computed once from the current phase order. */
+const TASK_KEYS=PHASES.map(ph=>(ph.tasks||[]).map(t=>slugKey(t[0])));
+
+/* Convert positional task ticks to stable keys, once, on first open of an
+   updated file. `legacyTasks` is the task order AS THE BUYER HAS IT — needed
+   only when a release reorders tasks in the same version that introduces this
+   migration. Otherwise the current order is the buyer's order, so it is the
+   correct fallback and the migration is exact. */
+function migrateTaskKeys(){
+  if(state.tkv>=2){return;}
+  const legacy=CONFIG.legacyTasks||PHASES.map(ph=>(ph.tasks||[]).map(t=>t[0]));
+  const out={};
+  (legacy||[]).forEach((ph,pi)=>(ph||[]).forEach((title,ti)=>{
+    if(state.tasks&&state.tasks["p"+pi+"t"+ti])out[slugKey(title)]=true;
+  }));
+  /* Preserve any keys that are already slugs — a re-restored backup, or a file
+     opened by a newer build first. Never drop a tick we cannot explain. */
+  Object.keys(state.tasks||{}).forEach(k=>{
+    if(!/^p\d+t\d+$/.test(k)&&state.tasks[k])out[k]=true;
+  });
+  state.tasks=out;
+  state.tkv=2;
+}
+
 function defaultState(){
-  const d={v:1,tasks:{},wishes:{},lastReviewed:null};
+  const d={v:1,tkv:2,tasks:{},wishes:{},lastReviewed:null};
   REGISTERS.forEach(r=>{d[r.id]=[];});
   return d;
 }
@@ -173,6 +253,7 @@ function load(){
   if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
   if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
   if(state.lastReviewed===undefined)state.lastReviewed=null;
+  migrateTaskKeys();
 }
 function save(){
   try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
@@ -187,7 +268,7 @@ function buildShell(){
   const tabs=[{id:"tasks",label:CONFIG.tasks.tab||"Tasks"}];
   REGISTERS.forEach(r=>tabs.push({id:r.id,label:r.tab}));
   if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
-  tabs.push({id:"sheet",label:CONFIG.sheet.tab||"Instruction Sheet"});
+  SHEETS.forEach((s,i)=>tabs.push({id:"sheet"+i,label:s.tab||"Instruction Sheet"}));
   tabs.push({id:"summary",label:"Summary & Backup"});
   tabs.forEach((t,i)=>{
     const b=document.createElement("button");
@@ -203,10 +284,25 @@ function buildShell(){
      '</section>';
   // Registers
   REGISTERS.forEach(r=>{
+    /* A register may carry a `warn` — one prominent, red, shown-once line under
+       the intro. Wishes already had this; registers did not, so a prohibition
+       as load-bearing as "never the codes themselves" could only be muted grey
+       prose. Deliberately register-level, not per-column: a warning repeated on
+       every row of a table stops being read by row three. */
     h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
-       '<p class="note">'+esc(r.intro||"")+'</p><table><thead><tr>';
+       '<p class="note">'+esc(r.intro||"")+'</p>'+
+       (r.warn?'<p class="warnline">'+esc(r.warn)+'</p>':"")+
+       // A many-column register needs real pixel width to stay legible — 70px
+       // per column is roughly what a narrow text/number input needs, so a
+       // 13-column table gets ~910px minimum rather than being crushed into
+       // whatever fraction of 1040px is left after padding.
+       // 70px/column still clipped a 2-digit number input to its first digit
+       // (spinner arrows + input padding eat more of a narrow cell than the
+       // math suggested) — verified by looking at the actual render, not by
+       // recomputing the math a second time. 85px holds up on inspection.
+       '<div class="table-wrap"><table style="min-width:'+(85*(r.columns.length+1))+'px"><thead><tr>';
     r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
-    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table>'+
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table></div>'+
        '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
     if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
     if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
@@ -221,12 +317,14 @@ function buildShell(){
        '</section>';
   }
   // Sheet
-  h+='<section class="tab" id="tab-sheet"><h2>'+esc(CONFIG.sheet.heading)+'</h2>'+
-     '<p class="note">'+esc(CONFIG.sheet.intro||"")+'</p>'+
-     '<div id="sheet-preview" class="review-box"></div>'+
-     '<div class="toolbar"><button class="primary" onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button></div>'+
-     (CONFIG.sheet.disclaimer?'<p class="disclaimer">'+esc(CONFIG.sheet.disclaimer)+'</p>':"")+
-     '</section>';
+  SHEETS.forEach((S,i)=>{
+    h+='<section class="tab" id="tab-sheet'+i+'"><h2>'+esc(S.heading)+'</h2>'+
+       '<p class="note">'+esc(S.intro||"")+'</p>'+
+       '<div id="sheet-preview-'+i+'" class="review-box"></div>'+
+       '<div class="toolbar"><button class="primary" onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button></div>'+
+       (S.disclaimer?'<p class="disclaimer">'+esc(S.disclaimer)+'</p>':"")+
+       '</section>';
+  });
   // Summary
   h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
      '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
@@ -235,7 +333,7 @@ function buildShell(){
      '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
      '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
      '<div class="toolbar">'+
-     '<button onclick="printSheet()">'+esc(CONFIG.sheet.button||"Print the Instruction Sheet")+'</button>'+
+     SHEETS.map((S,i)=>'<button onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button>').join("")+
      '<button onclick="printAll()">Print everything (all registers)</button>'+
      '<button onclick="backup()">Download backup file</button>'+
      '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
@@ -256,7 +354,7 @@ function renderTasks(){
     const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
     const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
     ph.tasks.forEach((t,ti)=>{
-      const id="p"+pi+"t"+ti;
+      const id=TASK_KEYS[pi][ti];
       const checked=!!state.tasks[id];if(checked)pDone++;
       const row=document.createElement("div");row.className="task"+(checked?" done":"");
       const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
@@ -272,7 +370,7 @@ function renderTasks(){
   });
   updateProgress();
 }
-function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks["p"+pi+"t"+ti])done++;}));return{total,done};}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks[TASK_KEYS[pi][ti]])done++;}));return{total,done};}
 function updateProgress(){
   let total=0,done=0;
   document.querySelectorAll("#phases .phase").forEach((div)=>{
@@ -289,6 +387,14 @@ function updateProgress(){
 /* ---------- register engine ---------- */
 function fieldEl(reg,row,col){
   const td=document.createElement("td");
+  /* Derived cells are output, not input — render as read-only text so nobody
+     types into a number that is about to be recomputed. refreshCalc() keeps
+     them current as the columns they depend on are edited. */
+  if(col.type==="calc"){
+    td.className="num";
+    td.textContent=fmtCell(col,calcVal(reg,row,col));
+    return td;
+  }
   let el;
   if(col.type==="select"){el=document.createElement("select");
     (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
@@ -324,8 +430,30 @@ function categoryCounts(reg){
   state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
   return counts;
 }
-function regTotal(reg){const k=reg.counterField||numKey(reg);return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);}
+function regTotal(reg){
+  const k=reg.counterField||numKey(reg);
+  const col=colByKey(reg,k);
+  if(col&&col.type==="calc")return state[reg.id].reduce((s,r)=>s+calcVal(reg,r,col),0);
+  return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);
+}
+/* Repaint derived cells in place. Re-rendering the whole table would steal
+   focus from the field being typed into, which is why this updates the td
+   text directly rather than calling renderTable(). */
+function refreshCalc(){
+  REGISTERS.forEach(reg=>{
+    if(!reg.columns.some(c=>c.type==="calc"))return;
+    const body=document.getElementById(reg.id+"-body");if(!body)return;
+    Array.prototype.forEach.call(body.rows,(tr,i)=>{
+      const row=state[reg.id][i];if(!row)return;
+      reg.columns.forEach((c,ci)=>{
+        if(c.type!=="calc")return;
+        const td=tr.cells[ci];if(td)td.textContent=fmtCell(c,calcVal(reg,row,c));
+      });
+    });
+  });
+}
 function totals(){
+  refreshCalc();
   REGISTERS.forEach(reg=>{
     const el=document.getElementById(reg.id+"-total");
     const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
@@ -338,9 +466,9 @@ function totals(){
       el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
     }else if(reg.counter==="total"&&el){
       const n=state[reg.id].length;
-      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+money(regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+fmtTotal(reg,regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
       const line=document.getElementById(reg.id+"-line");
-      if(line)line.textContent=n?reg.line.replace("{total}",money(regTotal(reg))):"";
+      if(line)line.textContent=n?reg.line.replace("{total}",fmtTotal(reg,regTotal(reg))).replace("{n}",n):"";
     }else if(el){
       el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
     }
@@ -402,21 +530,21 @@ function registerTableHTML(reg,rows,skipKey){
   h+='</tr>';
   rows.forEach(r=>{h+='<tr>';
     reg.columns.forEach(c=>{if(c.key===skipKey)return;
-      const v=c.type==="num"?money(parseFloat(r[c.key])||0):esc(r[c.key]);
+      const v=(c.type==="num"||c.type==="calc")?fmtCell(c,cellVal(reg,r,c)):esc(r[c.key]);
       h+='<td>'+v+'</td>';});
     h+='</tr>';});
   if(reg.counter==="total"){
     h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
     const nk=reg.counterField||numKey(reg);
     reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
-      h+=c.key===nk?'<td><strong>'+money(regTotal(reg))+'</strong></td>':'<td></td>';});
+      h+=c.key===nk?'<td><strong>'+fmtTotal(reg,regTotal(reg))+'</strong></td>':'<td></td>';});
     h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
     h+='</tr>';
   }
   return h+'</table>';
 }
-function sheetHTML(){
-  const S=CONFIG.sheet;
+function sheetHTML(idx){
+  const S=SHEETS[idx||0]||{};
   let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
   if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
   (S.sections||[]).forEach(sec=>{
@@ -430,11 +558,15 @@ function sheetHTML(){
       if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
       if(sec.groupBy){
         const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
-        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);counts[c]=(counts[c]||0)+1;});
+        /* Grouping by a column that has no `options` (a date, or free text) is
+           legitimate — but then cats is empty, and a blank cell used to fall
+           through to cats[0] === undefined and print "undefined (3)" as a
+           heading on the buyer's printed sheet. Bucket those explicitly. */
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");counts[c]=(counts[c]||0)+1;});
         const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
         order.forEach(c=>{
           h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
-          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]);return rc===c;}),sec.groupBy);
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");return rc===c;}),sec.groupBy);
         });
       }else{
         h+=registerTableHTML(reg,rows,null);
@@ -450,21 +582,29 @@ function sheetHTML(){
   return h;
 }
 function renderSheetPreview(){
-  const el=document.getElementById("sheet-preview");if(!el)return;
-  const bits=REGISTERS.map(reg=>{
-    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
-    const n=state[reg.id].length;
-    let s=n+" "+(n===1?noun:plural);
-    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
-    return s;
+  SHEETS.forEach((S,i)=>{
+    const el=document.getElementById("sheet-preview-"+i);if(!el)return;
+    /* Preview only the registers this particular sheet actually compiles —
+       otherwise a teacher-facing sheet would advertise the benefits and
+       guardianship data it deliberately leaves out. */
+    const ids=(S.sections||[]).filter(s=>s.type==="register").map(s=>s.id);
+    const regs=ids.length?REGISTERS.filter(r=>ids.indexOf(r.id)>=0):REGISTERS;
+    const bits=regs.map(reg=>{
+      const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+      const n=state[reg.id].length;
+      let s=n+" "+(n===1?noun:plural);
+      if(reg.counter==="total")s+=" ("+fmtTotal(reg,regTotal(reg))+")";
+      return s;
+    });
+    const hasWishes=(S.sections||[]).some(s=>s.type==="wish"||s.type==="wishes");
+    el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(S.docTitle)+'</strong></div>'+
+      '<p class="note" style="margin:0">'+esc(S.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+      (hasWishes?", plus what you've written in your own words":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
   });
-  el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(CONFIG.sheet.docTitle)+'</strong></div>'+
-    '<p class="note" style="margin:0">'+esc(CONFIG.sheet.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
-    (CONFIG.wishesEnabled?", plus your wishes":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
 }
-function printSheet(){
+function printSheet(idx){
   const pa=document.getElementById("print-area");
-  pa.innerHTML=sheetHTML();window.print();
+  pa.innerHTML=sheetHTML(idx||0);window.print();
 }
 function printAll(){
   const pa=document.getElementById("print-area");
@@ -472,7 +612,7 @@ function printAll(){
   h+='<h2>Guided Task Progress</h2>';
   PHASES.forEach((ph,pi)=>{
     h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
-    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks["p"+pi+"t"+ti]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks[TASK_KEYS[pi][ti]]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
     h+='</table>';
   });
   pa.innerHTML=h;window.print();
@@ -568,11 +708,11 @@ document.getElementById("nav").addEventListener("click",e=>{
   document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
   e.target.classList.add("active");
   document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
-  if(e.target.dataset.tab==="sheet")renderSheetPreview();
+  if(String(e.target.dataset.tab||"").indexOf("sheet")===0)renderSheetPreview();
 });
 function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
 document.getElementById("qk-notice-ok").addEventListener("click",dismissNotice);
 buildShell();load();renderAll();showNotice();
 </script>
-</body>
+<script>(function(){state={"v": 1, "tasks": {"p0t0": true, "p0t1": true, "p0t2": true, "p0t3": true, "p0t4": true, "p0t5": true, "p0t6": true, "p0t7": true, "p0t8": true, "p1t0": true, "p1t1": true, "p1t2": true}, "wishes": {"first": "A few notes to start with — more to add as things become clearer.", "unfinished": "A few notes to start with — more to add as things become clearer."}, "lastReviewed": null, "accounts": [{"item": "Joint checking account", "action": "Remove former spouse", "where": "Written instructions in the home safe", "due": "2026-05-14", "status": "To do", "notes": ""}, {"item": "Life insurance policy", "action": "Review beneficiary", "where": "See the folder in the filing cabinet", "due": "2026-06-15", "status": "Asked my attorney", "notes": ""}, {"item": "Utility account", "action": "Update name", "where": "With the estate documents", "due": "2026-07-16", "status": "In progress", "notes": ""}, {"item": "House deed", "action": "Record the new deed", "where": "Ask the family attorney's office", "due": "2026-08-17", "status": "Waiting on a document", "notes": ""}], "dates": [{"item": "Refinance the house", "source": "My order names this date", "when": "2026-04-13", "status": "In progress", "notes": ""}, {"item": "Elect continuing health coverage", "source": "An institution gave me this date", "when": "2026-05-14", "status": "Not started", "notes": ""}, {"item": "Separate retirement order submitted", "source": "My attorney told me", "when": "2026-06-15", "status": "Ask my attorney", "notes": ""}, {"item": "Transfer the car title", "source": "My own target", "when": "2026-07-16", "status": "Done", "notes": ""}], "documents": [{"item": "Marriage certificate", "type": "Identity document", "where": "Written instructions in the home safe", "status": "Have a copy", "notes": ""}, {"item": "Divorce decree", "type": "Decree / judgment", "where": "See the folder in the filing cabinet", "status": "Have certified copy", "notes": ""}, {"item": "Deed to the house", "type": "Deed / title", "where": "With the estate documents", "status": "Requested", "notes": ""}, {"item": "Life insurance policy", "type": "Insurance document", "where": "Ask the family attorney's office", "status": "Not yet", "notes": ""}], "places": [{"item": "Employer HR", "status": "Not started", "notes": ""}, {"item": "Bank accounts", "status": "In progress", "notes": ""}, {"item": "Driver's license", "status": "Done", "notes": ""}, {"item": "Voter registration", "status": "Not started", "notes": ""}], "team": [{"name": "Jordan Miller", "role": "Attorney", "phone": "(555) 010-1234", "email": "alex@example.com", "notes": ""}, {"name": "Sam Rivera", "role": "Title / escrow company", "phone": "(555) 010-5678", "email": "jordan@example.com", "notes": ""}, {"name": "Alex Chen", "role": "Mortgage lender", "phone": "(555) 010-9012", "email": "sam@example.com", "notes": ""}, {"name": "Casey Morgan", "role": "HR / benefits contact", "phone": "(555) 010-1234", "email": "alex@example.com", "notes": ""}], "income": [{"item": "My salary", "amount": "3200", "certainty": "Fixed", "notes": ""}, {"item": "Child support received", "amount": "600", "certainty": "Varies", "notes": ""}, {"item": "Side work", "amount": "250", "certainty": "Estimate", "notes": ""}, {"item": "Freelance work", "amount": "400", "certainty": "Varies", "notes": ""}], "budget": [{"item": "Rent", "cat": "Housing", "amount": "1200", "certainty": "Fixed", "notes": ""}, {"item": "Car payment", "cat": "Transport", "amount": "450", "certainty": "Varies", "notes": ""}, {"item": "Groceries", "cat": "Food", "amount": "85", "certainty": "Estimate", "notes": ""}, {"item": "Health insurance", "cat": "Insurance", "amount": "1200", "certainty": "Ends soon", "notes": ""}]};if(typeof migrateTaskKeys==="function"){try{migrateTaskKeys();}catch(e){}}renderAll();save=function(){var e=document.getElementById("save-status");if(e)e.innerHTML="<b>Demo mode — the full version saves automatically</b>";};backup=function(){alert("Backup is included in the full version.");};restore=function(i){if(i)i.value="";alert("Restore is included in the full version.");};save();})();</script></body>
 </html>
