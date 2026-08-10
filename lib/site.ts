@@ -24,11 +24,15 @@ export const site = {
   ],
 
   // The dashed "in the works" card on the home grid. Not a real product yet.
+  // Keep this free of specific scenario examples — every concrete one named
+  // here so far (an aging parent, a funeral, a home inventory) shipped as its
+  // own product within weeks, which turned the "coming soon" tease into a
+  // false claim the moment it launched.
   comingSoon: {
     kicker: "In the works",
     title: "The next quiet organizer",
     oneLiner:
-      "Caring for an aging parent. The week of a funeral. A home inventory before you need one. We build one organizer at a time, carefully.",
+      "We build one organizer at a time, carefully — the same season nobody prepares you for, kept private and offline.",
     bullets: [
       "Same promise: offline, private, yours",
       "Same format: one file, guided steps, real registers",

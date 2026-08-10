@@ -188,7 +188,7 @@ export default function HomePage() {
                   {items.map((p) => (
                     <ProductCard key={p.slug} product={p} />
                   ))}
-                  {key === "estate" && <ComingSoonCard />}
+                  {key === "protection" && <ComingSoonCard />}
                 </div>
               </div>
             );

@@ -1,0 +1,154 @@
+{
+  "order": 10,
+  "slug": "home-inventory-organizer",
+  "name": "Home Inventory & Insurance Claim Organizer",
+  "kicker": "Home Inventory & Insurance Claim Organizer",
+  "category": "protection",
+  "status": "new",
+  "season": "Protecting what you own",
+  "price": 34.99,
+  "paymentLink": "TODO: GHL fastpaydirect payment link",
+  "demoPath": "/demos/home-inventory-organizer.html",
+  "card": {
+    "oneLiner": "Quantity x cost-each totalled as you type, every room's progress tracked, and a one-click adjuster packet.",
+    "bullets": [
+      "Quantity x cost-each, totalled as you type",
+      "Every room's progress tracked so you can stop and come back",
+      "Policy, claim, payments, deadlines and expenses in one place",
+      "One click prints your adjuster packet",
+      "Private, offline — the searchable half your camera roll can't be"
+    ]
+  },
+  "hero": {
+    "headline": "Your home, inventoried — before you ever need to prove it.",
+    "lede": "Your inventory totals itself line by line — thirty-eight t-shirts is one row, and the maths is done for you — while your policy, claim, payments, deadlines and displaced-living costs stay in one place and one click prints the packet you hand your adjuster. Your photos and video stay on your own phone; this is the searchable, totalled, printable half a video can't be. Private and fully offline.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/home-inventory-organizer/inventory.png",
+    "imageAlt": "Home Inventory & Insurance Claim Organizer showing the Home Inventory register"
+  },
+  "band": [
+    {
+      "label": "100% offline",
+      "sub": "zero network requests"
+    },
+    {
+      "label": "Completely private",
+      "sub": "data stays on your device"
+    },
+    {
+      "label": "$34.99 once",
+      "sub": "yours forever"
+    },
+    {
+      "label": "A real app",
+      "sub": "not a PDF or spreadsheet"
+    }
+  ],
+  "intro": {
+    "heading": "The work, already organized",
+    "body": "Walk into a claim call with the inventory already built, the policy already logged, the deadlines already written down and the numbers already adding up — not a shoebox of receipts and a guess at what the guest room held."
+  },
+  "features": [
+    {
+      "title": "49 guided tasks",
+      "body": "7 phases, opening with a First 72 Hours phase you skip if nothing has happened"
+    },
+    {
+      "title": "Home inventory",
+      "body": "Quantity x cost-each, totalled live — a drawer of socks is one row"
+    },
+    {
+      "title": "Rooms & progress",
+      "body": "Every room's status tracked, so you can stop and come back"
+    },
+    {
+      "title": "Policy & scheduled items",
+      "body": "Each coverage line, your deductible, and every rider or special limit"
+    },
+    {
+      "title": "Claim, payments & deadlines",
+      "body": "Each payment tagged to its coverage — never a recommended settlement"
+    },
+    {
+      "title": "Claim Packet",
+      "body": "One click prints everything, with item numbers to name your photos against"
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/home-inventory-organizer/inventory.png",
+      "alt": "Home Inventory register",
+      "captionBold": "The maths, done for you.",
+      "caption": "Thirty-eight t-shirts is one row — quantity times cost-each, totalled live."
+    },
+    {
+      "img": "/images/home-inventory-organizer/claims.png",
+      "alt": "Claim and payment record",
+      "captionBold": "Track it to close.",
+      "caption": "Every status change and every payment, tagged to its coverage."
+    },
+    {
+      "img": "/images/home-inventory-organizer/packet.png",
+      "alt": "Printable Claim Packet",
+      "captionBold": "One click for your adjuster.",
+      "caption": "Inventory, rooms, policy, claim, dates, contacts and expenses on one page."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Nothing you type is ever sent anywhere — it's saved only in this browser, on this device. Your photos never pass through this app at all: they stay wherever you keep them, linked only by the item number you write down yourself, which is also how you name the files when you send them on. Keep a copy of your photos, your walkthrough video and this app's backup file somewhere that isn't this house — a phone in the building is not a second copy. And because nothing here is encrypted or password-protected, anyone who can use this device and browser can open it, so keep it somewhere only you can reach.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+      },
+      {
+        "title": "Never a password",
+        "body": "By design, it never asks for or stores passwords or PINs. It records that accounts exist and where your written instructions live — the map, never the keys."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "the one private place to inventory what you own line by line, track your policy, your claim, your deadlines and every extra cost, and print one packet for your adjuster — the searchable, totalled half your camera roll can't be.",
+    "bullets": [
+      "49 guided tasks across 7 phases — opening with a First 72 Hours phase for anyone standing in the middle of a loss, which you skip outright if nothing has happened yet",
+      "A room-by-room inventory that does the arithmetic: quantity times cost-each with a live line total, so a drawer of socks is one row — plus category, brand/model/serial, age, condition, proof type, loss status and replacement status",
+      "A Rooms tab that tracks every room's status and counts what's done, so the job is finishable in twenty-minute pieces instead of one impossible afternoon",
+      "A policy register that holds each coverage line, your deductible, and every scheduled item or special limit — in the figures from your own declarations page",
+      "A claim and payment record: one line per thing that happens, each payment tagged to its coverage and to where the money went, totalled as you go",
+      "A Dates & Deadlines tab for every date you're given, with who told you and when",
+      "A living-expense log that computes the increase over what you'd normally spend, line by line",
+      "A claim communication log, a contractor and adjuster directory with each estimate's date and amount, and a notes section for coverage details and what happened",
+      "A one-click printable Claim Packet — everything above on one page for your adjuster, with item numbers to name your photo files against",
+      "Auto-save with backup and restore"
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is this a subscription?",
+      "a": "No. You pay 34.99 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones."
+    },
+    {
+      "q": "Is my information really private?",
+      "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control."
+    },
+    {
+      "q": "What if it doesn't work for me?",
+      "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    }
+  ],
+  "crossSell": {
+    "heading": "Organizing more than your home?",
+    "body": "Tenth Quietkeep organizer and a genuinely new buyer moment — insurance and preparedness search intent, not the estate/divorce family. Weak organic cross-sell into the rest of the catalogue; this SKU likely needs its own acquisition channel (insurance and homeowner search terms) rather than riding cross-sell from existing buyers.",
+    "href": "/estate-planning-organizer",
+    "cta": "See the Organizer"
+  }
+}

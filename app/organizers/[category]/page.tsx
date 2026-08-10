@@ -36,10 +36,9 @@ export function generateMetadata({
 
 const CATEGORY_NAV = (key: Category) => [
   { label: "All organizers", href: "/organizers" },
-  {
-    label: "Other lane",
-    href: `/organizers/${CATEGORY_META[key === "estate" ? "divorce" : "estate"].slug}`,
-  },
+  ...(Object.entries(CATEGORY_META) as [Category, (typeof CATEGORY_META)[Category]][])
+    .filter(([k]) => k !== key)
+    .map(([, other]) => ({ label: other.label, href: `/organizers/${other.slug}` })),
   { label: "Guides", href: "/guides" },
 ];
 
@@ -77,7 +76,7 @@ export default function CategoryPage({
             {items.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}
-            {key === "estate" && <ComingSoonCard />}
+            {key === "protection" && <ComingSoonCard />}
           </div>
         </div>
       </section>

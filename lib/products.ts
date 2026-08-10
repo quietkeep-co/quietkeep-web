@@ -20,7 +20,7 @@ export type Faq = { q: string; a: string }; // `a` may contain simple inline HTM
 
 // A product's shelf. Adding a lane means: extend this union, add an entry to
 // CATEGORY_META below, and set `category` on each product's content JSON.
-export type Category = "estate" | "divorce";
+export type Category = "estate" | "divorce" | "protection";
 
 export const CATEGORY_META: Record<
   Category,
@@ -39,6 +39,13 @@ export const CATEGORY_META: Record<
     kicker: "Preparing, co-parenting, starting over",
     blurb:
       "Organizing a divorce touches its own set of details — assets to list, a schedule to keep straight, a decree's worth of loose ends. Private, and never legal advice.",
+  },
+  protection: {
+    slug: "life-and-home-protection",
+    label: "Life & Home Protection",
+    kicker: "A diagnosis, a claim, a school year",
+    blurb:
+      "Life's other hard moments, not a death or a divorce — a medical crisis, a home you need to document before or after a loss, a school year of services and progress to track. Private, and never medical, legal, or financial advice.",
   },
 };
 

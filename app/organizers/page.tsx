@@ -11,13 +11,15 @@ import { products, CATEGORY_META, productsByCategory } from "@/lib/products";
 export const metadata: Metadata = {
   title: "All Organizers",
   description:
-    "Every Quietkeep organizer in one place — estate and legacy, and divorce and separation. Private, offline, one-time purchase.",
+    "Every Quietkeep organizer in one place — estate and legacy, divorce and separation, and life and home protection. Private, offline, one-time purchase.",
   alternates: { canonical: "/organizers" },
 };
 
 const organizersNav = [
-  { label: "Estate & Legacy", href: `/organizers/${CATEGORY_META.estate.slug}` },
-  { label: "Divorce & Separation", href: `/organizers/${CATEGORY_META.divorce.slug}` },
+  ...(Object.entries(CATEGORY_META) as [
+    keyof typeof CATEGORY_META,
+    (typeof CATEGORY_META)[keyof typeof CATEGORY_META]
+  ][]).map(([, meta]) => ({ label: meta.label, href: `/organizers/${meta.slug}` })),
   { label: "Guides", href: "/guides" },
 ];
 
@@ -67,7 +69,7 @@ export default function AllOrganizersPage() {
                 {items.map((p) => (
                   <ProductCard key={p.slug} product={p} />
                 ))}
-                {key === "estate" && <ComingSoonCard />}
+                {key === "protection" && <ComingSoonCard />}
               </div>
             </div>
           </section>

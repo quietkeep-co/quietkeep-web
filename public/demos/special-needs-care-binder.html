@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Needs Care Binder — Live Demo — Quietkeep</title>
+<style>
+:root{
+  --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
+  --white:#FFFFFF; --line:#D8D6CE; --soft:#E7E5DD; --danger:#8A3B2E;
+  --serif:Charter,'Bitstream Charter',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+header{background:var(--spruce);color:var(--porcelain);padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--brass)}
+header .mark{flex:0 0 auto}
+header h1{font-family:var(--serif);font-size:1.35rem;font-weight:bold;letter-spacing:.2px}
+header .sub{font-size:.78rem;color:var(--mist);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav button{font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px 16px;border:1.5px solid var(--spruce);border-radius:999px;background:var(--white);color:var(--spruce);cursor:pointer}
+nav button.active{background:var(--spruce);color:var(--porcelain)}
+nav button:hover{border-color:var(--brass)}
+.bar{background:var(--soft);border-radius:8px;height:14px;overflow:hidden;margin:6px 0 2px}
+.bar>div{background:var(--brass);height:100%;border-radius:8px;transition:width .3s}
+.progress-label{font-size:.85rem;color:var(--spruce)}
+.review-flag{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:10px 14px;margin:12px 0 0;font-size:.9rem;color:#6b5525;display:none}
+.review-flag.show{display:block}
+section.tab{display:none;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+section.tab.active{display:block}
+h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:6px}
+h3{font-family:var(--serif);font-size:1.15rem;margin:22px 0 4px;color:var(--spruce)}
+.note{font-size:.9rem;color:#5c6660;margin-bottom:14px}
+.phase{margin-bottom:26px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 8px;border-bottom:1px solid var(--soft)}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--spruce);margin-top:3px;flex:0 0 auto;cursor:pointer}
+.task .t{font-weight:600}
+.task .why{font-size:.86rem;color:#5c6660;margin-top:2px}
+.task.done .t{color:#7a827d;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--spruce);text-align:left;padding:8px 6px;border-bottom:2px solid var(--spruce)}
+td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
+td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
+td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+td.num input{text-align:right}
+.del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
+.add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
+.add:hover{background:#2E5249}
+.totals{margin-top:12px;font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.totals strong{color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toolbar button{border:1.5px solid var(--spruce);background:var(--white);color:var(--spruce);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
+.toolbar button:hover{border-color:var(--brass)}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+/* Wide registers (Home Inventory's 13-column inventory table is the worst
+   case in the catalogue) squeeze every column to illegibility when forced
+   into the 1040px wrap at width:100% — a number input's spinner arrows alone
+   can eat a 5%-wide column, so the digit inside never renders at all. Give
+   the table room to be its natural width and let the wrapper scroll instead
+   of compressing. Found by actually looking at a screenshot, not by reading
+   the column list. */
+.table-wrap{overflow-x:auto;margin-top:10px}
+.table-wrap table{margin-top:0}
+.wish{margin:0 0 22px}
+.wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
+.wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
+.wish textarea{width:100%;min-height:110px;font-family:var(--sans);font-size:.95rem;line-height:1.5;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#FCFBF8;color:var(--ink);resize:vertical}
+.wish textarea:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+.warnline{font-size:.82rem;color:var(--danger);margin-top:6px;font-weight:600}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--spruce);color:var(--mist);font-size:.82rem;padding:8px 18px;display:flex;justify-content:space-between;align-items:center}
+.savebar b{color:var(--porcelain)}
+.disclaimer{font-size:.8rem;color:#6a736d;margin-top:18px;border-top:1px solid var(--soft);padding-top:10px}
+.review-box{background:#F7F6F1;border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:6px 0 16px}
+.review-box .rl{font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.review-box .rl strong{color:var(--ink)}
+/* First-open notice: storage truth + erase truth + (per product) safety guidance.
+   Shown on EVERY open, not just the first — a disclaimer that appears only at
+   first start-up is exactly what sank the defence in UPLC v. Parsons Technology. */
+.qk-veil{position:fixed;inset:0;background:rgba(31,39,36,.72);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.qk-veil[hidden]{display:none}
+.qk-notice{background:var(--white);border:1px solid var(--line);border-radius:14px;max-width:640px;width:100%;padding:26px 28px;margin:auto}
+.qk-notice h2{font-family:var(--serif);font-size:1.35rem;color:var(--spruce);margin-bottom:10px}
+.qk-notice p{font-size:.92rem;color:#3f4945;margin-bottom:12px}
+.qk-notice .hot{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:12px 14px;font-size:.92rem;color:#5d4a20;margin-bottom:14px}
+.qk-notice .hot b{color:var(--ink)}
+.qk-notice .fine{font-size:.8rem;color:#6a736d;border-top:1px solid var(--soft);padding-top:10px;margin-bottom:16px}
+.savebar .right{display:flex;align-items:center;gap:10px}
+.savebar .erase{background:none;border:1px solid var(--mist);color:var(--porcelain);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
+.savebar .erase:hover{background:var(--danger);border-color:var(--danger)}
+#print-area{display:none}
+@media print{
+  body *{visibility:hidden}
+  #print-area,#print-area *{visibility:visible}
+  #print-area{display:block;position:absolute;top:0;left:0;width:100%;font-family:var(--serif);color:#000}
+  #print-area h1{font-size:22pt;margin-bottom:2pt}
+  #print-area .ph{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14pt;color:#333}
+  #print-area h2{font-size:13pt;margin:16pt 0 4pt;border-bottom:1pt solid #000;padding-bottom:2pt}
+  #print-area h3{font-size:11pt;margin:10pt 0 2pt}
+  #print-area table{width:100%;border-collapse:collapse;font-size:10pt;margin-top:4pt}
+  #print-area th,#print-area td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:left;vertical-align:top}
+  #print-area p{font-size:10pt;margin:4pt 0}
+  #print-area .lead{font-size:11pt;margin:6pt 0 10pt}
+  #print-area .wblock{font-size:10.5pt;margin:2pt 0 10pt;white-space:pre-wrap}
+  #print-area .foot{font-size:8.5pt;color:#333;margin-top:14pt;border-top:.5pt solid #999;padding-top:6pt}
+}
+@media(max-width:640px){
+  .wrap{padding:14px 10px 90px}
+  section.tab{padding:14px}
+  th,td{font-size:.85rem}
+}
+</style>
+</head>
+<body><div style="position:relative;z-index:5;background:#A5834B;color:#1F2724;text-align:center;font:600 13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;padding:9px 14px;">Live demo — sample data only. Nothing you enter here is saved, and it resets when you leave. <a href="#buy" style="color:#1F2724;text-decoration:underline;">Buy to keep your own copy.</a></div>
+<header>
+  <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
+    <rect x="13" y="13" width="74" height="74" rx="17" fill="none" stroke="#A5834B" stroke-width="2.5"/>
+    <circle cx="50" cy="42" r="12" fill="#24413B"/>
+    <path d="M 45 48 L 41 66 L 59 66 L 55 48 Z" fill="#24413B"/>
+    <rect x="41" y="61" width="18" height="6" rx="3" fill="#24413B"/>
+  </svg>
+  <div>
+    <h1>Special Needs Care Binder</h1>
+    <div class="sub">Quietkeep · Everything stays on your device</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="progress-label" id="overall-label">Overall progress</div>
+  <div class="bar"><div id="overall-bar" style="width:0%"></div></div>
+  <div class="review-flag" id="review-flag"></div>
+
+  <nav id="nav"></nav>
+  <div id="sections"></div>
+</div>
+
+<div class="savebar"><span>Quietkeep · Special Needs Care Binder</span><span class="right"><span id="save-status"><b>All changes saved on this device</b></span><button class="erase" onclick="eraseAll()" title="Erase everything saved in this browser">Erase everything</button></span></div>
+<div id="print-area"></div>
+
+<div class="qk-veil" id="qk-veil" hidden>
+  <div class="qk-notice" role="dialog" aria-modal="true" aria-labelledby="qk-notice-h">
+    <h2 id="qk-notice-h"></h2>
+    <div id="qk-notice-body"></div>
+    <div class="toolbar" style="margin-top:0"><button class="primary" id="qk-notice-ok">Continue</button></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
+   injected at build time by generators/qk_app.py from the product manifest.
+   Hard promises: single file, zero network, never a credential field. */
+const CONFIG={"name":"Special Needs Care Binder","storageKey":"qk-special-needs","backupPrefix":"special-needs","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Thirty-five steps across seven phases, shaped like a school year rather than a one-time setup. Phase 1 you do once. Phases 2 through 6 follow the calendar — the start of the year, the first month, each reporting period, the long breaks, and the run-up to the annual meeting — and they're written as habits to set up, because the record itself lives in the dated tabs and grows every time you come back. Phase 7, the letter of intent, has no season and no deadline. Everything saves automatically on this device. Each step notes why it matters. This is an organizer to record your child's care so nothing depends on memory. It records what happened at a meeting, never what your child is entitled to under IDEA or your state's law, and it never judges whether a school has met its obligations; it records benefits status and dates, never an eligibility rule — that's a question for your caseworker. It never asks for a Social Security number, account number, Medicaid ID, or password.","disclaimer":"This is an organizer, not legal advice, not education advocacy, and not benefits counseling. It records what happened — meetings, sessions, progress reports, contact with the school — not what your child is entitled to under IDEA or your state's law, and it never assesses whether a school has met its obligations. It records benefits status and dates only, never an eligibility rule. For advice about your child's rights, consult an education advocate or attorney; for benefits questions, consult your caseworker."},"phases":[{"name":"Phase 1 · Set Up","tasks":[["Gather the diagnosis and any evaluation paperwork, and note where it lives","The diagnosis letter, developmental evaluation, or genetic testing results are what every new provider or program will ask to see first. Add a row to the IEP/504 tab for each one — type 'Document — evaluation report', with the location in Notes. You don't upload anything here."],["Note where your child's current IEP or 504 plan is kept","One row in the IEP/504 tab, type 'Document — IEP' or 'Document — 504 plan', with where the copy lives in Notes. This organizer records what happens around the plan; it doesn't replace or interpret the plan itself."],["List every provider and therapy your child sees","Pediatrician, specialists, and every kind of therapy — occupational, physical, speech, behavioral. Add each one to the Providers & Therapy tab with their role, how often you see them, and the best way to reach them. A complete list matters more than a tidy one."],["List every medication your child takes, with the dose, prescriber, and purpose","Prescription, over-the-counter, and anything given regularly. One row each in the Medications tab. A complete list is safer than a remembered one — this is the page a school nurse, respite caregiver, or emergency room will ask for."],["List every benefit or program you've applied for or receive","SSI, a Medicaid waiver, respite funding, school-based services — whatever applies to your family, even the ones still pending. Add each to the Benefits tab with its status, renewal date, and the caseworker who actually knows your case. This tracks status and dates only; eligibility rules vary by state and change yearly, so any substantive question belongs with your caseworker."],["Decide where this file will live and who else may need it","A device, phone, or drive only you — and whoever else should have it — can reach. This file isn't encrypted, so the safest place is one only trusted people can open. A decision to make, not something to write down here."]]},{"name":"Phase 2 · Start of the School Year","tasks":[["Add this year's school team to Providers & Therapy","The case manager, classroom teacher, any 1:1 aide, the school nurse, the psychologist, the 504 coordinator. The school team turns over almost every year, so add this year's names with the school year and the best way to reach each one — email, phone, or a note home. Next September you'll be glad the old ones are still there to compare against."],["Renew the school's medication authorization form and record it","Most schools need a freshly signed form each school year, and again whenever a dose changes. In the Medications tab, set 'School authorization form' for each medication and put the date from the signed form in 'Form dated', so you can see at a glance which ones are current."],["Copy this year's accommodations and supports in, one per row","Read the current plan and put each accommodation or support into the Accommodations tab as its own row, with the class or setting it applies to. Leave 'What I've seen' on 'Haven't checked yet' for now — that's what Phase 3 is for."],["Record this year's plan dates — the next review and anything due","Add a row to the IEP/504 tab with the next review date, and another for any evaluation you've been told is coming. A date recorded here is one you don't have to hold in your head until spring."],["Print the Teacher Sheet and give it to the new teacher","One click on the Teacher Sheet tab compiles who your child is, how they like to be cared for, a day in their life, their accommodations, their medications, and their providers — and nothing else. It deliberately leaves out benefits status, incidents, and your letter of intent, because a classroom teacher doesn't need those and you may not want the district to have them. Fill in the 'Who they are' and 'How they like to be cared for' sections of your Letter of Intent first, even roughly — they're what makes this sheet worth reading."]]},{"name":"Phase 3 · The First Month Check-In","tasks":[["Give the first couple of weeks room, then start checking","New classrooms take a few weeks to settle, and most of what looks broken in week one isn't. Anything about safety, act on now. Everything else, give it until about a month in — that's when you can actually tell what's in place and what isn't. A timing decision to make, not something to record here."],["Check each accommodation and record what you've actually seen","Go down the Accommodations tab and, for each row, set 'What I've seen' and 'How I checked' and put today's date in 'Last time I checked'. Asked the teacher, asked your child, saw it in work sent home — all count. Record the observation, not a conclusion: this tab is what you've seen, not a judgment about the school."],["Start the Services log with the first weeks of sessions","For each therapy or service session, add a row to the Services tab: the date, the service, the minutes the plan lists, and the minutes actually delivered. The Difference column fills itself in and the total runs at the top of the tab. Sessions get shortened or cancelled for ordinary reasons — testing days, assemblies, an absent therapist — and none of that is visible until it's counted."],["Log your first contacts with the school, and what you're waiting on","Every email, call, or pickup conversation that mattered goes in the School Contact tab: the date, who, what you asked for, and where it stands. Set 'Where it stands' to 'No answer yet' when you're still waiting — the tab counts those for you, so a request can't quietly go stale."],["Decide what's worth logging in the Incidents tab this year","Not every hard moment needs a record — a pattern does. Meltdowns, safety concerns, bus trouble, or anything a provider has asked you to track are the ones worth writing down. A decision to make, not something to record here."]]},{"name":"Phase 4 · Every Reporting Period","tasks":[["Set up a row for each goal so a progress report takes minutes to file","In the Goals & Progress tab, add one row per goal with the period set to 'Baseline / when the goal was written' and the starting point in 'What the report said'. Do it once now and every progress report afterwards is a two-minute job instead of an evening."],["When a progress report arrives, log what it said for each goal","Add a new row per goal in the Goals & Progress tab: the reporting period, the actual score or wording from the report in 'What the report said', and the school's rating in 'Progress reported'. Copy their words rather than summarizing — the point is to have the record, not your recollection of it. Note where the paper report is kept in Notes."],["Log therapy and service sessions as they happen, not from memory","Keep adding rows to the Services tab through the period — date, service, minutes listed, minutes delivered, and what the school said if a session was short or cancelled. Ten minutes here and there is invisible in the moment and obvious in a total."],["Read back the School Contact tab for anything still unanswered","Once a reporting period, open the School Contact tab and look at everything still marked 'No answer yet'. Follow up on what still matters, and update the status and 'Date I heard back' on anything that's been answered since."],["Log any incidents while the details are still fresh","One row per entry in the Incidents tab: the date, where it happened, what happened, the context, what was done, and whether anything came home in writing. Record what you saw or were told, not what you think it means — a factual log is what helps a provider spot a pattern you're too close to see."]]},{"name":"Phase 5 · Around the Breaks","tasks":[["Before a long break, record where a few skills sit","A week or so before winter break, spring break, or summer, add rows to the Goals & Progress tab with the period set to 'Before winter break', 'Before spring break', or 'Before summer'. Pick a handful of goals that matter most and write down plainly what your child can do right now."],["After the break, record the same skills again","In the first days back, add matching rows to the Goals & Progress tab with the 'After' period, describing the same skills again. The pair is the record — one without the other doesn't tell you anything."],["Note the date each skill came back to where it was","As things return, put the date in the 'Date back at the earlier level' column on that skill's 'After' row in the Goals & Progress tab. Whether a break makes any difference to what your child's team decides is a conversation for that team — this tab records what you saw and when, so you're not describing it from memory in the spring."],["Check which benefits come up for renewal over the summer","Open the Benefits tab and look at the renewal and review dates falling in the break — they have a habit of landing when offices are hardest to reach. Update the status on anything that has moved, and call the caseworker listed there with any question about the program itself."]]},{"name":"Phase 6 · Before the Annual Meeting","tasks":[["Read the year back before you go in","A few weeks out, read through Goals & Progress, Services, Accommodations, School Contact, and Incidents in order. You are not going to remember a whole year at the table, and you don't have to — it's already written down."],["Write down the questions you want to ask","The ones that come to you in the car, or at 11pm, or the week after the last meeting when it was too late. Add them to the 'Questions I want to ask at the next meeting' section of your Letter of Intent as they occur to you, and read them back before you go in. These are your own words and your own questions — this organizer doesn't write them for you."],["Print the Meeting Prep Sheet and take it with you","One click on the Meeting Prep tab compiles the year: goal progress period by period, the service log and its running difference, the accommodations you checked, incidents, school contact, past meetings, and your own questions. It leaves out your letter of intent and your benefits status on purpose — this sheet is the school year, not your family's private planning."],["After the meeting, log what was decided and the next review date","Add a row to the IEP/504 tab: the date, who attended, what was actually agreed at the table, and when you're due back. A record of what happened, not a statement of what your child is entitled to — if you have a question about that, it belongs with an education advocate or attorney."],["Update anything the meeting changed","New or changed services go into the Services tab as new minutes to expect. New or changed accommodations get their own rows in the Accommodations tab, set back to 'Haven't checked yet'. New people go into Providers & Therapy. Doing it the same week means next year starts from a correct list."]]},{"name":"Phase 7 · The Letter of Intent","tasks":[["Start the letter of intent whenever you're ready — a little at a time","This is the emotional core of this organizer and it has no season and no deadline. Write one section today and come back to the rest later — something written down beats a blank page every time."],["Write down a day in your child's life","Their routine, what a good day looks like, and what helps on a hard one. This is the part a future caregiver has no way to know unless you write it down. Add it to the 'A day in their life' section of your Letter of Intent."],["Write down who they are and how they like to be cared for","Their personality, what makes them laugh, how they communicate, what soothes them. The details only you carry. Add them to the 'Who they are' and 'How they like to be cared for' sections — these two also carry the Teacher Sheet every September, so they're worth the time twice over."],["Write down your hopes for their future and who you hope will care for them","Not a legal appointment — a court decides legal guardianship separately, and a licensed attorney can walk you through that process — but your own words about the future you want for your child and the people you'd want involved. Add it to the 'Your hopes for their future' and 'Who you hope will care for them, and how' sections."],["Print the caregiver handoff packet and keep it current","One click on the Handoff Packet tab compiles the whole picture — providers, medications, IEP/504 status, benefits, and your letter of intent — into one document for a respite caregiver or a future guardian. This is the only one of the three printables that carries your benefits status and your guardianship wishes, so it's the one to be careful about who you hand it to. Come back and update it as anything changes."]]}],"registers":[{"id":"providers","tab":"Providers & Therapy","heading":"Providers & Therapy","noun":"provider","statLabel":"Providers","counterLabel":"Providers listed","intro":"Everyone on your child's care team — clinicians, therapists, and this year's school staff. The school side turns over almost every year, so record the school year alongside each name and keep last year's rows rather than overwriting them. This is the list you hand to a new provider, a school, or anyone stepping in for a day, so nobody has to be told twice.","columns":[{"key":"name","label":"Provider / staff member","width":"16%","sample":["Dr. Alvarez — pediatrician","Riverside OT — Mx. Chen","Ms. Whitfield — case manager","Mr. Baptiste — 1:1 aide"],"type":"text"},{"key":"specialty","label":"Role / specialty","width":"15%","type":"list","options":["Pediatrician","Neurologist","Psychiatrist","Psychologist","Occupational therapist","Physical therapist","Speech therapist","Behavioral therapist (ABA)","Social worker / case manager","Special ed teacher / case manager","General ed teacher","1:1 aide / paraprofessional","School nurse","School psychologist","504 coordinator","School administrator","Transportation","Other"],"sample":["Pediatrician","Occupational therapist","Social worker / case manager","1:1 aide / paraprofessional"]},{"key":"frequency","label":"Frequency","width":"10%","type":"list","options":["Daily","Weekly","Biweekly","Monthly","Quarterly","As needed","Other"]},{"key":"year","label":"School year","width":"9%","sample":["2026-27","2025-26","2026-27","2025-26"],"type":"text"},{"key":"bestContact","label":"Best way to reach them","width":"11%","type":"list","options":["Email","Phone","Text","Note home","Parent portal","In person at pickup","Front office"]},{"key":"phone","label":"Phone","width":"12%","type":"text"},{"key":"email","label":"Email","width":"14%","type":"text"},{"key":"notes","label":"Notes / what they're working on","type":"text"}],"counter":"count"},{"id":"iep","tab":"IEP/504","heading":"IEP/504 Document Checklist & Meeting Log","noun":"entry","statLabel":"Entries","counterLabel":"Entries logged","intro":"A plain record of your child's IEP or 504 plan and every meeting about it: who was there, what was decided, and when you're due back. This records what happened at a meeting — it does not state what your child is entitled to under IDEA or your state's law, and it does not assess whether anything was handled correctly. If you have a question about your child's rights, it belongs with an education advocate or attorney, not this log.","columns":[{"key":"date","label":"Date","width":"12%","type":"date"},{"key":"type","label":"Type","width":"18%","type":"list","options":["Meeting — annual review","Meeting — triennial evaluation","Meeting — parent requested","Meeting — transition planning","Meeting — other","Document — IEP","Document — 504 plan","Document — evaluation report","Document — progress report","Document — transition assessment","Other"]},{"key":"attendees","label":"Who attended","width":"20%","sample":["Parent, teacher, school psychologist","Parent, case manager, OT","Parent, teacher, case manager","Parent, school psychologist, OT"],"type":"text"},{"key":"decisions","label":"What was decided","width":"26%","sample":["Added a weekly OT session","Extended testing time approved","Reading goals updated","Transition planning discussed"],"type":"text"},{"key":"nextReview","label":"Next review date","width":"12%","type":"date"},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"goals","tab":"Goals & Progress","heading":"Goal Progress Log","noun":"entry","statLabel":"Entries","counterLabel":"Progress entries logged","intro":"One row per goal, per reporting period. Start each goal with a 'Baseline' row when it's written, then add a row each time a progress report arrives — copying the school's own wording and rating rather than summarizing them. Use the 'Before' and 'After' periods around long breaks to record where a skill sat going in and coming out, and the last column for the date it came back. Whether any of that means anything is a conversation for the IEP team; this tab is the record you bring to it.","columns":[{"key":"date","label":"Date reported","width":"9%","type":"date"},{"key":"period","label":"Reporting period","width":"13%","type":"list","options":["Baseline / when the goal was written","Q1 / 1st marking period","Q2 / 2nd marking period","Q3 / 3rd marking period","Q4 / 4th marking period","Trimester 1","Trimester 2","Trimester 3","Before winter break","After winter break","Before spring break","After spring break","Before summer","After summer","Other"]},{"key":"goal","label":"Goal","width":"19%","sample":["Reads 60 sight words with 80% accuracy","Requests a break using her device, 4 of 5 opportunities","Completes a 3-step direction independently","Initiates a greeting with a peer"],"type":"text"},{"key":"area","label":"Area","width":"11%","type":"list","options":["Reading","Writing","Math","Speech / language","Communication device / AAC","Fine motor","Gross motor","Social / behavior","Self-help / adaptive","Transition / life skills","Other"]},{"key":"reported","label":"What the report said","width":"15%","sample":["42 of 60 sight words, 3 trials","Used the device 2 of 5 opportunities","Same wording as last quarter","3 of 5 opportunities this term"],"type":"text"},{"key":"rating","label":"Progress reported","width":"13%","type":"list","options":["Goal met","Sufficient progress","Some progress","Insufficient progress","Not addressed — no instruction given","Not reported this period"]},{"key":"recouped","label":"Date back at the earlier level","width":"10%","type":"date"},{"key":"notes","label":"Notes / where the report is kept","type":"text"}],"counter":"category","counterField":"rating"},{"id":"services","tab":"Services","heading":"Service Delivery Log","noun":"session","statLabel":"Sessions","counterLabel":"Sessions logged","intro":"One row per therapy or service session: the minutes the plan lists, the minutes actually delivered, and what you were told if the two differ. The Difference column and the running total are worked out for you — that's the whole point, because ten minutes here and a cancelled session there are invisible in the moment and plain in a total. This tab records what was delivered. It does not say what that means, whether anything is owed, or whether a school has met its obligations — those are questions for the IEP team, an education advocate, or an attorney.","columns":[{"key":"date","label":"Date","width":"10%","type":"date"},{"key":"service","label":"Service","width":"16%","type":"list","options":["Speech / language","Occupational therapy","Physical therapy","Counseling","Specialized instruction","Aide / paraprofessional support","Behavioral support","Vision","Hearing","Other"]},{"key":"planned","label":"Minutes the plan lists","width":"12%","type":"num","format":"plain","sample":["30","60","45","30"]},{"key":"delivered","label":"Minutes delivered","width":"12%","type":"num","format":"plain","sample":["30","15","0","30"]},{"key":"difference","label":"Difference","width":"10%","type":"calc","calc":["planned","delivered"],"op":"-","format":"plain"},{"key":"reason","label":"What I was told","width":"20%","type":"list","options":["Delivered in full","Session shortened","Session cancelled — provider absent","Session cancelled — school event or testing","Session cancelled — child absent","School closed","Not told why","Other"],"sample":["Delivered in full","Session shortened","Session cancelled — provider absent","Delivered in full"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"total","counterField":"difference","totalFormat":"plain","totalUnit":"minutes","totalLabel":"Difference so far","line":"Across {n} sessions logged, the difference between the minutes the plan lists and the minutes recorded as delivered comes to {total}. What that means, if anything, is a question for your child's team."},{"id":"accommodations","tab":"Accommodations","heading":"Accommodations — What I've Seen","noun":"accommodation","statLabel":"Accommodations","counterLabel":"Accommodations tracked","intro":"One row per accommodation or support in the current plan, copied as written. Each time you check on one — asking the teacher, asking your child, or looking at work sent home — record what you saw and the date you checked. This is a log of your own observations, not a finding about the school: 'Not seen' means you haven't seen it, and the tab counts how many you still haven't looked at.","columns":[{"key":"item","label":"Accommodation or support (as written)","width":"26%","sample":["Extended time on tests","Preferential seating near the front","Movement break every 45 minutes","Directions given one step at a time"],"type":"text"},{"key":"where","label":"Class / setting","width":"14%","sample":["All classes","Math","Specials and assemblies","Bus"],"type":"text"},{"key":"checked","label":"Last time I checked","width":"11%","type":"date"},{"key":"seen","label":"What I've seen","width":"15%","type":"list","options":["Seen in place","Told it's in place","Haven't checked yet","Not seen","Unclear"],"sample":["Seen in place","Told it's in place","Haven't checked yet","Not seen"]},{"key":"how","label":"How I checked","width":"16%","type":"list","options":["Asked the teacher","Asked my child","Saw it in work sent home","Saw it in person","Told at a meeting","Haven't checked yet","Other"],"sample":["Asked the teacher","Asked my child","Haven't checked yet","Saw it in person"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"seen"},{"id":"comms","tab":"School Contact","heading":"School Communication Log","noun":"entry","statLabel":"Entries","counterLabel":"Entries logged","intro":"Every email, call, pickup conversation, and portal message that mattered — the date, who, what you asked for, and whether an answer ever came. Keep it to facts: what was said and what was asked, not how it felt. The tab counts how many requests are still marked 'No answer yet', which is the thing a stack of paper can never tell you. It does not state how long anyone has to reply; that's a question for an education advocate or attorney.","columns":[{"key":"date","label":"Date","width":"10%","type":"date"},{"key":"who","label":"Who","width":"14%","sample":["Ms. Whitfield — case manager","School nurse","Front office","Special education coordinator"],"type":"text"},{"key":"how","label":"How","width":"12%","type":"list","options":["Email","Phone call","In person / pickup","Note home","Parent portal message","Meeting","Other"]},{"key":"about","label":"What it was about","width":"16%","sample":["Missed speech sessions","Bus seating","Copy of the progress report","Requesting a copy of the IEP"],"type":"text"},{"key":"asked","label":"What I asked for","width":"18%","sample":["A copy of the service logs","A call back from the OT","The date of the next meeting","A meeting before the next review"],"type":"text"},{"key":"status","label":"Where it stands","width":"14%","type":"list","options":["No answer yet","Answer received","Partly answered","Nothing to follow up"]},{"key":"answered","label":"Date I heard back","width":"10%","type":"date","sample":["","2026-02-14","2026-03-01","2026-01-05"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"status"},{"id":"meds","tab":"Medications","heading":"Medication Register","noun":"medication","statLabel":"Medications","counterLabel":"Medications logged","intro":"Every medication your child takes, prescription or otherwise: the dose, the prescriber, what it's for, when it last changed, and whether this school year's authorization form is on file. Most schools need a freshly signed form each year and again after any dose change, which is easy to lose track of in August. This is the single page most useful to a school nurse, a respite caregiver, or an emergency room, so keep it current the moment anything changes.","columns":[{"key":"name","label":"Medication","width":"14%","sample":["Methylphenidate","Melatonin","Albuterol inhaler","Loratadine"],"type":"text"},{"key":"dose","label":"Dose","width":"10%","sample":["5mg, morning","3mg, bedtime","2 puffs as needed","10mg, morning"],"type":"text"},{"key":"prescriber","label":"Prescriber","width":"13%","sample":["Dr. Alvarez — Pediatrics","Dr. Chen — Developmental Peds","Dr. Alvarez — Pediatrics","Dr. Osei — Pediatrics"],"type":"text"},{"key":"purpose","label":"What it's for","width":"12%","sample":["Focus / attention","Sleep","Asthma","Allergies"],"type":"text"},{"key":"changed","label":"Last change","width":"9%","type":"date"},{"key":"schoolForm","label":"School authorization form","width":"12%","type":"list","options":["On file this school year","Needs to be renewed","Sent to the doctor","Given to the school — waiting to hear","Not needed at school"]},{"key":"formDate","label":"Form dated","width":"9%","type":"date"},{"key":"told","label":"Who I've told about the change","width":"11%","type":"list","options":["School nurse","Teacher","Therapist","More than one — see notes","Nobody yet","Not needed"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"count"},{"id":"incidents","tab":"Incidents","heading":"Behavioral / Incident Log","noun":"entry","statLabel":"Entries","counterLabel":"Entries logged","intro":"A plain, dated record of what happened and where — a meltdown, a safety concern, trouble on the bus, or anything a provider has asked you to track. Record what you saw or were told, not what you think it means: 'what happened' and 'context', not a diagnosis or a judgment. The tab groups entries by where they happen, which is usually the first thing a provider or a team asks about, and the last column notes whether anything came home in writing.","columns":[{"key":"date","label":"Date","width":"9%","type":"date"},{"key":"where","label":"Where","width":"12%","type":"list","options":["School — classroom","School — elsewhere on site","Bus / transport","Home","Therapy","Community","Other"]},{"key":"what","label":"What happened","width":"19%","sample":["Meltdown during a transition","Refused to leave the classroom","Hit another student","Difficulty with a transition"],"type":"text"},{"key":"context","label":"Context","width":"16%","sample":["Fire drill, unexpected schedule change","Tired, skipped nap","Loud assembly","Substitute teacher, unfamiliar routine"],"type":"text"},{"key":"action","label":"Action taken","width":"14%","sample":["Used the calm-down corner","Called parent","Removed from room, reset","Redirected with a visual schedule"],"type":"text"},{"key":"source","label":"How I know","width":"11%","type":"list","options":["School told me","I saw it","My child told me","Another provider told me","Other"]},{"key":"document","label":"Anything in writing?","width":"11%","type":"list","options":["Written report received","Told verbally only","Nothing received","I wrote it down myself"]},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"where"},{"id":"benefits","tab":"Benefits","heading":"Benefits Tracker","noun":"program","statLabel":"Programs","counterLabel":"Programs tracked","intro":"Every benefit or program you've applied for or receive — SSI, a Medicaid waiver, respite funding, school-based services. This tracks status and dates only: applied, pending, approved, denied, up for renewal, or with a review scheduled. Put in whatever date your caseworker gave you; this organizer never supplies one. It never states an eligibility rule, an income threshold, or a qualification criterion — rules vary by state and change yearly, and any substantive question belongs with your caseworker.","columns":[{"key":"program","label":"Program","width":"18%","type":"list","options":["SSI","Medicaid waiver","Medicaid (regular)","SNAP","Housing assistance","State respite program","School-based services funding","Other"],"sample":["SSI","Medicaid waiver","State respite program","School-based services funding"]},{"key":"name","label":"Program / waiver name","width":"20%","sample":["SSI","Medicaid waiver","Respite care program","IEP-funded related services"],"type":"text"},{"key":"status","label":"Status","width":"16%","type":"list","options":["Not yet applied","Applied","Pending","Approved","Denied","Renewal due","Review / redetermination scheduled"]},{"key":"renewal","label":"Renewal / review date","width":"14%","type":"date"},{"key":"caseworker","label":"Caseworker / contact","width":"16%","sample":["Taylor Brooks","Morgan Lee","Taylor Brooks","Jordan Ellis"],"type":"text"},{"key":"notes","label":"Notes","type":"text"}],"counter":"category","counterField":"status"}],"wishesEnabled":true,"wishes":{"tab":"Letter of Intent","heading":"Letter of Intent","intro":"The part no form asks for: who your child is, what their days look like, and what you hope for their future. Write it in your own words, whenever you're ready — a little today, more later. This is a letter, not a legal document; it does not appoint a legal guardian. If you want to plan for legal guardianship, a licensed attorney in your state can walk you through that separate process. The last section is a working list rather than part of the letter — a place to park questions for the next meeting as they occur to you.","disclaimer":"This letter of intent reflects your own wishes and knowledge of your child, not a legal document and not a substitute for the advice of an attorney. It does not appoint a legal guardian — that is decided by a court. For guardianship planning, consult a licensed attorney in your state.","items":[{"key":"dailylife","label":"A day in their life","prompt":"Their routine — wake time, meals, school or program, therapies, bedtime — and what a good day looks like versus a hard one. The single most useful thing you can hand someone stepping in for a day, and it carries the Teacher Sheet every September."},{"key":"who","label":"Who they are","prompt":"Their personality — what makes them laugh, what calms them, how they communicate, their favorite things and the things they can't stand. The details that make care feel like them, not a checklist. This is the first thing a new teacher reads on the Teacher Sheet."},{"key":"care","label":"How they like to be cared for","prompt":"Sensory needs, comfort routines, transitions that are hard, and the cues that mean something is wrong. Specific and plain, so someone new to your child could actually use it — a new teacher in September as much as a caregiver on a Saturday."},{"key":"hopes","label":"Your hopes for their future","prompt":"What you want for your child as they grow — independence, relationships, community, the kind of life you hope for them. Your own words, not a plan anyone else has to follow exactly."},{"key":"guardian","label":"Who you hope will care for them, and how","prompt":"Not a legal appointment — a court decides legal guardianship, and a licensed attorney can walk you through that separate process — but your own wishes about who you'd want involved, and what matters most to you about how your child is cared for."},{"key":"notes","label":"Other notes","prompt":"Anything else worth keeping in one place: a favorite phrase, a person who understands your child, something you want to remember. Optional."},{"key":"questions","label":"Questions I want to ask at the next meeting","prompt":"The ones that come to you in the car, or at 11pm, or the week after the last meeting when it was too late. Add them as they occur to you through the year and read them back before you go in. Your own words and your own questions — this organizer doesn't write them for you, and nothing here is a script. This section prints on the Meeting Prep Sheet and on nothing else."}]},"sheet":null,"sheets":[{"tab":"Teacher Sheet","heading":"Start-of-Year Teacher Sheet","button":"Print the Teacher Sheet","intro":"One page for a new teacher, aide, or school nurse in September: who your child is, how they like to be cared for, a day in their life, the accommodations in the current plan, their medications, and who else is on the team. It deliberately leaves out your benefits status, your incident log, and your letter of intent — a classroom teacher doesn't need those, and you may not want the district to have them.","docTitle":"Getting to Know My Child","docTag":"A start-of-year sheet for my child's teacher · prepared with the Quietkeep Special Needs Care Binder","lead":"This is a short introduction to my child for the people who'll spend the school day with them: who they are, what helps, what their day looks like, the supports in their current plan, their medications, and who else is on their team. It's written by me, not by the school. It is an organizer output — not legal advice, not education advocacy, and not a statement about anyone's obligations.","foot":"Prepared by the parent or guardian. This sheet is an organizer output, not legal advice and not education advocacy. It records what is in my child's plan and what I have observed; it does not state what my child is entitled to under IDEA or state law. It contains no account numbers, Social Security numbers, Medicaid ID numbers, or passwords.","disclaimer":"The Teacher Sheet is a personal introduction to your child, not a legal document, not legal advice, and not education advocacy. It does not state what your child is entitled to. It is scoped on purpose: benefits status, incidents, and your letter of intent are not included.","sections":[{"type":"wish","key":"who","title":"Who They Are","empty":"Not recorded yet — their personality, how they communicate, and what makes them laugh."},{"type":"wish","key":"care","title":"How They Like to Be Cared For","empty":"Not recorded yet — sensory needs, comfort routines, and cues that mean something is wrong."},{"type":"wish","key":"dailylife","title":"A Day in Their Life","empty":"Not recorded yet — their routine and what a good day looks like."},{"type":"register","id":"accommodations","title":"Accommodations & Supports in the Current Plan"},{"type":"register","id":"meds","title":"Medications"},{"type":"register","id":"providers","title":"Who Else Is on the Team"}]},{"tab":"Meeting Prep","heading":"Meeting Prep Sheet","button":"Print the Meeting Prep Sheet","intro":"The school year compiled into one document to read before the annual review: every goal and what each progress report said, the service log and its running difference, the accommodations you checked, incidents, everything you asked the school and whether an answer came, past meetings, and the questions you've been collecting. Your letter of intent and your benefits status are left out on purpose — this sheet is the school year, not your family's private planning.","docTitle":"What I've Recorded This Year","docTag":"A parent's own records for the school year · prepared with the Quietkeep Special Needs Care Binder","lead":"This is my own record of my child's school year, kept as it happened: goal progress as it was reported to me, service sessions and the minutes involved, accommodations and what I observed, incidents, my contact with the school, and the meetings we've had. It describes what happened and what I saw. It makes no claim about what my child is entitled to, and nothing in it should be read as a legal or educational position.","foot":"Prepared by the parent or guardian. This sheet is an organizer output, not legal advice, not education advocacy, and not a compliance finding. It records dates, figures, and observations only; it does not state what is required under IDEA or state law, and it does not assess whether anyone has met an obligation. For advice about your child's rights, consult an education advocate or attorney. It contains no account numbers, Social Security numbers, Medicaid ID numbers, or passwords.","disclaimer":"The Meeting Prep Sheet compiles your own records. It is not legal advice, not education advocacy, and not a set of talking points — it drafts nothing and argues nothing. Any difference shown in the service log is a subtraction, not a claim; what it means is a question for your child's team, an education advocate, or an attorney.","sections":[{"type":"register","id":"goals","title":"Goal Progress, Period by Period"},{"type":"register","id":"services","title":"Service Delivery Log"},{"type":"register","id":"accommodations","title":"Accommodations — What I've Seen"},{"type":"register","id":"incidents","title":"Behavioral / Incident Log"},{"type":"register","id":"comms","title":"School Communication Log"},{"type":"register","id":"iep","title":"IEP/504 Meetings & Documents"},{"type":"wish","key":"questions","title":"Questions I Want to Ask","empty":"Not recorded yet — the questions that come to you between meetings."}]},{"tab":"Handoff Packet","heading":"Caregiver Handoff Packet","button":"Print the Handoff Packet","intro":"This compiles what you've organized — your child's providers and therapies, medications, IEP/504 status, benefits, and your letter of intent — into one printable page for a respite caregiver or a future guardian. This is the only one of the three printables that carries your benefits status and your guardianship wishes, so think about who you're handing it to.","docTitle":"What My Child's Caregiver Needs to Know","docTag":"A Caregiver Handoff Packet · prepared with the Quietkeep Special Needs Care Binder","lead":"This sheet gathers what someone caring for my child needs on hand: their daily life and who they are, the people on their care team, their medications, their IEP/504 status, and their benefits. It is an organizer output — not legal advice, not education advocacy, not benefits counseling, and not a substitute for a licensed professional.","foot":"Prepared by the account holder. This Handoff Packet is an organizer output, not legal advice, not education advocacy, not benefits counseling, and not a legal document. It contains no account numbers, Social Security numbers, Medicaid ID numbers, or passwords. For advice about your child's rights, consult an education advocate or attorney; for benefits questions, consult your caseworker.","disclaimer":"The Handoff Packet is a personal organizing document to prepare care information for another person, not a legal document, not legal advice, and not benefits counseling. It does not appoint a legal guardian and does not state what your child is entitled to under IDEA or state law.","sections":[{"type":"wish","key":"dailylife","title":"A Day in Their Life","empty":"Not recorded yet — their routine and what a good day looks like."},{"type":"wish","key":"care","title":"How They Like to Be Cared For","empty":"Not recorded yet — sensory needs, comfort routines, and cues that mean something is wrong."},{"type":"register","id":"meds","title":"Medication Register"},{"type":"register","id":"providers","title":"Providers & Therapy"},{"type":"register","id":"iep","title":"IEP/504 Document Checklist & Meeting Log"},{"type":"register","id":"benefits","title":"Benefits Tracker"},{"type":"wishes","title":"Letter of Intent","exclude":["dailylife","care","questions"]}]}],"summary":{"disclaimer":"The Special Needs Care Binder is an organizer, not legal advice, not education advocacy, and not benefits counseling. It records what happened, never what your child is entitled to, and it never assesses whether a school has met its obligations. It never asks for an account number, Social Security number, Medicaid ID, or password. Everything you enter stays in this file's storage on your device and is never transmitted anywhere.","intro":"See where your child's school year stands, keep it current, and back up your work to a file you control.","reviewNote":"Come back at the start of each school year, after each progress report, after each meeting, and before and after a long break — plus any time a medication or benefits status changes. A record that's current is worth more than a perfect one.","staleFlag":"It's been a while since you updated this. If a progress report has come home, sessions have been missed or shortened, a meeting has happened, or anything about medications or benefits has changed, bring it current — the gaps are hardest to reconstruct months later."},"safety":{},"legacyTasks":null};
+const PHASES=CONFIG.phases;
+const REGISTERS=CONFIG.registers||[];
+const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
+const STORAGE_KEY=CONFIG.storageKey;
+const SAFETY=CONFIG.safety||{};
+/* A product may declare several printable outputs (`sheets`) rather than one.
+   Special Needs needs this for a real reason, not tidiness: a single packet
+   that compiles benefits status AND guardianship wishes is right for a future
+   guardian and wrong to hand a third-grade teacher. `sheet` stays supported so
+   the ten products built before this keep generating byte-identical output. */
+const SHEETS=(CONFIG.sheets&&CONFIG.sheets.length)?CONFIG.sheets:(CONFIG.sheet?[CONFIG.sheet]:[]);
+
+/* ---------- task identity ----------
+   Task completion used to be stored by POSITION ("p0t3"). That meant inserting
+   a task in the middle of a phase silently moved every tick below it onto a
+   different task — a buyer saw work marked done that they had never done, and
+   lost credit for work they had. On products whose whole promise is "nothing
+   important gets missed", that is worse than losing the data outright.
+
+   Keys are now a slug of the task title, which survives reordering, insertion
+   and deletion. Verified unique within every product in the catalogue.
+   `migrateTaskKeys()` converts an existing buyer's positional ticks exactly
+   once, using the task order as it stood when they saved. */
+function slugKey(s){
+  return String(s == null ? "" : s).toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-")
+    .replace(/^-|-$/g, "").slice(0, 48);
+}
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
+function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
+function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function plain(n){return (Math.round(n*100)/100).toLocaleString("en-US");}
+/* Totals are money by default — the estate and divorce lines all count dollars.
+   Some registers count minutes or plain units instead (service delivery, for
+   one), so a register may set totalFormat:"plain" with totalUnit:"minutes". */
+function fmtTotal(reg,n){
+  return reg.totalFormat==="plain"
+    ? plain(n)+(reg.totalUnit?" "+reg.totalUnit:"")
+    : money(n);
+}
+function fmtCell(col,v){
+  if(col.format==="plain")return plain(parseFloat(v)||0);
+  return money(parseFloat(v)||0);
+}
+/* A "calc" column is derived and never stored: calc:["a","b"] with op "*" or
+   "-". It keeps the arithmetic a buyer would otherwise do by hand — quantity
+   x cost-each, or actual minus normal — inside the engine, where it stays
+   correct as rows change instead of going stale the moment anything is edited. */
+function calcVal(reg,row,col){
+  const a=(col.calc||[])[0],b=(col.calc||[])[1];
+  const x=parseFloat(row[a])||0,y=parseFloat(row[b])||0;
+  return col.op==="-"?(x-y):(x*y);
+}
+function cellVal(reg,row,col){return col.type==="calc"?calcVal(reg,row,col):row[col.key];}
+function regById(id){return REGISTERS.find(r=>r.id===id);}
+function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
+function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
+
+/* ---------- state ---------- */
+let state=null;
+/* Stable per-task keys, computed once from the current phase order. */
+const TASK_KEYS=PHASES.map(ph=>(ph.tasks||[]).map(t=>slugKey(t[0])));
+
+/* Convert positional task ticks to stable keys, once, on first open of an
+   updated file. `legacyTasks` is the task order AS THE BUYER HAS IT — needed
+   only when a release reorders tasks in the same version that introduces this
+   migration. Otherwise the current order is the buyer's order, so it is the
+   correct fallback and the migration is exact. */
+function migrateTaskKeys(){
+  if(state.tkv>=2){return;}
+  const legacy=CONFIG.legacyTasks||PHASES.map(ph=>(ph.tasks||[]).map(t=>t[0]));
+  const out={};
+  (legacy||[]).forEach((ph,pi)=>(ph||[]).forEach((title,ti)=>{
+    if(state.tasks&&state.tasks["p"+pi+"t"+ti])out[slugKey(title)]=true;
+  }));
+  /* Preserve any keys that are already slugs — a re-restored backup, or a file
+     opened by a newer build first. Never drop a tick we cannot explain. */
+  Object.keys(state.tasks||{}).forEach(k=>{
+    if(!/^p\d+t\d+$/.test(k)&&state.tasks[k])out[k]=true;
+  });
+  state.tasks=out;
+  state.tkv=2;
+}
+
+function defaultState(){
+  const d={v:1,tkv:2,tasks:{},wishes:{},lastReviewed:null};
+  REGISTERS.forEach(r=>{d[r.id]=[];});
+  return d;
+}
+function load(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);state=raw?JSON.parse(raw):defaultState();}
+  catch(e){state=defaultState();}
+  REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[];});
+  if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+  if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+  if(state.lastReviewed===undefined)state.lastReviewed=null;
+  migrateTaskKeys();
+}
+function save(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    document.getElementById("save-status").innerHTML="<b>All changes saved on this device</b>";}
+  catch(e){document.getElementById("save-status").innerHTML="<b>Could not save — download a backup from the Summary tab</b>";}
+}
+
+/* ---------- shell: nav + sections built from CONFIG ---------- */
+function buildShell(){
+  const nav=document.getElementById("nav");
+  const wrap=document.getElementById("sections");
+  const tabs=[{id:"tasks",label:CONFIG.tasks.tab||"Tasks"}];
+  REGISTERS.forEach(r=>tabs.push({id:r.id,label:r.tab}));
+  if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
+  SHEETS.forEach((s,i)=>tabs.push({id:"sheet"+i,label:s.tab||"Instruction Sheet"}));
+  tabs.push({id:"summary",label:"Summary & Backup"});
+  tabs.forEach((t,i)=>{
+    const b=document.createElement("button");
+    b.dataset.tab=t.id;b.textContent=t.label;if(i===0)b.className="active";
+    nav.appendChild(b);
+  });
+
+  let h="";
+  // Tasks
+  h+='<section class="tab active" id="tab-tasks"><h2>'+esc(CONFIG.tasks.heading||"Guided Tasks")+'</h2>'+
+     '<p class="note">'+esc(CONFIG.tasks.intro||"")+'</p><div id="phases"></div>'+
+     (CONFIG.tasks.disclaimer?'<p class="disclaimer">'+esc(CONFIG.tasks.disclaimer)+'</p>':"")+
+     '</section>';
+  // Registers
+  REGISTERS.forEach(r=>{
+    /* A register may carry a `warn` — one prominent, red, shown-once line under
+       the intro. Wishes already had this; registers did not, so a prohibition
+       as load-bearing as "never the codes themselves" could only be muted grey
+       prose. Deliberately register-level, not per-column: a warning repeated on
+       every row of a table stops being read by row three. */
+    h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
+       '<p class="note">'+esc(r.intro||"")+'</p>'+
+       (r.warn?'<p class="warnline">'+esc(r.warn)+'</p>':"")+
+       // A many-column register needs real pixel width to stay legible — 70px
+       // per column is roughly what a narrow text/number input needs, so a
+       // 13-column table gets ~910px minimum rather than being crushed into
+       // whatever fraction of 1040px is left after padding.
+       // 70px/column still clipped a 2-digit number input to its first digit
+       // (spinner arrows + input padding eat more of a narrow cell than the
+       // math suggested) — verified by looking at the actual render, not by
+       // recomputing the math a second time. 85px holds up on inspection.
+       '<div class="table-wrap"><table style="min-width:'+(85*(r.columns.length+1))+'px"><thead><tr>';
+    r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table></div>'+
+       '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
+    if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
+    if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
+    if(r.disclaimer)h+='<p class="disclaimer">'+esc(r.disclaimer)+'</p>';
+    h+='</section>';
+  });
+  // Wishes
+  if(CONFIG.wishesEnabled){
+    h+='<section class="tab" id="tab-wishes"><h2>'+esc(CONFIG.wishes.heading||"Wishes & Instructions")+'</h2>'+
+       '<p class="note">'+esc(CONFIG.wishes.intro||"")+'</p><div id="wishes-body"></div>'+
+       (CONFIG.wishes.disclaimer?'<p class="disclaimer">'+esc(CONFIG.wishes.disclaimer)+'</p>':"")+
+       '</section>';
+  }
+  // Sheet
+  SHEETS.forEach((S,i)=>{
+    h+='<section class="tab" id="tab-sheet'+i+'"><h2>'+esc(S.heading)+'</h2>'+
+       '<p class="note">'+esc(S.intro||"")+'</p>'+
+       '<div id="sheet-preview-'+i+'" class="review-box"></div>'+
+       '<div class="toolbar"><button class="primary" onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button></div>'+
+       (S.disclaimer?'<p class="disclaimer">'+esc(S.disclaimer)+'</p>':"")+
+       '</section>';
+  });
+  // Summary
+  h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
+     '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
+     '<div id="summary-stats"></div>'+
+     '<div class="review-box"><div class="rl" id="review-line">Last reviewed: <strong>not yet reviewed</strong></div>'+
+     '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
+     '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
+     '<div class="toolbar">'+
+     SHEETS.map((S,i)=>'<button onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button>').join("")+
+     '<button onclick="printAll()">Print everything (all registers)</button>'+
+     '<button onclick="backup()">Download backup file</button>'+
+     '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
+     '<input type="file" id="restore-file" accept=".json" style="display:none" onchange="restore(this)">'+
+     '</div>'+
+     (CONFIG.summary.disclaimer?'<p class="disclaimer">'+esc(CONFIG.summary.disclaimer)+'</p>':"")+
+     '</section>';
+  wrap.innerHTML=h;
+  wrap.querySelectorAll("button.add").forEach(b=>b.addEventListener("click",()=>addRow(b.dataset.add)));
+}
+
+/* ---------- task engine ---------- */
+function renderTasks(){
+  const wrap=document.getElementById("phases");wrap.innerHTML="";
+  PHASES.forEach((ph,pi)=>{
+    let pDone=0;
+    const div=document.createElement("div");div.className="phase";
+    const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
+    const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
+    ph.tasks.forEach((t,ti)=>{
+      const id=TASK_KEYS[pi][ti];
+      const checked=!!state.tasks[id];if(checked)pDone++;
+      const row=document.createElement("div");row.className="task"+(checked?" done":"");
+      const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
+      cb.addEventListener("change",()=>{state.tasks[id]=cb.checked;save();row.classList.toggle("done",cb.checked);updateProgress();});
+      const body=document.createElement("div");
+      body.innerHTML='<div class="t"></div><div class="why"></div>';
+      body.querySelector(".t").textContent=t[0];
+      body.querySelector(".why").textContent=t[1]||"";
+      row.appendChild(cb);row.appendChild(body);div.appendChild(row);
+    });
+    fill.style.width=Math.round(pDone/ph.tasks.length*100)+"%";
+    wrap.appendChild(div);
+  });
+  updateProgress();
+}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>ph.tasks.forEach((t,ti)=>{total++;if(state.tasks[TASK_KEYS[pi][ti]])done++;}));return{total,done};}
+function updateProgress(){
+  let total=0,done=0;
+  document.querySelectorAll("#phases .phase").forEach((div)=>{
+    let pDone=0;const boxes=div.querySelectorAll(".task input[type=checkbox]");
+    boxes.forEach(b=>{total++;if(b.checked){done++;pDone++;}});
+    div.querySelector(".bar>div").style.width=Math.round(pDone/boxes.length*100)+"%";
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+  summaryStats();
+}
+
+/* ---------- register engine ---------- */
+function fieldEl(reg,row,col){
+  const td=document.createElement("td");
+  /* Derived cells are output, not input — render as read-only text so nobody
+     types into a number that is about to be recomputed. refreshCalc() keeps
+     them current as the columns they depend on are edited. */
+  if(col.type==="calc"){
+    td.className="num";
+    td.textContent=fmtCell(col,calcVal(reg,row,col));
+    return td;
+  }
+  let el;
+  if(col.type==="select"){el=document.createElement("select");
+    (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
+    el.value=row[col.key]||(col.options||[""])[0];}
+  else if(col.type==="list"){el=document.createElement("input");el.type="text";
+    const dl=document.createElement("datalist");const dlid="dl-"+reg.id+"-"+col.key+"-"+Math.random().toString(36).slice(2,8);
+    dl.id=dlid;(col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;dl.appendChild(op);});
+    el.setAttribute("list",dlid);td.appendChild(dl);
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  else{el=document.createElement("input");el.type=col.type==="num"?"number":(col.type==="date"?"date":"text");
+    if(col.type==="num"){el.step="0.01";td.className="num";}
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  el.addEventListener("input",()=>{row[col.key]=el.value;save();totals();});
+  el.addEventListener("change",()=>{row[col.key]=el.value;save();totals();});
+  td.appendChild(el);return td;
+}
+function renderTable(id){
+  const reg=regById(id);
+  const body=document.getElementById(id+"-body");body.innerHTML="";
+  state[id].forEach((row,i)=>{
+    const tr=document.createElement("tr");
+    reg.columns.forEach(c=>tr.appendChild(fieldEl(reg,row,c)));
+    const td=document.createElement("td");
+    const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
+    del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[id].splice(i,1);save();renderTable(id);totals();}});
+    td.appendChild(del);tr.appendChild(td);body.appendChild(tr);
+  });
+}
+function addRow(id){state[id].push({});save();renderTable(id);totals();}
+function categoryCounts(reg){
+  const field=reg.counterField;const cats=(colByKey(reg,field)||{}).options||[];
+  const counts={};
+  state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
+  return counts;
+}
+function regTotal(reg){
+  const k=reg.counterField||numKey(reg);
+  const col=colByKey(reg,k);
+  if(col&&col.type==="calc")return state[reg.id].reduce((s,r)=>s+calcVal(reg,r,col),0);
+  return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);
+}
+/* Repaint derived cells in place. Re-rendering the whole table would steal
+   focus from the field being typed into, which is why this updates the td
+   text directly rather than calling renderTable(). */
+function refreshCalc(){
+  REGISTERS.forEach(reg=>{
+    if(!reg.columns.some(c=>c.type==="calc"))return;
+    const body=document.getElementById(reg.id+"-body");if(!body)return;
+    Array.prototype.forEach.call(body.rows,(tr,i)=>{
+      const row=state[reg.id][i];if(!row)return;
+      reg.columns.forEach((c,ci)=>{
+        if(c.type!=="calc")return;
+        const td=tr.cells[ci];if(td)td.textContent=fmtCell(c,calcVal(reg,row,c));
+      });
+    });
+  });
+}
+function totals(){
+  refreshCalc();
+  REGISTERS.forEach(reg=>{
+    const el=document.getElementById(reg.id+"-total");
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.counterLabel||((plural.charAt(0).toUpperCase()+plural.slice(1))+" recorded");
+    if(reg.counter==="category"&&el){
+      const cats=(colByKey(reg,reg.counterField)||{}).options||[];
+      const counts=categoryCounts(reg);
+      const bits=cats.filter(c=>counts[c]).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      const extra=Object.keys(counts).filter(c=>cats.indexOf(c)<0).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
+    }else if(reg.counter==="total"&&el){
+      const n=state[reg.id].length;
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+fmtTotal(reg,regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      const line=document.getElementById(reg.id+"-line");
+      if(line)line.textContent=n?reg.line.replace("{total}",fmtTotal(reg,regTotal(reg))).replace("{n}",n):"";
+    }else if(el){
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
+    }
+  });
+  summaryStats();renderSheetPreview();
+}
+
+/* ---------- wishes ---------- */
+function renderWishes(){
+  const wrap=document.getElementById("wishes-body");if(!wrap)return;
+  wrap.innerHTML="";
+  WISHES.forEach(w=>{
+    const div=document.createElement("div");div.className="wish";
+    const lab=document.createElement("label");lab.textContent=w.label;lab.setAttribute("for","wish-"+w.key);div.appendChild(lab);
+    const pr=document.createElement("div");pr.className="prompt";pr.textContent=w.prompt||"";div.appendChild(pr);
+    const ta=document.createElement("textarea");ta.id="wish-"+w.key;ta.value=state.wishes[w.key]||"";
+    ta.addEventListener("input",()=>{state.wishes[w.key]=ta.value;save();});
+    div.appendChild(ta);
+    if(w.warn){const wn=document.createElement("div");wn.className="warnline";wn.textContent=w.warn;div.appendChild(wn);}
+    wrap.appendChild(div);
+  });
+}
+
+/* ---------- summary + review ---------- */
+function summaryStats(){
+  const c=taskCounts();
+  const el=document.getElementById("summary-stats");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.statLabel||(plural.charAt(0).toUpperCase()+plural.slice(1));
+    let s=label+": <strong>"+state[reg.id].length+"</strong>";
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="totals">Tasks complete: <strong>'+c.done+' / '+c.total+'</strong><span class="pill">'+(c.total?Math.round(c.done/c.total*100):0)+'%</span><br>'+bits.join(" · ")+'</div>';
+  renderReviewLine();
+}
+function daysSince(iso){if(!iso)return null;const then=new Date(iso+"T00:00:00");const now=new Date();return Math.floor((now-then)/86400000);}
+function renderReviewLine(){
+  const line=document.getElementById("review-line");
+  if(line){
+    if(state.lastReviewed){line.innerHTML="Last reviewed: <strong>"+new Date(state.lastReviewed+"T00:00:00").toLocaleDateString()+"</strong>";}
+    else{line.innerHTML="Last reviewed: <strong>not yet reviewed</strong>";}
+  }
+  const flag=document.getElementById("review-flag");if(!flag)return;
+  const dd=daysSince(state.lastReviewed);
+  if(dd!==null&&dd>=365){flag.classList.add("show");flag.textContent=CONFIG.summary.staleFlag||"It has been more than a year since your last review. Open the Summary tab when you have a few minutes.";}
+  else{flag.classList.remove("show");flag.textContent="";}
+}
+function markReviewed(){
+  const now=new Date();const iso=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  state.lastReviewed=iso;save();renderReviewLine();
+}
+
+/* ---------- print sheet (compiled from CONFIG.sheet.sections) ---------- */
+function registerTableHTML(reg,rows,skipKey){
+  let h='<table><tr>';
+  reg.columns.forEach(c=>{if(c.key!==skipKey)h+='<th>'+esc(c.label)+'</th>';});
+  h+='</tr>';
+  rows.forEach(r=>{h+='<tr>';
+    reg.columns.forEach(c=>{if(c.key===skipKey)return;
+      const v=(c.type==="num"||c.type==="calc")?fmtCell(c,cellVal(reg,r,c)):esc(r[c.key]);
+      h+='<td>'+v+'</td>';});
+    h+='</tr>';});
+  if(reg.counter==="total"){
+    h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
+    const nk=reg.counterField||numKey(reg);
+    reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
+      h+=c.key===nk?'<td><strong>'+fmtTotal(reg,regTotal(reg))+'</strong></td>':'<td></td>';});
+    h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
+    h+='</tr>';
+  }
+  return h+'</table>';
+}
+function sheetHTML(idx){
+  const S=SHEETS[idx||0]||{};
+  let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
+  if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
+  (S.sections||[]).forEach(sec=>{
+    h+='<h2>'+esc(sec.title)+'</h2>';
+    if(sec.type==="wish"){
+      const v=state.wishes[sec.key];
+      if(nonEmpty(v))h+='<div class="wblock">'+nl2br(v)+'</div>';
+      else h+='<p>'+esc(sec.empty||"Not recorded yet.")+'</p>';
+    }else if(sec.type==="register"){
+      const reg=regById(sec.id);const rows=state[sec.id];
+      if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
+      if(sec.groupBy){
+        const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
+        /* Grouping by a column that has no `options` (a date, or free text) is
+           legitimate — but then cats is empty, and a blank cell used to fall
+           through to cats[0] === undefined and print "undefined (3)" as a
+           heading on the buyer's printed sheet. Bucket those explicitly. */
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");counts[c]=(counts[c]||0)+1;});
+        const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
+        order.forEach(c=>{
+          h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");return rc===c;}),sec.groupBy);
+        });
+      }else{
+        h+=registerTableHTML(reg,rows,null);
+      }
+    }else if(sec.type==="wishes"){
+      let any=false;const excl=sec.exclude||[];
+      WISHES.forEach(w=>{if(excl.indexOf(w.key)>=0)return;const v=state.wishes[w.key];if(!nonEmpty(v))return;any=true;
+        h+='<h3>'+esc(w.label)+'</h3><div class="wblock">'+nl2br(v)+'</div>';});
+      if(!any)h+='<p>'+esc(sec.empty||"No wishes recorded yet.")+'</p>';
+    }
+  });
+  if(S.foot)h+='<p class="foot">'+esc(S.foot)+'</p>';
+  return h;
+}
+function renderSheetPreview(){
+  SHEETS.forEach((S,i)=>{
+    const el=document.getElementById("sheet-preview-"+i);if(!el)return;
+    /* Preview only the registers this particular sheet actually compiles —
+       otherwise a teacher-facing sheet would advertise the benefits and
+       guardianship data it deliberately leaves out. */
+    const ids=(S.sections||[]).filter(s=>s.type==="register").map(s=>s.id);
+    const regs=ids.length?REGISTERS.filter(r=>ids.indexOf(r.id)>=0):REGISTERS;
+    const bits=regs.map(reg=>{
+      const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+      const n=state[reg.id].length;
+      let s=n+" "+(n===1?noun:plural);
+      if(reg.counter==="total")s+=" ("+fmtTotal(reg,regTotal(reg))+")";
+      return s;
+    });
+    const hasWishes=(S.sections||[]).some(s=>s.type==="wish"||s.type==="wishes");
+    el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(S.docTitle)+'</strong></div>'+
+      '<p class="note" style="margin:0">'+esc(S.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+      (hasWishes?", plus what you've written in your own words":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
+  });
+}
+function printSheet(idx){
+  const pa=document.getElementById("print-area");
+  pa.innerHTML=sheetHTML(idx||0);window.print();
+}
+function printAll(){
+  const pa=document.getElementById("print-area");
+  let h=sheetHTML();
+  h+='<h2>Guided Task Progress</h2>';
+  PHASES.forEach((ph,pi)=>{
+    h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks[TASK_KEYS[pi][ti]]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    h+='</table>';
+  });
+  pa.innerHTML=h;window.print();
+}
+
+/* ---------- safety notice + erase ----------
+   Two facts every Quietkeep product must state plainly, because neither is
+   obvious and both can hurt someone: (1) "local" is not "private" when the
+   person you fear shares the device; (2) localStorage is keyed to the browser,
+   NOT to the file — deleting the .html does not delete the entries. Products
+   that need more (the divorce line) add an `app.safety` block to the manifest. */
+const DEFAULT_STORAGE_TRUTH="Nothing you type is ever sent anywhere — it is saved only in this browser, on this device. That also means anyone who can use this device and this browser can open it. It is not encrypted and not password-protected.";
+const DEFAULT_ERASE_TRUTH="Deleting this file does NOT erase what you have entered. Your entries are stored by the browser, not inside the file. To remove them, use the “Erase everything” button at the bottom of the screen.";
+
+function showNotice(){
+  document.getElementById("qk-notice-h").textContent=SAFETY.title||"Before you start";
+  let h="";
+  (SAFETY.body||[]).forEach(p=>{h+='<p>'+esc(p)+'</p>';});
+  h+='<p>'+esc(SAFETY.storage||DEFAULT_STORAGE_TRUTH)+'</p>';
+  h+='<p>'+esc(SAFETY.erase||DEFAULT_ERASE_TRUTH)+'</p>';
+  if(SAFETY.hotline&&SAFETY.hotline.length){
+    h+='<div class="hot">';
+    SAFETY.hotline.forEach((l,i)=>{h+=(i?'<br>':'')+(i?'<b>'+esc(l)+'</b>':esc(l));});
+    h+='</div>';
+  }
+  const fine=SAFETY.fine||CONFIG.summary.disclaimer||"";
+  if(fine)h+='<div class="fine">'+esc(fine)+'</div>';
+  document.getElementById("qk-notice-body").innerHTML=h;
+  const v=document.getElementById("qk-veil");
+  v.hidden=false;
+  document.getElementById("qk-notice-ok").focus();
+}
+function dismissNotice(){document.getElementById("qk-veil").hidden=true;}
+
+/* How much is actually at risk — a concrete number warns far better than
+   "everything", and lets an empty file erase without ceremony. */
+function countEntries(){
+  let n=0;
+  REGISTERS.forEach(r=>{(state[r.id]||[]).forEach(row=>{
+    if(r.columns.some(c=>nonEmpty(row[c.key])))n++;
+  });});
+  Object.keys(state.wishes||{}).forEach(k=>{if(nonEmpty(state.wishes[k]))n++;});
+  Object.keys(state.tasks||{}).forEach(k=>{if(state.tasks[k])n++;});
+  return n;
+}
+
+function eraseAll(){
+  const n=countEntries();
+  if(n===0){alert("There is nothing saved to erase yet.");return;}
+  const noun=n===1?"entry":"entries";
+  /* Two steps on purpose. This button is always on screen, so one stray click
+     must never be able to destroy someone's work — but it also has to stay fast
+     enough to use when you need the screen clear right now. */
+  if(!confirm("ERASE EVERYTHING?\n\n"
+    +"This permanently deletes all "+n+" "+noun+" you have saved in this browser for "+CONFIG.name+".\n\n"
+    +"THIS CANNOT BE UNDONE. There is no way to get it back afterwards.\n\n"
+    +"It does NOT delete any backup file you have already downloaded, or anything you have printed.\n\n"
+    +"If you want to keep a copy, press Cancel and use “Download backup file” on the Summary tab first."))return;
+  if(!confirm("Last check.\n\nReally erase all "+n+" saved "+noun+" permanently?"))return;
+  state=defaultState();
+  renderAll();
+  /* Remove AFTER re-rendering, so nothing can write the key back on the way out. */
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  document.getElementById("save-status").innerHTML="<b>Erased from this browser</b>";
+  alert("Erased. Nothing from this organizer is left in this browser.\n\n"
+    +"If you also downloaded a backup file or printed a copy, delete those separately.");
+}
+
+/* ---------- backup / restore ---------- */
+function backup(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
+  aEl.download=CONFIG.backupPrefix+"-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(aEl);aEl.click();aEl.remove();
+}
+function restore(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{const data=JSON.parse(reader.result);
+      if(!data||typeof data!=="object")throw 0;
+      state=Object.assign(defaultState(),data);
+      REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[]});
+      if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+      save();renderAll();alert("Backup restored.");}
+    catch(e){alert("That file does not look like a valid backup.");}};
+  reader.readAsText(f);input.value="";
+}
+
+/* ---------- boot ---------- */
+document.getElementById("nav").addEventListener("click",e=>{
+  if(e.target.tagName!=="BUTTON")return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
+  e.target.classList.add("active");
+  document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
+  if(String(e.target.dataset.tab||"").indexOf("sheet")===0)renderSheetPreview();
+});
+function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
+document.getElementById("qk-notice-ok").addEventListener("click",dismissNotice);
+buildShell();load();renderAll();showNotice();
+</script>
+<script>(function(){state={"v": 1, "tasks": {"p0t0": true, "p0t1": true, "p0t2": true, "p0t3": true, "p0t4": true, "p0t5": true, "p1t0": true, "p1t1": true}, "wishes": {"dailylife": "A few notes to start with — more to add as things become clearer.", "who": "A few notes to start with — more to add as things become clearer."}, "lastReviewed": null, "providers": [{"name": "Dr. Alvarez — pediatrician", "specialty": "Pediatrician", "frequency": "Daily", "year": "2026-27", "bestContact": "Email", "phone": "(555) 010-1234", "email": "alex@example.com", "notes": ""}, {"name": "Riverside OT — Mx. Chen", "specialty": "Occupational therapist", "frequency": "Weekly", "year": "2025-26", "bestContact": "Phone", "phone": "(555) 010-5678", "email": "jordan@example.com", "notes": ""}, {"name": "Ms. Whitfield — case manager", "specialty": "Social worker / case manager", "frequency": "Biweekly", "year": "2026-27", "bestContact": "Text", "phone": "(555) 010-9012", "email": "sam@example.com", "notes": ""}, {"name": "Mr. Baptiste — 1:1 aide", "specialty": "1:1 aide / paraprofessional", "frequency": "Monthly", "year": "2025-26", "bestContact": "Note home", "phone": "(555) 010-1234", "email": "alex@example.com", "notes": ""}], "iep": [{"date": "2026-01-10", "type": "Meeting — annual review", "attendees": "Parent, teacher, school psychologist", "decisions": "Added a weekly OT session", "nextReview": "2026-03-12", "notes": ""}, {"date": "2026-02-11", "type": "Meeting — triennial evaluation", "attendees": "Parent, case manager, OT", "decisions": "Extended testing time approved", "nextReview": "2026-04-13", "notes": ""}, {"date": "2026-03-12", "type": "Meeting — parent requested", "attendees": "Parent, teacher, case manager", "decisions": "Reading goals updated", "nextReview": "2026-05-14", "notes": ""}, {"date": "2026-04-13", "type": "Meeting — transition planning", "attendees": "Parent, school psychologist, OT", "decisions": "Transition planning discussed", "nextReview": "2026-06-15", "notes": ""}], "goals": [{"date": "2026-01-10", "period": "Baseline / when the goal was written", "goal": "Reads 60 sight words with 80% accuracy", "area": "Reading", "reported": "42 of 60 sight words, 3 trials", "rating": "Goal met", "recouped": "2026-03-12", "notes": ""}, {"date": "2026-02-11", "period": "Q1 / 1st marking period", "goal": "Requests a break using her device, 4 of 5 opportunities", "area": "Writing", "reported": "Used the device 2 of 5 opportunities", "rating": "Sufficient progress", "recouped": "2026-04-13", "notes": ""}, {"date": "2026-03-12", "period": "Q2 / 2nd marking period", "goal": "Completes a 3-step direction independently", "area": "Math", "reported": "Same wording as last quarter", "rating": "Some progress", "recouped": "2026-05-14", "notes": ""}, {"date": "2026-04-13", "period": "Q3 / 3rd marking period", "goal": "Initiates a greeting with a peer", "area": "Speech / language", "reported": "3 of 5 opportunities this term", "rating": "Insufficient progress", "recouped": "2026-06-15", "notes": ""}], "services": [{"date": "2026-01-10", "service": "Speech / language", "planned": "30", "delivered": "30", "difference": "See the folder in the filing cabinet", "reason": "Delivered in full", "notes": ""}, {"date": "2026-02-11", "service": "Occupational therapy", "planned": "60", "delivered": "15", "difference": "With the estate documents", "reason": "Session shortened", "notes": ""}, {"date": "2026-03-12", "service": "Physical therapy", "planned": "45", "delivered": "0", "difference": "Ask the family attorney's office", "reason": "Session cancelled — provider absent", "notes": ""}, {"date": "2026-04-13", "service": "Counseling", "planned": "30", "delivered": "30", "difference": "Written instructions in the home safe", "reason": "Delivered in full", "notes": ""}], "accommodations": [{"item": "Extended time on tests", "where": "All classes", "checked": "2026-09-18", "seen": "Seen in place", "how": "Asked the teacher", "notes": ""}, {"item": "Preferential seating near the front", "where": "Math", "checked": "2026-01-10", "seen": "Told it's in place", "how": "Asked my child", "notes": ""}, {"item": "Movement break every 45 minutes", "where": "Specials and assemblies", "checked": "2026-02-11", "seen": "Haven't checked yet", "how": "Haven't checked yet", "notes": ""}, {"item": "Directions given one step at a time", "where": "Bus", "checked": "2026-03-12", "seen": "Not seen", "how": "Saw it in person", "notes": ""}], "comms": [{"date": "2026-01-10", "who": "Ms. Whitfield — case manager", "how": "Email", "about": "Missed speech sessions", "asked": "A copy of the service logs", "status": "No answer yet", "answered": "", "notes": ""}, {"date": "2026-02-11", "who": "School nurse", "how": "Phone call", "about": "Bus seating", "asked": "A call back from the OT", "status": "Answer received", "answered": "2026-02-14", "notes": ""}, {"date": "2026-03-12", "who": "Front office", "how": "In person / pickup", "about": "Copy of the progress report", "asked": "The date of the next meeting", "status": "Partly answered", "answered": "2026-03-01", "notes": ""}, {"date": "2026-04-13", "who": "Special education coordinator", "how": "Note home", "about": "Requesting a copy of the IEP", "asked": "A meeting before the next review", "status": "Nothing to follow up", "answered": "2026-01-05", "notes": ""}], "meds": [{"name": "Methylphenidate", "dose": "5mg, morning", "prescriber": "Dr. Alvarez — Pediatrics", "purpose": "Focus / attention", "changed": "2026-06-15", "schoolForm": "On file this school year", "formDate": "2026-02-11", "told": "School nurse", "notes": ""}, {"name": "Melatonin", "dose": "3mg, bedtime", "prescriber": "Dr. Chen — Developmental Peds", "purpose": "Sleep", "changed": "2026-07-16", "schoolForm": "Needs to be renewed", "formDate": "2026-03-12", "told": "Teacher", "notes": ""}, {"name": "Albuterol inhaler", "dose": "2 puffs as needed", "prescriber": "Dr. Alvarez — Pediatrics", "purpose": "Asthma", "changed": "2026-08-17", "schoolForm": "Sent to the doctor", "formDate": "2026-04-13", "told": "Therapist", "notes": ""}, {"name": "Loratadine", "dose": "10mg, morning", "prescriber": "Dr. Osei — Pediatrics", "purpose": "Allergies", "changed": "2026-09-18", "schoolForm": "Given to the school — waiting to hear", "formDate": "2026-05-14", "told": "More than one — see notes", "notes": ""}], "incidents": [{"date": "2026-01-10", "where": "School — classroom", "what": "Meltdown during a transition", "context": "Fire drill, unexpected schedule change", "action": "Used the calm-down corner", "source": "School told me", "document": "Written report received", "notes": ""}, {"date": "2026-02-11", "where": "School — elsewhere on site", "what": "Refused to leave the classroom", "context": "Tired, skipped nap", "action": "Called parent", "source": "I saw it", "document": "Told verbally only", "notes": ""}, {"date": "2026-03-12", "where": "Bus / transport", "what": "Hit another student", "context": "Loud assembly", "action": "Removed from room, reset", "source": "My child told me", "document": "Nothing received", "notes": ""}, {"date": "2026-04-13", "where": "Home", "what": "Difficulty with a transition", "context": "Substitute teacher, unfamiliar routine", "action": "Redirected with a visual schedule", "source": "Another provider told me", "document": "I wrote it down myself", "notes": ""}], "benefits": [{"program": "SSI", "name": "SSI", "status": "Not yet applied", "renewal": "2026-06-15", "caseworker": "Taylor Brooks", "notes": ""}, {"program": "Medicaid waiver", "name": "Medicaid waiver", "status": "Applied", "renewal": "2026-07-16", "caseworker": "Morgan Lee", "notes": ""}, {"program": "State respite program", "name": "Respite care program", "status": "Pending", "renewal": "2026-08-17", "caseworker": "Taylor Brooks", "notes": ""}, {"program": "School-based services funding", "name": "IEP-funded related services", "status": "Approved", "renewal": "2026-09-18", "caseworker": "Jordan Ellis", "notes": ""}]};if(typeof migrateTaskKeys==="function"){try{migrateTaskKeys();}catch(e){}}renderAll();save=function(){var e=document.getElementById("save-status");if(e)e.innerHTML="<b>Demo mode — the full version saves automatically</b>";};backup=function(){alert("Backup is included in the full version.");};restore=function(i){if(i)i.value="";alert("Restore is included in the full version.");};save();})();</script></body>
+</html>
