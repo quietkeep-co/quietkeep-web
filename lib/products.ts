@@ -115,6 +115,29 @@ function loadProducts(): Product[] {
         `content/products/${file} is missing required fields: ${missing.join(", ")}`
       );
     }
+    // REQUIRED above only checks category is non-empty, not that it's a real
+    // Category — JSON.parse + `as Product` is unchecked, so a leftover
+    // generator TODO string ("TODO: category — ...") sails straight through
+    // that check. Left unvalidated, the product's own page still renders at
+    // its direct URL, but category === category never matches on the home
+    // grid or /organizers/[category], so it silently never appears anywhere
+    // a buyer would actually find it — a page nobody can discover.
+    // Found 2026-08-12 launching Family Building Companion. First fix here
+    // was a hard throw — corrected immediately: that took the ENTIRE site's
+    // build down over one draft product's still-unfilled placeholder, which
+    // is a worse outcome than the silent-orphan bug it was meant to catch
+    // (every other already-live product would fail to deploy too). A draft
+    // sitting in content/products/ mid-build is the expected, normal state
+    // this pipeline produces — see `status: "new"` — so skip it and warn
+    // instead of failing the whole site over it.
+    if (!(data.category in CATEGORY_META)) {
+      console.warn(
+        `[products] content/products/${file}: category "${data.category}" is not a real ` +
+          `Category (valid: ${Object.keys(CATEGORY_META).join(", ")}) — skipping this ` +
+          `product until it's set. It will not appear anywhere on the site.`
+      );
+      continue;
+    }
     // slug must match filename so routes are predictable.
     const expected = file.replace(/\.json$/, "");
     if (data.slug !== expected) {
