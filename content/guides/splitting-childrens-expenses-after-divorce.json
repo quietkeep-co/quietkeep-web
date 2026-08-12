@@ -51,6 +51,20 @@
       ]
     }
   ],
+  "faq": [
+    {
+      "q": "What should co-parents track when splitting kids' expenses?",
+      "a": "Log what the expense was in specific terms, the date, the exact amount, who paid, and whether it has been reimbursed. A consistent format turns the log into a record you both can check later. Store receipts the same way every time."
+    },
+    {
+      "q": "How often should co-parents settle up on shared kid expenses?",
+      "a": "A regular schedule, such as monthly, tends to work better than settling after every single expense. Agree on the timing in advance so both parents know what to expect. Keep the log neutral, as a shared record rather than a tally one parent keeps on the other."
+    },
+    {
+      "q": "What counts as a shared expense versus a personal one after divorce?",
+      "a": "Co-parents need to agree ahead of time on what counts as shared, such as school fees, activities, or medical costs. If a disagreement comes up about what a custody order requires, take that question to your attorney or mediator. Settling the definition early avoids repeated arguments over individual purchases."
+    }
+  ],
   "takeaway": "Most of the friction in splitting children's expenses comes from process, not disagreement about the money. A short upfront agreement on what counts, how it's logged, and how often it settles — plus a running total both parents can see — turns a recurring argument into a routine you barely have to think about.",
   "productSlug": "co-parenting-companion",
   "productPitch": "The Co-Parenting Companion holds exactly this record: a shared-expense tracker with a running total, alongside the parenting schedule and your children's care team, all in one private, offline file — a one-time purchase, not another subscription."

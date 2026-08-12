@@ -17,6 +17,16 @@ export type GuideSection = {
   bullets?: string[];
 };
 
+// A question-shaped long-tail query and its answer. Rendered visibly at the
+// bottom of the guide AND emitted as FAQPage structured data — the two must
+// always come from this same array, because schema that describes questions
+// the page doesn't show is a manual-action risk, not a shortcut.
+// Plain text only, no inline HTML: the answer string goes into JSON-LD verbatim.
+export type GuideFaqItem = {
+  q: string;
+  a: string;
+};
+
 export type Guide = {
   slug: string;
   title: string;
@@ -30,6 +40,7 @@ export type Guide = {
   takeaway: string; // closing summary paragraph
   productSlug: string; // the organizer this guide naturally leads to
   productPitch: string; // one calm sentence bridging guide -> product
+  faq?: GuideFaqItem[]; // optional; guides without one render exactly as before
 };
 
 const GUIDES_DIR = path.join(process.cwd(), "content", "guides");
@@ -109,6 +120,36 @@ export function guidesByCluster(category: Category): Guide[] {
 // guide <-> product in both directions, not just category -> guide.
 export function guidesForProduct(slug: string): Guide[] {
   return guides.filter((g) => g.productSlug === slug);
+}
+
+// Drop malformed or empty entries so a bad JSON edit renders nothing rather
+// than emitting an FAQPage with empty questions, which Google treats as an
+// error. Returns [] when there is no usable FAQ.
+export function guideFaq(g: Guide): GuideFaqItem[] {
+  if (!Array.isArray(g.faq)) return [];
+  return g.faq
+    .filter(
+      (x): x is GuideFaqItem =>
+        !!x && typeof x.q === "string" && typeof x.a === "string"
+    )
+    .map((x) => ({ q: x.q.trim(), a: x.a.trim() }))
+    .filter((x) => x.q.length > 0 && x.a.length > 0);
+}
+
+// FAQPage structured data. Null when there is nothing to emit — never ship an
+// FAQPage with an empty mainEntity.
+export function faqPageLd(g: Guide): Record<string, unknown> | null {
+  const items = guideFaq(g);
+  if (items.length === 0) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: { "@type": "Answer", text: item.a },
+    })),
+  };
 }
 
 export type GuideCluster = { cluster: string; guides: Guide[] };

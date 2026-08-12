@@ -57,6 +57,20 @@
       ]
     }
   ],
+  "faq": [
+    {
+      "q": "What does it mean to get your affairs in order?",
+      "a": "It mainly means organizing information so the people who help you can find it, not drafting new legal documents. List the people to contact, the documents that exist, your accounts and debts, and your digital accounts, then store the list somewhere accessible."
+    },
+    {
+      "q": "What documents do you need to get your affairs in order?",
+      "a": "Common documents include a will, a durable power of attorney, a healthcare proxy, and a living will or advance directive. Beneficiary designations on retirement accounts and life insurance matter too, along with any trusts, deeds, or titles you hold."
+    },
+    {
+      "q": "Where should you keep your affairs-in-order documents?",
+      "a": "Keep everything in one place, such as a binder, a fireproof box, or a clearly marked file. Tell one or two trusted people where it is, and review the contents once a year."
+    }
+  ],
   "takeaway": "Getting your affairs in order is five layers: the people, the documents, the money map, the digital layer, and the handoff. Most of it is inventory, not law — which means most of it can be done at your kitchen table, and each layer is worth having even if you never finish the rest.",
   "productSlug": "estate-planning-organizer",
   "productPitch": "The Estate Planning Organizer turns these five layers into guided tasks and registers that do the math — contacts, documents, accounts, policies, wishes — with a printable summary for the people who'd need it. One file, completely offline."

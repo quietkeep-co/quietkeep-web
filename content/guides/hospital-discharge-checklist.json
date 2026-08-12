@@ -1,0 +1,93 @@
+{
+  "slug": "hospital-discharge-checklist",
+  "title": "The Hospital Discharge Checklist Nobody Hands You",
+  "description": "Discharge takes fifteen minutes and hands you the next month. What to ask for, who to ask by title, and what to write down before you leave the room.",
+  "cluster": "Medical crisis",
+  "date": "2026-08-24",
+  "updated": "2026-08-24",
+  "readingMinutes": 8,
+  "intro": [
+    "Discharge takes about fifteen minutes. Someone comes in with a folder, talks through a few pages, asks if you have any questions, and then a volunteer arrives with a wheelchair. The hospital has done its job. The paperwork is thorough and mostly accurate. And then you're in the parking lot, responsible for the next month.",
+    "That gap — between a fifteen-minute handoff and thirty days of care you didn't train for — is where most families get into trouble. Not because anyone did anything wrong, but because nobody slows down long enough to write things down while the people who know the answers are still standing in front of them. Everything below is organizational: who to ask, what to record, who to call."
+  ],
+  "sections": [
+    {
+      "heading": "Ask for the case manager by title",
+      "paragraphs": [
+        "Every floor has one, sometimes called a discharge planner or a social worker. This is the person who actually arranges what happens after you leave — home health, equipment, rehab placement, insurance authorizations.",
+        "Nurses are busy and aren't the right ask. Doctors round early and leave. The case manager is the one whose job is the transition, and most families never learn they exist.",
+        "Ask by title: <b>\"Can I speak with the case manager about the discharge plan?\"</b> That one sentence changes the quality of the next week more than anything else in this guide. Get their name and a direct number, and write both down."
+      ]
+    },
+    {
+      "heading": "The medication problem",
+      "paragraphs": [
+        "This is the most common cause of a return trip to the hospital, and it's almost entirely a paperwork failure.",
+        "Two lists exist. There's what the patient took at home before all this started, sitting in a kitchen cabinet in a shoebox. And there's the list on the discharge papers, which reflects what the hospital decided during the stay. They're rarely the same list. Doses change, things get stopped, and something new gets added that duplicates something old under a different name.",
+        "Before you leave, get the two lists side by side and ask someone who can answer:"
+      ],
+      "bullets": [
+        "Which home medications stop completely?",
+        "Which ones continue, and at what dose?",
+        "What's new, and what is it for?",
+        "Are any of these the same drug under a different name?",
+        "Which pharmacy is this going to, and has it already been sent?"
+      ]
+    },
+    {
+      "heading": "Equipment and services",
+      "paragraphs": [
+        "If nobody can reconcile the medications at the bedside, ask the hospital pharmacist. They can, and they will. Then box up the bottles that are no longer on the list before anyone gets home — a stopped medication that stays in the cabinet gets taken.",
+        "\"Home health has been arranged\" can mean several different things, and it's worth knowing which. Ask plainly:"
+      ],
+      "bullets": [
+        "What's being delivered, and when — walker, commode, hospital bed, oxygen?",
+        "Who's delivering it, and does someone need to be home?",
+        "What is a nurse or therapist coming for, how often, and starting what day?",
+        "What does insurance cover, and for how long?",
+        "What happens when that authorization runs out?",
+        "<b>Write down the vendor's phone number</b>, not the hospital's."
+      ]
+    },
+    {
+      "heading": "The follow-up nobody books",
+      "paragraphs": [
+        "Discharge papers usually say to follow up with the primary care doctor in seven to ten days, and with a specialist at some point. That isn't an appointment. That's a suggestion in a folder.",
+        "Book it before you leave the building if you can, or the same afternoon if you can't. The week after a hospital stay is the week nobody has the energy to sit on hold."
+      ]
+    },
+    {
+      "heading": "The first seventy-two hours",
+      "paragraphs": [
+        "The days right after discharge are when things go sideways, and it's usually not dramatic. It's confusion about a dose, a fall on the way to the bathroom at 3am, or nobody knowing whether a symptom is normal.",
+        "Before you leave, get answers to three questions and write them somewhere everyone in the house can find. <b>What's normal?</b> Some pain, some swelling, some fatigue is expected — ask what the expected version looks like. <b>What isn't?</b> Ask for the specific list: fever above what number, bleeding that looks how, confusion, shortness of breath, a wound that changes in what way. <b>Who do we call, and when?</b> There's usually a daytime number and a different answer for nights and weekends. Get both, and ask what warrants a call versus a return to the emergency room.",
+        "Tape it to the refrigerator. It sounds excessive until 2am, when it's the only reason nobody has to guess."
+      ]
+    },
+    {
+      "heading": "Write it down while you're still in the room",
+      "paragraphs": [
+        "Once you're in the parking lot, the hospital turns into a phone tree. Before you leave, capture the names and titles of everyone you spoke with, the case manager's direct number, what was decided in your own words, what you were told to watch for, every vendor and agency involved, and the follow-up appointments with dates.",
+        "You aren't being difficult. You're the only person who will be in the room for every part of this. The staff changes shift. You don't.",
+        "If you're doing this for a parent or a spouse, two things come up fast. You'll be asked whether you're authorized to receive information, and whether anyone holds a healthcare power of attorney. If those documents exist, know where they are. If they don't, this is the moment families discover it — and it's the one moment they can't be created."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Who is the hospital case manager, and how is that different from the nurse?",
+      "a": "The case manager, sometimes called a discharge planner or social worker, arranges what happens after the hospital stay: home health, equipment, rehab, and insurance authorizations. Nurses handle care on the floor. Ask for the case manager by title when you want to talk about the plan after discharge."
+    },
+    {
+      "q": "What should I do if the hospital medication list doesn't match the one at home?",
+      "a": "Don't guess, and don't assume the newer list wins. Ask the hospital pharmacist to reconcile them before you leave. Then remove the stopped medications from the house, because a bottle left in the cabinet tends to get taken."
+    },
+    {
+      "q": "Can I ask to delay a hospital discharge if we aren't ready?",
+      "a": "You can say that you don't have a safe plan yet and ask the case manager what the options are. Be specific about what's missing, such as no equipment delivered, no help at home, or stairs with no way around them. Whether anything changes depends on the situation, but that conversation happens with the case manager, not at the front desk."
+    }
+  ],
+  "takeaway": "Discharge is a fifteen-minute conversation that hands you a month of responsibility. Ask for the case manager by title, reconcile the two medication lists before you leave the building, book the follow-up yourself, and write down who said what while the people with the answers are still in front of you.",
+  "productSlug": "medical-crisis-companion",
+  "productPitch": "The Medical Crisis Companion has these pages already laid out — contacts, medication reconciliation, equipment and agencies, follow-ups, and the what-to-watch-for sheet — in one file that works with no signal, which matters in a hospital."
+}

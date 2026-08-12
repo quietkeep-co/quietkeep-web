@@ -6,7 +6,8 @@ import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import { JsonLd } from "@/components/JsonLd";
-import { getGuide, guideSlugs } from "@/lib/guides";
+import { GuideFaq } from "@/components/GuideFaq";
+import { getGuide, guideSlugs, faqPageLd } from "@/lib/guides";
 import { getProduct } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -52,9 +53,14 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     mainEntityOfPage: `https://${site.domain}/guides/${g.slug}`,
   };
 
+  // Null unless the guide carries an faq array. Emitted only alongside the
+  // visible <GuideFaq /> block below.
+  const faqLd = faqPageLd(g);
+
   return (
     <>
       <JsonLd data={articleLd} />
+      {faqLd && <JsonLd data={faqLd} />}
       <Nav links={guideNav} cta={{ label: "See the organizers", href: "/organizers" }} />
 
       <article className="pb-[72px] pt-16 md:pt-[84px]">
@@ -111,6 +117,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
               dangerouslySetInnerHTML={{ __html: g.takeaway }}
             />
           </div>
+
+          <GuideFaq guide={g} />
 
           {product && (
             <Reveal className="mt-[26px] flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-card px-[30px] py-[26px]">

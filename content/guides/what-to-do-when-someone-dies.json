@@ -56,6 +56,20 @@
       ]
     }
   ],
+  "faq": [
+    {
+      "q": "What do you need to do in the first few days after someone dies?",
+      "a": "Get a legal pronouncement of death, then notify immediate family and close friends. Look for funeral plans or written service preferences, arrange care for any dependents or pets, and secure the home. Choose a funeral home and order certified death certificates."
+    },
+    {
+      "q": "How long does it take to settle someone's affairs after they die?",
+      "a": "Most of the work happens gradually over weeks and months, not all at once. The first days cover pronouncement and funeral arrangements, the first two weeks cover documents and notifications, and the following months cover accounts, bills, and final distributions."
+    },
+    {
+      "q": "Should you pay a deceased person's bills before the estate is settled?",
+      "a": "Hold off on paying the deceased's debts from your own money until you understand what the estate owes. Avoid distributing belongings or money early, and keep detailed records of anything you spend so you can be reimbursed."
+    }
+  ],
   "takeaway": "Almost nothing has to happen the day someone dies. A short list needs you in the first days, notifications and paperwork fill the first weeks, and the long middle is a matter of working a list one institution at a time — with a log of everything, and nobody's debts paid from your own pocket while you sort out the estate's.",
   "productSlug": "estate-settlement-companion",
   "productPitch": "The Estate Settlement Companion holds this entire process in one private file — guided tasks by phase, registers for accounts, debts, and expenses that do the math, and printable summaries for the attorney. Built for exactly this season."

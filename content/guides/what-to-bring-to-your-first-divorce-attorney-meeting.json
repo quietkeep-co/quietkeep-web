@@ -58,6 +58,20 @@
       ]
     }
   ],
+  "faq": [
+    {
+      "q": "What financial documents should I bring to my first meeting with a divorce attorney?",
+      "a": "Bring a list of your bank and cash accounts, both joint and separate, along with retirement accounts, real estate, vehicles, and debts. Locate recent statements for each account and your most recent tax return. A rough but complete list is more useful at this stage than exact figures."
+    },
+    {
+      "q": "What questions should I ask at a first divorce attorney consultation?",
+      "a": "Ask about the fee structure, a realistic timeline, and whether the attorney handles mediation. Also ask what you need before the next step and whether there are any actions to avoid taking right now with your finances. A written list of questions helps you get clear answers without spending extra time on the clock."
+    },
+    {
+      "q": "What identification and paperwork do I need for a first divorce attorney meeting?",
+      "a": "Bring your driver's license or ID, your marriage certificate, and any prenuptial or postnuptial agreement. Also bring any paperwork already served or received, such as a summons or petition. Recent account statements and your latest tax return round out the picture."
+    }
+  ],
   "takeaway": "A first divorce attorney meeting goes further when you arrive with a rough but complete list of accounts and debts, a sense of where the key documents live, and a short written list of questions. None of that requires deciding anything in advance — it just means the hour gets spent on your situation instead of on reconstructing basic facts from memory. The paperwork doesn't stop once the decree is signed, either — <a href=\"/guides/after-divorce-checklist\">the after-divorce checklist</a> covers what typically follows.",
   "productSlug": "divorce-organizer",
   "productPitch": "The Divorce Organizer holds this exact list — an assets-and-debts register that totals itself, a place for the documents you've located, and a one-click summary formatted for your first meeting. Fully offline, and it's an organizer, not legal advice."

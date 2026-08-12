@@ -55,6 +55,20 @@
       ]
     }
   ],
+  "faq": [
+    {
+      "q": "What should an executor do first after someone dies?",
+      "a": "Locate the will and any trust documents through the attorney, a home safe, or a safe deposit box. Order more death certificates than you think you need. Start a log of every call, letter, and expense from day one."
+    },
+    {
+      "q": "How many death certificates does an executor need to order?",
+      "a": "Ten to fifteen certified copies is a common starting point. Order more than you think you will need, since many institutions ask for their own copy."
+    },
+    {
+      "q": "Can an executor pay estate bills out of their own pocket?",
+      "a": "Debts are paid from the estate, in an order set by law, not by whichever creditor calls first. Keep a log of any expenses you cover yourself so the estate can reimburse you."
+    }
+  ],
   "takeaway": "The first 30 days as an executor have a natural shape: get your footing in week one, figure out which legal track you're on in week two, open the real financial accounting in week three, and turn everything into a working inventory by week four. Nothing about it needs to be fast — it needs to be tracked, one week at a time.",
   "productSlug": "estate-settlement-companion",
   "productPitch": "The Estate Settlement Companion is built around exactly this pacing — guided tasks organized by phase, not a single overwhelming list, with registers for accounts, debts, and expenses that do the math for you as the months go on."

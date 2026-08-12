@@ -1,0 +1,93 @@
+{
+  "slug": "home-inventory-before-a-claim",
+  "title": "How to Document Your Home Before You Need to Prove It",
+  "description": "An insurance claim turns on proving you owned the thing, not that it was damaged. A room-by-room home inventory method that takes one afternoon.",
+  "cluster": "Home & insurance",
+  "date": "2026-08-17",
+  "updated": "2026-08-17",
+  "readingMinutes": 7,
+  "intro": [
+    "Most people think an insurance claim is about proving something was damaged. It isn't. The fire, the flood, the break-in — that part is usually obvious, and your insurer already knows about it.",
+    "What you have to prove is that you owned it. That the thing existed, that it was yours, roughly what it was worth, and what condition it was in the day before everything went wrong. And you have to do that after the one event that destroyed most of the evidence. This guide is the work that makes it possible. It takes an afternoon, it's boring, and it's the single most useful boring thing you can do for your household."
+  ],
+  "sections": [
+    {
+      "heading": "What actually happens in a claim",
+      "paragraphs": [
+        "After a loss, your insurer asks for a proof of loss. Somewhere in that paperwork is a schedule of personal property: a list of what you lost, item by item, with a value and a purchase date where you can manage it.",
+        "Most families sit down at a kitchen table and try to write that list from memory, usually while staying somewhere else. Memory is worse at this than anyone expects. People remember the television and forget the tools in the garage. They remember the couch and forget the six years of small purchases that furnished the room around it.",
+        "An adjuster isn't trying to trick you. They're working from what you give them. <b>If you give them a thin list, you get a thin number</b> — and nobody ever finds out what was left off."
+      ]
+    },
+    {
+      "heading": "The method: one room at a time",
+      "paragraphs": [
+        "Don't try to itemize your house. You'll quit in the first bedroom. Instead, walk through each room with your phone and do the same four things."
+      ],
+      "bullets": [
+        "<b>One wide shot of the room.</b> Stand in the doorway and photograph the whole space. This is the picture that establishes context — that these things were in this house, arranged like a house someone lived in.",
+        "<b>Open everything.</b> Closets, cabinets, dressers, the pantry, the linen closet. Most of what you own is behind a door, and a closed door photographs as nothing.",
+        "<b>Serial numbers on anything with a plug.</b> Appliances, televisions, computers, tools, lawn equipment, the furnace, the water heater. The label is usually on the back or underside. One photo per label — you don't need to type them out.",
+        "<b>Say what you're looking at.</b> If you shoot video instead of stills, narrate as you walk. Twenty minutes of narration captures detail that would take three hours to type."
+      ]
+    },
+    {
+      "heading": "What a useful photo shows",
+      "paragraphs": [
+        "Four things, and any photo that has all four is doing its job: the item, clearly enough to identify make and model; its condition, so nobody argues later about wear; the serial or model number where one exists; and enough context that it's recognizably inside your home.",
+        "The most common mistake is a beautiful close-up of a watch on a white background. It proves a watch exists somewhere in the world. It doesn't prove it was in your house."
+      ]
+    },
+    {
+      "heading": "The things everyone forgets",
+      "paragraphs": [
+        "Some categories go missing from almost every list."
+      ],
+      "bullets": [
+        "<b>The garage.</b> Tools accumulate over decades and are worth far more than people guess — power tools, hand tools, the ladder, the compressor, the yard equipment.",
+        "<b>Jewelry and watches.</b> These usually have to be scheduled separately on the policy to be covered at full value. While you're photographing them, find out whether yours are scheduled. Many people learn they aren't at the worst possible moment.",
+        "<b>The basement and the attic.</b> Holiday decorations, luggage, the second set of dishes, the furniture that used to be upstairs.",
+        "<b>Clothing.</b> Nobody photographs a closet of ordinary clothes, and a family's wardrobe is often one of the largest line items in a total loss.",
+        "<b>Anything you built.</b> Finished basements, custom shelving, the deck. These sit in a different part of the policy than your belongings, but the photos matter just as much.",
+        "<b>Receipts you already have.</b> Don't hunt for paper. Search your email for order confirmations from the last few years and save the folder — an hour of work that produces dated proof of purchase for a surprising share of what you own."
+      ]
+    },
+    {
+      "heading": "Where the record has to live",
+      "paragraphs": [
+        "This is where most home inventories fail. A folder of photos on the phone in your pocket is fine. A folder on the computer inside the house you're documenting is not. Neither is a printed binder in the office closet, which is a very well-organized way to burn your evidence along with everything else.",
+        "The record has to survive the event it exists for. That means at least one copy outside the building — a drive at a relative's house, a copy in a safe deposit box, or a backup you can reach from a hotel room. <b>Two copies, two buildings.</b> That's the whole rule."
+      ]
+    },
+    {
+      "heading": "The boring parts the photos don't carry",
+      "paragraphs": [
+        "Write these down in one place, next to the inventory itself."
+      ],
+      "bullets": [
+        "Your policy number and the claims phone number",
+        "Your agent's name and direct line",
+        "Your deductible, and whether you have replacement cost or actual cash value coverage",
+        "Which items are separately scheduled",
+        "<b>The date you last updated the inventory.</b> An inventory from nine years ago describes a house you no longer live in, and an old one is easy to mistake for a current one."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I need receipts for everything in a home inventory?",
+      "a": "No. Photos, model numbers, and a reasonable description carry most of the list. Receipts help most for high-value items, and the fastest way to find them is to search your email for order confirmations rather than digging through paper."
+    },
+    {
+      "q": "Is video good enough for a home inventory, or do I need individual photos?",
+      "a": "Video is good enough for most of a house, and it's faster, especially if you narrate as you walk. Use still photos for the things that need detail: serial number labels, jewelry, artwork, and anything unusual."
+    },
+    {
+      "q": "How often should I update my home inventory?",
+      "a": "Once a year is enough for most households, plus a quick pass after any large purchase, renovation, or move. Write down the date of the last update, because an old inventory is easy to mistake for a current one."
+    }
+  ],
+  "takeaway": "An insurance claim turns on proving you owned the thing, not that it was damaged. One wide photo of every room with the closets open, serial numbers on anything with a plug, and a copy stored outside the building covers most of it. It takes an afternoon, and the afternoon has to happen before anything goes wrong.",
+  "productSlug": "home-inventory-organizer",
+  "productPitch": "The Home Inventory & Insurance Claim Organizer is the structure already built — room-by-room prompts, fields for policy details and serial numbers, and a claim log for the version of this you hope you never need."
+}
