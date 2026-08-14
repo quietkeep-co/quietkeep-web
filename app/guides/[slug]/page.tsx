@@ -46,8 +46,18 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     "@type": "Article",
     headline: g.title,
     description: g.description,
-    datePublished: g.date,
-    dateModified: g.updated,
+    // Google's Rich Results Test flags a bare date as an invalid datetime and
+    // warns about the missing timezone, so emit a full ISO-8601 value. The
+    // JSON keeps plain dates because the visible "Updated ..." line parses
+    // them locally; only the schema needs the precision.
+    datePublished: `${g.date}T09:00:00-04:00`,
+    dateModified: `${g.updated}T09:00:00-04:00`,
+    // Article schema wants an image. Reuse the image of the product this guide
+    // leads to rather than inventing one — it is always a real screenshot of
+    // the thing the guide is about.
+    ...(product?.hero?.image
+      ? { image: [`https://${site.domain}${product.hero.image}`] }
+      : {}),
     author: { "@type": "Organization", name: site.name, url: `https://${site.domain}` },
     publisher: { "@type": "Organization", name: site.name },
     mainEntityOfPage: `https://${site.domain}/guides/${g.slug}`,
