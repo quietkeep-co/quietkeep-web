@@ -29,7 +29,18 @@ export function generateMetadata({
     title: `${hub.cluster} guides`,
     description: hub.blurb,
     alternates: { canonical: `https://${site.domain}/guides/topics/${hub.slug}` },
-    openGraph: { title: `${hub.cluster} guides`, description: hub.blurb, type: "website" },
+    openGraph: {
+      title: `${hub.cluster} guides`,
+      description: hub.blurb,
+      type: "website",
+      images: [
+        {
+          url: getProduct(hub.guides[0]?.productSlug ?? "")?.hero.image ?? "/images/brand/og-default.png",
+          width: 1200,
+          height: 900,
+        },
+      ],
+    },
   };
 }
 

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Guides",
   description:
     "Calm, practical guides for getting organized before and after life's hardest moments — estate planning, digital legacy, and settling an estate.",
+  alternates: { canonical: "/guides" },
 };
 
 const guidesNav = [

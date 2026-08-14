@@ -26,7 +26,20 @@ export function generateMetadata({
     title: g.title,
     description: g.description,
     alternates: { canonical: `https://${site.domain}/guides/${g.slug}` },
-    openGraph: { title: g.title, description: g.description, type: "article" },
+    openGraph: {
+      title: g.title,
+      description: g.description,
+      type: "article",
+      // Page-level openGraph replaces the root's; without this line every
+      // guide shared to Pinterest or Facebook renders as a bare text card.
+      images: [
+        {
+          url: getProduct(g.productSlug)?.hero.image ?? "/images/brand/og-default.png",
+          width: 1200,
+          height: 900,
+        },
+      ],
+    },
   };
 }
 

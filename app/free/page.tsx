@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "The Peace of Mind Checklist — free",
   description:
     "A free, printable 20-point checklist of what your family would need to know, find, or reach if something happened to you. No email required. Works offline.",
+  alternates: { canonical: "/free" },
 };
 
 const freeNav = [

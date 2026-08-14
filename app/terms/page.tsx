@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LegalShell } from "@/components/LegalShell";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Terms" };
+export const metadata: Metadata = { title: "Terms", alternates: { canonical: "/terms" } };
 
 export default function Terms() {
   return (

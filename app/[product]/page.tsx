@@ -27,15 +27,21 @@ export function generateMetadata({
 }): Metadata {
   const p = getProduct(params.product);
   if (!p) return {};
+  // seoDescription is the <=155-char SERP snippet; hero.lede is page copy and
+  // routinely runs 200-400 chars, which Google truncates mid-sentence.
+  const desc = p.seoDescription || p.hero.lede;
   return {
     title: p.listingTitle || p.name,
-    description: p.hero.lede,
+    description: desc,
     alternates: { canonical: `/${p.slug}` },
     openGraph: {
       title: p.listingTitle || p.name,
-      description: p.hero.lede,
+      description: desc,
       url: `/${p.slug}`,
       type: "website",
+      // A page-level openGraph REPLACES the root layout's, images included —
+      // this is why every product page shipped without a social card image.
+      images: [{ url: p.hero.image, width: 1200, height: 900, alt: p.hero.imageAlt }],
     },
   };
 }

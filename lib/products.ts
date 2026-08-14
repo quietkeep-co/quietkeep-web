@@ -57,6 +57,9 @@ export type Product = {
   listingTitle?: string; // SEO/browser-tab title matched to the Etsy & Gumroad listing name; falls back to `name`
 
   category: Category;
+  // <=155-char meta description for search results. Optional; pages fall back
+  // to hero.lede, which is page copy and usually too long for a SERP snippet.
+  seoDescription?: string;
   status: "live" | "new";
   season: string;
   price: number;
