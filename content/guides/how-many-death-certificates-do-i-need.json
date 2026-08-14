@@ -1,0 +1,109 @@
+{
+  "slug": "how-many-death-certificates-do-i-need",
+  "title": "Death Certificates: How Many You Need, and Who Actually Wants One",
+  "description": "Almost every institution wants its own certified copy and will not accept a photocopy. How many to order, who asks, and why ordering more later costs you weeks.",
+  "cluster": "Estate settlement",
+  "date": "2026-09-21",
+  "updated": "2026-09-21",
+  "readingMinutes": 8,
+  "intro": [
+    "It is the first small decision an executor makes, it gets made in about four seconds at the funeral home, and it quietly shapes the next three months.",
+    "The funeral director asks how many certified copies of the death certificate you want. Most people say a number that sounds sensible, usually three or five, because it is difficult in that moment to imagine needing more. Then the requests start arriving, one institution at a time, each wanting an original it keeps."
+  ],
+  "sections": [
+    {
+      "heading": "Why a photocopy is not enough",
+      "paragraphs": [
+        "A certified copy is issued by the vital records office with a raised seal or security printing. It is the version an institution will accept as proof, and most of them keep the copy you send.",
+        "That last part is what catches people. You are not showing a document and taking it back. You are surrendering one, per institution, and the next one wants its own."
+      ]
+    },
+    {
+      "heading": "Who asks for one",
+      "paragraphs": [
+        "The list is longer than anyone expects, and this is not exhaustive."
+      ],
+      "bullets": [
+        "<b>Each bank or credit union</b> where an account was held, separately",
+        "<b>Each brokerage or retirement account</b> — a 401(k), an IRA, a pension",
+        "<b>Each life insurance policy</b>, including small ones through an employer or a union",
+        "<b>Social Security</b>, and any other benefit administrator",
+        "<b>The probate court</b>, if the estate goes through probate",
+        "<b>The DMV</b>, for each titled vehicle",
+        "<b>The county</b>, for real estate transfers",
+        "<b>Annuities, credit card companies with balances, and some creditors</b>",
+        "<b>The employer</b>, for a final paycheck and unused benefits",
+        "<b>Veterans benefits</b>, if applicable"
+      ]
+    },
+    {
+      "heading": "The number",
+      "paragraphs": [
+        "Ten to fifteen is a sensible starting point for an ordinary estate, and more is reasonable when there were several accounts, a business, property in more than one county, or many small insurance policies.",
+        "The cost per copy is real but modest, and it is the cheapest line item in the entire process. Ordering five extra is a small expense. Ordering five too few is a second trip to the vital records office, a fee, and a wait, arriving in a month when everything else is also waiting on something."
+      ]
+    },
+    {
+      "heading": "Order them at the funeral home",
+      "paragraphs": [
+        "The funeral director files the paperwork with the vital records office and can order copies as part of that filing. Doing it then is faster and easier than doing it yourself afterward.",
+        "Later, you order directly from the vital records office in the county or state where the death occurred. This is entirely possible, and it takes longer, requires proof of your relationship or your authority as executor, and involves a form and a fee. Nothing about it is hard. It is just one more thing at a moment when there are already several."
+      ]
+    },
+    {
+      "heading": "Not everyone can order one",
+      "paragraphs": [
+        "Certified copies are restricted records in most states. Typically an immediate family member, the executor or personal representative, or someone with a documented legal interest can order them, and you will be asked to prove which one you are.",
+        "That proof is usually a photo ID plus something showing the relationship or your authority — letters testamentary, if probate has issued them. If you are handling an estate for someone you are not related to, sort this out early rather than at the counter."
+      ]
+    },
+    {
+      "heading": "Two versions, and you probably want both",
+      "paragraphs": [
+        "Many states issue death certificates in two forms: one that includes the cause of death and one that does not.",
+        "Insurers, pension administrators, and anyone evaluating a claim generally want the version <b>with</b> cause of death. Banks, the DMV, utilities, and most routine account closures do not need it, and there is a reasonable argument for not handing that information to a cable company.",
+        "Ask the funeral director which version they are ordering. If the estate involves any life insurance, order several of each rather than discovering the distinction on a claim form."
+      ]
+    },
+    {
+      "heading": "What to have ready when you order",
+      "paragraphs": [
+        "Whether you order through the funeral home or directly, the same details are needed, and gathering them once saves repeating the exercise."
+      ],
+      "bullets": [
+        "Full legal name, including maiden name and any name previously used",
+        "Date and place of death, and date and place of birth",
+        "Social Security number",
+        "Parents' names, including mother's maiden name",
+        "Marital status and surviving spouse's name",
+        "Your relationship to the deceased, and your ID"
+      ]
+    },
+    {
+      "heading": "How to keep track of them",
+      "paragraphs": [
+        "Certified copies get lost in the pile of paperwork the same way everything else does. Two habits prevent it.",
+        "Keep them together, in one envelope, in one place. Do not distribute them into folders by institution.",
+        "And log every one that leaves: the date, the institution, what it was for, and how you sent it. When a bank says it never received anything six weeks later, that log is the difference between a phone call and starting over.",
+        "Some institutions will accept a copy if you ask, and some will return the original once they have recorded it. Both are worth asking about, and neither is worth relying on."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How many death certificates do I need?",
+      "a": "Ten to fifteen certified copies is a sensible starting point for an ordinary estate. Order more if there were several accounts, property in more than one county, a business, or a number of small insurance policies. Most institutions keep the copy you send."
+    },
+    {
+      "q": "Can I use a photocopy of a death certificate?",
+      "a": "Usually not. Most banks, insurers, and government offices require a certified copy with a raised seal or security printing, and they keep it. Ask whether a particular institution will accept a copy, but do not plan around it."
+    },
+    {
+      "q": "How do I order more death certificates later?",
+      "a": "Order directly from the vital records office in the county or state where the death occurred. You will need to show your relationship or your authority as executor, complete a form, and pay a fee. It works, and it takes longer than ordering through the funeral home at the time of filing."
+    }
+  ],
+  "takeaway": "Nearly every institution wants its own certified copy of the death certificate and keeps it. Order ten to fifteen through the funeral home while the paperwork is being filed, keep them in one envelope, and log every one that leaves. It is the cheapest decision in estate settlement and one of the few that is annoying to undo.",
+  "productSlug": "estate-settlement-companion",
+  "productPitch": "The Estate Settlement Companion includes the register for exactly this — which institution got a certificate, when, for what, and what came back — alongside the account, debt, and expense registers that do the math as the months go on."
+}

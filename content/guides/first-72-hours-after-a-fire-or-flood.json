@@ -1,0 +1,84 @@
+{
+  "slug": "first-72-hours-after-a-fire-or-flood",
+  "title": "The First 72 Hours After a House Fire or Flood",
+  "description": "What to do in the days after a loss, in order: safety, the claim, temporary housing, and the records that decide what gets paid months from now.",
+  "cluster": "Home inventory & insurance claims",
+  "date": "2026-09-28",
+  "updated": "2026-09-28",
+  "readingMinutes": 8,
+  "intro": [
+    "The first three days after a fire or a flood are loud, disorganized, and full of people telling you things you will not remember. Somewhere in the middle of it, decisions get made that determine what your claim is worth six months from now.",
+    "This is the order to work in. None of it is complicated, and almost all of it is easy to skip while you are standing in a parking lot deciding where to sleep."
+  ],
+  "sections": [
+    {
+      "heading": "Day one: safety, then the phone call",
+      "paragraphs": [
+        "Do not re-enter the building until the fire department or a building official says it is safe. After a fire, the risks are structural and chemical. After a flood, they are electrical, and standing water with live power is the way people are hurt cleaning up.",
+        "Then make one phone call: your insurance company's claims line. Do it on day one even if you know nothing yet. Starting the claim early is free, and several deadlines run from the date of loss rather than the date you got organized.",
+        "Ask two questions on that call and write the answers down. What is my claim number, and who is my adjuster. Then ask a third: what does my policy cover for temporary housing, and what do I need to keep in order to be reimbursed."
+      ]
+    },
+    {
+      "heading": "Photograph everything before anything moves",
+      "paragraphs": [
+        "This is the single highest-value hour of the entire process, and it competes with the strong urge to start cleaning.",
+        "Photograph the damage widely and then closely, room by room, before anything is moved, thrown out, or dried. Include the parts that look obvious to you now and will not be obvious to anyone in April. Photograph the outside of the building, the roof if you can do it safely, and any standing water with something in frame that shows depth."
+      ],
+      "bullets": [
+        "Wide shots of every room from the doorway",
+        "Close shots of damaged items, with serial numbers where they survive",
+        "The source, if it is visible — the burn origin, the failed pipe, the entry point",
+        "Anything you have to throw out for health reasons, photographed <b>before</b> it goes"
+      ]
+    },
+    {
+      "heading": "Do not throw anything away yet",
+      "paragraphs": [
+        "The instinct to clear ruined belongings is powerful and it is expensive. The adjuster may want to see them, and an item nobody saw is an item that is harder to be paid for.",
+        "If something has to go for health or safety reasons, photograph it first, and keep a written list of what was discarded and why.",
+        "Prevent further damage where you reasonably can — board a window, tarp a roof, shut off water. Most policies expect you to take reasonable steps to stop things getting worse, and reasonable steps are usually reimbursable. Keep those receipts."
+      ]
+    },
+    {
+      "heading": "Days two and three: housing and money out",
+      "paragraphs": [
+        "If the home is not livable, your policy may cover additional living expenses — a hotel, a rental, meals above what you would normally spend, pet boarding, extra mileage. Coverage varies enormously between policies, so ask what yours does and whether there is a limit or a time cap.",
+        "From the first night, keep every receipt. Hotel, meals, laundry, the clothes you had to buy because you left with nothing, the extra fuel. Photograph each receipt the day you get it, because paper receipts from week one do not survive to month four.",
+        "Ask whether your insurer will issue an advance. Many will, and being reimbursed in six weeks is a different situation from being reimbursed today."
+      ]
+    },
+    {
+      "heading": "Start the log now, not later",
+      "paragraphs": [
+        "Every call, every name, every promise. Date, who you spoke with, what they said, and what happens next. A claim involves an adjuster who may change, a contractor, possibly a restoration company, and your mortgage servicer if there is a loan, because settlement checks are often made out to both of you.",
+        "This is the record that settles disagreements later, and nobody has ever regretted keeping it."
+      ]
+    },
+    {
+      "heading": "Be careful about what you sign in week one",
+      "paragraphs": [
+        "Restoration and cleanup companies often arrive fast, sometimes before your adjuster. Many are good. Some will hand you a document that assigns your insurance benefits to them, which can put them, rather than you, in control of the claim.",
+        "Read what you sign, ask what it is called, and it is entirely reasonable to say you will sign once your adjuster has seen the property. You are allowed to slow down. Nothing that is legitimate expires in an afternoon.",
+        "Your policy has deadlines, including one for filing a formal proof of loss. Ask what yours are, in writing, and put them somewhere you will see them."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What should I do first after a house fire or flood?",
+      "a": "Stay out of the building until an official says it is safe, then call your insurer's claims line the same day and get your claim number and adjuster's name. Photograph everything before anything is moved or cleaned, and keep every receipt from the first night onward."
+    },
+    {
+      "q": "Can I throw away damaged items before the adjuster sees them?",
+      "a": "Try not to. The adjuster may want to see them, and items nobody saw are harder to be paid for. If something must go for health or safety reasons, photograph it first and keep a written list of what was discarded and why."
+    },
+    {
+      "q": "Does insurance pay for a hotel after a house fire?",
+      "a": "Many policies include additional living expenses, which can cover temporary housing, meals above what you would normally spend, and related costs. Coverage and limits vary, so ask your insurer what your policy allows, whether there is a time cap, and whether they will issue an advance."
+    }
+  ],
+  "takeaway": "Safety, then the claims call, then photographs before anything moves. Do not discard damaged items, keep every receipt from the first night, log every conversation, and read anything a restoration company asks you to sign. The first three days decide what the claim looks like six months later.",
+  "productSlug": "home-inventory-organizer",
+  "productPitch": "The Home Inventory & Insurance Claim Organizer has the claim side already built — the call log, the discarded-items list, the living expense register, and the deadlines page — next to the room-by-room inventory you hope you never need."
+}
