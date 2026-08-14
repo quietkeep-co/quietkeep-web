@@ -7,6 +7,9 @@ export function Footer() {
       <div className="wrap flex flex-wrap items-start justify-between gap-5">
         <div>© 2026 Quietkeep — {site.domain}</div>
         <div className="flex flex-wrap gap-x-5 gap-y-2">
+          <Link className="text-ink-soft hover:text-ink" href="/about">
+            About
+          </Link>
           <Link className="text-ink-soft hover:text-ink" href="/privacy-policy">
             Privacy policy
           </Link>

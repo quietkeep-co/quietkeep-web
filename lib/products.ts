@@ -45,7 +45,7 @@ export const CATEGORY_META: Record<
     label: "Life & Home Protection",
     kicker: "A diagnosis, a claim, a school year",
     blurb:
-      "Life's other hard moments, not a death or a divorce — a medical crisis, a home you need to document before or after a loss, a school year of services and progress to track. Private, and never medical, legal, or financial advice.",
+      "Life's other hard seasons — a medical crisis, a home to document before or after a loss, a school year of services to track, a path to building your family. Private, and never medical, legal, or financial advice.",
   },
 };
 
@@ -57,6 +57,9 @@ export type Product = {
   listingTitle?: string; // SEO/browser-tab title matched to the Etsy & Gumroad listing name; falls back to `name`
 
   category: Category;
+  // <=155-char meta description for search results. Optional; pages fall back
+  // to hero.lede, which is page copy and usually too long for a SERP snippet.
+  seoDescription?: string;
   status: "live" | "new";
   season: string;
   price: number;

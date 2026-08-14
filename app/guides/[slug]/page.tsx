@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -26,7 +28,25 @@ export function generateMetadata({
     title: g.title,
     description: g.description,
     alternates: { canonical: `https://${site.domain}/guides/${g.slug}` },
-    openGraph: { title: g.title, description: g.description, type: "article" },
+    openGraph: {
+      title: g.title,
+      description: g.description,
+      type: "article",
+      // Page-level openGraph replaces the root's; without this line every
+      // guide shared to Pinterest or Facebook renders as a bare text card.
+      // Purpose-built 1200x630 card per guide (generated at authoring time);
+      // fall back to the product hero if a card was never generated, so a new
+      // guide is never blocked on artwork.
+      images: [
+        fs.existsSync(path.join(process.cwd(), "public", "images", "og", "guides", `${g.slug}.png`))
+          ? { url: `/images/og/guides/${g.slug}.png`, width: 1200, height: 630 }
+          : {
+              url: getProduct(g.productSlug)?.hero.image ?? "/images/brand/og-default.png",
+              width: 1200,
+              height: 900,
+            },
+      ],
+    },
   };
 }
 
@@ -46,9 +66,19 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     "@type": "Article",
     headline: g.title,
     description: g.description,
-    datePublished: g.date,
-    dateModified: g.updated,
-    author: { "@type": "Organization", name: site.name, url: `https://${site.domain}` },
+    // Google's Rich Results Test flags a bare date as an invalid datetime and
+    // warns about the missing timezone, so emit a full ISO-8601 value. The
+    // JSON keeps plain dates because the visible "Updated ..." line parses
+    // them locally; only the schema needs the precision.
+    datePublished: `${g.date}T09:00:00-04:00`,
+    dateModified: `${g.updated}T09:00:00-04:00`,
+    // Article schema wants an image. Reuse the image of the product this guide
+    // leads to rather than inventing one — it is always a real screenshot of
+    // the thing the guide is about.
+    ...(product?.hero?.image
+      ? { image: [`https://${site.domain}${product.hero.image}`] }
+      : {}),
+    author: { "@type": "Organization", name: site.name, url: `https://${site.domain}/about` },
     publisher: { "@type": "Organization", name: site.name },
     mainEntityOfPage: `https://${site.domain}/guides/${g.slug}`,
   };
