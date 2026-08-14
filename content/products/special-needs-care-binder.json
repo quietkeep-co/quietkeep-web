@@ -22,7 +22,7 @@
     "headline": "A whole school year, written down as it happens.",
     "lede": "Track therapy minutes, goal progress, accommodations, and every unanswered request across the school year, then print the year in one click before the meeting. Private and fully offline.",
     "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
-    "image": "/images/special-needs-care-binder/services.png",
+    "image": "/images/special-needs-care-binder/app-screenshot-5-services.png",
     "imageAlt": "Special Needs Care Binder showing the Service Delivery Log"
   },
   "band": [
@@ -75,19 +75,19 @@
   ],
   "screens": [
     {
-      "img": "/images/special-needs-care-binder/services.png",
+      "img": "/images/special-needs-care-binder/app-screenshot-5-services.png",
       "alt": "Service Delivery Log",
       "captionBold": "The minutes, counted for you.",
       "caption": "What the plan lists, what was delivered, and the difference — added up across the year."
     },
     {
-      "img": "/images/special-needs-care-binder/goals.png",
+      "img": "/images/special-needs-care-binder/app-screenshot-4-goals.png",
       "alt": "Goal Progress Log",
       "captionBold": "A year of progress reports, at a glance.",
       "caption": "One row per goal per reporting period, including before and after long breaks."
     },
     {
-      "img": "/images/special-needs-care-binder/comms.png",
+      "img": "/images/special-needs-care-binder/app-screenshot-7-comms.png",
       "alt": "School Communication Log",
       "captionBold": "What you're still waiting on.",
       "caption": "Every request logged, with the ones nobody answered counted for you."

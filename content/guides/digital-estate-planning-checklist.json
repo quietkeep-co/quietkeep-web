@@ -62,6 +62,20 @@
       ]
     }
   ],
+  "faq": [
+    {
+      "q": "What is a digital estate plan?",
+      "a": "It is a record of your online accounts and devices so your family is not locked out after you die. It covers email, financial apps, social media, subscriptions, cloud storage, and any devices protected by two-factor authentication."
+    },
+    {
+      "q": "Should you write down your passwords in a digital estate plan?",
+      "a": "No. The plan should record where access instructions are stored, not the passwords themselves, since a loose list of passwords is a liability rather than a gift."
+    },
+    {
+      "q": "Who should be your digital executor?",
+      "a": "A digital executor is the person you trust to work through your account list and carry out your decisions. This does not have to be the same person as your legal executor, since the role is about completing tasks systematically."
+    }
+  ],
   "takeaway": "Your digital life is invisible to the people who would one day need to handle it. One honest afternoon of mapping — accounts, devices, decisions, handoff — turns a locked filing cabinet into something your family can actually follow. The map records where the keys live; it never contains the keys themselves.",
   "productSlug": "digital-legacy-planner",
   "productPitch": "The Digital Legacy Planner walks you through this exact checklist as a guided app — 35 tasks, an account inventory with a decision for each, a device register, and a printable instruction sheet for your family. Fully offline, and it never stores a password by design."

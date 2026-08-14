@@ -1,0 +1,89 @@
+{
+  "slug": "caring-for-aging-parent-first-30-days",
+  "title": "Caring for an Aging Parent: The First 30 Days",
+  "description": "Caregiving rarely starts with a decision. A week-by-week plan for the first month — medical, then money and access, then the house, then the family.",
+  "cluster": "Caregiving",
+  "date": "2026-08-31",
+  "updated": "2026-08-31",
+  "readingMinutes": 9,
+  "intro": [
+    "Almost nobody decides to become a caregiver. It starts with a fall, or a diagnosis, or a phone call from a neighbor who noticed the mail piling up. There's no moment where you accept the role. One day you're a person who calls your mother on Sundays, and a few weeks later you're the person who knows her cardiologist's office hours.",
+    "The first month is mostly disorientation. Everything feels urgent and nothing is organized, so people either try to fix all of it at once and burn out, or freeze and do none of it. Neither is necessary. Almost nothing here has to happen this week — it has to happen in a sensible order, written down, one week at a time."
+  ],
+  "sections": [
+    {
+      "heading": "Week 1 — Medical",
+      "paragraphs": [
+        "Start here, because everything else depends on it and because it's the part where being disorganized causes actual harm. Build one written list — not a memory, not four text threads with your sister. One list, on paper or in one file."
+      ],
+      "bullets": [
+        "<b>The doctors.</b> Every one of them: primary care, cardiologist, neurologist, whoever. Name, practice, phone number, and what they treat. Most families discover they can name two of six.",
+        "<b>The medications.</b> Name, dose, what it's for, who prescribed it, and when it was last reviewed. Do this from the actual bottles, not from memory. Include the over-the-counter things and the supplements.",
+        "<b>The pharmacy</b>, and whether anything is on auto-refill.",
+        "<b>Allergies and reactions</b>, including the ones that aren't allergies but matter anyway.",
+        "<b>The insurance.</b> Medicare, any supplement or Advantage plan, drug coverage. Photograph the cards, front and back.",
+        "<b>Ask to be added to the release of information at each practice.</b> Without it, offices legally can't tell you anything — and you'll discover this on a Friday afternoon when it matters."
+      ]
+    },
+    {
+      "heading": "Week 2 — Access and money",
+      "paragraphs": [
+        "Now the part families avoid, because it feels like going through someone's drawers. Some of it is. Do it anyway, with them in the room whenever you can.",
+        "Find out where the money is — which bank, which accounts, roughly what comes in and when, from Social Security, a pension, an annuity, or a rental payment. Then what goes out automatically: mortgage or rent, utilities, insurance premiums, the subscriptions nobody remembers signing up for. Autopay is a quiet problem in this period. Bills keep paying themselves from an account nobody is watching, until they don't.",
+        "Then find out who is on what. Joint accounts, listed beneficiaries, who the bank thinks is authorized. <b>Being someone's child grants you exactly nothing at a bank.</b>"
+      ]
+    },
+    {
+      "heading": "The documents that may not exist yet",
+      "paragraphs": [
+        "This is the important part of week two, and the part with a closing window."
+      ],
+      "bullets": [
+        "<b>A financial power of attorney</b>, letting someone handle money matters",
+        "<b>A healthcare proxy or medical power of attorney</b>, letting someone make medical decisions",
+        "<b>A will</b>, and where the original is kept",
+        "<b>A living will or advance directive</b>, saying what they want"
+      ]
+    },
+    {
+      "heading": "Why that window matters",
+      "paragraphs": [
+        "These can only be created while the person still has the capacity to sign them. If cognition is declining, the window is open now and closing.",
+        "Once it closes, the alternative is guardianship, which is a court process — slower, public, and considerably more expensive. If those documents don't exist, week two is when you find out, while there's still time to do something about it. That's worth an uncomfortable conversation."
+      ]
+    },
+    {
+      "heading": "Week 3 — The house",
+      "paragraphs": [
+        "Now look at where they actually live, honestly. The stairs, including the basement ones nobody thinks about and the step at the back door. The bathroom, which is where falls happen — grab bars, a shower seat, a raised toilet seat, non-slip surfaces, all of it cheap and all of it worth doing. The floors, where throw rugs are the single most removable hazard in most houses. The lighting, especially the path from the bed to the bathroom at night. The kitchen, where whether the stove gets left on and what's in the refrigerator both tell you a great deal.",
+        "Then the driving. It's the hardest conversation, and it goes better when it's specific rather than categorical. Not \"you should stop driving,\" but how did the drive to church go, at night, in the rain. Talk about routes and conditions, not about surrender. And notice that this is week three, not week one — it costs trust, and you'll need that trust later."
+      ]
+    },
+    {
+      "heading": "Week 4 — The people",
+      "paragraphs": [
+        "You can't do this alone, and the fourth week is for admitting it out loud.",
+        "Talk to your siblings specifically. Not \"we should all help more,\" but who takes medical appointments, who handles bills, who calls on which days, who covers the weekend. Then <b>write down what everyone agreed to</b> — not to hold anyone to it legally, but because six months from now nobody will remember, and resentment grows in the gap between what people think they agreed to and what was actually said.",
+        "Be honest about what you can't do — distance, a job, small children, your own health. Say it now, when there's time to plan around it, rather than in month eight when it comes out as an argument. And find out what already exists: your county has an Area Agency on Aging that knows about meal delivery, transportation, adult day programs, and respite care. Most families never call them. It's one phone call and it's free.",
+        "Then look at yourself. Caregiver burnout isn't a moral failing and it isn't rare. It arrives quietly, usually around month four, in people who did everything right in month one."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the first thing to do when a parent starts needing help?",
+      "a": "Build one written medical list: every doctor, every medication from the actual bottles, the pharmacy, allergies, and the insurance cards. Then ask each practice to add you to the release of information, because without it they can't legally tell you anything."
+    },
+    {
+      "q": "What documents do we need for an aging parent, and what happens without them?",
+      "a": "A financial power of attorney, a healthcare proxy, a will, and an advance directive. They can only be signed while the person still has capacity. Without them, handling money or making medical decisions usually requires guardianship through a court, which is slower, public, and considerably more expensive."
+    },
+    {
+      "q": "How do I talk to my siblings about splitting caregiving work?",
+      "a": "Be specific instead of general. Assign the actual tasks: medical appointments, bills, which days each person calls, who covers weekends. Then write down what was agreed, because most family conflict here comes from the gap between what people think they agreed to and what was actually said."
+    }
+  ],
+  "takeaway": "The first month has a shape: week one is medical, week two is access and money, week three is the house, and week four is the family. At the end of it nothing is solved — but the medical picture is written down, the money is visible, the house is safer, and everyone has said out loud who is doing what. Nothing about it needs to be fast.",
+  "productSlug": "caregiving-companion",
+  "productPitch": "The Caregiving Companion is organized by phase rather than as one overwhelming list — the medical picture, the access and money pages, the home safety pass, and the family agreement, already laid out and entirely on your own device."
+}

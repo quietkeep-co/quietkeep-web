@@ -23,7 +23,7 @@
     "headline": "Your home, inventoried — before you ever need to prove it.",
     "lede": "Your inventory totals itself line by line — thirty-eight t-shirts is one row, and the maths is done for you — while your policy, claim, payments, deadlines and displaced-living costs stay in one place and one click prints the packet you hand your adjuster. Your photos and video stay on your own phone; this is the searchable, totalled, printable half a video can't be. Private and fully offline.",
     "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
-    "image": "/images/home-inventory-organizer/inventory.png",
+    "image": "/images/home-inventory-organizer/app-screenshot-2-inventory.png",
     "imageAlt": "Home Inventory & Insurance Claim Organizer showing the Home Inventory register"
   },
   "band": [
@@ -76,13 +76,13 @@
   ],
   "screens": [
     {
-      "img": "/images/home-inventory-organizer/inventory.png",
+      "img": "/images/home-inventory-organizer/app-screenshot-2-inventory.png",
       "alt": "Home Inventory register",
       "captionBold": "The maths, done for you.",
       "caption": "Thirty-eight t-shirts is one row — quantity times cost-each, totalled live."
     },
     {
-      "img": "/images/home-inventory-organizer/claims.png",
+      "img": "/images/home-inventory-organizer/app-screenshot-5-claims.png",
       "alt": "Claim and payment record",
       "captionBold": "Track it to close.",
       "caption": "Every status change and every payment, tagged to its coverage."

@@ -83,6 +83,20 @@
       ]
     }
   ],
+  "faq": [
+    {
+      "q": "What does an Apple Legacy Contact actually get access to?",
+      "a": "An Apple Legacy Contact can request your Apple Account data, including photos, messages, notes, and files, after you die. They need the access key generated during setup and a copy of your death certificate. Write down the contact's name and where you stored the printed access key."
+    },
+    {
+      "q": "How does Google's Inactive Account Manager decide when to notify someone?",
+      "a": "You set an inactivity period. If your account stays inactive that long, Google notifies your chosen contacts and gives them the access you selected. Record which period you picked and who is on the contact list."
+    },
+    {
+      "q": "What is a Facebook legacy contact allowed to do with my account?",
+      "a": "A Facebook legacy contact can write a pinned post on your memorialized profile, respond to new friend requests, and update your profile and cover photo. They cannot log in as you or read your messages. Note whether you chose memorialization or full account deletion."
+    }
+  ],
   "takeaway": "Apple, Google, and Facebook each offer an official way to name who reaches your account after you're gone — Legacy Contact, Inactive Account Manager, and a memorialization legacy contact. Each shares access on the platform's terms, with no password ever changing hands. The settings take minutes; the part people forget is recording the choices and telling the people named, which is what makes them work.",
   "productSlug": "digital-legacy-planner",
   "productPitch": "The Digital Legacy Planner gives each of these handoffs a home: a place to record who you named on Apple, Google, and Facebook, where each access key lives, and a printable sheet your family can follow — fully offline, and it never stores a password by design."

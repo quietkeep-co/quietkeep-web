@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { products, CATEGORY_META } from "@/lib/products";
-import { guides } from "@/lib/guides";
+import { guides, clusterHubs } from "@/lib/guides";
 import { site } from "@/lib/site";
 
 // Auto-derived from the product + guide catalogs, so a new SKU or article is
@@ -16,6 +16,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     { url: `${base}/guides`, changeFrequency: "weekly", priority: 0.8 },
+    ...clusterHubs.map((c) => ({
+      url: `${base}/guides/topics/${c.slug}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     { url: `${base}/free`, changeFrequency: "monthly", priority: 0.7 },
     ...products.map((p) => ({
       url: `${base}/${p.slug}`,

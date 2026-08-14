@@ -145,6 +145,56 @@ function loadProducts(): Product[] {
         `content/products/${file}: slug "${data.slug}" must match filename "${expected}"`
       );
     }
+    // Every screens[].img must resolve to a real file in public/. This is the
+    // guides system's "does the data actually work" check, ported across —
+    // and it is here because it was missing.
+    //
+    // Found 2026-08-12: four products (caregiving, home inventory, medical
+    // crisis, special needs) each referenced three screenshots under short
+    // names — /images/<slug>/services.png — while the files on disk have
+    // always been app-screenshot-<n>-<name>.png. Git history shows the short
+    // names never existed, so every one of those pages had been serving three
+    // broken images since the day it shipped, on products priced up to $44.99.
+    //
+    // Nothing caught it because next/image does not fail a build on a missing
+    // local file: the pages compiled, prerendered, and returned 200 while
+    // rendering broken images to every visitor. A clean build meant nothing.
+    //
+    // Warn and drop the screen rather than throwing, for the same reason the
+    // category check above warns: a half-finished product mid-build is the
+    // normal state this pipeline produces, and taking the whole site's deploy
+    // down over one missing PNG is worse than the bug. Dropping the screen
+    // renders two screenshots instead of three; leaving it renders a broken
+    // image, which is worse than showing one fewer.
+    // hero.image is checked separately and only warned about, never dropped:
+    // it is required on the type, it is the largest image on the page, and it
+    // is also what feeds the Product JSON-LD `image` field — so a broken one
+    // publishes structured data pointing at a 404, which is a worse failure
+    // than the visible one. There is no safe automatic fallback; this has to
+    // be fixed in the JSON.
+    if (data.hero?.image && !fs.existsSync(path.join(process.cwd(), "public", data.hero.image))) {
+      console.warn(
+        `[products] content/products/${file}: hero.image "${data.hero.image}" does not ` +
+          `exist in public/. It is the main product image AND the Product schema's ` +
+          `image URL, so this ships broken structured data. Fix the path — generated ` +
+          `screenshots are named app-screenshot-<n>-<name>.png.`
+      );
+    }
+
+    if (Array.isArray(data.screens)) {
+      const usable = data.screens.filter((s) => {
+        if (fs.existsSync(path.join(process.cwd(), "public", s.img))) return true;
+        console.warn(
+          `[products] content/products/${file}: screenshot "${s.img}" does not exist in ` +
+            `public/ — dropping it from the page. Caption was "${s.captionBold}". ` +
+            `Check the filename: generated screenshots are named ` +
+            `app-screenshot-<n>-<name>.png.`
+        );
+        return false;
+      });
+      if (usable.length !== data.screens.length) data.screens = usable;
+    }
+
     loaded.push(data);
   }
 

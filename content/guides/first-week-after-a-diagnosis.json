@@ -1,0 +1,86 @@
+{
+  "slug": "first-week-after-a-diagnosis",
+  "title": "The First Week After a Diagnosis: What to Set Up Before Anything Else",
+  "description": "A serious diagnosis arrives with appointments, bills, and approvals from every direction at once. Four things to set up in week one so the paperwork never gets ahead of you.",
+  "cluster": "Medical crisis organizing",
+  "date": "2026-10-05",
+  "updated": "2026-10-05",
+  "readingMinutes": 8,
+  "intro": [
+    "A serious diagnosis is a medical event for about a day. After that it becomes an administrative one, and nobody warns you about that part.",
+    "Within two weeks there are specialists who do not share records, a scheduler who calls while you are at work, an insurer asking for authorization before something can happen, and statements arriving that look like bills but are not. The medical care has a team. The paperwork has you.",
+    "This is what to set up in week one, while there is still a small amount of slack. None of it is medical. It is all organizational: what to write down, what to ask, and who to call."
+  ],
+  "sections": [
+    {
+      "heading": "One place, started immediately",
+      "paragraphs": [
+        "Not four places. Not a notes app plus a folder plus a group text plus your memory. One place, and it can be a physical binder or a single file, whichever you will actually use at 7am in a waiting room.",
+        "The first four pages carry almost all of the value:"
+      ],
+      "bullets": [
+        "<b>The diagnosis, written down exactly</b>, including the staging or subtype if there is one and the spelling. You will be asked to repeat it constantly, and precision matters more than it seems.",
+        "<b>Every provider</b>: name, role, practice, phone, and what they are responsible for. This list grows faster than anyone expects.",
+        "<b>Medications</b>: name, dose, what it is for, who prescribed it, when it started.",
+        "<b>Insurance</b>: plan name, member and group numbers, the phone number on the back of the card, and the name of anyone helpful you speak to there."
+      ]
+    },
+    {
+      "heading": "Get portal access to everything, in week one",
+      "paragraphs": [
+        "Most practices have a patient portal, and treatment frequently involves more than one health system whose portals do not talk to each other. Setting up access is a fifteen-minute job when nothing is urgent and a genuine obstacle at 9pm on a Friday when you need a result.",
+        "If you are doing this for someone else, this is also the week to sort out authorization. Ask each practice what they need in order to speak with you and to give you records. Being a spouse or an adult child is not by itself enough, and the moment you discover this is always inconvenient.",
+        "Ask, at the same time, whether the practice has a nurse navigator, a patient advocate, or a social worker. Many do, most families never ask, and their entire job is the part you are struggling with."
+      ]
+    },
+    {
+      "heading": "Understand the paperwork that is about to arrive",
+      "paragraphs": [
+        "Two different documents will land, and they look similar enough that people pay the wrong one.",
+        "An <b>explanation of benefits</b> comes from your insurer. It shows what was billed, what was allowed, what insurance paid, and what may be your responsibility. <b>It is not a bill.</b> It usually says so, somewhere small.",
+        "A <b>bill</b> comes from the provider, and it should reconcile to an explanation of benefits for the same date of service. When the two disagree, the disagreement is usually the point, and it is worth a phone call before it is worth a payment.",
+        "File them by date of service rather than by the date they arrive, because they arrive out of order and often months apart. That one habit makes reconciliation possible instead of miserable."
+      ]
+    },
+    {
+      "heading": "Track authorizations before you need to",
+      "paragraphs": [
+        "Prior authorization is where treatment quietly stalls. A scan, a medication, a procedure, or a referral gets ordered, and then it waits on an approval nobody tells you is pending.",
+        "Ask, every time something is ordered: does this need prior authorization, who submits it, and when will we know.",
+        "Then write down what was requested, the date, who submitted it, and the outcome. If something is denied, ask specifically for the reason and what the appeal process is. Denials are frequently reversed, and the first step is usually a form and a deadline rather than a fight."
+      ]
+    },
+    {
+      "heading": "Set up the appointment routine now",
+      "paragraphs": [
+        "Every appointment should produce the same four things: what was decided, what changed in the medications, what happens next and by when, and what to watch for.",
+        "Write questions down in advance, because appointments compress and the question you meant to ask goes missing. Bring someone when you can, so one person listens and the other writes. Ask whether visits can be recorded, since some practices allow it and it removes the memory problem entirely.",
+        "And ask for the after-visit summary before you leave. It exists, it is usually accurate, and it saves reconstructing the visit from memory in the car."
+      ]
+    },
+    {
+      "heading": "The part people skip",
+      "paragraphs": [
+        "Somewhere in the first weeks, ask what financial assistance exists. Hospitals have financial assistance policies, drug manufacturers have patient assistance programs, and disease-specific nonprofits often help with travel and lodging. None of them find you.",
+        "This is also the week to check whether the basic documents exist — a healthcare proxy and a durable power of attorney. Not because anything is expected to go wrong, but because they are simple to put in place now and impossible to create at the moment they are needed."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "What is the difference between an EOB and a medical bill?",
+      "a": "An explanation of benefits comes from your insurer and shows what was billed, allowed, and paid, along with what may be your responsibility. It is not a bill. The bill comes from the provider and should reconcile to the EOB for the same date of service. When they disagree, call before you pay."
+    },
+    {
+      "q": "How do I keep track of prior authorizations?",
+      "a": "Ask every time something is ordered whether it needs prior authorization, who submits it, and when you will hear. Then log the request date, who submitted it, and the outcome. If something is denied, ask for the specific reason and the appeal process, because denials are often reversed."
+    },
+    {
+      "q": "Can I get access to my family member's medical information?",
+      "a": "Not automatically. Being a spouse or adult child is not by itself enough. Ask each practice what they require in order to speak with you and release records, and set that up early rather than at the moment you need an answer."
+    }
+  ],
+  "takeaway": "In week one, set up one place for everything, get portal access and authorization at every practice, learn the difference between an explanation of benefits and a bill, and start logging prior authorizations. The medical care has a team. The paperwork has you, and it is easier to stay ahead of it than to catch up.",
+  "productSlug": "medical-crisis-companion",
+  "productPitch": "The Medical Crisis Companion is built for exactly this stretch — the provider and medication lists, the appointment log, the authorization tracker, and the register that reconciles explanations of benefits against bills — in one file that works offline in a waiting room."
+}

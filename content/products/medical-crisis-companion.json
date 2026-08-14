@@ -22,7 +22,7 @@
     "headline": "You shouldn't have to remember all of it on your own.",
     "lede": "Every appointment, medication, symptom, test result, approval, call, and bill lives in one calm private place, your running list of questions for the doctor stays with you between visits, and one click prints the summary you bring to your next appointment. Private and fully offline.",
     "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
-    "image": "/images/medical-crisis-companion/appointments.png",
+    "image": "/images/medical-crisis-companion/app-screenshot-2-appointments.png",
     "imageAlt": "Medical Crisis Companion showing the Appointment & Treatment Tracker"
   },
   "band": [
@@ -75,19 +75,19 @@
   ],
   "screens": [
     {
-      "img": "/images/medical-crisis-companion/appointments.png",
+      "img": "/images/medical-crisis-companion/app-screenshot-2-appointments.png",
       "alt": "Appointment & Treatment Tracker",
       "captionBold": "Every visit, in order.",
       "caption": "Provider, what happened, and the next step, for each one."
     },
     {
-      "img": "/images/medical-crisis-companion/questions.png",
+      "img": "/images/medical-crisis-companion/app-screenshot-6-questions.png",
       "alt": "Questions for the Doctor",
       "captionBold": "Nothing forgotten in the room.",
       "caption": "A running list, checked off once it's answered."
     },
     {
-      "img": "/images/medical-crisis-companion/insurance.png",
+      "img": "/images/medical-crisis-companion/app-screenshot-10-insurance.png",
       "alt": "Insurance & EOB Tracker",
       "captionBold": "Bills, tracked plainly.",
       "caption": "Date of service, billed, insurer paid, and what you've paid."
