@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -32,12 +34,17 @@ export function generateMetadata({
       type: "article",
       // Page-level openGraph replaces the root's; without this line every
       // guide shared to Pinterest or Facebook renders as a bare text card.
+      // Purpose-built 1200x630 card per guide (generated at authoring time);
+      // fall back to the product hero if a card was never generated, so a new
+      // guide is never blocked on artwork.
       images: [
-        {
-          url: getProduct(g.productSlug)?.hero.image ?? "/images/brand/og-default.png",
-          width: 1200,
-          height: 900,
-        },
+        fs.existsSync(path.join(process.cwd(), "public", "images", "og", "guides", `${g.slug}.png`))
+          ? { url: `/images/og/guides/${g.slug}.png`, width: 1200, height: 630 }
+          : {
+              url: getProduct(g.productSlug)?.hero.image ?? "/images/brand/og-default.png",
+              width: 1200,
+              height: 900,
+            },
       ],
     },
   };

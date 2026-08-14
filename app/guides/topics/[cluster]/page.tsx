@@ -1,3 +1,5 @@
+import fs from "fs";
+import nodePath from "path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -34,11 +36,13 @@ export function generateMetadata({
       description: hub.blurb,
       type: "website",
       images: [
-        {
-          url: getProduct(hub.guides[0]?.productSlug ?? "")?.hero.image ?? "/images/brand/og-default.png",
-          width: 1200,
-          height: 900,
-        },
+        fs.existsSync(nodePath.join(process.cwd(), "public", "images", "og", "topics", `${hub.slug}.png`))
+          ? { url: `/images/og/topics/${hub.slug}.png`, width: 1200, height: 630 }
+          : {
+              url: getProduct(hub.guides[0]?.productSlug ?? "")?.hero.image ?? "/images/brand/og-default.png",
+              width: 1200,
+              height: 900,
+            },
       ],
     },
   };
