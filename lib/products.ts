@@ -45,7 +45,7 @@ export const CATEGORY_META: Record<
     label: "Life & Home Protection",
     kicker: "A diagnosis, a claim, a school year",
     blurb:
-      "Life's other hard moments, not a death or a divorce — a medical crisis, a home you need to document before or after a loss, a school year of services and progress to track. Private, and never medical, legal, or financial advice.",
+      "Life's other hard seasons — a medical crisis, a home to document before or after a loss, a school year of services to track, a path to building your family. Private, and never medical, legal, or financial advice.",
   },
 };
 

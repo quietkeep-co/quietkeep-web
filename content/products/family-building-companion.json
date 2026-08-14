@@ -1,0 +1,125 @@
+{
+  "order": 13,
+  "slug": "family-building-companion",
+  "name": "Family Building Companion",
+  "kicker": "Family Building Companion",
+  "category": "protection",
+  "status": "new",
+  "season": "Building a family",
+  "price": 39,
+  "paymentLink": "TODO: GHL fastpaydirect payment link",
+  "demoPath": "/demos/family-building-companion.html",
+  "card": {
+    "oneLiner": "Track appointments, medications, costs, and your own path through treatment — IUI, IVF, donor, surrogacy, preservation, or loss — in one private place that adapts to your actual path, not a generic one.",
+    "bullets": [
+      "Adapts to your actual path — IUI, IVF, donor, surrogacy, preservation, loss, or more than one",
+      "A real Financial & Insurance Log, not just an appointment calendar",
+      "A private Journal that's never summarized or printed",
+      "Private and fully offline"
+    ]
+  },
+  "hero": {
+    "headline": "Your path isn't like anyone else's. This adapts to it anyway.",
+    "lede": "Track appointments, medications, costs, and your own path through treatment — IUI, IVF, donor, surrogacy, preservation, or loss — in one private place that adapts to your actual path, not a generic one.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/family-building-companion/app-screenshot-20-paths.png",
+    "imageAlt": "Family Building Companion showing the Your Paths selector"
+  },
+  "band": [
+    {
+      "label": "100% offline",
+      "sub": "zero network requests"
+    },
+    {
+      "label": "Completely private",
+      "sub": "data stays on your device"
+    },
+    {
+      "label": "$39 once",
+      "sub": "yours forever"
+    },
+    {
+      "label": "A real app",
+      "sub": "not a PDF or spreadsheet"
+    }
+  ],
+  "intro": {
+    "heading": "One place, whichever path you're on",
+    "body": "A fertility journey doesn't move in a straight line, and it doesn't move the same way for everyone. IUI and IVF ask different things of you than donor or surrogacy paths do, and none of them ask what a generic tracker assumes. This adapts to the path you're actually on — and lets you change it, because paths change."
+  },
+  "features": [
+    {
+      "title": "Adapts to your path",
+      "body": "Toggle IUI, IVF, donor, surrogacy, preservation, loss, or male-factor on or off anytime — nothing is locked in, and turning a path off never deletes what you've already entered under it."
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/family-building-companion/app-screenshot-20-paths.png",
+      "alt": "Your Paths selector",
+      "captionBold": "Whichever path applies, or more than one.",
+      "caption": "Toggle IUI, IVF, donor, surrogacy, preservation, loss, or male-factor on or off anytime — nothing is locked in."
+    },
+    {
+      "img": "/images/family-building-companion/app-screenshot-2-careteam.png",
+      "alt": "Care Team Directory",
+      "captionBold": "Everyone, in one directory.",
+      "caption": "Your REI, a urologist, a counselor, an attorney, an agency contact — instead of business cards scattered across specialists nobody tracks together."
+    },
+    {
+      "img": "/images/family-building-companion/app-screenshot-3-financial.png",
+      "alt": "Financial & Insurance Log",
+      "captionBold": "A real running total.",
+      "caption": "What things cost, what insurance covered, and where every appeal stands."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "This is a single file that opens in any browser and works entirely offline. No account. No cloud. No subscription. Nothing you type is ever sent anywhere. It never asks for an insurance ID number, a medical record number, or a password — only what you choose to write down, and only you decide what that is.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+      },
+      {
+        "title": "Never a password",
+        "body": "By design, it never asks for or stores passwords or PINs. It records that accounts exist and where your written instructions live — the map, never the keys."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "The one private place for a fertility journey — whichever path it takes, and however it changes — that never predicts an outcome, never recommends a protocol, and never assumes what you're hoping for.",
+    "bullets": [
+      "A path-aware task list that shows what's relevant to IUI, IVF, donor, surrogacy, preservation, loss, or male-factor diagnostics — and adapts if your path changes",
+      "A Care Team directory covering every specialist across every path",
+      "A Financial & Insurance Log with running totals and appeal tracking",
+      "An Appointments & Calls log and a running Questions list",
+      "Path-specific registers: IUI cycle tracking, IVF stimulation/retrieval/embryo inventory, donor coordination, surrogacy's parallel medical and legal tracks, preservation with storage tracking, a loss history and workup log, and first-class male-factor tracking",
+      "A Journal with three distinct, private spaces — never summarized, never printed",
+      "One printable summary for your care team, built only from the factual registers",
+      "Auto-save with backup and restore"
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is this a subscription?",
+      "a": "No. You pay 39 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones."
+    },
+    {
+      "q": "Is my information really private?",
+      "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control."
+    },
+    {
+      "q": "What if it doesn't work for me?",
+      "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    }
+  ]
+}
