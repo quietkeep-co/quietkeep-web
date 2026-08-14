@@ -7,7 +7,7 @@ import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import { JsonLd } from "@/components/JsonLd";
 import { GuideFaq } from "@/components/GuideFaq";
-import { getGuide, guideSlugs, faqPageLd } from "@/lib/guides";
+import { getGuide, guideSlugs, faqPageLd, hubForGuide } from "@/lib/guides";
 import { getProduct } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -57,17 +57,45 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
   // visible <GuideFaq /> block below.
   const faqLd = faqPageLd(g);
 
+  const hub = hubForGuide(g);
+  const breadcrumbLd = hub && {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Guides", item: `https://${site.domain}/guides` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: hub.cluster,
+        item: `https://${site.domain}/guides/topics/${hub.slug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: g.title,
+        item: `https://${site.domain}/guides/${g.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
       <JsonLd data={articleLd} />
       {faqLd && <JsonLd data={faqLd} />}
+      {breadcrumbLd && <JsonLd data={breadcrumbLd} />}
       <Nav links={guideNav} cta={{ label: "See the organizers", href: "/organizers" }} />
 
       <article className="pb-[72px] pt-16 md:pt-[84px]">
         <div className="wrap max-w-[760px]">
           <div className="mb-[18px] flex items-center gap-2.5 text-[13.5px] uppercase tracking-[0.14em] text-brass">
             <span className="w-[26px] border-t border-brass" />
-            {g.cluster}
+            {hub ? (
+              <Link href={`/guides/topics/${hub.slug}`} className="text-brass no-underline hover:underline">
+                {g.cluster}
+              </Link>
+            ) : (
+              g.cluster
+            )}
           </div>
           <h1 className="mb-5 text-[clamp(32px,4.2vw,46px)] leading-tight">{g.title}</h1>
           <p className="mb-8 text-[14px] text-ink-faint">
@@ -130,6 +158,28 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
                 See how it works — ${product.price} once
               </Link>
             </Reveal>
+          )}
+
+          {hub && hub.guides.length > 1 && (
+            <div className="mt-12 border-t border-line pt-7">
+              <h2 className="mb-4 text-[13px] font-bold uppercase tracking-[0.12em] text-brass">
+                More on {hub.cluster.toLowerCase()}
+              </h2>
+              <ul className="list-none">
+                {hub.guides
+                  .filter((o) => o.slug !== g.slug)
+                  .map((o) => (
+                    <li key={o.slug} className="border-b border-line-soft py-[11px] last:border-b-0">
+                      <Link href={`/guides/${o.slug}`} className="text-[16.5px] text-ink no-underline hover:text-ledger">
+                        {o.title}
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+              <Link href={`/guides/topics/${hub.slug}`} className="mt-3 inline-block text-[14.5px] text-ledger">
+                All {hub.cluster.toLowerCase()} guides →
+              </Link>
+            </div>
           )}
 
           <p className="mt-10 text-[13.5px] text-ink-faint">

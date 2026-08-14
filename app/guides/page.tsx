@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import { GuideCard } from "@/components/GuideCard";
-import { guideClusters } from "@/lib/guides";
+import { guideClusters, clusterSlug } from "@/lib/guides";
 import { CATEGORY_META } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -83,8 +84,15 @@ export default function GuidesIndex() {
               </div>
               {clusters.map((c) => (
                 <div key={c.cluster} className="mb-9 last:mb-0">
+                  {/* The cluster heading is the hub link. This is the internal
+                      link that lets a cluster rank as a cluster. */}
                   <h3 className="mb-4 text-[13px] font-bold uppercase tracking-[0.12em] text-brass">
-                    {c.cluster}
+                    <Link
+                      href={`/guides/topics/${clusterSlug(c.cluster)}`}
+                      className="text-brass no-underline hover:underline"
+                    >
+                      {c.cluster}
+                    </Link>
                   </h3>
                   <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[18px]">
                     {c.guides.map((g) => (

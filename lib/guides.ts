@@ -152,6 +152,122 @@ export function faqPageLd(g: Guide): Record<string, unknown> | null {
   };
 }
 
+// ---------------------------------------------------------------------------
+// Cluster hubs
+//
+// A keyword cluster is the unit search actually rewards: several guides on one
+// subject, linked to each other. Until now a cluster was only a heading on
+// /guides, so it had no URL of its own, no title tag, and nothing to link to.
+// These give each cluster a real page.
+//
+// Cluster labels are authored in each guide's `cluster` field and must match
+// _GROWTH-OS/seo/keyword-map.json exactly — that file is the source of truth
+// for which clusters exist.
+
+export function clusterSlug(cluster: string): string {
+  return cluster
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// Copy for the hub pages. A cluster missing an entry still gets a page — it
+// falls back to a generated line rather than breaking the build, the same
+// warn-and-continue posture used for product categories.
+const CLUSTER_META: Record<string, { blurb: string }> = {
+  "Estate settlement": {
+    blurb:
+      "What to do after someone dies, in the order it actually happens. Written for the person holding the folder, usually with no warning and no training.",
+  },
+  "Estate planning": {
+    blurb:
+      "Getting your own affairs in order, before anyone needs them. Mostly this is writing down what already exists so the people who help you can find it.",
+  },
+  "Digital estate planning": {
+    blurb:
+      "Email, photos, subscriptions, and the accounts protected by a phone nobody else can unlock. What happens to them, and what to set up now.",
+  },
+  "Funeral planning": {
+    blurb:
+      "What a funeral costs, what you are entitled to ask, and how to write decisions down on an ordinary afternoon instead of the worst week of the year.",
+  },
+  Caregiving: {
+    blurb:
+      "Caring for a parent rarely starts with a decision. These are the medical lists, the money questions, and the family conversations, in a sensible order.",
+  },
+  "Medical crisis organizing": {
+    blurb:
+      "A diagnosis or a hospital stay arrives with appointments, bills, and approvals from every direction at once. What to ask, what to record, who to call.",
+  },
+  "Home inventory & insurance claims": {
+    blurb:
+      "A claim turns on proving you owned the thing, not that it was damaged. How to document a home before a loss, and what to do in the days after one.",
+  },
+  "Divorce preparation": {
+    blurb:
+      "What to gather before the first attorney meeting, so the expensive hour is spent on advice rather than on being disorganized. Never legal advice.",
+  },
+  "Co-parenting logistics": {
+    blurb:
+      "Schedules, shared expenses, and keeping two households on the same page — so the small things stop turning into arguments.",
+  },
+  "Post-divorce transition": {
+    blurb:
+      "The decree is signed and the paperwork is not finished. Beneficiaries, accounts, names, and the loose ends nobody hands you a list for.",
+  },
+  "Special needs school-year organizing": {
+    blurb:
+      "A school year of services, meetings, and requests that need to be documented as they happen rather than reconstructed later.",
+  },
+};
+
+export type ClusterHub = {
+  cluster: string;
+  slug: string;
+  blurb: string;
+  category: Category | undefined;
+  guides: Guide[];
+};
+
+function hubFor(cluster: string, items: Guide[]): ClusterHub {
+  return {
+    cluster,
+    slug: clusterSlug(cluster),
+    blurb:
+      CLUSTER_META[cluster]?.blurb ??
+      `Guides on ${cluster.toLowerCase()}, written plainly and kept practical.`,
+    category: getProduct(items[0]?.productSlug ?? "")?.category,
+    guides: items,
+  };
+}
+
+// Every cluster that has at least one published guide. Ordered by depth, then
+// alphabetically — the deepest clusters are the ones actually competing.
+export const clusterHubs: ClusterHub[] = (() => {
+  const byCluster = new Map<string, Guide[]>();
+  for (const g of guides) {
+    if (!byCluster.has(g.cluster)) byCluster.set(g.cluster, []);
+    byCluster.get(g.cluster)!.push(g);
+  }
+  return [...byCluster.entries()]
+    .map(([cluster, items]) => hubFor(cluster, items))
+    .sort(
+      (a, b) => b.guides.length - a.guides.length || a.cluster.localeCompare(b.cluster)
+    );
+})();
+
+export const clusterSlugs = clusterHubs.map((c) => c.slug);
+
+export function getClusterHub(slug: string): ClusterHub | undefined {
+  return clusterHubs.find((c) => c.slug === slug);
+}
+
+// The hub a single guide belongs to, for the breadcrumb on the guide page.
+export function hubForGuide(g: Guide): ClusterHub | undefined {
+  return getClusterHub(clusterSlug(g.cluster));
+}
+
 export type GuideCluster = { cluster: string; guides: Guide[] };
 
 // Two-level grouping for /guides: category (the same Estate & Legacy /
