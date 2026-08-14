@@ -75,19 +75,19 @@
   ],
   "screens": [
     {
-      "img": "/images/medical-crisis-companion/appointments.png",
+      "img": "/images/medical-crisis-companion/app-screenshot-2-appointments.png",
       "alt": "Appointment & Treatment Tracker",
       "captionBold": "Every visit, in order.",
       "caption": "Provider, what happened, and the next step, for each one."
     },
     {
-      "img": "/images/medical-crisis-companion/questions.png",
+      "img": "/images/medical-crisis-companion/app-screenshot-6-questions.png",
       "alt": "Questions for the Doctor",
       "captionBold": "Nothing forgotten in the room.",
       "caption": "A running list, checked off once it's answered."
     },
     {
-      "img": "/images/medical-crisis-companion/insurance.png",
+      "img": "/images/medical-crisis-companion/app-screenshot-10-insurance.png",
       "alt": "Insurance & EOB Tracker",
       "captionBold": "Bills, tracked plainly.",
       "caption": "Date of service, billed, insurer paid, and what you've paid."

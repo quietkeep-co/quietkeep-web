@@ -76,13 +76,13 @@
   ],
   "screens": [
     {
-      "img": "/images/caregiving-companion/medications.png",
+      "img": "/images/caregiving-companion/app-screenshot-2-meds.png",
       "alt": "Medications register",
       "captionBold": "Every medication, in one place.",
       "caption": "Dose, schedule, prescriber, and purpose."
     },
     {
-      "img": "/images/caregiving-companion/team.png",
+      "img": "/images/caregiving-companion/app-screenshot-3-team.png",
       "alt": "Care team directory",
       "captionBold": "The whole care team.",
       "caption": "Doctors, pharmacy, home health, and family."

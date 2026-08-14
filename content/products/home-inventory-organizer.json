@@ -76,13 +76,13 @@
   ],
   "screens": [
     {
-      "img": "/images/home-inventory-organizer/inventory.png",
+      "img": "/images/home-inventory-organizer/app-screenshot-2-inventory.png",
       "alt": "Home Inventory register",
       "captionBold": "The maths, done for you.",
       "caption": "Thirty-eight t-shirts is one row — quantity times cost-each, totalled live."
     },
     {
-      "img": "/images/home-inventory-organizer/claims.png",
+      "img": "/images/home-inventory-organizer/app-screenshot-5-claims.png",
       "alt": "Claim and payment record",
       "captionBold": "Track it to close.",
       "caption": "Every status change and every payment, tagged to its coverage."
