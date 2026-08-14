@@ -71,7 +71,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     ...(product?.hero?.image
       ? { image: [`https://${site.domain}${product.hero.image}`] }
       : {}),
-    author: { "@type": "Organization", name: site.name, url: `https://${site.domain}` },
+    author: { "@type": "Organization", name: site.name, url: `https://${site.domain}/about` },
     publisher: { "@type": "Organization", name: site.name },
     mainEntityOfPage: `https://${site.domain}/guides/${g.slug}`,
   };

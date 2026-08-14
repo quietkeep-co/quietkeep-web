@@ -10,6 +10,7 @@ import { Faq } from "@/components/Faq";
 import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import { CATEGORY_META, productsByCategory } from "@/lib/products";
+import { clusterHubs } from "@/lib/guides";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -245,6 +246,36 @@ export default function HomePage() {
             summaries for the professionals in your corner. And a promise we can
             actually keep: everything stays on your device.
           </SectionHead>
+        </div>
+      </section>
+
+      {/* The 11 cluster hubs were only reachable from /guides — one link from
+          the highest-authority page on the site. This block is the internal-
+          link plumbing that lets Google (and people) reach every topic in one
+          hop from the homepage. */}
+      <section id="topics" className="border-t border-line py-[88px]">
+        <div className="wrap">
+          <SectionHead title="Free guides, by topic">
+            Plain answers for the seasons nobody prepares you for — written to
+            be useful whether or not you ever buy anything.
+          </SectionHead>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[14px]">
+            {clusterHubs.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/guides/topics/${c.slug}`}
+                className="rounded-xl border border-line bg-card p-[18px] no-underline hover:border-ledger"
+              >
+                <div className="mb-1 text-[16.5px] font-bold text-ink">{c.cluster}</div>
+                <div className="text-[13.5px] text-ink-faint">
+                  {c.guides.length} guide{c.guides.length === 1 ? "" : "s"}
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-6 text-[15px]">
+            <Link href="/guides" className="text-ledger">All guides →</Link>
+          </p>
         </div>
       </section>
 
