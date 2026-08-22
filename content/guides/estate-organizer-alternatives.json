@@ -1,0 +1,121 @@
+{
+  "slug": "estate-organizer-alternatives",
+  "title": "Quietkeep and the Alternatives: An Honest Comparison of Estate Organizing Tools",
+  "description": "A plain comparison of the tools people consider for organizing an estate — attorneys and document services, cloud vaults, physical binders, printables, and offline files like Quietkeep — including the situations where Quietkeep is the wrong answer.",
+  "answer": "Pick by the job. If you need a will, trust, or power of attorney, use an estate attorney or a document service. If relatives must view your information remotely while you are alive, use a cloud vault with sharing. If you want an offline private record you hold yourself, an offline organizer fits.",
+  "cluster": "Estate planning",
+  "date": "2026-08-21",
+  "updated": "2026-08-21",
+  "readingMinutes": 8,
+  "intro": [
+    "People arrive at this category with one sentence in their head — something like \"I should get this organized\" — and discover that the sentence covers at least four different jobs. Writing legally binding instructions is one job. Assembling a findable record of accounts, documents, and wishes is a second. Giving specific people access to that record, either now or later, is a third. Keeping the whole thing somewhere it will still exist in fifteen years is a fourth. Different products are good at different ones, and the disappointment usually comes from buying for the wrong job rather than from buying a bad product.",
+    "This page is published by Quietkeep, which sells offline organizing files, so it is worth naming the bias up front. The honest position is narrow: Quietkeep does one of those four jobs and does not attempt the others. Below is what each category of tool actually does, what it does not do, and the specific circumstances where the right recommendation is something other than Quietkeep. Everything factual about another company here comes from that company's own published pages; prices are deliberately left out, because they change and a stale number is worse than no number. Check the current price on the vendor's own site. This is organizational information, not legal advice."
+  ],
+  "sections": [
+    {
+      "heading": "If you need a will, stop here and go elsewhere",
+      "paragraphs": [
+        "This is the most important paragraph on the page, so it goes first. Quietkeep does not create legal documents. There is no will, no revocable trust, no financial or medical power of attorney, no advance directive, and nothing state-specific anywhere in it. It records that those documents exist, what they are called, and where the signed originals are kept. It cannot produce one, and it is not a substitute for one.",
+        "If what you actually need is a signed, valid will, there are two honest routes. The first is an estate attorney licensed in your state, which is the right call for blended families, business interests, property in more than one state, a child with a disability, taxable estates, or any situation where someone might contest what you wrote. The second, for genuinely simple situations, is an online document service. Trust & Will's own site says its plans are \"built by attorneys and customized by you\" and that every plan is \"legally-valid, state specific,\" with optional paid attorney support and both one-time and membership options. FreeWill states that its will, advance healthcare directive, and financial power of attorney tools are free to the consumer, tailored to the user's state, and supported by partner nonprofits rather than by user fees — while noting plainly that \"FreeWill is not a law firm and its services are not substitutes for an attorney's advice.\"",
+        "An organizer and a will are not competing purchases. They are sequential ones. The document says who gets what; the organizer is what keeps your executor from spending three months finding out what there was. If you have neither, write the will first. <a href=\"/guides/getting-affairs-in-order\">Getting your affairs in order</a> covers the ordering in more detail, and <a href=\"/guides/executors-first-30-days\">an executor's first thirty days</a> shows what the missing half costs the person left holding it."
+      ]
+    },
+    {
+      "heading": "Cloud vaults: what they do that Quietkeep cannot",
+      "paragraphs": [
+        "The largest category is the hosted digital vault — an account on a company's servers holding your documents, account lists, and wishes, with an interface for organizing them and a mechanism for letting other people in. Everplans is the best-known example. Its own site describes it as a place that \"organizes the details of your life for you,\" with a free base app and a paid Premium upgrade, and a way to \"securely share items from your Everplan with people you trust.\" Its published security page describes per-user encryption keys, two-factor authentication, a \"Deputy function\" for sharing, and administrator access limited to account recovery and deputy permissions rather than to plan contents.",
+        "Three things follow from that architecture, and all three are genuine advantages that Quietkeep does not have. Sharing: your daughter in another state can be given access now, see what you have entered, and notice that the insurance section is empty. Recovery: if you forget your password, there is a reset flow and a support team. Sync: you can add something from your phone at the pharmacy and it is there on your laptop that evening.",
+        "If any of those three is your real requirement — and for many families the first one is the whole point — a hosted vault serves it and an offline file does not. That is not a close call, and there is no version of Quietkeep that changes it. The honest recommendation in that case is to use a vault, and to read its export documentation on the day you sign up rather than on the day you need it.",
+        "The trade running the other direction is that a company holds a copy, which means the copy is subject to whatever happens to that company. Everplans became a wholly-owned subsidiary of Precoa in October 2024; Precoa's business is preneed funeral planning and insurance sold through funeral homes. Everplans' own post about the change states that \"there are no changes to our data and information privacy procedures and protocols\" and that the product continues to operate. Cake, another consumer planning site, is no longer available to consumers at all — joincake.com now returns a permanent redirect to Altogether, a nationwide network of funeral homes, cremation providers, and cemeteries. None of that is misconduct. Acquisitions and sunsets are ordinary events in software, and both companies gave notice and continued serving users. It is simply the shape of the risk you are accepting, and <a href=\"/guides/when-a-planning-app-shuts-down\">what happens when a planning app shuts down</a> describes how those transitions tend to run."
+      ]
+    },
+    {
+      "heading": "Binders and printables: the physical options",
+      "paragraphs": [
+        "A second real category is the physical kit. The Nokbox is the best-known: a purchased box or folder system with pre-labeled categories — its site describes fifteen categories covering \"everything from your life insurance policies to your funeral directives, to your dog's vet information\" — plus checksheets telling you what to put in each and telling your next of kin what to do with it. It is a one-time purchase, it is an organizing system rather than a legal document generator, and it holds the actual paper.",
+        "Its strengths are the strengths of paper. Nothing to log into, nothing to charge, nothing that stops working. A person in grief can open a drawer and find a labeled folder, which is a lower-friction experience than any interface. Its limits are also the limits of paper: no arithmetic, no search, nothing to update without rewriting a page, no second copy unless you make one by hand, and total exposure to fire, flood, or a house that has to be cleared quickly. A single binder in a single house is a single point of failure, which is worth weighing before deciding paper alone is sufficient.",
+        "Below the binders sits a very large market of printable PDF and spreadsheet templates, mostly sold on Etsy and similar marketplaces. Quality varies enormously and it is worth being clear-eyed about what you are buying: usually a well-designed set of blank pages. For some people that is exactly enough. For others the blank page is the reason the project never started.",
+        "Binders and digital records are not mutually exclusive, and the common arrangement is both — the signed originals in a fireproof box, and a record of what exists and where, kept separately."
+      ]
+    },
+    {
+      "heading": "What Quietkeep is, stated narrowly",
+      "paragraphs": [
+        "Quietkeep sells single-file organizers that open in a browser and run entirely on your own device. The claims worth making are small and checkable, so here they are without decoration.",
+        "The file makes zero network requests. You can verify this yourself by turning wi-fi off and using it normally; if that had been untrue, it would fail immediately. There is no account to create, no password to set with us, no subscription, and no login. There is no server, so there is nothing for a vendor to shut down, migrate, or lose. Every product has a complete working demo you can use before paying, so the question of whether it suits you is answerable without spending anything. And it never asks for passwords, PINs, or full account numbers — the design records where things are and who to contact, not credentials, because a single file containing a family's logins is a liability rather than a gift.",
+        "It is a one-time purchase, which cuts both ways honestly. You are not renting access and cannot be locked out of a file you already have. You are also not buying an ongoing service relationship. A subscription implies a company with continuing revenue and therefore continuing reasons to fix, update, and support the product; a one-time sale does not carry that implication in the same way. Improvements happen, but the file you download today is the file you own, and you should judge it as it is rather than on what it might become."
+      ],
+      "bullets": [
+        "<b>Runs offline.</b> Zero network requests, verifiable with wi-fi off.",
+        "<b>No account.</b> Nothing to sign up for, nothing to sign into, no subscription.",
+        "<b>No server.</b> Nothing a vendor can shut off, and nothing a vendor can be breached for.",
+        "<b>Full demo first.</b> The working product is available to try before purchase.",
+        "<b>No credentials by design.</b> It records locations and contacts, not passwords or account numbers."
+      ]
+    },
+    {
+      "heading": "When Quietkeep is the wrong choice",
+      "paragraphs": [
+        "There are several situations where the honest answer is that this is not the right product, and they are common enough to state plainly rather than bury.",
+        "You need a legal document. Covered above and worth repeating because it is the single most frequent mismatch. Quietkeep produces no will, no trust, no power of attorney, no advance directive, and nothing state-specific. If that is the need, the money belongs with an attorney or a document service, not here.",
+        "Someone else needs to see it while you are alive. There is no sharing, no collaboration, no invitation, no permissions, no remote access of any kind. If your adult children in another state should be able to look at your information — check what is filled in, prompt you about what is missing, be ready before anything happens — Quietkeep cannot do that and a hosted vault can. Handing someone a copy of a file is not the same as giving them access to a living record, and pretending otherwise would not serve you.",
+        "You want someone to be able to recover it for you. Nobody at Quietkeep holds a copy of your file or its contents. That is the entire privacy proposition, and the risk is the same fact stated from the other side: there is no password reset, no support line that can retrieve your data, no backup on our end, and no sync. If the file is lost and you kept no copy, it is gone, and there is nothing anyone here can do about it. That is not a caveat in small print; it is how the design works. It means backups are your responsibility — two copies, in two places, one of them not in the same building — and it means the arrangement suits people who are comfortable managing their own files and does not suit people who are not.",
+        "You want continuous updates and hands-on support. A one-time purchase does not fund an ongoing service the way a subscription does. If you want a product team actively shipping features, a support queue, and a company with a contractual reason to keep improving what you bought, a subscription product is the more sensible structure and you should buy one.",
+        "You have not started at all and need someone to think for you. Quietkeep gives structure and prompts, but it does not interview you, advise you, or make judgment calls. Some people need a professional across a table. If a blank organizer of any kind has already failed you twice, the next step is probably an estate attorney or a financial planner rather than a fifth attempt at doing it alone.",
+        "It is also fair to apply the shutdown question to Quietkeep itself, since this page raised it about others. If Quietkeep stopped operating tomorrow, your file would keep working, because it is already on your device and needs nothing from us to run. What would end is the ability to re-download a lost copy, to buy again, or to ask a question. That is a real limit, and it is the reason the backup advice above is stated as firmly as it is."
+      ]
+    },
+    {
+      "heading": "A way to decide in about five minutes",
+      "paragraphs": [
+        "Answer four questions in order, and the category usually picks itself.",
+        "First: do signed legal documents exist? If not, that is the purchase, and everything else waits. Second: does anyone besides you need access before you die? If yes, you need a hosted service with sharing, and no offline file will substitute. Third: are you willing to maintain your own backups? If not, choose something where a company handles that and accept that the company holds a copy. Fourth: how much does it matter to you that no company holds a copy? If the answer is quite a lot, that is the specific condition under which an offline file is the better fit, and it is the only condition.",
+        "Whatever you choose, the deciding factor is rarely the product. It is whether the information is complete and whether one other person knows where to find it. A half-filled subscription vault nobody has been told about is worse than a paper folder in a labeled drawer. A <a href=\"/guides/digital-estate-planning-checklist\">digital estate planning checklist</a> is a reasonable place to start regardless of which tool you land on, because the list of what to gather does not change with the container."
+      ]
+    }
+  ],
+  "takeaway": "Match the tool to the job. A will comes from an attorney or a document service; Quietkeep does not make one. Access for family while you are alive comes from a hosted vault with sharing; Quietkeep has none. An offline file is the right answer only when you want no company holding a copy and you are willing to keep your own backups — because with no company holding a copy, there is also no one to recover it for you.",
+  "sources": [
+    {
+      "label": "Everplans homepage: what the service organizes, the free base app and Premium upgrade, and sharing items with people you trust",
+      "publisher": "Everplans",
+      "url": "https://www.everplans.com/"
+    },
+    {
+      "label": "Everplans Has A New Home — acquisition by Precoa, announced October 16, 2024, and continued operation as a wholly-owned subsidiary",
+      "publisher": "Everplans",
+      "url": "https://www.everplans.com/blog/everplans-has-a-new-home"
+    },
+    {
+      "label": "Trust & Will: attorney-built, state-specific will and trust plans, optional attorney support, one-time and membership options",
+      "publisher": "Trust & Will",
+      "url": "https://www.trustandwill.com/"
+    },
+    {
+      "label": "FreeWill: free state-tailored wills, advance healthcare directives, and financial powers of attorney, supported by partner nonprofits",
+      "publisher": "FreeWill",
+      "url": "https://www.freewill.com/"
+    },
+    {
+      "label": "The Nokbox: a physical fifteen-category organizing system with next-of-kin checksheets, sold as a one-time purchase",
+      "publisher": "The Nokbox",
+      "url": "https://thenokbox.com/"
+    }
+  ],
+  "productSlug": "estate-planning-organizer",
+  "productPitch": "If the offline category is the one that fits, the Estate Planning Organizer is Quietkeep's version of it, and the full demo is there to answer the question before you buy.",
+  "faq": [
+    {
+      "q": "Does Quietkeep create a will or power of attorney?",
+      "a": "No. Quietkeep creates no legal documents of any kind and nothing state-specific. It records which documents exist and where the signed originals are kept. For the documents themselves, use an estate attorney, or a document service such as Trust & Will or FreeWill for simpler situations."
+    },
+    {
+      "q": "Can my family see my Quietkeep file from another state?",
+      "a": "No. There is no sharing, collaboration, or remote access. The file lives on your device, and access means handing someone a copy or telling them where it is. If relatives need to view your information remotely while you are alive, a hosted vault with a sharing feature does that and Quietkeep does not."
+    },
+    {
+      "q": "What happens if I lose the file?",
+      "a": "It is gone unless you kept a backup. Nobody at Quietkeep holds a copy of your file or its contents, so there is no password reset, no recovery, and no support line that can retrieve it. That is the same fact as the privacy benefit, seen from the other side. Keep two copies in two places."
+    }
+  ]
+}
