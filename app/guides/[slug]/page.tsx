@@ -67,6 +67,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
   const g = getGuide(params.slug);
   if (!g) notFound();
   const product = getProduct(g.productSlug);
+  const answer = guideAnswer(g);
+  const sources = guideSources(g);
 
   const articleLd = {
     "@context": "https://schema.org",
@@ -88,6 +90,23 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     author: { "@type": "Organization", name: site.name, url: `https://${site.domain}/about` },
     publisher: { "@type": "Organization", name: site.name },
     mainEntityOfPage: `https://${site.domain}/guides/${g.slug}`,
+    // The same sources shown at the foot of the page, stated in the markup.
+    // Both halves come from one array, so the schema can never claim a
+    // citation the page does not visibly show — the rule the FAQ block
+    // already follows, for the same reason.
+    ...(sources.length
+      ? {
+          citation: sources.map((s) => ({
+            "@type": "CreativeWork",
+            name: s.label,
+            url: s.url,
+            publisher: { "@type": "Organization", name: s.publisher },
+          })),
+        }
+      : {}),
+    // The quotable answer, marked as the page's summary. Same text as the
+    // block under the title, never a separate claim.
+    ...(answer ? { abstract: answer } : {}),
   };
 
   // Null unless the guide carries an faq array. Emitted only alongside the
@@ -95,8 +114,6 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
   const faqLd = faqPageLd(g);
 
   const hub = hubForGuide(g);
-  const answer = guideAnswer(g);
-  const sources = guideSources(g);
   const breadcrumbLd = hub && {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
