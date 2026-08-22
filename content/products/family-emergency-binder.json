@@ -1,0 +1,141 @@
+{
+  "order": 14,
+  "slug": "family-emergency-binder",
+  "name": "Family Emergency Binder",
+  "kicker": "Family Emergency Binder",
+  "category": "protection",
+  "listingTitle": "Family Emergency Binder | In Case of Emergency ICE Organizer (Digital Download)",
+  "status": "new",
+  "season": "Before anything happens",
+  "price": 29,
+  "paymentLink": "TODO: GHL fastpaydirect payment link",
+  "demoPath": "/demos/family-emergency-binder.html",
+  "card": {
+    "oneLiner": "Who to call, where the documents are, what the children and animals need, and what to carry out in ten minutes - on your device, never in a cloud.",
+    "bullets": [
+      "Everything a sitter, a neighbour, or a hospital would need to reach you",
+      "A grab-and-go list for the ten minutes before you leave",
+      "Records where documents are — never the numbers on them",
+      "Private and fully offline"
+    ]
+  },
+  "hero": {
+    "headline": "Someone else may have to run your week.",
+    "lede": "One private place for what your household would need in an emergency you did not plan for — where the documents are, who to call, what the children and pets need, and what to take if you have ten minutes to leave.",
+    "note": "Instant download · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/family-emergency-binder/app-screenshot-1-tasks.png",
+    "imageAlt": "Family Emergency Binder showing the guided tasks, ordered by urgency"
+  },
+  "band": [
+    {
+      "label": "100% offline",
+      "sub": "zero network requests"
+    },
+    {
+      "label": "Completely private",
+      "sub": "data stays on your device"
+    },
+    {
+      "label": "$29 once",
+      "sub": "yours forever"
+    },
+    {
+      "label": "A real app",
+      "sub": "not a PDF or spreadsheet"
+    }
+  ],
+  "intro": {
+    "heading": "Three pages, three different readers",
+    "body": "Most emergencies are not the end of anything. They are a week where you cannot be reached, or ten minutes to get out of the house, or a sitter holding a phone that goes to voicemail. The information someone needs in that week is not complicated. It is just scattered — a pediatrician in one phone, a policy in a drawer, a neighbour's number nobody wrote down, and the answer to where the birth certificates are living entirely in your head."
+  },
+  "features": [
+    {
+      "title": "The fridge page",
+      "body": "Contacts, medical essentials, animals, shut-offs. It holds nothing that would be dangerous in a kitchen, which is why it can live where a stranger will find it."
+    },
+    {
+      "title": "The page you hand over",
+      "body": "For a sitter, a neighbour, or a relative staying while you are away. Everything they need, and nothing that would matter if they kept it."
+    },
+    {
+      "title": "The ten-minute list",
+      "body": "What to carry out and in what order, with where each thing is. Print it twice - one for a closet door, one for the car."
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/family-emergency-binder/app-screenshot-2-contacts.png",
+      "alt": "Who to Call register",
+      "captionBold": "Not just a number.",
+      "caption": "Who has a key, who can collect a child, who lives close enough to arrive."
+    },
+    {
+      "img": "/images/family-emergency-binder/app-screenshot-7-documents.png",
+      "alt": "Document Locator register",
+      "captionBold": "Where it is, never what it says.",
+      "caption": "Have it, need it, or not applicable - with where the original lives and who else can reach it."
+    },
+    {
+      "img": "/images/family-emergency-binder/app-screenshot-10-grab.png",
+      "alt": "The Ten-Minute List register",
+      "captionBold": "In carrying order.",
+      "caption": "People and animals, then papers, then prescriptions - arranged by what cannot be replaced."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Nothing you type ever leaves your device, and it never asks for a password by design.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+      },
+      {
+        "title": "Never a password",
+        "body": "By design, it never asks for or stores passwords or PINs. It records that accounts exist and where your written instructions live — the map, never the keys."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One-time purchase. The file is yours, works offline for life, and will still open years from now, exactly as it does today."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "The emergency binder that holds the map instead of the keys — where everything is and who to call, with nowhere to write a Social Security number, an account number, or a password.",
+    "bullets": [
+      "Contacts ranked by what each person can actually do, not just their number",
+      "Medical for each person: conditions, allergies with the reaction, medications with dose",
+      "The house itself — shut-offs, the tool each one needs, the breaker panel, the wifi",
+      "A document locator that records where the original is, never what is printed on it",
+      "Institutions with last four digits and a number to call — the FEMA convention, enforced",
+      "Insurance with coverage limits and the date you last checked them",
+      "A ten-minute list in the order you would actually carry things out",
+      "Three printable pages: one for the fridge, one for a sitter, one for the closet door",
+      "Auto-save with backup and restore"
+    ]
+  },
+  "faq": [
+    {
+      "q": "Is this a subscription?",
+      "a": "No. You pay 29 once and the app is yours forever. There is no account, no renewal, and nothing that expires."
+    },
+    {
+      "q": "Do I need to install anything?",
+      "a": "No. You download a small file, double-click it, and it opens in the browser you already use — on Mac, Windows, tablets, and phones."
+    },
+    {
+      "q": "Is my information really private?",
+      "a": "Yes, structurally. The app makes zero network requests — you can verify this with Wi-Fi turned off. Your entries live only on your device, and your backup is a file you control."
+    },
+    {
+      "q": "What if it doesn't work for me?",
+      "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    }
+  ],
+  "crossSell": {
+    "heading": "Already had the fire, the flood, or the break-in?",
+    "body": "Pairs with the Home Inventory & Insurance Claim Organizer: this covers the ten minutes before you leave, that one covers proving what you owned once you are allowed back. The Estate Planning Organizer is the natural next step rather than an alternative — this is the one people actually finish, and finishing it is usually when they notice the larger job is still waiting.",
+    "href": "/home-inventory-organizer",
+    "cta": "See the claim organizer"
+  }
+}

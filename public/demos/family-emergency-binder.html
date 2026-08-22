@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<!-- Quietkeep build family-emergency-binder-bba4ba064a -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Emergency Binder — Quietkeep</title>
+<style>
+:root{
+  --spruce:#24413B; --porcelain:#F1F0EB; --brass:#A5834B; --mist:#9DB4AC; --ink:#1F2724;
+  --white:#FFFFFF; --line:#D8D6CE; --soft:#E7E5DD; --danger:#8A3B2E;
+  --serif:Charter,'Bitstream Charter',Georgia,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--porcelain);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5}
+header{background:var(--spruce);color:var(--porcelain);padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:4px solid var(--brass)}
+header .mark{flex:0 0 auto}
+header h1{font-family:var(--serif);font-size:1.35rem;font-weight:bold;letter-spacing:.2px}
+header .sub{font-size:.78rem;color:var(--mist);letter-spacing:.14em;text-transform:uppercase;margin-top:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:20px 18px 80px}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
+nav button{font-family:var(--sans);font-size:.92rem;font-weight:600;padding:10px 16px;border:1.5px solid var(--spruce);border-radius:999px;background:var(--white);color:var(--spruce);cursor:pointer}
+nav button.active{background:var(--spruce);color:var(--porcelain)}
+nav button:hover{border-color:var(--brass)}
+.bar{background:var(--soft);border-radius:8px;height:14px;overflow:hidden;margin:6px 0 2px}
+.bar>div{background:var(--brass);height:100%;border-radius:8px;transition:width .3s}
+.progress-label{font-size:.85rem;color:var(--spruce)}
+.review-flag{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:10px 14px;margin:12px 0 0;font-size:.9rem;color:#6b5525;display:none}
+.review-flag.show{display:block}
+section.tab{display:none;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px}
+section.tab.active{display:block}
+h2{font-family:var(--serif);font-size:1.5rem;margin-bottom:6px}
+h3{font-family:var(--serif);font-size:1.15rem;margin:22px 0 4px;color:var(--spruce)}
+.note{font-size:.9rem;color:#5c6660;margin-bottom:14px}
+.phase{margin-bottom:26px}
+.task{display:flex;gap:12px;align-items:flex-start;padding:10px 8px;border-bottom:1px solid var(--soft)}
+.task:last-child{border-bottom:none}
+.task input[type=checkbox]{width:22px;height:22px;accent-color:var(--spruce);margin-top:3px;flex:0 0 auto;cursor:pointer}
+.task .t{font-weight:600}
+.task .why{font-size:.86rem;color:#5c6660;margin-top:2px}
+.task.done .t{color:#7a827d;text-decoration:line-through}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--spruce);text-align:left;padding:8px 6px;border-bottom:2px solid var(--spruce)}
+td{padding:6px 4px;border-bottom:1px solid var(--soft);vertical-align:middle}
+td input,td select{width:100%;font-family:var(--sans);font-size:.92rem;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#FCFBF8;color:var(--ink)}
+td input:focus,td select:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+td.num input{text-align:right}
+.del{background:none;border:none;color:var(--danger);font-size:1.05rem;cursor:pointer;padding:4px 8px}
+.add{margin-top:12px;background:var(--spruce);color:var(--porcelain);border:none;border-radius:999px;padding:10px 18px;font-weight:600;font-size:.92rem;cursor:pointer}
+.add:hover{background:#2E5249}
+.totals{margin-top:12px;font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.totals strong{color:var(--ink)}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.toolbar button{border:1.5px solid var(--spruce);background:var(--white);color:var(--spruce);border-radius:999px;padding:10px 16px;font-weight:600;font-size:.9rem;cursor:pointer}
+.toolbar button.primary{background:var(--spruce);color:var(--porcelain)}
+.toolbar button:hover{border-color:var(--brass)}
+.pill{display:inline-block;background:var(--soft);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--spruce);margin-left:8px}
+/* Wide registers (Home Inventory's 13-column inventory table is the worst
+   case in the catalogue) squeeze every column to illegibility when forced
+   into the 1040px wrap at width:100% — a number input's spinner arrows alone
+   can eat a 5%-wide column, so the digit inside never renders at all. Give
+   the table room to be its natural width and let the wrapper scroll instead
+   of compressing. Found by actually looking at a screenshot, not by reading
+   the column list. */
+.table-wrap{overflow-x:auto;margin-top:10px}
+.table-wrap table{margin-top:0}
+.wish{margin:0 0 22px}
+.wish label{display:block;font-family:var(--serif);font-size:1.12rem;color:var(--spruce);margin-bottom:2px}
+.wish .prompt{font-size:.86rem;color:#5c6660;margin-bottom:8px}
+.wish textarea{width:100%;min-height:110px;font-family:var(--sans);font-size:.95rem;line-height:1.5;padding:11px 12px;border:1px solid var(--line);border-radius:9px;background:#FCFBF8;color:var(--ink);resize:vertical}
+.wish textarea:focus{outline:2px solid var(--brass);border-color:var(--brass)}
+.warnline{font-size:.82rem;color:var(--danger);margin-top:6px;font-weight:600}
+.savebar{position:fixed;bottom:0;left:0;right:0;background:var(--spruce);color:var(--mist);font-size:.82rem;padding:8px 18px;display:flex;justify-content:space-between;align-items:center}
+.savebar b{color:var(--porcelain)}
+.disclaimer{font-size:.8rem;color:#6a736d;margin-top:18px;border-top:1px solid var(--soft);padding-top:10px}
+.review-box{background:#F7F6F1;border:1px solid var(--line);border-radius:11px;padding:16px 18px;margin:6px 0 16px}
+.review-box .rl{font-family:var(--serif);font-size:1.05rem;color:var(--spruce)}
+.review-box .rl strong{color:var(--ink)}
+/* First-open notice: storage truth + erase truth + (per product) safety guidance.
+   Shown on EVERY open, not just the first — a disclaimer that appears only at
+   first start-up is exactly what sank the defence in UPLC v. Parsons Technology. */
+.qk-veil{position:fixed;inset:0;background:rgba(31,39,36,.72);z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;overflow-y:auto}
+.qk-veil[hidden]{display:none}
+.qk-notice{background:var(--white);border:1px solid var(--line);border-radius:14px;max-width:640px;width:100%;padding:26px 28px;margin:auto}
+.qk-notice h2{font-family:var(--serif);font-size:1.35rem;color:var(--spruce);margin-bottom:10px}
+.qk-notice p{font-size:.92rem;color:#3f4945;margin-bottom:12px}
+.qk-notice .hot{background:#FBF3E2;border:1px solid var(--brass);border-radius:10px;padding:12px 14px;font-size:.92rem;color:#5d4a20;margin-bottom:14px}
+.qk-notice .hot b{color:var(--ink)}
+.qk-notice .fine{font-size:.8rem;color:#6a736d;border-top:1px solid var(--soft);padding-top:10px;margin-bottom:16px}
+.savebar .right{display:flex;align-items:center;gap:10px}
+.savebar .erase{background:none;border:1px solid var(--mist);color:var(--porcelain);border-radius:999px;padding:4px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
+.savebar .erase:hover{background:var(--danger);border-color:var(--danger)}
+#print-area{display:none}
+@media print{
+  body *{visibility:hidden}
+  #print-area,#print-area *{visibility:visible}
+  #print-area{display:block;position:absolute;top:0;left:0;width:100%;font-family:var(--serif);color:#000}
+  #print-area h1{font-size:22pt;margin-bottom:2pt}
+  #print-area .ph{font-size:9pt;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14pt;color:#333}
+  #print-area h2{font-size:13pt;margin:16pt 0 4pt;border-bottom:1pt solid #000;padding-bottom:2pt}
+  #print-area h3{font-size:11pt;margin:10pt 0 2pt}
+  #print-area table{width:100%;border-collapse:collapse;font-size:10pt;margin-top:4pt}
+  #print-area th,#print-area td{border-bottom:.5pt solid #999;padding:3pt 4pt;text-align:left;vertical-align:top}
+  #print-area p{font-size:10pt;margin:4pt 0}
+  #print-area .lead{font-size:11pt;margin:6pt 0 10pt}
+  #print-area .wblock{font-size:10.5pt;margin:2pt 0 10pt;white-space:pre-wrap}
+  #print-area .foot{font-size:8.5pt;color:#333;margin-top:14pt;border-top:.5pt solid #999;padding-top:6pt}
+}
+@media(max-width:640px){
+  .wrap{padding:14px 10px 90px}
+  section.tab{padding:14px}
+  th,td{font-size:.85rem}
+}
+</style>
+</head>
+<body>
+<header>
+  <svg class="mark" width="44" height="44" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="4" y="4" width="92" height="92" rx="24" fill="#F1F0EB"/>
+    <rect x="13" y="13" width="74" height="74" rx="17" fill="none" stroke="#A5834B" stroke-width="2.5"/>
+    <circle cx="50" cy="42" r="12" fill="#24413B"/>
+    <path d="M 45 48 L 41 66 L 59 66 L 55 48 Z" fill="#24413B"/>
+    <rect x="41" y="61" width="18" height="6" rx="3" fill="#24413B"/>
+  </svg>
+  <div>
+    <h1>Family Emergency Binder</h1>
+    <div class="sub">Quietkeep · Everything stays on your device</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="progress-label" id="overall-label">Overall progress</div>
+  <div class="bar"><div id="overall-bar" style="width:0%"></div></div>
+  <div class="review-flag" id="review-flag"></div>
+
+  <nav id="nav"></nav>
+  <div id="sections"></div>
+</div>
+
+<div class="savebar"><span>Quietkeep · Family Emergency Binder</span><span class="right"><span id="save-status"><b>All changes saved on this device</b></span><button class="erase" onclick="eraseAll()" title="Erase everything saved in this browser">Erase everything</button></span></div>
+<div id="print-area"></div>
+
+<div class="qk-veil" id="qk-veil" hidden>
+  <div class="qk-notice" role="dialog" aria-modal="true" aria-labelledby="qk-notice-h">
+    <h2 id="qk-notice-h"></h2>
+    <div id="qk-notice-body"></div>
+    <div class="toolbar" style="margin-top:0"><button class="primary" id="qk-notice-ok">Continue</button></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* Quietkeep data-driven engine. Everything product-specific lives in CONFIG,
+   injected at build time by generators/qk_app.py from the product manifest.
+   Hard promises: single file, zero network, never a credential field. */
+const CONFIG={"name":"Family Emergency Binder","storageKey":"qk-family-emergency-binder","backupPrefix":"emergency-binder","tasks":{"tab":"Tasks","heading":"Guided Tasks","intro":"Six short passes, in the order that matters. The first one takes about thirty minutes and covers most of what anyone would need in the first hour.","disclaimer":"This is an organizer, not legal, tax, or financial advice. For decisions about a will, trust, power of attorney, or beneficiary designation, consult a licensed attorney in your state."},"phases":[{"name":"Phase 1 - The page for the first hour","tasks":[["List who to call, and what each of them can do","A phone number is not enough. Whoever is standing in your kitchen needs to know which name has a key, which one can collect a child from school, and which one lives close enough to arrive."],["Write each person's conditions, allergies and medications","Allergies need the reaction written beside them, not just the name. Medication lists drift within months, which is why this page is the quickest one to reprint."],["Note the animals","Vet, food, medication, microchip, and who takes them if you cannot. Shelters and hotels ask about this before they ask about anything else."],["Find the water shut-off, and write down what tool it needs","This is the field missing from nearly every binder sold. Knowing the valve exists is no help at eleven at night without the key that turns it."]],"pathTags":["core"]},{"name":"Phase 2 - Where things actually are","tasks":[["Work through the document list and mark what you have","Have, need, or not applicable. The point of marking 'need' is that it becomes a short list of things to go and get."],["Write where each original lives","The location, never what is printed on it. 'Safe deposit box, First National on Main, Dana has the second key' is useful to your family and worthless to anyone else."],["Note who else can reach each one","A document nobody else can get to is only half recorded. If a safe deposit box is involved, check now what your state allows after a death - several require a court order."]],"pathTags":["core"]},{"name":"Phase 3 - If you had ten minutes","tasks":[["Build the ten-minute list in carrying order","People and animals, then papers, then prescriptions and glasses, then pictures, then hard drives. That order is Cal Fire's, and it runs by what cannot be replaced."],["Photograph or film each room while nothing has happened","Do it now, from the doorway, with cupboards open. This is the evidence that decides claims, and it cannot be created after a loss."],["Decide where the printed list gets taped","Inside a closet door or the back of a cupboard. Somewhere you would pass on the way out, not filed somewhere you would have to stop and look."]],"pathTags":["core"]},{"name":"Phase 4 - The household without you","tasks":[["Note which bills are automatic and which are not","The mortgage or rent is the one that matters first. A house does not stop needing paying because someone is in a hospital."],["Write down the institutions and the numbers to call","The name of the bank, what the account is for, the last four digits, and the number to call. Never the full number, and never a password - there is nowhere here to put one."],["Record insurance limits, not only policy numbers","A policy number tells your family who to ring. The limit tells you whether you are actually covered, and it is the number that quietly goes out of date."]],"pathTags":["core"]},{"name":"Phase 5 - Print it","tasks":[["Print the fridge page","It holds nothing that would be dangerous in a kitchen. That is deliberate, and it is why it can live where someone will actually find it."],["Print the sitter page and hand a copy over","Everything a person minding your children or your house needs, and nothing that would matter if they kept it."],["Tape the ten-minute list inside a closet door","Print it twice. One for the house, one for the car."]],"pathTags":["core"]},{"name":"Phase 6 - Keep it true","tasks":[["Set a reminder twice a year","Tax time and the clock change work as well as anything. Most of this stays right for years; a few lines go wrong within months."],["Recheck medications and contacts first","These decay fastest, and they are the ones on the page a stranger reads."],["Verify beneficiaries with each institution rather than copying them here","Whoever is named on the form at the company is who gets paid, and a divorce decree does not always change it. Ring them and ask what they have on file."]],"pathTags":["core"]}],"registers":[{"id":"contacts","tab":"Who to Call","heading":"Who to Call, and What They Can Do","noun":"contact","intro":"Ordered by usefulness rather than closeness. The question this answers is not who loves you most - it is who can be at the house in twenty minutes, and who has a key.","columns":[{"key":"name","label":"Name","width":"18%","sample":["Maya Alcott","Dev Raman","Aunt Carol","Priya Nair"],"type":"text"},{"key":"rel","label":"Relationship","width":"14%","sample":["Sister","Neighbour","Aunt","Closest friend"],"type":"text"},{"key":"phone","label":"Phone","width":"13%","sample":["(555) 010-4417","(555) 010-2288","(555) 010-7391","(555) 010-5502"],"type":"text"},{"key":"can","label":"What they can do","width":"24%","type":"list","options":["Has a key","Can collect the children","Lives close by","Knows the codes","Handles the animals","Named in the legal documents","Employer / HR","Neighbour","Other"]},{"key":"notes","label":"Notes","sample":["Works nights, better after 10am","Two doors down, home most days","Lives 40 minutes away","Has met the children"],"type":"text"}],"counter":"category","counterField":"can","pathTags":["core"]},{"id":"people","tab":"Household","heading":"The People in the Household","noun":"person","intro":"Each person, and the place that would need telling. Schools and employers are where a message actually has to reach, and they are the detail most binders leave out.","columns":[{"key":"name","label":"Name","width":"18%","sample":["Maya Alcott","Theo Alcott","Rosa Alcott","Sam Alcott"],"type":"text"},{"key":"dob","label":"Date of birth","width":"12%","type":"date"},{"key":"rel","label":"Relationship","width":"13%","sample":["Self","Son","Mother","Partner"],"type":"text"},{"key":"where","label":"School or employer","width":"20%","sample":["Riverside Primary","Northgate Middle School","Retired","Hartwell Design Co."],"type":"text"},{"key":"wherecontact","label":"Named contact there + phone","width":"22%","sample":["Front office, (555) 010-6120","Ms. Duarte, (555) 010-8890","-","Jo Whitfield, HR, (555) 010-3344"],"type":"text"},{"key":"notes","label":"Notes","sample":["","Bus 14, home 3:40","Uses a walker","Travels most Tuesdays"],"type":"text"}],"counter":"count","counterLabel":"People recorded","pathTags":["core"]},{"id":"medical","tab":"Medical","heading":"Medical, Person by Person","noun":"entry","warn":"Record what a clinician already told you. This is a list to hand someone, never a source of medical guidance, and never a reason to delay calling emergency services.","intro":"Allergies belong here with the reaction beside them. Medication lists go out of date within months, which is why this page is the quickest one to reprint.","columns":[{"key":"person","label":"Person","width":"13%","sample":["Maya","Theo","Rosa","Sam"],"type":"text"},{"key":"conditions","label":"Conditions","width":"17%","sample":["Asthma","Type 1 diabetes","Atrial fibrillation","None recorded"],"type":"text"},{"key":"allergies","label":"Allergies - and the reaction","width":"19%","sample":["Penicillin - rash","Peanuts - anaphylaxis, carries an injector","None known","Latex - hives"],"type":"text"},{"key":"meds","label":"Medications, dose and frequency","width":"21%","sample":["Inhaler, as needed","Insulin pump, see pump card","Blood thinner, once daily, morning","None"],"type":"text"},{"key":"doctor","label":"Doctor / pharmacy","width":"15%","sample":["Dr Ellery, (555) 010-1180","Dr Ayodele, (555) 010-9925","Dr Novak, (555) 010-4416","Bright Street Pharmacy"],"type":"text"},{"key":"equipment","label":"Equipment (model + supplier)","sample":["-","Insulin pump - model on the card in the kitchen drawer","Walker","-"],"type":"text"}],"counter":"count","counterLabel":"People covered","pathTags":["core"]},{"id":"pets","tab":"Animals","heading":"Animals","noun":"animal","intro":"The first question a shelter, a hotel, or a neighbour asks. A microchip number is fine here - it identifies the animal, not you.","columns":[{"key":"name","label":"Name","width":"13%","sample":["Biscuit","Marlow","Pepper","Juno"],"type":"text"},{"key":"kind","label":"Species / breed","width":"15%","sample":["Dog, terrier mix","Cat, tabby","Dog, retriever","Rabbit"],"type":"text"},{"key":"vet","label":"Vet + phone","width":"18%","sample":["Elmwood Vets, (555) 010-6677","Elmwood Vets, (555) 010-6677","Riverbend Animal, (555) 010-2020","Elmwood Vets, (555) 010-6677"],"type":"text"},{"key":"meds","label":"Food and medication","width":"20%","sample":["Two cups morning and night","Dry food, thyroid tablet daily","One scoop twice daily","Hay, greens, pellets"],"type":"text"},{"key":"chip","label":"Microchip","width":"13%","sample":["Chipped - Elmwood has the record","Chipped","Chipped","Not chipped"],"type":"text"},{"key":"who","label":"Who takes them","sample":["Dev, two doors down","Dev, two doors down","Aunt Carol","Dev, two doors down"],"type":"text"}],"counter":"count","counterLabel":"Animals recorded","pathTags":["core"]},{"id":"house","tab":"The House","heading":"Shut-offs and Systems","noun":"item","intro":"The household-operations layer almost every binder skips. Knowing a valve exists is no help at eleven at night without the tool that turns it.","columns":[{"key":"item","label":"What","width":"18%","type":"list","options":["Water shut-off","Gas shut-off","Electrical panel","Furnace / boiler","Water heater","Sump pump","Alarm system","Wifi / router","Septic / well","Other"]},{"key":"where","label":"Where it is","width":"24%","sample":["Basement, behind the stairs","Outside, left of the meter box","Hall cupboard, top shelf","Garage, back wall"],"type":"text"},{"key":"tool","label":"Tool needed","width":"15%","sample":["Curb key, hangs beside it","None - quarter turn by hand","None","Flathead screwdriver"],"type":"text"},{"key":"who","label":"Who else knows","width":"16%","sample":["Sam","Dev next door","Sam and Maya","Maya"],"type":"text"},{"key":"notes","label":"Notes","sample":["Stiff - turn slowly","Do not close unless told to by the utility","Labelled inside the door","Serviced each autumn"],"type":"text"}],"counter":"count","counterLabel":"Systems recorded","pathTags":["core"]},{"id":"documents","tab":"Document Locator","heading":"What Exists, and Where It Is","noun":"document","warn":"Record where the document lives and who can reach it. Never copy what is printed on it - no Social Security numbers, no account numbers, no policy numbers. There is nowhere here to put them, and that is the point.","intro":"Marked have, need, or not applicable, with the date you last touched it. The rows marked 'need to get' become a short list of things to go and collect. Passwords belong here as a row, not as a value: name the password manager, say who has emergency access to it and how long the wait period is, and note where the printed recovery kit lives. That is everything your family needs and nothing anyone else can use.","columns":[{"key":"doc","label":"Document","width":"20%","type":"list","options":["Birth certificate","Passport","Driver's licence / state ID","Social Security card","Marriage certificate","Divorce decree","Military discharge (DD-214)","Deed or title","Lease","Vehicle title","Will","Power of attorney","Advance directive","Insurance policy","Immunisation record","Pet records","Password manager emergency access","Safe deposit box","Other"]},{"key":"person","label":"Whose","width":"11%","sample":["Maya","Theo","Rosa","Sam"],"type":"text"},{"key":"status","label":"Status","width":"11%","type":"select","options":["Have it","Need to get","Not applicable"]},{"key":"where","label":"Where the original is","width":"22%","sample":["Fireproof box, bedroom wardrobe","Safe deposit box, First National on Main","Filing cabinet, second drawer","With the attorney, Boyd & Frame"],"type":"text"},{"key":"who","label":"Who else can reach it","width":"15%","sample":["Sam has the second key","Maya and Sam","Sam","The attorney's office"],"type":"text"},{"key":"expires","label":"Expires / review","width":"11%","type":"date"}],"counter":"category","counterField":"status","pathTags":["core"]},{"id":"institutions","tab":"Institutions","heading":"Who Holds What","noun":"institution","warn":"Last four digits only. This register cannot hold a full account number, a password, or a PIN, and no field here should be used to smuggle one in. FEMA's own emergency financial kit uses exactly this convention: last four digits, and a phone number to call. There is also a legal reason. If a binder is stolen, US consumer rules do not reduce your protection for having written something down. If you hand the binder to someone and they move money, that is a transfer you authorised, and those protections do not apply. The danger is not theft. It is the handover — and this product is built to be handed over.","intro":"Enough for your family to ring the right place and be taken seriously. Not enough for anyone who finds this to move money.","columns":[{"key":"inst","label":"Institution","width":"20%","sample":["First National","Harbour Credit Union","Meridian Card Services","Lattice Retirement"],"type":"text"},{"key":"type","label":"What it is","width":"17%","type":"list","options":["Checking","Savings","Credit card","Mortgage","Retirement / 401(k)","Investment","Loan","Utility","Subscription","Other"]},{"key":"last4","label":"Last 4 digits","width":"11%","sample":["4417","2290","8830","1174"],"type":"text"},{"key":"phone","label":"Phone to call","width":"15%","sample":["(555) 010-1000","(555) 010-2000","(555) 010-3000","(555) 010-4000"],"type":"text"},{"key":"autopay","label":"Automatic?","width":"12%","type":"select","options":["Automatic","Paid manually","Not sure"]},{"key":"notes","label":"Notes","sample":["Everyday account","Rent leaves here on the 1st","Cancellation line is on the back of the card","Through Sam's employer"],"type":"text"}],"counter":"category","counterField":"autopay","pathTags":["core"]},{"id":"insurance","tab":"Insurance","heading":"Policies, and What They Actually Cover","noun":"policy","warn":"The limit matters more than the number. Coverage that was right when a policy was written can be badly short years later, and nothing tells you except checking.","intro":"Carrier, who to ring to make a claim, the limit, and the date you last confirmed it. Auto policies often run in six-month terms, so a line checked a year ago may already be two renewals out of date.","columns":[{"key":"carrier","label":"Carrier","width":"17%","sample":["Northgate Mutual","Harborline","Meridian Life","Elmwood Pet"],"type":"text"},{"key":"type","label":"Type","width":"14%","type":"list","options":["Homeowners","Renters","Flood","Auto","Life","Health","Umbrella","Pet","Other"]},{"key":"agent","label":"Agent + phone","width":"18%","sample":["R. Okafor, (555) 010-7700","Call centre only","R. Okafor, (555) 010-7700","-"],"type":"text"},{"key":"claims","label":"Claims line","width":"14%","sample":["(555) 010-7711","(555) 010-8811","(555) 010-7711","(555) 010-9911"],"type":"text"},{"key":"limit","label":"Coverage limit ($)","width":"13%","type":"num","sample":["420000","35000","250000","4000"]},{"key":"checked","label":"Limit last checked","width":"12%","type":"date"},{"key":"where","label":"Where the policy is","sample":["Fireproof box","Emailed each renewal - printed copy in the box","With the attorney","Folder in the kitchen"],"type":"text"}],"counter":"total","counterField":"limit","totalLabel":"Total coverage recorded","line":"Recorded coverage across {n} policies comes to {total}. Whether that is enough is a question for your agent, not for this app.","pathTags":["core"]},{"id":"grab","tab":"Ten Minutes","heading":"The Ten-Minute List","noun":"item","intro":"In carrying order. People and animals, then papers, then prescriptions and glasses, then pictures, then hard drives - Cal Fire's order, arranged by what cannot be replaced. Two things the lists usually leave out: mark the door if you have taken the animals with you, and do not leave the box sitting in an unattended car.","columns":[{"key":"item","label":"What to take","width":"24%","sample":["Everyone, then Biscuit and Marlow","The document box","Medication bag and glasses","The photo box from the loft"],"type":"text"},{"key":"order","label":"In this order","width":"17%","type":"select","options":["1 - People and animals","2 - Papers","3 - Prescriptions and glasses","4 - Pictures and irreplaceable things","5 - Hard drives","6 - Cards and cash"]},{"key":"where","label":"Where it is","width":"22%","sample":["-","Bedroom wardrobe, bottom","Kitchen drawer, left of the sink","Loft hatch, first box on the right"],"type":"text"},{"key":"who","label":"Who carries it","width":"14%","sample":["Sam","Maya","Maya","Sam"],"type":"text"},{"key":"notes","label":"Notes","sample":["Carriers are under the stairs","Handle on the top","Grab the inhaler from the hall too","Only if there is time"],"type":"text"}],"counter":"category","counterField":"order","pathTags":["core"]}],"paths":[],"pathsEnabled":false,"pathsTab":"Your Paths","pathsIntro":"Turn on whichever of these apply to you. You can change this anytime — nothing is locked in, and turning a path off never deletes anything you've already entered under it.","wishesEnabled":true,"wishes":{"tab":"Wishes","heading":"Wishes & Instructions","intro":"The things that do not fit in a table. Written for whoever opens this without you there to explain it.","items":[{"key":"firstNote","label":"If you are reading this and I am not here","prompt":"What you would want them to do first, and what can wait. A few sentences is plenty."},{"key":"sitter","label":"For whoever is minding the house","prompt":"Routines, bedtimes, what settles a child, what the dog is frightened of, which door sticks. The ordinary things you would say at the door if you had time."},{"key":"houseNotes","label":"Quirks of this house","prompt":"The breaker that trips, the tap that turns the wrong way, the neighbour who parks across the drive."},{"key":"afterAction","label":"What we learned last time","prompt":"After a storm, a scare, or a trip away - what was missing, and what you were glad you had.","warn":"Still nothing sensitive here. This page prints."}]},"sheet":null,"sheets":[{"tab":"Fridge Page","heading":"The Page for the Fridge","button":"Print the fridge page","intro":"Contacts, medical essentials, animals and shut-offs. It holds nothing that would be dangerous in a kitchen, which is exactly why it can live somewhere a stranger will find it.","docTitle":"In an Emergency - This Household","docTag":"Keep on the refrigerator - reprint when anything changes","lead":"For anyone helping this household in an emergency. Call emergency services first; this page is here to answer what they ask next.","foot":"An information sheet, not a medical or legal document. It contains no account numbers, Social Security numbers, or passwords, by design.","sections":[{"type":"register","id":"contacts","title":"Who to call"},{"type":"register","id":"medical","title":"Medical"},{"type":"register","id":"pets","title":"Animals"},{"type":"register","id":"house","title":"Shut-offs"}]},{"tab":"Sitter Page","heading":"The Page You Hand Over","button":"Print the sitter page","intro":"For a babysitter, a neighbour, or a relative staying while you are away. Everything they need, and nothing that would matter if they kept it.","docTitle":"While You Are Minding This House","docTag":"Prepared by the household","lead":"Thank you for helping. Emergency services first, always. Everything below is what people usually need to ask.","foot":"Contains no account numbers, Social Security numbers, or passwords. Safe to keep.","sections":[{"type":"register","id":"contacts","title":"Who to call"},{"type":"register","id":"people","title":"Who lives here"},{"type":"register","id":"medical","title":"Medical"},{"type":"register","id":"pets","title":"Animals"},{"type":"wish","key":"sitter","title":"Notes for you","empty":"Nothing written down yet."}]},{"tab":"Ten-Minute List","heading":"The List for the Closet Door","button":"Print the ten-minute list","intro":"Print it twice - one for the house, one for the car. Tape it somewhere you would pass on the way out.","docTitle":"If We Have Ten Minutes","docTag":"Tape inside a closet door - keep one copy in the car","lead":"In carrying order. People and animals first; everything after that is replaceable, in descending order of how replaceable.","foot":"Locations only. Nothing on this page is worth anything to someone who finds it.","sections":[{"type":"register","id":"grab","title":"What to take, in order"},{"type":"register","id":"house","title":"Shut off on the way out"},{"type":"register","id":"documents","title":"Where the originals are"}]}],"summary":{"disclaimer":"This is an organizer, not legal, tax, or financial advice. For decisions about a will, trust, power of attorney, or beneficiary designation, consult a licensed attorney in your state.","reviewNote":"Twice a year is enough for most of it. Medications, contacts and school details go wrong faster than everything else, and they are the ones on the page a stranger reads."},"safety":{},"legacyTasks":null};
+const PHASES=CONFIG.phases;
+const REGISTERS=CONFIG.registers||[];
+const WISHES=(CONFIG.wishes&&CONFIG.wishes.items)||[];
+const STORAGE_KEY=CONFIG.storageKey;
+const SAFETY=CONFIG.safety||{};
+/* A product may declare several printable outputs (`sheets`) rather than one.
+   Special Needs needs this for a real reason, not tidiness: a single packet
+   that compiles benefits status AND guardianship wishes is right for a future
+   guardian and wrong to hand a third-grade teacher. `sheet` stays supported so
+   the ten products built before this keep generating byte-identical output. */
+const SHEETS=(CONFIG.sheets&&CONFIG.sheets.length)?CONFIG.sheets:(CONFIG.sheet?[CONFIG.sheet]:[]);
+
+/* ---------- path-tagged modules ----------
+   A product may declare CONFIG.paths (togglable, revisitable — never a locked
+   onboarding fork) instead of one fixed structure for every buyer. A path with
+   `always:true` (normally "core") is on for everyone and never shown as a
+   toggle. Every phase/register carries pathTags, defaulted to ["core"] by
+   qk_app.py — so a product with no paths block renders exactly as it did
+   before this capability existed. Turning a path off hides its phases and
+   registers from the nav; it never touches the data already saved under it,
+   which is why totals/print still read straight from state regardless of
+   which paths are currently toggled on. */
+const PATHS=CONFIG.paths||[];
+const PATHS_ENABLED=!!CONFIG.pathsEnabled;
+const TOGGLABLE_PATHS=PATHS.filter(p=>!p.always);
+function pathAlwaysOn(key){const p=PATHS.find(x=>x.key===key);return !!(p&&p.always);}
+function pathVisible(tags){
+  /* A product with no `paths` block at all (every product before this one)
+     must render every phase/register unconditionally — pathTags still
+     defaults to ["core"] on those, but there is no "core" entry in an empty
+     PATHS array to mark it always-on, so this short-circuit is load-bearing,
+     not a convenience. */
+  if(!PATHS_ENABLED)return true;
+  const t=(tags&&tags.length)?tags:["core"];
+  return t.some(k=>pathAlwaysOn(k)||!!(state&&state.paths&&state.paths[k]));
+}
+function visibleRegisters(){return REGISTERS.filter(r=>pathVisible(r.pathTags));}
+
+/* ---------- task identity ----------
+   Task completion used to be stored by POSITION ("p0t3"). That meant inserting
+   a task in the middle of a phase silently moved every tick below it onto a
+   different task — a buyer saw work marked done that they had never done, and
+   lost credit for work they had. On products whose whole promise is "nothing
+   important gets missed", that is worse than losing the data outright.
+
+   Keys are now a slug of the task title, which survives reordering, insertion
+   and deletion. Verified unique within every product in the catalogue.
+   `migrateTaskKeys()` converts an existing buyer's positional ticks exactly
+   once, using the task order as it stood when they saved. */
+function slugKey(s){
+  return String(s == null ? "" : s).toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-")
+    .replace(/^-|-$/g, "").slice(0, 48);
+}
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function nl2br(s){return esc(s).replace(/\n/g,"<br>");}
+function nonEmpty(v){return v!==undefined&&v!==null&&String(v).trim()!=="";}
+function money(n){return "$"+(Math.round(n*100)/100).toLocaleString("en-US",{minimumFractionDigits:0,maximumFractionDigits:2});}
+function plain(n){return (Math.round(n*100)/100).toLocaleString("en-US");}
+/* Totals are money by default — the estate and divorce lines all count dollars.
+   Some registers count minutes or plain units instead (service delivery, for
+   one), so a register may set totalFormat:"plain" with totalUnit:"minutes". */
+function fmtTotal(reg,n){
+  return reg.totalFormat==="plain"
+    ? plain(n)+(reg.totalUnit?" "+reg.totalUnit:"")
+    : money(n);
+}
+function fmtCell(col,v){
+  if(col.format==="plain")return plain(parseFloat(v)||0);
+  return money(parseFloat(v)||0);
+}
+/* A "calc" column is derived and never stored: calc:["a","b"] with op "*" or
+   "-". It keeps the arithmetic a buyer would otherwise do by hand — quantity
+   x cost-each, or actual minus normal — inside the engine, where it stays
+   correct as rows change instead of going stale the moment anything is edited. */
+function calcVal(reg,row,col){
+  const a=(col.calc||[])[0],b=(col.calc||[])[1];
+  const x=parseFloat(row[a])||0,y=parseFloat(row[b])||0;
+  return col.op==="-"?(x-y):(x*y);
+}
+function cellVal(reg,row,col){return col.type==="calc"?calcVal(reg,row,col):row[col.key];}
+function regById(id){return REGISTERS.find(r=>r.id===id);}
+function colByKey(reg,key){return reg.columns.find(c=>c.key===key);}
+function numKey(reg){const c=reg.columns.find(c=>c.type==="num");return c?c.key:null;}
+
+/* ---------- state ---------- */
+let state=null;
+/* Stable per-task keys, computed once from the current phase order. */
+const TASK_KEYS=PHASES.map(ph=>(ph.tasks||[]).map(t=>slugKey(t[0])));
+
+/* Convert positional task ticks to stable keys, once, on first open of an
+   updated file. `legacyTasks` is the task order AS THE BUYER HAS IT — needed
+   only when a release reorders tasks in the same version that introduces this
+   migration. Otherwise the current order is the buyer's order, so it is the
+   correct fallback and the migration is exact. */
+function migrateTaskKeys(){
+  if(state.tkv>=2){return;}
+  const legacy=CONFIG.legacyTasks||PHASES.map(ph=>(ph.tasks||[]).map(t=>t[0]));
+  const out={};
+  (legacy||[]).forEach((ph,pi)=>(ph||[]).forEach((title,ti)=>{
+    if(state.tasks&&state.tasks["p"+pi+"t"+ti])out[slugKey(title)]=true;
+  }));
+  /* Preserve any keys that are already slugs — a re-restored backup, or a file
+     opened by a newer build first. Never drop a tick we cannot explain. */
+  Object.keys(state.tasks||{}).forEach(k=>{
+    if(!/^p\d+t\d+$/.test(k)&&state.tasks[k])out[k]=true;
+  });
+  state.tasks=out;
+  state.tkv=2;
+}
+
+function defaultState(){
+  const d={v:1,tkv:2,tasks:{},wishes:{},lastReviewed:null,paths:{}};
+  REGISTERS.forEach(r=>{d[r.id]=[];});
+  return d;
+}
+function load(){
+  try{const raw=localStorage.getItem(STORAGE_KEY);state=raw?JSON.parse(raw):defaultState();}
+  catch(e){state=defaultState();}
+  REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[];});
+  if(typeof state.tasks!=="object"||!state.tasks)state.tasks={};
+  if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+  if(typeof state.paths!=="object"||!state.paths)state.paths={};
+  if(state.lastReviewed===undefined)state.lastReviewed=null;
+  migrateTaskKeys();
+}
+function save(){
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    document.getElementById("save-status").innerHTML="<b>All changes saved on this device</b>";}
+  catch(e){document.getElementById("save-status").innerHTML="<b>Could not save — download a backup from the Summary tab</b>";}
+}
+
+/* ---------- shell: nav + sections built from CONFIG ---------- */
+function buildShell(){
+  const nav=document.getElementById("nav");nav.innerHTML="";
+  const wrap=document.getElementById("sections");
+  const visibleRegs=visibleRegisters();
+  const tabs=[];
+  if(PATHS_ENABLED)tabs.push({id:"paths",label:CONFIG.pathsTab||"Your Paths"});
+  tabs.push({id:"tasks",label:CONFIG.tasks.tab||"Tasks"});
+  visibleRegs.forEach(r=>tabs.push({id:r.id,label:r.tab}));
+  if(CONFIG.wishesEnabled)tabs.push({id:"wishes",label:CONFIG.wishes.tab||"Wishes"});
+  SHEETS.forEach((s,i)=>tabs.push({id:"sheet"+i,label:s.tab||"Instruction Sheet"}));
+  tabs.push({id:"summary",label:"Summary & Backup"});
+  /* Re-callable (paths get toggled after boot): keep whichever tab is already
+     active if it still exists, otherwise fall back to the first tab. */
+  const prevActive=(document.querySelector("nav button.active")||{}).dataset;
+  const keepId=prevActive&&tabs.some(t=>t.id===prevActive.tab)?prevActive.tab:tabs[0].id;
+  tabs.forEach(t=>{
+    const b=document.createElement("button");
+    b.dataset.tab=t.id;b.textContent=t.label;if(t.id===keepId)b.className="active";
+    nav.appendChild(b);
+  });
+
+  let h="";
+  // Your Paths
+  if(PATHS_ENABLED){
+    h+='<section class="tab" id="tab-paths"><h2>'+esc(CONFIG.pathsTab||"Your Paths")+'</h2>'+
+       '<p class="note">'+esc(CONFIG.pathsIntro||"")+'</p><div id="paths-body"></div></section>';
+  }
+  // Tasks
+  h+='<section class="tab" id="tab-tasks"><h2>'+esc(CONFIG.tasks.heading||"Guided Tasks")+'</h2>'+
+     '<p class="note">'+esc(CONFIG.tasks.intro||"")+'</p><div id="phases"></div>'+
+     (CONFIG.tasks.disclaimer?'<p class="disclaimer">'+esc(CONFIG.tasks.disclaimer)+'</p>':"")+
+     '</section>';
+  // Registers
+  visibleRegs.forEach(r=>{
+    /* A register may carry a `warn` — one prominent, red, shown-once line under
+       the intro. Wishes already had this; registers did not, so a prohibition
+       as load-bearing as "never the codes themselves" could only be muted grey
+       prose. Deliberately register-level, not per-column: a warning repeated on
+       every row of a table stops being read by row three. */
+    h+='<section class="tab" id="tab-'+esc(r.id)+'"><h2>'+esc(r.heading)+'</h2>'+
+       '<p class="note">'+esc(r.intro||"")+'</p>'+
+       (r.warn?'<p class="warnline">'+esc(r.warn)+'</p>':"")+
+       // A many-column register needs real pixel width to stay legible — 70px
+       // per column is roughly what a narrow text/number input needs, so a
+       // 13-column table gets ~910px minimum rather than being crushed into
+       // whatever fraction of 1040px is left after padding.
+       // 70px/column still clipped a 2-digit number input to its first digit
+       // (spinner arrows + input padding eat more of a narrow cell than the
+       // math suggested) — verified by looking at the actual render, not by
+       // recomputing the math a second time. 85px holds up on inspection.
+       '<div class="table-wrap"><table style="min-width:'+(85*(r.columns.length+1))+'px"><thead><tr>';
+    r.columns.forEach(c=>{h+='<th'+(c.width?' style="width:'+esc(c.width)+'"':"")+'>'+esc(c.label)+'</th>';});
+    h+='<th style="width:36px"></th></tr></thead><tbody id="'+esc(r.id)+'-body"></tbody></table></div>'+
+       '<button class="add" data-add="'+esc(r.id)+'">+ Add '+esc(r.noun||"row")+'</button>';
+    if(r.counter&&r.counter!=="none")h+='<div class="totals" id="'+esc(r.id)+'-total"></div>';
+    if(r.counter==="total"&&r.line)h+='<p class="note" id="'+esc(r.id)+'-line" style="margin-top:6px"></p>';
+    if(r.disclaimer)h+='<p class="disclaimer">'+esc(r.disclaimer)+'</p>';
+    h+='</section>';
+  });
+  // Wishes
+  if(CONFIG.wishesEnabled){
+    h+='<section class="tab" id="tab-wishes"><h2>'+esc(CONFIG.wishes.heading||"Wishes & Instructions")+'</h2>'+
+       '<p class="note">'+esc(CONFIG.wishes.intro||"")+'</p><div id="wishes-body"></div>'+
+       (CONFIG.wishes.disclaimer?'<p class="disclaimer">'+esc(CONFIG.wishes.disclaimer)+'</p>':"")+
+       '</section>';
+  }
+  // Sheet
+  SHEETS.forEach((S,i)=>{
+    h+='<section class="tab" id="tab-sheet'+i+'"><h2>'+esc(S.heading)+'</h2>'+
+       '<p class="note">'+esc(S.intro||"")+'</p>'+
+       '<div id="sheet-preview-'+i+'" class="review-box"></div>'+
+       '<div class="toolbar"><button class="primary" onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button></div>'+
+       (S.disclaimer?'<p class="disclaimer">'+esc(S.disclaimer)+'</p>':"")+
+       '</section>';
+  });
+  // Summary
+  h+='<section class="tab" id="tab-summary"><h2>Summary &amp; Backup</h2>'+
+     '<p class="note">'+esc(CONFIG.summary.intro||"See where you stand, keep this current, and back up your work to a file you control.")+'</p>'+
+     '<div id="summary-stats"></div>'+
+     '<div class="review-box"><div class="rl" id="review-line">Last reviewed: <strong>not yet reviewed</strong></div>'+
+     '<p class="note" style="margin:6px 0 10px">'+esc(CONFIG.summary.reviewNote||"Mark today as reviewed after any pass, and again after anything meaningful changes.")+'</p>'+
+     '<div class="toolbar" style="margin-top:0"><button class="primary" onclick="markReviewed()">Mark reviewed today</button></div></div>'+
+     '<div class="toolbar">'+
+     SHEETS.map((S,i)=>'<button onclick="printSheet('+i+')">'+esc(S.button||"Print the Instruction Sheet")+'</button>').join("")+
+     '<button onclick="printAll()">Print everything (all registers)</button>'+
+     '<button onclick="backup()">Download backup file</button>'+
+     '<button onclick="document.getElementById(\'restore-file\').click()">Restore from backup</button>'+
+     '<input type="file" id="restore-file" accept=".json" style="display:none" onchange="restore(this)">'+
+     '</div>'+
+     (CONFIG.summary.disclaimer?'<p class="disclaimer">'+esc(CONFIG.summary.disclaimer)+'</p>':"")+
+     '</section>';
+  wrap.innerHTML=h;
+  const activeSec=document.getElementById("tab-"+keepId);if(activeSec)activeSec.classList.add("active");
+  wrap.querySelectorAll("button.add").forEach(b=>b.addEventListener("click",()=>addRow(b.dataset.add)));
+  if(PATHS_ENABLED)renderPaths();
+}
+
+/* ---------- path toggles ---------- */
+function renderPaths(){
+  const wrap=document.getElementById("paths-body");if(!wrap||!state)return;
+  wrap.innerHTML="";
+  TOGGLABLE_PATHS.forEach(p=>{
+    const row=document.createElement("div");row.className="task";
+    const cb=document.createElement("input");cb.type="checkbox";cb.checked=!!state.paths[p.key];
+    cb.addEventListener("change",()=>{state.paths[p.key]=cb.checked;save();rebuildForPaths();});
+    const body=document.createElement("div");
+    body.innerHTML='<div class="t"></div>'+(p.note?'<div class="why"></div>':"");
+    body.querySelector(".t").textContent=p.label;
+    if(p.note)body.querySelector(".why").textContent=p.note;
+    row.appendChild(cb);row.appendChild(body);wrap.appendChild(row);
+  });
+}
+/* Toggling a path changes which phases/registers exist in the nav, so the
+   whole shell has to be rebuilt — buildShell() preserves the active tab where
+   it still exists (see keepId above) so this doesn't bounce the buyer back to
+   the first tab every time they flip a switch. */
+function rebuildForPaths(){buildShell();renderAll();}
+
+/* ---------- task engine ---------- */
+function renderTasks(){
+  const wrap=document.getElementById("phases");wrap.innerHTML="";
+  PHASES.forEach((ph,pi)=>{
+    if(!pathVisible(ph.pathTags))return;
+    let pDone=0;
+    const div=document.createElement("div");div.className="phase";
+    const h=document.createElement("h3");h.textContent=ph.name;div.appendChild(h);
+    const bar=document.createElement("div");bar.className="bar";const fill=document.createElement("div");bar.appendChild(fill);div.appendChild(bar);
+    ph.tasks.forEach((t,ti)=>{
+      const id=TASK_KEYS[pi][ti];
+      const checked=!!state.tasks[id];if(checked)pDone++;
+      const row=document.createElement("div");row.className="task"+(checked?" done":"");
+      const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;
+      cb.addEventListener("change",()=>{state.tasks[id]=cb.checked;save();row.classList.toggle("done",cb.checked);updateProgress();});
+      const body=document.createElement("div");
+      body.innerHTML='<div class="t"></div><div class="why"></div>';
+      body.querySelector(".t").textContent=t[0];
+      body.querySelector(".why").textContent=t[1]||"";
+      row.appendChild(cb);row.appendChild(body);div.appendChild(row);
+    });
+    fill.style.width=Math.round(pDone/ph.tasks.length*100)+"%";
+    wrap.appendChild(div);
+  });
+  updateProgress();
+}
+function taskCounts(){let total=0,done=0;PHASES.forEach((ph,pi)=>{if(!pathVisible(ph.pathTags))return;ph.tasks.forEach((t,ti)=>{total++;if(state.tasks[TASK_KEYS[pi][ti]])done++;});});return{total,done};}
+function updateProgress(){
+  let total=0,done=0;
+  document.querySelectorAll("#phases .phase").forEach((div)=>{
+    let pDone=0;const boxes=div.querySelectorAll(".task input[type=checkbox]");
+    boxes.forEach(b=>{total++;if(b.checked){done++;pDone++;}});
+    div.querySelector(".bar>div").style.width=Math.round(pDone/boxes.length*100)+"%";
+  });
+  const pct=total?Math.round(done/total*100):0;
+  document.getElementById("overall-bar").style.width=pct+"%";
+  document.getElementById("overall-label").textContent="Overall progress · "+done+" of "+total+" tasks ("+pct+"%)";
+  summaryStats();
+}
+
+/* ---------- register engine ---------- */
+function fieldEl(reg,row,col){
+  const td=document.createElement("td");
+  /* Derived cells are output, not input — render as read-only text so nobody
+     types into a number that is about to be recomputed. refreshCalc() keeps
+     them current as the columns they depend on are edited. */
+  if(col.type==="calc"){
+    td.className="num";
+    td.textContent=fmtCell(col,calcVal(reg,row,col));
+    return td;
+  }
+  let el;
+  if(col.type==="select"){el=document.createElement("select");
+    (col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;op.textContent=o;el.appendChild(op);});
+    el.value=row[col.key]||(col.options||[""])[0];}
+  else if(col.type==="list"){el=document.createElement("input");el.type="text";
+    const dl=document.createElement("datalist");const dlid="dl-"+reg.id+"-"+col.key+"-"+Math.random().toString(36).slice(2,8);
+    dl.id=dlid;(col.options||[]).forEach(o=>{const op=document.createElement("option");op.value=o;dl.appendChild(op);});
+    el.setAttribute("list",dlid);td.appendChild(dl);
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  else{el=document.createElement("input");el.type=col.type==="num"?"number":(col.type==="date"?"date":"text");
+    if(col.type==="num"){el.step="0.01";td.className="num";}
+    el.value=row[col.key]!==undefined?row[col.key]:"";}
+  el.addEventListener("input",()=>{row[col.key]=el.value;save();totals();});
+  el.addEventListener("change",()=>{row[col.key]=el.value;save();totals();});
+  td.appendChild(el);return td;
+}
+function renderTable(id){
+  const reg=regById(id);
+  const body=document.getElementById(id+"-body");if(!body)return;body.innerHTML="";
+  state[id].forEach((row,i)=>{
+    const tr=document.createElement("tr");
+    reg.columns.forEach(c=>tr.appendChild(fieldEl(reg,row,c)));
+    const td=document.createElement("td");
+    const del=document.createElement("button");del.className="del";del.textContent="✕";del.title="Remove row";
+    del.addEventListener("click",()=>{if(confirm("Remove this row?")){state[id].splice(i,1);save();renderTable(id);totals();}});
+    td.appendChild(del);tr.appendChild(td);body.appendChild(tr);
+  });
+}
+function addRow(id){state[id].push({});save();renderTable(id);totals();}
+function categoryCounts(reg){
+  const field=reg.counterField;const cats=(colByKey(reg,field)||{}).options||[];
+  const counts={};
+  state[reg.id].forEach(r=>{const c=cats.indexOf(r[field])>=0?r[field]:(r[field]||cats[0]);counts[c]=(counts[c]||0)+1;});
+  return counts;
+}
+function regTotal(reg){
+  const k=reg.counterField||numKey(reg);
+  const col=colByKey(reg,k);
+  if(col&&col.type==="calc")return state[reg.id].reduce((s,r)=>s+calcVal(reg,r,col),0);
+  return state[reg.id].reduce((s,r)=>s+(parseFloat(r[k])||0),0);
+}
+/* Repaint derived cells in place. Re-rendering the whole table would steal
+   focus from the field being typed into, which is why this updates the td
+   text directly rather than calling renderTable(). */
+function refreshCalc(){
+  REGISTERS.forEach(reg=>{
+    if(!reg.columns.some(c=>c.type==="calc"))return;
+    const body=document.getElementById(reg.id+"-body");if(!body)return;
+    Array.prototype.forEach.call(body.rows,(tr,i)=>{
+      const row=state[reg.id][i];if(!row)return;
+      reg.columns.forEach((c,ci)=>{
+        if(c.type!=="calc")return;
+        const td=tr.cells[ci];if(td)td.textContent=fmtCell(c,calcVal(reg,row,c));
+      });
+    });
+  });
+}
+function totals(){
+  refreshCalc();
+  REGISTERS.forEach(reg=>{
+    const el=document.getElementById(reg.id+"-total");
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.counterLabel||((plural.charAt(0).toUpperCase()+plural.slice(1))+" recorded");
+    if(reg.counter==="category"&&el){
+      const cats=(colByKey(reg,reg.counterField)||{}).options||[];
+      const counts=categoryCounts(reg);
+      const bits=cats.filter(c=>counts[c]).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      const extra=Object.keys(counts).filter(c=>cats.indexOf(c)<0).map(c=>c+" <strong>"+counts[c]+"</strong>");
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>"+(bits.length||extra.length?" · "+bits.concat(extra).join(" · "):"");
+    }else if(reg.counter==="total"&&el){
+      const n=state[reg.id].length;
+      el.innerHTML=(reg.totalLabel||"Total")+": <strong>"+fmtTotal(reg,regTotal(reg))+"</strong><span class=\"pill\">"+n+" "+(n===1?noun:plural)+"</span>";
+      const line=document.getElementById(reg.id+"-line");
+      if(line)line.textContent=n?reg.line.replace("{total}",fmtTotal(reg,regTotal(reg))).replace("{n}",n):"";
+    }else if(el){
+      el.innerHTML=label+": <strong>"+state[reg.id].length+"</strong>";
+    }
+  });
+  summaryStats();renderSheetPreview();
+}
+
+/* ---------- wishes ---------- */
+function renderWishes(){
+  const wrap=document.getElementById("wishes-body");if(!wrap)return;
+  wrap.innerHTML="";
+  WISHES.forEach(w=>{
+    const div=document.createElement("div");div.className="wish";
+    const lab=document.createElement("label");lab.textContent=w.label;lab.setAttribute("for","wish-"+w.key);div.appendChild(lab);
+    const pr=document.createElement("div");pr.className="prompt";pr.textContent=w.prompt||"";div.appendChild(pr);
+    const ta=document.createElement("textarea");ta.id="wish-"+w.key;ta.value=state.wishes[w.key]||"";
+    ta.addEventListener("input",()=>{state.wishes[w.key]=ta.value;save();});
+    div.appendChild(ta);
+    if(w.warn){const wn=document.createElement("div");wn.className="warnline";wn.textContent=w.warn;div.appendChild(wn);}
+    wrap.appendChild(div);
+  });
+}
+
+/* ---------- summary + review ---------- */
+function summaryStats(){
+  const c=taskCounts();
+  const el=document.getElementById("summary-stats");if(!el)return;
+  const bits=REGISTERS.map(reg=>{
+    const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+    const label=reg.statLabel||(plural.charAt(0).toUpperCase()+plural.slice(1));
+    let s=label+": <strong>"+state[reg.id].length+"</strong>";
+    if(reg.counter==="total")s+=" ("+money(regTotal(reg))+(reg.totalUnit?" "+reg.totalUnit:"")+")";
+    return s;
+  });
+  el.innerHTML='<div class="totals">Tasks complete: <strong>'+c.done+' / '+c.total+'</strong><span class="pill">'+(c.total?Math.round(c.done/c.total*100):0)+'%</span><br>'+bits.join(" · ")+'</div>';
+  renderReviewLine();
+}
+function daysSince(iso){if(!iso)return null;const then=new Date(iso+"T00:00:00");const now=new Date();return Math.floor((now-then)/86400000);}
+function renderReviewLine(){
+  const line=document.getElementById("review-line");
+  if(line){
+    if(state.lastReviewed){line.innerHTML="Last reviewed: <strong>"+new Date(state.lastReviewed+"T00:00:00").toLocaleDateString()+"</strong>";}
+    else{line.innerHTML="Last reviewed: <strong>not yet reviewed</strong>";}
+  }
+  const flag=document.getElementById("review-flag");if(!flag)return;
+  const dd=daysSince(state.lastReviewed);
+  if(dd!==null&&dd>=365){flag.classList.add("show");flag.textContent=CONFIG.summary.staleFlag||"It has been more than a year since your last review. Open the Summary tab when you have a few minutes.";}
+  else{flag.classList.remove("show");flag.textContent="";}
+}
+function markReviewed(){
+  const now=new Date();const iso=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+  state.lastReviewed=iso;save();renderReviewLine();
+}
+
+/* ---------- print sheet (compiled from CONFIG.sheet.sections) ---------- */
+function registerTableHTML(reg,rows,skipKey){
+  let h='<table><tr>';
+  reg.columns.forEach(c=>{if(c.key!==skipKey)h+='<th>'+esc(c.label)+'</th>';});
+  h+='</tr>';
+  rows.forEach(r=>{h+='<tr>';
+    reg.columns.forEach(c=>{if(c.key===skipKey)return;
+      const v=(c.type==="num"||c.type==="calc")?fmtCell(c,cellVal(reg,r,c)):esc(r[c.key]);
+      h+='<td>'+v+'</td>';});
+    h+='</tr>';});
+  if(reg.counter==="total"){
+    h+='<tr><td><strong>'+esc(reg.totalLabel||"Total")+'</strong>';
+    const nk=reg.counterField||numKey(reg);
+    reg.columns.forEach(c=>{if(c.key===skipKey||c.key===reg.columns[0].key)return;
+      h+=c.key===nk?'<td><strong>'+fmtTotal(reg,regTotal(reg))+'</strong></td>':'<td></td>';});
+    h=h.replace(/<td><\/td>$/,'<td colspan="1"></td>');
+    h+='</tr>';
+  }
+  return h+'</table>';
+}
+function sheetHTML(idx){
+  const S=SHEETS[idx||0]||{};
+  let h='<h1>'+esc(S.docTitle)+'</h1><div class="ph">'+esc(S.docTag)+' &middot; '+new Date().toLocaleDateString()+'</div>';
+  if(S.lead)h+='<p class="lead">'+esc(S.lead)+'</p>';
+  (S.sections||[]).forEach(sec=>{
+    h+='<h2>'+esc(sec.title)+'</h2>';
+    if(sec.type==="wish"){
+      const v=state.wishes[sec.key];
+      if(nonEmpty(v))h+='<div class="wblock">'+nl2br(v)+'</div>';
+      else h+='<p>'+esc(sec.empty||"Not recorded yet.")+'</p>';
+    }else if(sec.type==="register"){
+      const reg=regById(sec.id);const rows=state[sec.id];
+      if(!rows.length){h+='<p>'+esc(sec.empty||("No "+(reg.nounPlural||((reg.noun||"row")+"s"))+" recorded yet."))+'</p>';return;}
+      if(sec.groupBy){
+        const cats=(colByKey(reg,sec.groupBy)||{}).options||[];
+        /* Grouping by a column that has no `options` (a date, or free text) is
+           legitimate — but then cats is empty, and a blank cell used to fall
+           through to cats[0] === undefined and print "undefined (3)" as a
+           heading on the buyer's printed sheet. Bucket those explicitly. */
+        const counts={};rows.forEach(r=>{const c=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");counts[c]=(counts[c]||0)+1;});
+        const order=cats.filter(c=>counts[c]).concat(Object.keys(counts).filter(c=>cats.indexOf(c)<0));
+        order.forEach(c=>{
+          h+='<h3>'+esc(c)+' ('+counts[c]+')</h3>';
+          h+=registerTableHTML(reg,rows.filter(r=>{const rc=cats.indexOf(r[sec.groupBy])>=0?r[sec.groupBy]:(r[sec.groupBy]||cats[0]||"Not recorded");return rc===c;}),sec.groupBy);
+        });
+      }else{
+        h+=registerTableHTML(reg,rows,null);
+      }
+    }else if(sec.type==="wishes"){
+      let any=false;const excl=sec.exclude||[];
+      WISHES.forEach(w=>{if(excl.indexOf(w.key)>=0)return;const v=state.wishes[w.key];if(!nonEmpty(v))return;any=true;
+        h+='<h3>'+esc(w.label)+'</h3><div class="wblock">'+nl2br(v)+'</div>';});
+      if(!any)h+='<p>'+esc(sec.empty||"No wishes recorded yet.")+'</p>';
+    }
+  });
+  if(S.foot)h+='<p class="foot">'+esc(S.foot)+'</p>';
+  return h;
+}
+function renderSheetPreview(){
+  SHEETS.forEach((S,i)=>{
+    const el=document.getElementById("sheet-preview-"+i);if(!el)return;
+    /* Preview only the registers this particular sheet actually compiles —
+       otherwise a teacher-facing sheet would advertise the benefits and
+       guardianship data it deliberately leaves out. */
+    const ids=(S.sections||[]).filter(s=>s.type==="register").map(s=>s.id);
+    const regs=ids.length?REGISTERS.filter(r=>ids.indexOf(r.id)>=0):REGISTERS;
+    const bits=regs.map(reg=>{
+      const noun=reg.noun||"row";const plural=reg.nounPlural||noun+"s";
+      const n=state[reg.id].length;
+      let s=n+" "+(n===1?noun:plural);
+      if(reg.counter==="total")s+=" ("+fmtTotal(reg,regTotal(reg))+")";
+      return s;
+    });
+    const hasWishes=(S.sections||[]).some(s=>s.type==="wish"||s.type==="wishes");
+    el.innerHTML='<div class="rl" style="margin-bottom:6px">Preview — <strong>'+esc(S.docTitle)+'</strong></div>'+
+      '<p class="note" style="margin:0">'+esc(S.previewLead||"This packet will include:")+' '+esc(bits.join(", "))+
+      (hasWishes?", plus what you've written in your own words":"")+'. Fill in more on the other tabs to make the sheet more complete, then print it.</p>';
+  });
+}
+function printSheet(idx){
+  const pa=document.getElementById("print-area");
+  pa.innerHTML=sheetHTML(idx||0);window.print();
+}
+function printAll(){
+  const pa=document.getElementById("print-area");
+  let h=sheetHTML();
+  h+='<h2>Guided Task Progress</h2>';
+  PHASES.forEach((ph,pi)=>{
+    h+='<h3>'+esc(ph.name)+'</h3><table><tr><th>Done</th><th>Task</th></tr>';
+    ph.tasks.forEach((t,ti)=>{h+='<tr><td>'+(state.tasks[TASK_KEYS[pi][ti]]?"✓":"")+'</td><td>'+esc(t[0])+'</td></tr>';});
+    h+='</table>';
+  });
+  pa.innerHTML=h;window.print();
+}
+
+/* ---------- safety notice + erase ----------
+   Two facts every Quietkeep product must state plainly, because neither is
+   obvious and both can hurt someone: (1) "local" is not "private" when the
+   person you fear shares the device; (2) localStorage is keyed to the browser,
+   NOT to the file — deleting the .html does not delete the entries. Products
+   that need more (the divorce line) add an `app.safety` block to the manifest. */
+const DEFAULT_STORAGE_TRUTH="Nothing you type is ever sent anywhere — it is saved only in this browser, on this device. That also means anyone who can use this device and this browser can open it. It is not encrypted and not password-protected.";
+const DEFAULT_ERASE_TRUTH="Deleting this file does NOT erase what you have entered. Your entries are stored by the browser, not inside the file. To remove them, use the “Erase everything” button at the bottom of the screen.";
+
+function showNotice(){
+  document.getElementById("qk-notice-h").textContent=SAFETY.title||"Before you start";
+  let h="";
+  (SAFETY.body||[]).forEach(p=>{h+='<p>'+esc(p)+'</p>';});
+  h+='<p>'+esc(SAFETY.storage||DEFAULT_STORAGE_TRUTH)+'</p>';
+  h+='<p>'+esc(SAFETY.erase||DEFAULT_ERASE_TRUTH)+'</p>';
+  if(SAFETY.hotline&&SAFETY.hotline.length){
+    h+='<div class="hot">';
+    SAFETY.hotline.forEach((l,i)=>{h+=(i?'<br>':'')+(i?'<b>'+esc(l)+'</b>':esc(l));});
+    h+='</div>';
+  }
+  const fine=SAFETY.fine||CONFIG.summary.disclaimer||"";
+  if(fine)h+='<div class="fine">'+esc(fine)+'</div>';
+  document.getElementById("qk-notice-body").innerHTML=h;
+  const v=document.getElementById("qk-veil");
+  v.hidden=false;
+  document.getElementById("qk-notice-ok").focus();
+}
+function dismissNotice(){document.getElementById("qk-veil").hidden=true;}
+
+/* How much is actually at risk — a concrete number warns far better than
+   "everything", and lets an empty file erase without ceremony. */
+function countEntries(){
+  let n=0;
+  REGISTERS.forEach(r=>{(state[r.id]||[]).forEach(row=>{
+    if(r.columns.some(c=>nonEmpty(row[c.key])))n++;
+  });});
+  Object.keys(state.wishes||{}).forEach(k=>{if(nonEmpty(state.wishes[k]))n++;});
+  Object.keys(state.tasks||{}).forEach(k=>{if(state.tasks[k])n++;});
+  return n;
+}
+
+function eraseAll(){
+  const n=countEntries();
+  if(n===0){alert("There is nothing saved to erase yet.");return;}
+  const noun=n===1?"entry":"entries";
+  /* Two steps on purpose. This button is always on screen, so one stray click
+     must never be able to destroy someone's work — but it also has to stay fast
+     enough to use when you need the screen clear right now. */
+  if(!confirm("ERASE EVERYTHING?\n\n"
+    +"This permanently deletes all "+n+" "+noun+" you have saved in this browser for "+CONFIG.name+".\n\n"
+    +"THIS CANNOT BE UNDONE. There is no way to get it back afterwards.\n\n"
+    +"It does NOT delete any backup file you have already downloaded, or anything you have printed.\n\n"
+    +"If you want to keep a copy, press Cancel and use “Download backup file” on the Summary tab first."))return;
+  if(!confirm("Last check.\n\nReally erase all "+n+" saved "+noun+" permanently?"))return;
+  state=defaultState();
+  renderAll();
+  /* Remove AFTER re-rendering, so nothing can write the key back on the way out. */
+  try{localStorage.removeItem(STORAGE_KEY);}catch(e){}
+  document.getElementById("save-status").innerHTML="<b>Erased from this browser</b>";
+  alert("Erased. Nothing from this organizer is left in this browser.\n\n"
+    +"If you also downloaded a backup file or printed a copy, delete those separately.");
+}
+
+/* ---------- backup / restore ---------- */
+function backup(){
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const aEl=document.createElement("a");aEl.href=URL.createObjectURL(blob);
+  aEl.download=CONFIG.backupPrefix+"-backup-"+new Date().toISOString().slice(0,10)+".json";
+  document.body.appendChild(aEl);aEl.click();aEl.remove();
+}
+function restore(input){
+  const f=input.files[0];if(!f)return;
+  const reader=new FileReader();
+  reader.onload=()=>{try{const data=JSON.parse(reader.result);
+      if(!data||typeof data!=="object")throw 0;
+      state=Object.assign(defaultState(),data);
+      REGISTERS.forEach(r=>{if(!Array.isArray(state[r.id]))state[r.id]=[]});
+      if(typeof state.wishes!=="object"||!state.wishes)state.wishes={};
+      save();renderAll();alert("Backup restored.");}
+    catch(e){alert("That file does not look like a valid backup.");}};
+  reader.readAsText(f);input.value="";
+}
+
+/* ---------- boot ---------- */
+document.getElementById("nav").addEventListener("click",e=>{
+  if(e.target.tagName!=="BUTTON")return;
+  document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+  document.querySelectorAll("section.tab").forEach(s=>s.classList.remove("active"));
+  e.target.classList.add("active");
+  document.getElementById("tab-"+e.target.dataset.tab).classList.add("active");
+  if(String(e.target.dataset.tab||"").indexOf("sheet")===0)renderSheetPreview();
+});
+function renderAll(){renderTasks();REGISTERS.forEach(r=>renderTable(r.id));renderWishes();totals();renderReviewLine();renderSheetPreview();}
+document.getElementById("qk-notice-ok").addEventListener("click",dismissNotice);
+/* load() before buildShell(): visibility of path-tagged tabs depends on
+   state.paths, so the shell has to be built from the buyer's actual saved
+   paths, not from an empty pre-load state that would hide anything they'd
+   already toggled on until the next manual change. */
+load();buildShell();renderAll();showNotice();
+</script>
+</body>
+</html>
