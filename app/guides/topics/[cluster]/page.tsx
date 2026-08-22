@@ -27,6 +27,15 @@ export function generateMetadata({
 }): Metadata {
   const hub = getClusterHub(params.cluster);
   if (!hub) return {};
+  const ogImage = fs.existsSync(
+    nodePath.join(process.cwd(), "public", "images", "og", "topics", `${hub.slug}.png`)
+  )
+    ? { url: `/images/og/topics/${hub.slug}.png`, width: 1200, height: 630 }
+    : {
+        url: getProduct(hub.guides[0]?.productSlug ?? "")?.hero.image ?? "/images/brand/og-default.png",
+        width: 1200,
+        height: 900,
+      };
   return {
     title: `${hub.cluster} guides`,
     description: hub.blurb,
@@ -35,15 +44,16 @@ export function generateMetadata({
       title: `${hub.cluster} guides`,
       description: hub.blurb,
       type: "website",
-      images: [
-        fs.existsSync(nodePath.join(process.cwd(), "public", "images", "og", "topics", `${hub.slug}.png`))
-          ? { url: `/images/og/topics/${hub.slug}.png`, width: 1200, height: 630 }
-          : {
-              url: getProduct(hub.guides[0]?.productSlug ?? "")?.hero.image ?? "/images/brand/og-default.png",
-              width: 1200,
-              height: 900,
-            },
-      ],
+      images: [ogImage],
+    },
+    // Stated separately from openGraph on purpose — see the note in the guide
+    // template: a page that overrides only openGraph keeps the root layout's
+    // twitter block, generic image and all.
+    twitter: {
+      card: "summary_large_image",
+      title: `${hub.cluster} guides`,
+      description: hub.blurb,
+      images: [ogImage.url],
     },
   };
 }

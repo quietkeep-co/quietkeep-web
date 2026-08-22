@@ -1,0 +1,127 @@
+{
+  "slug": "when-a-planning-app-shuts-down",
+  "title": "When a Planning App Shuts Down: What Happens to Everything You Put In It",
+  "description": "Planning services get acquired, merged, and retired — it happens routinely. Here is what those transitions actually look like from a user's side, and how to keep a usable copy of your own information regardless of what any vendor does.",
+  "answer": "When a planning service is acquired or closed, the account usually goes away on a date the company sets, and any notice arrives by email to whatever address is on file. What survives is only what you already downloaded: your document files, exported lists, and printed pages held on your own device.",
+  "cluster": "Digital estate planning",
+  "date": "2026-08-21",
+  "updated": "2026-08-21",
+  "readingMinutes": 8,
+  "intro": [
+    "The information people put into an end-of-life, estate, or caregiving planning service is a particular kind of information. It is account lists assembled over several evenings. Medical history typed out from the actual pill bottles. Wishes worded carefully, once, because wording them at all was hard. Scans of documents that live in a drawer somewhere and took an afternoon to find. It is not information that is easy to reconstruct, and for most people it exists in exactly one place — on a company's servers.",
+    "Companies get acquired. Products get retired. Teams get folded into a parent company with a different business model, and the consumer app that brought them there stops making sense. None of that is unusual or improper; it is the ordinary lifecycle of a software business. The only question that matters for you is a narrower one: does your copy of your own information depend on that lifecycle. This guide describes what these transitions typically look like from the outside, what a few recent ones actually looked like, and how to hold a copy that does not need anyone's permission to keep existing. It is organizational, not legal advice."
+  ],
+  "sections": [
+    {
+      "heading": "What a wind-down usually looks like from the outside",
+      "paragraphs": [
+        "Transitions rarely arrive as a dramatic event. They tend to follow a recognizable sequence, and knowing the sequence is most of what makes it manageable.",
+        "First there is a change of ownership, often announced as a press release aimed at an industry audience rather than at users. Then a quiet period, sometimes a year or more, during which the product still works and nothing appears to change. Then a decision inside the acquiring company about whether the standalone consumer product still fits, and if the answer is no, a notice with a date on it. The notice is typically an email to the address on the account, plus a banner on the site. After the date, the login stops working. Some time later the domain itself points somewhere else.",
+        "Two details in that sequence do most of the damage, and neither one is anybody's bad behavior. The notice goes to the email address you signed up with, which for a planning account is often an address you check less than your main one — or one that routes to a promotions folder because the sender is a company you last logged into eighteen months ago. And the window between the notice and the date is finite, so a message missed in March is not recoverable in July."
+      ]
+    },
+    {
+      "heading": "What recent transitions have actually looked like",
+      "paragraphs": [
+        "Two specifics, stated only as far as they can be confirmed from the companies' own pages.",
+        "Cake, at joincake.com, was an end-of-life planning site with free planning tools and a large library of articles. In September 2024, Foundation Partners Group — a funeral-services company — announced it had acquired Cake. Through the first half of 2025 the site carried its own notice: on June 15, 2025 Cake would transition to a new online home, and members who had saved documents, files, or photos on the site were asked to download them to their own device before that date. The notice included the click path for doing so — log into the membership page, open Tools, then Documents. Today the joincake.com domain redirects to a funeral-services site.",
+        "Lantern, at lantern.co, was an end-of-life planning and support platform that became part of Wellthy, a caregiving-benefits company. Wellthy's own page for former Lantern users states that Lantern was decommissioning on September 1 and that Lantern accounts would no longer be available starting September 2. The page directs anyone who needs their Lantern Care Plan to contact Wellthy's member support for help downloading their documents, rather than pointing to a self-service export.",
+        "In both cases the company gave notice and offered a way to retrieve documents. Both handled it reasonably. And in both cases, the people who ended up fine were the ones who read the email in time and had somewhere to put the files."
+      ]
+    },
+    {
+      "heading": "What exports well, and what usually doesn't",
+      "paragraphs": [
+        "Not everything in a planning account leaves in the same condition it went in, and the difference is worth understanding before you need it.",
+        "Files you uploaded generally come back cleanly. A PDF of a will, a scanned insurance declarations page, a photograph of a Medicare card — these were files when you put them in and they are files when you take them out. This is the easy category, and it is usually the only category a wind-down notice actually addresses.",
+        "The harder category is everything the service built around those files. Your answers to a guided interview. A checklist with forty items and a completion state for each. A care-wishes questionnaire whose meaning lives partly in the questions it was answering. Notes attached to specific accounts. Who you shared what with. That structure is the product, and it is often what took you the most time — but it frequently has no export button, or exports as a summary PDF that reads like a receipt rather than a working document.",
+        "The third category is the one nobody thinks about: the account itself. If a service was the place your family was told to look, the instruction \"log into the planner\" quietly stops meaning anything on the shutdown date, even though the sentence is still written down in whatever letter or email you left behind."
+      ],
+      "bullets": [
+        "<b>Uploaded documents.</b> Download the originals, not previews or thumbnails.",
+        "<b>Structured answers.</b> Whatever export exists — CSV, PDF, print-to-PDF from the browser — take it, even if it is ugly.",
+        "<b>Lists and inventories.</b> Account lists, medication lists, contact lists. These are the slowest to rebuild from memory.",
+        "<b>Shared access.</b> Note who else could see the account, since that arrangement ends with the service.",
+        "<b>The instruction itself.</b> Anywhere you told someone \"it's all in the app,\" that sentence needs updating too."
+      ]
+    },
+    {
+      "heading": "Take stock before you need to",
+      "paragraphs": [
+        "The useful version of this is not urgent and takes about twenty minutes. Open every planning, caregiving, or estate service you currently use, and write down four things for each: what it holds, which email address the account is under, whether an export exists and where the button is, and when you last actually downloaded anything.",
+        "That last column is the one that matters. Most people find at least one service where the answer is never. It is also common to find a service under an old email address, which is worth fixing on the spot, because the notification you would need to receive goes to whatever is on file — not to wherever you read mail today.",
+        "This inventory overlaps almost exactly with the account map in a <a href=\"/guides/digital-estate-planning-checklist\">digital estate planning checklist</a>, so if you have already built one, add a column rather than starting over. Note too that platform-level settings — the ones covered in <a href=\"/guides/legacy-contacts-apple-google-facebook\">Apple, Google, and Facebook legacy contacts</a> — live with those platforms rather than with any third-party planner, which is precisely why they are unaffected when a planner closes."
+      ]
+    },
+    {
+      "heading": "Getting a copy out, on an ordinary afternoon",
+      "paragraphs": [
+        "The goal is a single folder, on hardware you control, that a reasonable person could open and use without any account, subscription, or internet connection. That is the whole standard. It does not have to be elegant.",
+        "Work service by service. Download the documents. Take whatever export the service offers. Where no export exists, use the browser's print-to-PDF on each meaningful screen — a printed screen is a poor database and a perfectly good record. Give the files names a stranger could interpret, because at some point a stranger to your filing system will be reading them. Then put the folder somewhere with a second copy: an external drive, a home computer plus a backup, or a printed binder for the pages that matter most. One copy in one place is a single point of failure regardless of who is hosting it.",
+        "For anything medical, the same principle applies with more urgency, since a current medication and provider list is the document most likely to be needed on short notice — the reason it sits in week one of <a href=\"/guides/caring-for-aging-parent-first-30-days\">the first thirty days of caring for an aging parent</a> rather than somewhere later.",
+        "One rule holds throughout: the copy records where access instructions live, never the passwords themselves. A folder full of documents is a gift to your family. A folder full of credentials is a liability with your name on it."
+      ]
+    },
+    {
+      "heading": "If a notice has already arrived",
+      "paragraphs": [
+        "Check the date first, then work backward from it. If the window is still open, downloading is usually a matter of minutes and there is no need to decide anything else that day — retrieve first, reorganize later.",
+        "If the service offers help rather than a download button, take the help. Support teams during a wind-down are generally still staffed and generally willing; a plain email asking for a copy of your records tends to work better than hunting for a feature that was never built.",
+        "If the date has passed, a few things are still worth trying. Search your mail archive for the service's name — the original signup, confirmation, and summary emails often contain more of your information than people expect. Check whether the acquiring company kept a support address; the entity that bought the product usually inherited the mailbox. Look up the service's last published privacy policy through a web archive, which typically names who processes the data and how to reach them. And note that several states have consumer privacy laws with a defined process for asking a business what personal information it holds about you; California's Attorney General publishes a plain-language explanation of how such requests are submitted. What applies depends on where you live and on the business, so treat that as a starting point rather than a conclusion.",
+        "It is also worth knowing that regulators have paid attention to this problem in the sharpest version of it. When RadioShack's customer data was put up for auction in bankruptcy in 2015, the Federal Trade Commission wrote to the court-appointed privacy ombudsman recommending conditions on the sale — that the data not be sold as a standalone asset, that any buyer be in substantially the same line of business, that the buyer be bound by the privacy policies in effect when the data was collected, and that consumers be notified and asked for consent before any materially different use. That is not a guarantee attached to your account, but it does describe the norms an acquiring company is generally expected to operate under."
+      ]
+    },
+    {
+      "heading": "Make the copy the original",
+      "paragraphs": [
+        "The durable arrangement is not \"use no services.\" Services are often genuinely good at the part where they help you think through what to write down. The durable arrangement is that the version on your own hardware is the real one, and anything hosted is a convenience layered on top of it.",
+        "Practically, that means three habits. Export after any significant update rather than on a schedule you will forget. Keep the folder in the same place as the rest of <a href=\"/guides/getting-affairs-in-order\">getting your affairs in order</a>, so there is one location to describe rather than several. And tell the person who would need it where that location is, in words that do not reference a login — \"the blue folder in the file cabinet, and a copy on the drive in the desk\" survives any corporate transaction, which is more than can be said for a URL.",
+        "Then, if a notice ever arrives, it is an email about a service ending rather than an email about your information ending. Those are very different afternoons."
+      ]
+    }
+  ],
+  "takeaway": "Acquisitions and sunsets are ordinary events in software, and the companies involved usually give notice and offer a download. The variable you control is whether a usable copy already sits on hardware you own. Export the documents, print what will not export, keep the folder with your other papers, and tell one person where it is — then a shutdown notice is news about a service rather than news about your information.",
+  "sources": [
+    {
+      "label": "Cake's member notice: site transitioning June 15, 2025, with instructions for downloading saved documents (archived June 5, 2025)",
+      "publisher": "Cake, via the Internet Archive Wayback Machine",
+      "url": "https://web.archive.org/web/20250605150516/https://www.joincake.com/"
+    },
+    {
+      "label": "Foundation Partners Group Acquires Cake to Meet Growing Demand for End-of-Life Planning Tools and Resources",
+      "publisher": "Foundation Partners Group",
+      "url": "https://foundationpartners.com/fpgnews/foundation-partners-group-acquires-cake-to-meet-growing-demand-for-end-of-life-planning-tools-and-resources/"
+    },
+    {
+      "label": "Retiring Lantern: decommissioning date and how to retrieve your Lantern Care Plan documents",
+      "publisher": "Wellthy",
+      "url": "https://wellthy.com/lantern"
+    },
+    {
+      "label": "FTC Requests Bankruptcy Court Take Steps to Protect RadioShack Consumers' Personal Information",
+      "publisher": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2015/05/ftc-requests-bankruptcy-court-take-steps-protect-radioshack-consumers-personal-information"
+    },
+    {
+      "label": "California Consumer Privacy Act (CCPA): consumer rights and how to submit a request to a business",
+      "publisher": "California Department of Justice, Office of the Attorney General",
+      "url": "https://oag.ca.gov/privacy/ccpa"
+    }
+  ],
+  "productSlug": "digital-legacy-planner",
+  "productPitch": "The Digital Legacy Planner is a single file that lives on your own device, which is one way to make sure the copy you keep does not depend on anyone's product roadmap.",
+  "faq": [
+    {
+      "q": "What happens to the information in a planning app when the company is acquired?",
+      "a": "Usually nothing immediately. The product often runs unchanged for months while the acquiring company decides whether to keep it. If it is retired, the company typically emails account holders a shutdown date and, in recent cases, has offered a way to download saved documents before that date."
+    },
+    {
+      "q": "How do I know if a service I use is winding down?",
+      "a": "Notices go to the email address on the account, which is often not the address someone checks daily. Confirming that each planning account uses a current email address, and searching for the service name in your mail archive periodically, catches most announcements while the window is still open."
+    },
+    {
+      "q": "Is there a way to get information back after an account has already closed?",
+      "a": "Sometimes. Old confirmation and summary emails often contain more than people expect, the acquiring company frequently inherits the support mailbox, and the last published privacy policy names who handles the data. Several states also have a defined process for asking a business what personal information it holds."
+    }
+  ]
+}

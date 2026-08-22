@@ -1,0 +1,132 @@
+{
+  "slug": "organizing-divorce-documents-privately",
+  "title": "Organizing Divorce Documents Privately When You Share Devices",
+  "description": "How to gather and organize your own divorce paperwork privately when you share devices, accounts, and cloud storage — and where household information actually travels.",
+  "answer": "Gather your own copies of tax returns, statements, and titles, and keep your working notes somewhere that is genuinely yours: your own account, your own device, your own file. Shared iCloud or Google accounts, synced photos, saved browser passwords, and family plans are where personal notes quietly become visible. Gathering copies is ordinary; deleting or altering records is not.",
+  "cluster": "Divorce preparation",
+  "date": "2026-08-21",
+  "updated": "2026-08-21",
+  "readingMinutes": 8,
+  "intro": [
+    "Almost every married household runs on shared infrastructure. One Apple Account or Google Account holds two people's photos. One browser remembers everyone's logins. One printer sits in the hallway, one laptop lives on the kitchen counter, and one family plan sends a receipt to whoever set it up. None of that is unusual, and none of it was set up with any bad intent — it is simply what sharing a life looks like in 2026.",
+    "It does mean that <b>organizing divorce documents privately</b> takes a little more thought than opening a folder and starting a list. This guide covers where household information actually travels, how to set up a working space that is genuinely your own, and — just as importantly — the firm line between keeping your own rough notes private and withholding information from the other party or a court. The second thing is not what this is about, and the guide says so plainly below."
+  ],
+  "sections": [
+    {
+      "heading": "Start with copies, not originals",
+      "paragraphs": [
+        "The first move is gathering, not moving. Photograph or scan what you need and leave the originals where they live — in the household filing cabinet, in the shared drive, in the drawer they have always been in. Working from copies means nothing goes missing, nothing has to be explained later, and you can build a complete picture without disturbing anything.",
+        "What is worth copying is broadly the same list any attorney will eventually ask for, so the effort is not wasted. If a consultation is already on the calendar, <a href=\"/guides/what-to-bring-to-your-first-divorce-attorney-meeting\">what to bring to that first meeting</a> is essentially the same inventory, organized for the hour you will spend in the room."
+      ],
+      "bullets": [
+        "Recent tax returns and W-2s or 1099s.",
+        "A recent statement for each bank, credit card, retirement, and investment account you know of.",
+        "Pay stubs, benefit statements, and anything showing regular income.",
+        "Deeds, mortgage statements, vehicle titles and loan documents.",
+        "Insurance policies — life, health, home, auto.",
+        "The marriage certificate, any prenuptial or postnuptial agreement, and any court paperwork already received.",
+        "A plain list of recurring household expenses, which is easier to write down while you still see the bills."
+      ]
+    },
+    {
+      "heading": "Where information travels in a shared setup",
+      "paragraphs": [
+        "The leaks are almost never dramatic. They are defaults — sync settings and conveniences that were switched on years ago and forgotten, and that carry information in every direction between everyone on the account. It is worth spending twenty minutes finding out what is actually shared before you assume anything is private, in much the same spirit as the account inventory in the <a href=\"/guides/digital-estate-planning-checklist\">digital estate planning checklist</a>."
+      ],
+      "bullets": [
+        "<b>A shared Apple Account or Google Account</b> — one login covering both people means one photo library, one set of backups, and one notification stream.",
+        "<b>Photo sync</b> — a screenshot of a statement is a photo, and it lands wherever photos land, often within seconds and often on a second device.",
+        "<b>Notes, reminders, and documents apps</b> — these sync silently by default and frequently show up on a tablet or a smart display someone else uses.",
+        "<b>Saved browser passwords and autofill</b> — a browser signed into a shared profile carries logins, addresses, and browsing history to every device on that profile.",
+        "<b>Family plans and Family Sharing</b> — purchase receipts, subscription notices, app downloads, and location sharing are visible to the organizer by design.",
+        "<b>Shared computers</b> — the downloads folder, the recent-documents list, and an already-signed-in browser tell most of the story without anyone looking hard.",
+        "<b>Printers and scanners</b> — many keep a job history, and scan-to-email is usually pointed at whichever address was configured first.",
+        "<b>Smart-home and assistant logs</b> — voice history, camera clips, and door-sensor timestamps are recorded on the account that owns the device.",
+        "<b>A household email address</b> — if it is the recovery address on other accounts, password resets and confirmations route through it."
+      ]
+    },
+    {
+      "heading": "What this is not: organizing is not concealing",
+      "paragraphs": [
+        "There is a real line here, and it is worth naming plainly rather than leaving implied. Divorce cases generally involve a formal exchange of financial information between the two parties; the specifics vary by state, but the expectation of a complete and accurate exchange is common ground. California's self-help guide describes its own version of that process, and it notes that concealing information can carry consequences for the person who did it. Organizing your own copies is preparation for that exchange. It is not an alternative to it.",
+        "Once a divorce is filed or reasonably anticipated, deleting, altering, or hiding records can be treated as spoliation of evidence, and the consequences fall on the person responsible. That applies to email, text messages, photographs, financial records, and account histories alike, and it applies regardless of who filed or why. The workable rule is simple: gather and copy, but do not delete, edit, back-date, or relocate anything in order to make it harder to find. If you are unsure whether something falls on the wrong side of that line, ask your attorney before you touch it rather than afterward.",
+        "So nothing in this guide is a method for keeping information from the other party, from their attorney, or from a court, and none of it should be used that way. It is about the ordinary privacy any personal paperwork deserves — the ability to draft a list, second-guess it, and revise it without an unfinished thought appearing on someone else's home screen. Your eventual disclosures should be complete and accurate. Your rough notes on the way there are simply yours, the same as any other personal file."
+      ]
+    },
+    {
+      "heading": "A working space that is actually yours",
+      "paragraphs": [
+        "Once you know what is shared, setting up somewhere separate is mostly a matter of not using the household defaults. None of this requires new hardware or a technical background, and none of it involves removing anything from where it already sits.",
+        "One caution worth stating: changing passwords, closing accounts, or removing someone's access on a joint or shared account is a different question entirely, because it affects the other person's access rather than just your own privacy. Institutions have their own rules about joint accounts, and a pending case can add restrictions on top of those. That is a question for your attorney, not a settings change to make on a Tuesday night."
+      ],
+      "bullets": [
+        "Set up an email address that is only yours, on a provider the household does not already use, and keep it off the shared devices.",
+        "Use a device or a separate user profile that is genuinely yours — a personal login on a shared computer is better than a shared login, and a phone you already control is better still.",
+        "Check what your camera roll is doing before you photograph documents; a scanner app that saves locally keeps working copies where you intend them.",
+        "Keep the working file on the device itself rather than in a cloud folder that syncs to a household account.",
+        "Store passwords somewhere other than the browser that syncs to everyone, and make sure account recovery does not route through the household address.",
+        "Paper is still a perfectly good option, and a folder kept somewhere of your own has no sync settings at all."
+      ]
+    },
+    {
+      "heading": "Paper, printers, and the physical trail",
+      "paragraphs": [
+        "Digital habits get the attention, but the physical side is where more people are actually surprised. A document printed on the hallway printer sat in the output tray for however long it sat there. Many office and multifunction printers keep a job log, and some retain recent files on internal storage. If you would rather not print at home, a print shop or a workplace with a personal account solves it, and reviewing on screen rather than printing at all usually solves it better.",
+        "Mail is the other one. Statements, attorney correspondence, and account confirmations arrive at whatever address is on file, and a household mailbox is a household mailbox. Directing your own correspondence to an address of your own is an ordinary step people take for all kinds of reasons — but if a case is filed or pending, tell your attorney where your mail goes, since where documents can reach you matters procedurally.",
+        "One thing not to do: none of this is a reason to destroy paperwork. Keep what exists. A shredder is for junk mail, not for financial records connected to a divorce."
+      ]
+    },
+    {
+      "heading": "A reasonable pace, and what comes after",
+      "paragraphs": [
+        "This does not have to be done in a weekend, and doing it slowly is not falling behind. Most people work through it in short sessions — one account category at a time, one folder at a time — and the picture fills in faster than it feels like it does. The point of the exercise is not completeness for its own sake; it is being able to answer questions about your own household without reconstructing everything from memory under stress.",
+        "It also front-loads work you will need later regardless of how the case goes. Much of the same information reappears in the administrative tail described in the <a href=\"/guides/after-divorce-checklist\">after-divorce checklist</a> — accounts, titles, beneficiaries, addresses — and a list built once carries forward. If children are involved, the running record of shared costs is its own separate habit, and one that is easier started early than reconstructed later.",
+        "Finally, if any part of your situation involves safety rather than paperwork, that is a different question than this guide addresses and it deserves a different kind of help. Many state court self-help sites list local resources on their divorce pages, and it is reasonable to start there or with your attorney."
+      ]
+    }
+  ],
+  "takeaway": "Gathering your own divorce paperwork is ordinary preparation, and it deserves ordinary privacy — a working space that is yours rather than the household's, so a half-finished list does not surface on a shared screen. The line that matters is the one between privacy and concealment: copy freely, keep everything intact, and let your eventual disclosures be complete and accurate. If the next step is a consultation, <a href=\"/guides/what-to-bring-to-your-first-divorce-attorney-meeting\">what to bring to a first attorney meeting</a> picks up where this leaves off.",
+  "sources": [
+    {
+      "label": "Publication 504: Divorced or Separated Individuals",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/publications/p504"
+    },
+    {
+      "label": "Share your financial information in a divorce (one state's example)",
+      "publisher": "California Courts Self Help Guide",
+      "url": "https://selfhelp.courts.ca.gov/divorce/financial-disclosures"
+    },
+    {
+      "label": "Can I remove my spouse from our joint checking account?",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/can-i-remove-my-spouse-from-our-joint-checking-account-en-1097/"
+    },
+    {
+      "label": "Credit reports and scores: how to get and check yours",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/"
+    },
+    {
+      "label": "See devices with access to your account",
+      "publisher": "Google Account Help",
+      "url": "https://support.google.com/accounts/answer/3067630"
+    }
+  ],
+  "productSlug": "divorce-organizer",
+  "productPitch": "The Divorce Organizer is one offline file you keep on a device of your own — no account, no sync, no shared folder — which is simply one less place for a working list to end up.",
+  "faq": [
+    {
+      "q": "How do I keep divorce paperwork private if we share an Apple or Google account?",
+      "a": "Check what the shared account actually syncs, including photos, notes, backups, and browser passwords. Then set up a working space that is separate from it: an email address only you use, a personal profile or device, and a file kept locally rather than in a household cloud folder. Copy documents rather than moving or removing them."
+    },
+    {
+      "q": "Is it a problem to delete files or messages during a divorce?",
+      "a": "Deleting, altering, or hiding records once a divorce is filed or reasonably anticipated can be treated as spoliation of evidence, with consequences for the person responsible. Gathering and copying your own documents is a normal part of preparing. Deleting or editing them is not, and if you are unsure about a specific file, ask your attorney before doing anything."
+    },
+    {
+      "q": "What should I gather before meeting with a divorce attorney?",
+      "a": "Recent tax returns, a statement for each bank, credit, retirement, and investment account, pay stubs, deeds and vehicle titles, mortgage and loan documents, insurance policies, and the marriage certificate along with any prenuptial agreement. A rough but complete list is more useful at this stage than exact figures."
+    }
+  ]
+}

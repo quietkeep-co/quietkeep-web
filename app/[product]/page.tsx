@@ -41,7 +41,27 @@ export function generateMetadata({
       type: "website",
       // A page-level openGraph REPLACES the root layout's, images included —
       // this is why every product page shipped without a social card image.
-      images: [{ url: p.hero.image, width: 1200, height: 900, alt: p.hero.imageAlt }],
+      // It used to point at the hero screenshot and declare it 1200x900; the
+      // files are actually 2700x2025, so every scraper got the wrong hint and
+      // then cropped a 4:3 app screenshot into a 1.91:1 slot. Purpose-built
+      // 1200x630 cards now exist for products, same as for guides
+      // (_GROWTH-OS/generators/qk_og_cards.py builds all three sets).
+      images: [
+        {
+          url: `/images/og/products/${p.slug}.png`,
+          width: 1200,
+          height: 630,
+          alt: `${p.name} — Quietkeep`,
+        },
+      ],
+    },
+    // See the note in the guide template: overriding openGraph alone leaves
+    // the root layout's twitter block in place, so this has to be stated too.
+    twitter: {
+      card: "summary_large_image",
+      title: p.listingTitle || p.name,
+      description: desc,
+      images: [`/images/og/products/${p.slug}.png`],
     },
   };
 }

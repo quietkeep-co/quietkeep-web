@@ -31,6 +31,17 @@ export function generateMetadata({
 }): Metadata {
   const g = getGuide(params.slug);
   if (!g) return {};
+  // Purpose-built 1200x630 card per guide; fall back to the product hero if a
+  // card was never generated, so a new guide is never blocked on artwork.
+  const ogImage = fs.existsSync(
+    path.join(process.cwd(), "public", "images", "og", "guides", `${g.slug}.png`)
+  )
+    ? { url: `/images/og/guides/${g.slug}.png`, width: 1200, height: 630 }
+    : {
+        url: getProduct(g.productSlug)?.hero.image ?? "/images/brand/og-default.png",
+        width: 1200,
+        height: 900,
+      };
   return {
     title: g.title,
     description: g.description,
@@ -41,19 +52,14 @@ export function generateMetadata({
       type: "article",
       // Page-level openGraph replaces the root's; without this line every
       // guide shared to Pinterest or Facebook renders as a bare text card.
-      // Purpose-built 1200x630 card per guide (generated at authoring time);
-      // fall back to the product hero if a card was never generated, so a new
-      // guide is never blocked on artwork.
-      images: [
-        fs.existsSync(path.join(process.cwd(), "public", "images", "og", "guides", `${g.slug}.png`))
-          ? { url: `/images/og/guides/${g.slug}.png`, width: 1200, height: 630 }
-          : {
-              url: getProduct(g.productSlug)?.hero.image ?? "/images/brand/og-default.png",
-              width: 1200,
-              height: 900,
-            },
-      ],
+      images: [ogImage],
     },
+    // Twitter/X does NOT fall back to og:image here: the root layout sets a
+    // twitter block, and a page that overrides only openGraph inherits that
+    // one unchanged — so every guide, hub, and product was posting the generic
+    // site card while its purpose-built art sat unused. Same image, stated
+    // twice, because the two namespaces resolve independently.
+    twitter: { card: "summary_large_image", title: g.title, description: g.description, images: [ogImage.url] },
   };
 }
 
