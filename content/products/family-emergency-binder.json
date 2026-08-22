@@ -84,7 +84,7 @@
   ],
   "privacy": {
     "heading": "Private by design, not by promise",
-    "body": "Nothing you type ever leaves your device, and it never asks for a password by design.",
+    "body": "Nothing you type ever leaves your device. It never asks for a Social Security number, an account number, a policy number, a password, or a PIN — there is nowhere in it to put one. That is deliberate: it is what makes the printed pages safe to leave on a fridge or hand to a babysitter.",
     "cards": [
       {
         "title": "Zero network requests",
