@@ -98,7 +98,10 @@ export default function AboutPage() {
             the whole thing before paying for it.
           </p>
 
-          <h2 className="mb-4 mt-10 text-[26px]">Contact</h2>
+          <h2 className="mb-4 mt-10 text-[26px]">Who makes it</h2>
+          <p className="mb-5 text-[17px] leading-relaxed text-ink-soft">
+            Quietkeep is built by Sean Stuart in Buffalo, New York.
+          </p>
           <p className="text-[17px] leading-relaxed text-ink-soft">
             <a className="text-ledger" href={`mailto:${site.supportEmail}`}>
               {site.supportEmail}

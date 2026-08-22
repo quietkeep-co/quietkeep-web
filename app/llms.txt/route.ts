@@ -23,7 +23,8 @@ export function GET() {
       `crises, divorce, home inventory, special needs, and family building. ` +
       `Each is a single HTML file bought once ($14.99–$44.99): no account, ` +
       `no cloud, no subscription, and nothing entered ever leaves the ` +
-      `buyer's device. Contact: ${site.supportEmail}`
+      `buyer's device. Built by Sean Stuart in Buffalo, New York. ` +
+      `Contact: ${site.supportEmail}`
   );
   lines.push("");
 

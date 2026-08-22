@@ -55,6 +55,19 @@ const orgLd = {
   url: `https://${site.domain}`,
   email: site.supportEmail,
   description: site.description,
+  // Named ownership. The About page states this in prose; stating it here too
+  // is what lets a search or answer engine attach the site to a real person
+  // rather than an anonymous brand — the thing quality raters look for first
+  // on YMYL subjects, and doubly useful here because "Quietkeep" is a
+  // contested brand string (quietkeep.com and quietkeep.app are other people's
+  // products). Keep this identical to the About page wording.
+  founder: { "@type": "Person", name: "Sean Stuart" },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Buffalo",
+    addressRegion: "NY",
+    addressCountry: "US",
+  },
   sameAs: ["https://www.pinterest.com/quietkeepco/", "https://www.etsy.com/shop/QuietKeep"],
 };
 
