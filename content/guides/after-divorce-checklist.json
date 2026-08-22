@@ -2,6 +2,7 @@
   "slug": "after-divorce-checklist",
   "title": "The After-Divorce Checklist Nobody Hands You",
   "description": "An after-divorce checklist for the accounts, documents, and beneficiaries a decree leaves you to sort out — the paperwork that keeps going after the case is closed.",
+  "answer": "After a divorce is final, work through joint bank and credit accounts, your credit reports, retirement accounts, deeds and vehicle titles, your name and address wherever they appear, health insurance, and beneficiary designations. Those designations are held by each insurer or plan administrator, so confirm every one directly rather than assuming.",
   "cluster": "Post-divorce transition",
   "date": "2026-08-05",
   "updated": "2026-08-05",
@@ -37,7 +38,7 @@
     {
       "heading": "Beneficiaries, insurance, and your estate plan",
       "paragraphs": [
-        "This is the category with the most upside and the most room for a genuine mistake, so it's worth taking slowly and asking rather than assuming.",
+        "This is the category with the most upside and the most room for a genuine mistake, so it's worth taking slowly and asking rather than assuming. Much of it overlaps with <a href=\"/guides/getting-affairs-in-order\">getting your affairs in order</a> generally; what's different here is that every one of these documents was written for a household that no longer exists.",
         "A divorce decree does not automatically update the beneficiary on a life insurance policy or retirement account — that beneficiary designation is a separate document held by the insurer or plan administrator, and in many cases it stays exactly as it was written until someone actively changes it. This is one of the most commonly missed items in a post-divorce checklist, precisely because people assume the decree already handled it.",
         "At the same time, an important caution: if your case is still pending — not yet final — many states automatically restrict either spouse from changing beneficiaries, insurance coverage, or titles the moment a case is filed, without either side requesting it. If you're not certain your case is fully final, that's a question to ask your attorney before changing anything, not after."
       ],
@@ -50,7 +51,7 @@
     {
       "heading": "Your new baseline",
       "paragraphs": [
-        "The last category isn't paperwork at all — it's the practical reality of running a household of one where the numbers were built for two. Building an honest monthly budget with the real post-divorce numbers tends to do more for peace of mind than any single piece of paperwork on this list, mostly because it replaces a vague worry with an actual figure.",
+        "The last category isn't paperwork at all — it's the practical reality of running a household of one where the numbers were built for two. Building an honest monthly budget with the real post-divorce numbers tends to do more for peace of mind than any single piece of paperwork on this list, mostly because it replaces a vague worry with an actual figure. If you're co-parenting, the children's costs belong in that figure too, which is easier once there's a working system for <a href=\"/guides/splitting-childrens-expenses-after-divorce\">splitting children's expenses</a>.",
         "It's reasonable to give yourself a real timeline for all of this — most of it finishes in stages over months, not a single weekend, and that's normal rather than a sign you're behind."
       ]
     }
@@ -70,6 +71,33 @@
     }
   ],
   "takeaway": "A divorce decree is the start of a checklist, not the end of one — accounts to separate, documents to retitle, and beneficiaries to review, several of which are not automatic no matter what the decree says. Working through it at a steady pace, and asking your attorney before acting on anything involving a pending case or a retirement account, tends to finish it faster than treating it as one overwhelming task. If it's the attorney meeting itself you're still preparing for, <a href=\"/guides/what-to-bring-to-your-first-divorce-attorney-meeting\">what to bring to that first meeting</a> is worth reading alongside this. And once the accounts and beneficiaries are sorted, rebuilding a will or full estate plan from scratch is really a separate project — <a href=\"/guides/getting-affairs-in-order\">getting your affairs in order</a> covers that ground.",
+  "sources": [
+    {
+      "label": "How to legally change your name and who to notify",
+      "publisher": "USA.gov",
+      "url": "https://www.usa.gov/name-change"
+    },
+    {
+      "label": "Can I remove my spouse from our joint checking account?",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/can-i-remove-my-spouse-from-our-joint-checking-account-en-1097/"
+    },
+    {
+      "label": "Can a debt collector contact me about a debt after a divorce?",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/can-a-debt-collector-contact-me-about-a-debt-after-a-divorce-en-1413/"
+    },
+    {
+      "label": "Credit reports and scores: how to get and check yours",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/consumer-tools/credit-reports-and-scores/"
+    },
+    {
+      "label": "Retirement topics: qualified domestic relations order (QDRO)",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-qdro-qualified-domestic-relations-order"
+    }
+  ],
   "productSlug": "post-divorce-transition",
   "productPitch": "The Post-Divorce Transition Organizer tracks every item on this list to done — accounts, documents, and beneficiaries — alongside a new-budget register that totals itself, with a one-click summary showing exactly what's finished and what's left. An organizer, not legal advice."
 }

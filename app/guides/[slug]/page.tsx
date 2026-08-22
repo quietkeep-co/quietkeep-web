@@ -9,7 +9,14 @@ import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import { JsonLd } from "@/components/JsonLd";
 import { GuideFaq } from "@/components/GuideFaq";
-import { getGuide, guideSlugs, faqPageLd, hubForGuide } from "@/lib/guides";
+import {
+  getGuide,
+  guideSlugs,
+  faqPageLd,
+  hubForGuide,
+  guideAnswer,
+  guideSources,
+} from "@/lib/guides";
 import { getProduct } from "@/lib/products";
 import { site } from "@/lib/site";
 
@@ -88,6 +95,8 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
   const faqLd = faqPageLd(g);
 
   const hub = hubForGuide(g);
+  const answer = guideAnswer(g);
+  const sources = guideSources(g);
   const breadcrumbLd = hub && {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -137,6 +146,15 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
             })}
           </p>
 
+          {answer && (
+            <div className="mb-9 rounded-xl border border-line bg-card px-[26px] py-[22px]">
+              <div className="mb-2 text-[12.5px] uppercase tracking-[0.14em] text-brass">
+                The short answer
+              </div>
+              <p className="text-[17.5px] leading-relaxed text-ink">{answer}</p>
+            </div>
+          )}
+
           {g.intro.map((p, i) => (
             <p
               key={i}
@@ -177,6 +195,31 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           </div>
 
           <GuideFaq guide={g} />
+
+          {sources.length > 0 && (
+            <section className="mt-12 border-t border-line pt-7">
+              <h2 className="mb-1.5 text-[21px]">Sources</h2>
+              <p className="mb-4 text-[15px] text-ink-faint">
+                Where the facts in this guide come from. Rules and figures
+                change — these are the places that publish the current ones.
+              </p>
+              <ul className="list-none">
+                {sources.map((s) => (
+                  <li key={s.url} className="border-b border-line-soft py-2.5 text-[16px]">
+                    <a
+                      className="text-ledger underline-offset-2 hover:underline"
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener"
+                    >
+                      {s.label}
+                    </a>
+                    <span className="text-ink-faint"> · {s.publisher}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {product && (
             <Reveal className="mt-[26px] flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-line bg-card px-[30px] py-[26px]">

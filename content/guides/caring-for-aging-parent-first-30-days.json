@@ -2,6 +2,7 @@
   "slug": "caring-for-aging-parent-first-30-days",
   "title": "Caring for an Aging Parent: The First 30 Days",
   "description": "Caregiving rarely starts with a decision. A week-by-week plan for the first month — medical, then money and access, then the house, then the family.",
+  "answer": "Work through the first month in order rather than all at once. Week one is the written medical picture: doctors, medications, pharmacy, insurance, and release-of-information forms. Week two is money, account access, and whether the legal documents exist. Week three is home safety. Week four is dividing the work among family.",
   "cluster": "Caregiving",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -29,7 +30,7 @@
       "heading": "Week 2 — Access and money",
       "paragraphs": [
         "Now the part families avoid, because it feels like going through someone's drawers. Some of it is. Do it anyway, with them in the room whenever you can.",
-        "Find out where the money is — which bank, which accounts, roughly what comes in and when, from Social Security, a pension, an annuity, or a rental payment. Then what goes out automatically: mortgage or rent, utilities, insurance premiums, the subscriptions nobody remembers signing up for. Autopay is a quiet problem in this period. Bills keep paying themselves from an account nobody is watching, until they don't.",
+        "Find out where the money is — which bank, which accounts, roughly what comes in and when, from Social Security, a pension, an annuity, or a rental payment. Then what goes out automatically: mortgage or rent, utilities, insurance premiums, and <a href=\"/guides/digital-estate-planning-checklist\">the subscriptions nobody remembers signing up for</a>. Autopay is a quiet problem in this period. Bills keep paying themselves from an account nobody is watching, until they don't.",
         "Then find out who is on what. Joint accounts, listed beneficiaries, who the bank thinks is authorized. <b>Being someone's child grants you exactly nothing at a bank.</b>"
       ]
     },
@@ -49,7 +50,7 @@
       "heading": "Why that window matters",
       "paragraphs": [
         "These can only be created while the person still has the capacity to sign them. If cognition is declining, the window is open now and closing.",
-        "Once it closes, the alternative is guardianship, which is a court process — slower, public, and considerably more expensive. If those documents don't exist, week two is when you find out, while there's still time to do something about it. That's worth an uncomfortable conversation."
+        "Once it closes, the alternative is guardianship, which is a court process — slower, public, and considerably more expensive. If those documents don't exist, week two is when you find out, while there's still time to <a href=\"/guides/getting-affairs-in-order\">put them in place</a>. That's worth an uncomfortable conversation."
       ]
     },
     {
@@ -84,6 +85,28 @@
     }
   ],
   "takeaway": "The first month has a shape: week one is medical, week two is access and money, week three is the house, and week four is the family. At the end of it nothing is solved — but the medical picture is written down, the money is visible, the house is safer, and everyone has said out loud who is doing what. Nothing about it needs to be fast.",
+  "sources": [
+    {
+      "label": "Getting started with caregiving: what to do first",
+      "publisher": "National Institute on Aging, National Institutes of Health",
+      "url": "https://www.nia.nih.gov/health/caregiving/getting-started-caregiving"
+    },
+    {
+      "label": "Eldercare Locator: find Area Agency on Aging services by ZIP code",
+      "publisher": "Administration for Community Living, U.S. Department of Health and Human Services",
+      "url": "https://eldercare.acl.gov/"
+    },
+    {
+      "label": "Preventing falls and hip fractures in older adults",
+      "publisher": "Centers for Disease Control and Prevention",
+      "url": "https://www.cdc.gov/falls/prevention/index.html"
+    },
+    {
+      "label": "Advance care planning: advance directives for health care",
+      "publisher": "National Institute on Aging, National Institutes of Health",
+      "url": "https://www.nia.nih.gov/health/advance-care-planning/advance-care-planning-advance-directives-health-care"
+    }
+  ],
   "productSlug": "caregiving-companion",
   "productPitch": "The Caregiving Companion is organized by phase rather than as one overwhelming list — the medical picture, the access and money pages, the home safety pass, and the family agreement, already laid out and entirely on your own device."
 }

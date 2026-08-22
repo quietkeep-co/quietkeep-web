@@ -2,6 +2,7 @@
   "slug": "letter-of-intent-special-needs",
   "title": "Writing a Letter of Intent for Your Child's Future",
   "description": "The letter of intent is not a legal document, which is exactly why it matters. What to put in it so the next person caring for your child knows what you know.",
+  "answer": "A letter of intent is a non-binding document describing how to care for your child: the daily routine, food, communication, what calms and what escalates, sleep, medical details, providers, the people who matter, and what you hope for. It has no legal force, so write it plainly and date every version.",
   "cluster": "Special needs school-year organizing",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -36,7 +37,7 @@
       "heading": "Then the picture around the day",
       "paragraphs": [
         "Medical: diagnoses, medications with doses and what each is for, allergies, every doctor and specialist with a phone number, the pharmacy, the equipment and who services it, and what a bad day looks like versus an emergency.",
-        "Education and services: current school and program, the case manager, the therapies and who delivers them, what has worked, and what was tried and failed. The failures save the next person a year.",
+        "Education and services: current school and program, the case manager, <a href=\"/guides/what-to-bring-to-an-iep-meeting\">what the IEP promises and what is actually delivered</a>, the therapies and who delivers them, what has worked, and what was tried and failed. The failures save the next person a year.",
         "The people: who knows your child well, who is safe, who is not, siblings and what each relationship is like, and the friends or staff who matter."
       ]
     },
@@ -51,7 +52,7 @@
     {
       "heading": "Where it fits with the legal documents",
       "paragraphs": [
-        "The letter of intent sits alongside the legal work, never inside it. It has no binding force, cannot direct money, and cannot appoint anyone.",
+        "The letter of intent sits alongside <a href=\"/guides/getting-affairs-in-order\">the rest of getting your affairs in order</a>, never inside it. It has no binding force, cannot direct money, and cannot appoint anyone.",
         "The instruments that do carry legal weight are a different conversation with an attorney who works in this area, and the choices there can affect benefit eligibility in ways that are easy to get wrong. That is worth paid advice.",
         "What the letter does is make those instruments usable. A trustee holding money and no context makes worse decisions than a trustee holding the same money and forty pages describing the person it is for."
       ]
@@ -80,6 +81,28 @@
     }
   ],
   "takeaway": "A letter of intent carries everything the legal documents cannot: the routine, the communication, the people, and what you actually want for your child. It has no legal force, which is exactly what lets it be personal and current. Write the day first, date it, and tell someone where it lives.",
+  "sources": [
+    {
+      "label": "Center for Future Planning: person-centered planning, housing, and decision-making",
+      "publisher": "The Arc, via the Center for Parent Information and Resources",
+      "url": "https://www.parentcenterhub.org/center-for-future-planning/"
+    },
+    {
+      "label": "Financial Planning Guide for Parents of a Child with Special Needs",
+      "publisher": "Center for Parent Information and Resources",
+      "url": "https://www.parentcenterhub.org/financial-planning-guide/"
+    },
+    {
+      "label": "What are ABLE Accounts, and how they interact with needs-based benefits",
+      "publisher": "ABLE National Resource Center, National Disability Institute",
+      "url": "https://www.ablenrc.org/what-is-able/what-are-able-acounts/"
+    },
+    {
+      "label": "IDEA resources for parents and families",
+      "publisher": "U.S. Department of Education, Individuals with Disabilities Education Act",
+      "url": "https://sites.ed.gov/idea/parents-families/"
+    }
+  ],
   "productSlug": "special-needs-care-binder",
   "productPitch": "The Special Needs Care Binder has these sections already built — the daily routine, the medical picture, services and providers, the people, and the letter of intent itself — in one file on your own device, so a year of updates does not mean a year of retyping."
 }

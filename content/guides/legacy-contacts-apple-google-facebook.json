@@ -2,6 +2,7 @@
   "slug": "legacy-contacts-apple-google-facebook",
   "title": "Legacy Contacts: Setting Up Apple, Google, and Facebook's Official Handoffs",
   "description": "A step-by-step guide to setting up a legacy contact on Apple, Google, and Facebook — the official digital estate planning tools that decide who reaches your accounts, no passwords required.",
+  "answer": "Apple, Google, and Facebook each let you name in advance who may reach your account. Apple's Legacy Contact requests your account data using an access key and a death certificate. Google's Inactive Account Manager notifies chosen contacts after a set period of inactivity. Facebook's legacy contact manages a memorialized profile. No password is shared.",
   "cluster": "Digital estate planning",
   "date": "2026-07-22",
   "updated": "2026-07-22",
@@ -17,7 +18,7 @@
       "paragraphs": [
         "The instinct is to solve this by writing your passwords on a card for your spouse. It feels simpler, and it is worse in almost every way. A password on a card goes stale the moment you change it, breaks the second a two-factor prompt appears, and often violates the terms of service you agreed to — which can get an account frozen exactly when your family needs it open.",
         "The legacy-contact tools were built to replace that card. They share access on the platform's terms, survive password changes, and don't hand a live credential to anyone while you're alive. They also draw a clean line: the person you name gets a defined kind of access — your photos, your account data, the ability to memorialize a profile — not the run of your entire digital life.",
-        "Setting them up is one piece of a larger map, not the whole thing. If you haven't yet listed out every account your family would need to find, start with our companion guide, <b>The Digital Estate Planning Checklist</b> — the legacy contacts below are step three of that afternoon's work, not a substitute for it."
+        "Setting them up is one piece of a larger map, not the whole thing. If you haven't yet listed out every account your family would need to find, start with our companion guide, <a href=\"/guides/digital-estate-planning-checklist\">the digital estate planning checklist</a> — the legacy contacts below are step three of that afternoon's work, not a substitute for it."
       ]
     },
     {
@@ -51,7 +52,7 @@
       "heading": "How to set up a Facebook legacy contact",
       "paragraphs": [
         "Facebook's legacy contact governs what happens to your profile once it's memorialized — the state a Facebook account enters after the company is notified of a death. A memorialized profile stays visible as a place for friends to gather, with \"Remembering\" shown before your name. Your legacy contact can manage that space in limited ways; they cannot read your private messages, and that boundary is deliberate.",
-        "What your legacy contact can do: write a pinned post at the top of your profile, respond to new friend requests, and update your profile and cover photo. What they cannot do: log in as you, read your messages, or see anything you didn't share with them while alive. You can also grant them permission to request the account's removal.",
+        "What your legacy contact can do: write a pinned post at the top of your profile, update your profile picture and cover photo, and request the account's removal. If you turn on the download permission before you die, they can also download a copy of what you shared. What they cannot do: log in as you, read your messages, see anything you didn't share with them while alive, remove any of your friends, or send new friend requests.",
         "Set it from Facebook's settings, on the web or in the app:"
       ],
       "bullets": [
@@ -77,7 +78,7 @@
     {
       "heading": "Keep the rest of your accounts in mind",
       "paragraphs": [
-        "These three cover an enormous share of most people's digital lives, but they are not everything. Your password manager likely has its own emergency-access feature — a trusted person can request entry with a waiting period you control — and it's often the single most valuable setting to turn on, because it reaches the accounts no platform-specific tool touches. Banks, brokerages, and subscriptions each have their own after-death processes that no legacy contact covers.",
+        "These three cover an enormous share of most people's digital lives, but they are not everything. Your password manager likely has its own emergency-access feature — a trusted person can request entry with a waiting period you control — and it's often the single most valuable setting to turn on, because it reaches the accounts no platform-specific tool touches. Banks, brokerages, and subscriptions each have their own after-death processes that no legacy contact covers, and those tend to land on whoever is working through <a href=\"/guides/executors-first-30-days\">an executor's first thirty days</a>.",
         "The pattern that holds across all of them is the same one that makes the big three work: use the official channel each service already offers, record where the access instructions live, and never write the passwords themselves into the document. A record of where the keys are kept is a gift to your family. A list of the keys themselves is a liability sitting in a drawer.",
         "Set the three legacy contacts this week — the settings take minutes each. Then write down that you did, and tell the people you named. This guide is an organizational aid rather than legal or financial advice, and platform menus shift over time, so treat the steps as a map and confirm the current wording in each app; for anything you want to be legally binding, mention your digital assets in your estate documents with an attorney. That last, unglamorous step — recording what you set and telling the people you named — is what turns three toggled switches into a plan your family can actually use."
       ]
@@ -94,10 +95,32 @@
     },
     {
       "q": "What is a Facebook legacy contact allowed to do with my account?",
-      "a": "A Facebook legacy contact can write a pinned post on your memorialized profile, respond to new friend requests, and update your profile and cover photo. They cannot log in as you or read your messages. Note whether you chose memorialization or full account deletion."
+      "a": "A Facebook legacy contact can write a pinned post on your memorialized profile, update your profile picture and cover photo, and request that the account be removed. They cannot log in as you, read your messages, remove your friends, or send new friend requests. Note whether you chose memorialization or full account deletion."
     }
   ],
   "takeaway": "Apple, Google, and Facebook each offer an official way to name who reaches your account after you're gone — Legacy Contact, Inactive Account Manager, and a memorialization legacy contact. Each shares access on the platform's terms, with no password ever changing hands. The settings take minutes; the part people forget is recording the choices and telling the people named, which is what makes them work.",
+  "sources": [
+    {
+      "label": "How to add a Legacy Contact for your Apple Account",
+      "publisher": "Apple",
+      "url": "https://support.apple.com/en-us/102631"
+    },
+    {
+      "label": "About Inactive Account Manager",
+      "publisher": "Google",
+      "url": "https://support.google.com/accounts/answer/3036546"
+    },
+    {
+      "label": "About legacy contacts on Facebook",
+      "publisher": "Meta",
+      "url": "https://www.facebook.com/help/1568013990080948"
+    },
+    {
+      "label": "Add, change, or remove your legacy contact on Facebook",
+      "publisher": "Meta",
+      "url": "https://www.facebook.com/help/1070665206293088"
+    }
+  ],
   "productSlug": "digital-legacy-planner",
   "productPitch": "The Digital Legacy Planner gives each of these handoffs a home: a place to record who you named on Apple, Google, and Facebook, where each access key lives, and a printable sheet your family can follow — fully offline, and it never stores a password by design."
 }

@@ -2,6 +2,7 @@
   "slug": "first-week-after-a-diagnosis",
   "title": "The First Week After a Diagnosis: What to Set Up Before Anything Else",
   "description": "A serious diagnosis arrives with appointments, bills, and approvals all at once. Four things to set up in week one so the paperwork never gets ahead of you.",
+  "answer": "In the first week, set up one place for everything: the diagnosis written exactly, every provider, medications, and insurance details. Request portal access and written authorization at each practice, learn which arriving documents are bills and which are explanations of benefits, and start logging every prior authorization request and outcome.",
   "cluster": "Medical crisis organizing",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -29,7 +30,7 @@
       "heading": "Get portal access to everything, in week one",
       "paragraphs": [
         "Most practices have a patient portal, and treatment frequently involves more than one health system whose portals do not talk to each other. Setting up access is a fifteen-minute job when nothing is urgent and a genuine obstacle at 9pm on a Friday when you need a result.",
-        "If you are doing this for someone else, this is also the week to sort out authorization. Ask each practice what they need in order to speak with you and to give you records. Being a spouse or an adult child is not by itself enough, and the moment you discover this is always inconvenient.",
+        "If you are <a href=\"/guides/caring-for-aging-parent-first-30-days\">doing this for an aging parent</a> or someone else, this is also the week to sort out authorization. Ask each practice what they need in order to speak with you and to give you records. Being a spouse or an adult child is not by itself enough, and the moment you discover this is always inconvenient.",
         "Ask, at the same time, whether the practice has a nurse navigator, a patient advocate, or a social worker. Many do, most families never ask, and their entire job is the part you are struggling with."
       ]
     },
@@ -62,7 +63,7 @@
       "heading": "The part people skip",
       "paragraphs": [
         "Somewhere in the first weeks, ask what financial assistance exists. Hospitals have financial assistance policies, drug manufacturers have patient assistance programs, and disease-specific nonprofits often help with travel and lodging. None of them find you.",
-        "This is also the week to check whether the basic documents exist — a healthcare proxy and a durable power of attorney. Not because anything is expected to go wrong, but because they are simple to put in place now and impossible to create at the moment they are needed."
+        "This is also the week to check whether the basic documents exist — <a href=\"/guides/getting-affairs-in-order\">a healthcare proxy and a durable power of attorney</a>. Not because anything is expected to go wrong, but because they are simple to put in place now and impossible to create at the moment they are needed."
       ]
     }
   ],
@@ -81,6 +82,28 @@
     }
   ],
   "takeaway": "In week one, set up one place for everything, get portal access and authorization at every practice, learn the difference between an explanation of benefits and a bill, and start logging prior authorizations. The medical care has a team. The paperwork has you, and it is easier to stay ahead of it than to catch up.",
+  "sources": [
+    {
+      "label": "HIPAA: when providers may share your health information with family members and friends",
+      "publisher": "U.S. Department of Health and Human Services",
+      "url": "https://www.hhs.gov/hipaa/for-individuals/family-members-friends/index.html"
+    },
+    {
+      "label": "How to appeal an insurance company decision: internal appeals and external review",
+      "publisher": "HealthCare.gov (Centers for Medicare & Medicaid Services)",
+      "url": "https://www.healthcare.gov/appeal-insurance-company-decision/appeals/"
+    },
+    {
+      "label": "Health insurance: understanding coverage, costs, and hospital bills",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "url": "https://medlineplus.gov/healthinsurance.html"
+    },
+    {
+      "label": "Advance directives: living wills and healthcare proxies",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "url": "https://medlineplus.gov/advancedirectives.html"
+    }
+  ],
   "productSlug": "medical-crisis-companion",
   "productPitch": "The Medical Crisis Companion is built for exactly this stretch — the provider and medication lists, the appointment log, the authorization tracker, and the register that reconciles explanations of benefits against bills — in one file that works offline in a waiting room."
 }

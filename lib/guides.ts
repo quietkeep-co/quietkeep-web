@@ -27,6 +27,24 @@ export type GuideFaqItem = {
   a: string;
 };
 
+// A short, self-contained answer to the question the title asks, shown in its
+// own block directly under the title. Two reasons it exists, both real:
+// a reader who only needs the fact gets it without scrolling, and answer
+// engines quote the top of a page far more often than the middle. Plain text
+// only — it is rendered as text and may end up quoted verbatim elsewhere.
+export type GuideAnswer = string;
+
+// An outbound citation to a primary source. Guides make factual claims about
+// death certificates, funeral pricing rules, insurance deadlines, and IEP
+// procedure; citing the agency that actually sets those rules is both the
+// honest thing to do and the strongest available trust signal for a small
+// publisher writing on YMYL subjects.
+export type GuideSource = {
+  label: string;
+  publisher: string;
+  url: string;
+};
+
 export type Guide = {
   slug: string;
   title: string;
@@ -41,6 +59,8 @@ export type Guide = {
   productSlug: string; // the organizer this guide naturally leads to
   productPitch: string; // one calm sentence bridging guide -> product
   faq?: GuideFaqItem[]; // optional; guides without one render exactly as before
+  answer?: GuideAnswer; // optional; see GuideAnswer
+  sources?: GuideSource[]; // optional; see GuideSource
 };
 
 const GUIDES_DIR = path.join(process.cwd(), "content", "guides");
@@ -134,6 +154,32 @@ export function guideFaq(g: Guide): GuideFaqItem[] {
     )
     .map((x) => ({ q: x.q.trim(), a: x.a.trim() }))
     .filter((x) => x.q.length > 0 && x.a.length > 0);
+}
+
+// Drop malformed entries the same way guideFaq does, so one bad hand-edit
+// renders a shorter list rather than a broken block or an empty <a>. A source
+// with no URL is not a citation, so it is discarded rather than shown.
+export function guideSources(g: Guide): GuideSource[] {
+  if (!Array.isArray(g.sources)) return [];
+  return g.sources
+    .filter(
+      (x): x is GuideSource =>
+        !!x &&
+        typeof x.label === "string" &&
+        typeof x.publisher === "string" &&
+        typeof x.url === "string"
+    )
+    .map((x) => ({
+      label: x.label.trim(),
+      publisher: x.publisher.trim(),
+      url: x.url.trim(),
+    }))
+    .filter((x) => x.label.length > 0 && /^https?:\/\//.test(x.url));
+}
+
+// The answer block's text, trimmed, or "" when absent.
+export function guideAnswer(g: Guide): string {
+  return typeof g.answer === "string" ? g.answer.trim() : "";
 }
 
 // FAQPage structured data. Null when there is nothing to emit — never ship an

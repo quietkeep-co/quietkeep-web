@@ -2,6 +2,7 @@
   "slug": "home-inventory-before-a-claim",
   "title": "How to Document Your Home Before You Need to Prove It",
   "description": "An insurance claim turns on proving you owned the thing, not that it was damaged. A room-by-room home inventory method that takes one afternoon.",
+  "answer": "A home inventory is a dated record proving you owned what you lost. Photograph each room wide from the doorway with closets and cabinets open, capture serial number labels on anything with a plug, note purchase dates where you have them, and keep at least one copy stored outside the building.",
   "cluster": "Home inventory & insurance claims",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -15,7 +16,7 @@
       "heading": "What actually happens in a claim",
       "paragraphs": [
         "After a loss, your insurer asks for a proof of loss. Somewhere in that paperwork is a schedule of personal property: a list of what you lost, item by item, with a value and a purchase date where you can manage it.",
-        "Most families sit down at a kitchen table and try to write that list from memory, usually while staying somewhere else. Memory is worse at this than anyone expects. People remember the television and forget the tools in the garage. They remember the couch and forget the six years of small purchases that furnished the room around it.",
+        "Most families sit down at a kitchen table and try to write that list from memory, usually while staying somewhere else <a href=\"/guides/first-72-hours-after-a-fire-or-flood\">in the first days after the loss</a>. Memory is worse at this than anyone expects. People remember the television and forget the tools in the garage. They remember the couch and forget the six years of small purchases that furnished the room around it.",
         "An adjuster isn't trying to trick you. They're working from what you give them. <b>If you give them a thin list, you get a thin number</b> — and nobody ever finds out what was left off."
       ]
     },
@@ -62,7 +63,7 @@
     {
       "heading": "The boring parts the photos don't carry",
       "paragraphs": [
-        "Write these down in one place, next to the inventory itself."
+        "Write these down in one place, next to the inventory itself and next to <a href=\"/guides/getting-affairs-in-order\">the rest of your household paperwork</a>."
       ],
       "bullets": [
         "Your policy number and the claims phone number",
@@ -88,6 +89,28 @@
     }
   ],
   "takeaway": "An insurance claim turns on proving you owned the thing, not that it was damaged. One wide photo of every room with the closets open, serial numbers on anything with a plug, and a copy stored outside the building covers most of it. It takes an afternoon, and the afternoon has to happen before anything goes wrong.",
+  "sources": [
+    {
+      "label": "Home Inventory: how to record and store what you own",
+      "publisher": "National Association of Insurance Commissioners",
+      "url": "https://content.naic.org/consumer/home-inventory"
+    },
+    {
+      "label": "Disaster Preparedness: what to document before a loss",
+      "publisher": "National Association of Insurance Commissioners",
+      "url": "https://content.naic.org/article/consumer-insight-disaster-preparedness"
+    },
+    {
+      "label": "Home Inventory and Contents Claim Tips",
+      "publisher": "United Policyholders",
+      "url": "https://uphelp.org/claim-guidance-publications/home-inventory/"
+    },
+    {
+      "label": "Home Inventory guidance from one state regulator (South Dakota)",
+      "publisher": "South Dakota Division of Insurance",
+      "url": "https://dlr.sd.gov/insurance/general_guidance/home_inventory.aspx"
+    }
+  ],
   "productSlug": "home-inventory-organizer",
   "productPitch": "The Home Inventory & Insurance Claim Organizer is the structure already built — room-by-room prompts, fields for policy details and serial numbers, and a claim log for the version of this you hope you never need."
 }

@@ -2,6 +2,7 @@
   "slug": "hospital-discharge-checklist",
   "title": "The Hospital Discharge Checklist Nobody Hands You",
   "description": "Discharge takes fifteen minutes and hands you the next month. What to ask for, who to ask by title, and what to write down before you leave the room.",
+  "answer": "Before leaving the hospital, ask for the case manager by title and get a direct number, ask the pharmacist to reconcile the home and hospital medication lists, confirm what equipment and home health is arranged and which vendor delivers it, book the follow-up appointment yourself, and write down who said what.",
   "cluster": "Medical crisis organizing",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -69,7 +70,7 @@
       "paragraphs": [
         "Once you're in the parking lot, the hospital turns into a phone tree. Before you leave, capture the names and titles of everyone you spoke with, the case manager's direct number, what was decided in your own words, what you were told to watch for, every vendor and agency involved, and the follow-up appointments with dates.",
         "You aren't being difficult. You're the only person who will be in the room for every part of this. The staff changes shift. You don't.",
-        "If you're doing this for a parent or a spouse, two things come up fast. You'll be asked whether you're authorized to receive information, and whether anyone holds a healthcare power of attorney. If those documents exist, know where they are. If they don't, this is the moment families discover it — and it's the one moment they can't be created."
+        "If you're <a href=\"/guides/caring-for-aging-parent-first-30-days\">doing this for an aging parent</a> or a spouse, two things come up fast. You'll be asked <a href=\"/guides/first-week-after-a-diagnosis\">whether you're authorized to receive information</a>, and whether anyone holds a healthcare power of attorney. If those documents exist, know where they are. If they don't, this is the moment families discover it — and it's the one moment they can't be created."
       ]
     }
   ],
@@ -88,6 +89,28 @@
     }
   ],
   "takeaway": "Discharge is a fifteen-minute conversation that hands you a month of responsibility. Ask for the case manager by title, reconcile the two medication lists before you leave the building, book the follow-up yourself, and write down who said what while the people with the answers are still in front of you.",
+  "sources": [
+    {
+      "label": "Your Discharge Planning Checklist: For patients and their caregivers",
+      "publisher": "Medicare.gov (Centers for Medicare & Medicaid Services)",
+      "url": "https://www.medicare.gov/publications/11376-your-discharge-planning-checklist.pdf"
+    },
+    {
+      "label": "IDEAL Discharge Planning: engaging patients and families in the transition home",
+      "publisher": "Agency for Healthcare Research and Quality",
+      "url": "https://www.ahrq.gov/patient-safety/patients-families/engagingfamilies/strategy4/index.html"
+    },
+    {
+      "label": "Leaving the hospital: your discharge plan",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "url": "https://medlineplus.gov/ency/patientinstructions/000867.htm"
+    },
+    {
+      "label": "Home health care: services, providers, and coverage",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "url": "https://medlineplus.gov/ency/patientinstructions/000434.htm"
+    }
+  ],
   "productSlug": "medical-crisis-companion",
   "productPitch": "The Medical Crisis Companion has these pages already laid out — contacts, medication reconciliation, equipment and agencies, follow-ups, and the what-to-watch-for sheet — in one file that works with no signal, which matters in a hospital."
 }

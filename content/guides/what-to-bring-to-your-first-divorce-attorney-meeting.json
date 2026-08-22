@@ -2,6 +2,7 @@
   "slug": "what-to-bring-to-your-first-divorce-attorney-meeting",
   "title": "What to Bring to Your First Divorce Attorney Meeting",
   "description": "A practical checklist of what to bring to your first divorce attorney meeting — the documents, numbers, and questions that make the hour count.",
+  "answer": "Bring a rough but complete list of every bank, retirement, and investment account, plus real estate, vehicles, and debts. Add recent statements for each account, your most recent tax return, photo ID, marriage certificate, any prenuptial agreement, and any court paperwork already received. Write down your questions in advance, on paper.",
   "cluster": "Divorce preparation",
   "date": "2026-08-05",
   "updated": "2026-08-05",
@@ -27,7 +28,7 @@
     {
       "heading": "Documents worth locating in advance",
       "paragraphs": [
-        "You don't need to gather originals of everything before a first meeting, but knowing where things are — and saying so — saves a second appointment just to ask the same questions."
+        "You don't need to gather originals of everything before a first meeting, but knowing where things are — and saying so — saves a second appointment just to ask the same questions. If you have children, bring a rough sense of what <a href=\"/guides/splitting-childrens-expenses-after-divorce\">the children's recurring expenses</a> actually run — school fees, activities, medical copays."
       ],
       "bullets": [
         "Your driver's license or ID, and your marriage certificate.",
@@ -53,7 +54,7 @@
     {
       "heading": "What not to worry about yet",
       "paragraphs": [
-        "It's common to walk into a first meeting trying to have already solved the whole case — what the outcome should be, what's fair, what the other side will argue. None of that is what the first meeting is for. The first meeting is for getting your own facts on the table clearly enough that a professional can tell you what actually applies to your situation, in your state, given what you've described.",
+        "It's common to walk into a first meeting trying to have already solved the whole case — what the outcome should be, what's fair, what the other side will argue. None of that is what the first meeting is for. The first meeting is for getting your own facts on the table clearly enough that a professional can tell you what actually applies to your situation, in your state, given what you've described. The same is true of the administrative tail on <a href=\"/guides/after-divorce-checklist\">the after-divorce checklist</a> — accounts, titles, beneficiaries — which belongs to a later stage entirely.",
         "One thing worth knowing before you meet: in many states, filing for divorce automatically puts restrictions on both spouses — for example, on changing beneficiaries, moving large sums, or disposing of property — the moment a case is filed, without either side asking for it. If you haven't filed yet, this is exactly the kind of question to bring to the meeting rather than to guess at beforehand."
       ]
     }
@@ -73,6 +74,28 @@
     }
   ],
   "takeaway": "A first divorce attorney meeting goes further when you arrive with a rough but complete list of accounts and debts, a sense of where the key documents live, and a short written list of questions. None of that requires deciding anything in advance — it just means the hour gets spent on your situation instead of on reconstructing basic facts from memory. The paperwork doesn't stop once the decree is signed, either — <a href=\"/guides/after-divorce-checklist\">the after-divorce checklist</a> covers what typically follows.",
+  "sources": [
+    {
+      "label": "Publication 504: Divorced or Separated Individuals",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/publications/p504"
+    },
+    {
+      "label": "Retirement topics: qualified domestic relations order (QDRO)",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/retirement-plans/plan-participant-employee/retirement-topics-qdro-qualified-domestic-relations-order"
+    },
+    {
+      "label": "Can a debt collector contact me about a debt after a divorce?",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/can-a-debt-collector-contact-me-about-a-debt-after-a-divorce-en-1413/"
+    },
+    {
+      "label": "Divorce in California: process and forms (one state's example)",
+      "publisher": "California Courts Self Help Guide",
+      "url": "https://selfhelp.courts.ca.gov/divorce-california"
+    }
+  ],
   "productSlug": "divorce-organizer",
   "productPitch": "The Divorce Organizer holds this exact list — an assets-and-debts register that totals itself, a place for the documents you've located, and a one-click summary formatted for your first meeting. Fully offline, and it's an organizer, not legal advice."
 }

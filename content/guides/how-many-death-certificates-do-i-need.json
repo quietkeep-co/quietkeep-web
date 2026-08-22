@@ -2,6 +2,7 @@
   "slug": "how-many-death-certificates-do-i-need",
   "title": "Death Certificates: How Many You Need, and Who Actually Wants One",
   "description": "Almost every institution wants its own certified copy and will not accept a photocopy. How many to order, who asks, and why ordering more later costs you weeks.",
+  "answer": "Ten to fifteen certified copies of a death certificate is a common starting point for an ordinary estate. Most banks, insurers, brokerages, courts, and government agencies require an original certified copy and keep it rather than returning it. Estates with several accounts, multiple properties, or a business generally need more.",
   "cluster": "Estate settlement",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -46,14 +47,14 @@
     {
       "heading": "Order them at the funeral home",
       "paragraphs": [
-        "The funeral director files the paperwork with the vital records office and can order copies as part of that filing. Doing it then is faster and easier than doing it yourself afterward.",
+        "The funeral director files the paperwork with the vital records office and can order copies as part of that filing — one of the few things that genuinely belongs in <a href=\"/guides/what-to-do-when-someone-dies\">the first days after a death</a>. Doing it then is faster and easier than doing it yourself afterward.",
         "Later, you order directly from the vital records office in the county or state where the death occurred. This is entirely possible, and it takes longer, requires proof of your relationship or your authority as executor, and involves a form and a fee. Nothing about it is hard. It is just one more thing at a moment when there are already several."
       ]
     },
     {
       "heading": "Not everyone can order one",
       "paragraphs": [
-        "Certified copies are restricted records in most states. Typically an immediate family member, the executor or personal representative, or someone with a documented legal interest can order them, and you will be asked to prove which one you are.",
+        "Certified copies are restricted records in most states. Typically an immediate family member, <a href=\"/guides/executors-first-30-days\">the executor or personal representative</a>, or someone with a documented legal interest can order them, and you will be asked to prove which one you are.",
         "That proof is usually a photo ID plus something showing the relationship or your authority — letters testamentary, if probate has issued them. If you are handling an estate for someone you are not related to, sort this out early rather than at the counter."
       ]
     },
@@ -104,6 +105,23 @@
     }
   ],
   "takeaway": "Nearly every institution wants its own certified copy of the death certificate and keeps it. Order ten to fifteen through the funeral home while the paperwork is being filed, keep them in one envelope, and log every one that leaves. It is the cheapest decision in estate settlement and one of the few that is annoying to undo.",
+  "sources": [
+    {
+      "label": "How to get a certified copy of a death certificate",
+      "publisher": "USAGov",
+      "url": "https://www.usa.gov/death-certificate"
+    },
+    {
+      "label": "Ordering death records from a state vital statistics office",
+      "publisher": "Texas Department of State Health Services, Vital Statistics",
+      "url": "https://www.dshs.texas.gov/vital-statistics/death-records"
+    },
+    {
+      "label": "Agencies to notify when someone dies",
+      "publisher": "USAGov",
+      "url": "https://www.usa.gov/report-a-death"
+    }
+  ],
   "productSlug": "estate-settlement-companion",
   "productPitch": "The Estate Settlement Companion includes the register for exactly this — which institution got a certificate, when, for what, and what came back — alongside the account, debt, and expense registers that do the math as the months go on."
 }

@@ -2,6 +2,7 @@
   "slug": "what-to-bring-to-an-iep-meeting",
   "title": "What to Bring to an IEP Meeting, and What to Have Already Written Down",
   "description": "IEP meetings are short and crowded. What to gather beforehand so the hour goes to decisions instead of reconstructing the school year from memory.",
+  "answer": "Bring the school year written down: progress reports in date order, your own dated log of what happened, the service minutes promised against those delivered, work samples, outside evaluations, and your email record. Write your three priorities at the top of the page, and bring a second person to take notes.",
   "cluster": "Special needs school-year organizing",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -69,7 +70,7 @@
     {
       "heading": "Then keep the log going",
       "paragraphs": [
-        "The meeting is one hour of a school year that is roughly a thousand hours long. What made it go well was the record you kept in the months before it.",
+        "The meeting is one hour of a school year that is roughly a thousand hours long. What made it go well was the record you kept in the months before it, and the same record does most of the work when you sit down to write <a href=\"/guides/letter-of-intent-special-needs\">a letter of intent</a>.",
         "Log as it happens, in one place, in short entries with dates. Ten seconds on the day beats an evening of reconstruction in April, and the difference shows up in the room."
       ]
     }
@@ -89,6 +90,23 @@
     }
   ],
   "takeaway": "The hour goes to whoever walked in with the year written down. Ask for the draft in advance, bring progress reports, your own log, and service minutes promised against delivered, decide your three priorities beforehand, and bring someone to take notes. Then confirm in writing what was agreed.",
+  "sources": [
+    {
+      "label": "IDEA resources for parents and families",
+      "publisher": "U.S. Department of Education, Individuals with Disabilities Education Act",
+      "url": "https://sites.ed.gov/idea/parents-families/"
+    },
+    {
+      "label": "The IEP Team: who attends and what each member contributes",
+      "publisher": "Center for Parent Information and Resources",
+      "url": "https://www.parentcenterhub.org/iep-team/"
+    },
+    {
+      "label": "Parental Right to Participate in Meetings",
+      "publisher": "Center for Parent Information and Resources",
+      "url": "https://www.parentcenterhub.org/participation/"
+    }
+  ],
   "productSlug": "special-needs-care-binder",
   "productPitch": "The Special Needs Care Binder is built around this rhythm — the running log, the service minutes tracker, the communication record, and the meeting prep pages — so the year assembles itself instead of being reconstructed the week before the meeting."
 }

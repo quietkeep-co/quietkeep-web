@@ -2,6 +2,7 @@
   "slug": "executors-first-30-days",
   "title": "The Executor's First 30 Days: A Week-by-Week Plan",
   "description": "A week-by-week plan for the first month as an executor — what to do in week one versus week four, and why pacing yourself is the whole game.",
+  "answer": "An executor's first month generally follows a shape: week one locates the will and orders death certificates, week two determines whether the estate requires probate, week three opens the financial accounting once authority is granted, and week four turns scattered notes into an inventory of accounts, debts, and assets.",
   "cluster": "Estate settlement",
   "date": "2026-07-16",
   "updated": "2026-07-16",
@@ -29,7 +30,7 @@
       "paragraphs": [
         "By the second week, you should know enough to answer the question that shapes everything else: does this estate need formal probate, and if so, in which court?",
         "This varies enormously by state and by how the deceased's assets were titled — a well-funded trust or accounts with named beneficiaries can bypass probate almost entirely; an estate held in the deceased's name alone usually can't. One paid consultation with an estate attorney in this window is usually worth it — not to hand off the whole process, but to learn which of the two tracks you're on before you spend weeks assuming the wrong one.",
-        "This is also the week to start the formal notifications — the ones with real deadlines or real financial exposure if delayed."
+        "This is also the week to start <a href=\"/guides/what-to-do-when-someone-dies\">the formal notifications that follow a death</a> — the ones with real deadlines or real financial exposure if delayed."
       ],
       "bullets": [
         "<b>Social Security</b> — confirm it's been reported (the funeral home often does this, but verify), and ask about survivor benefits rather than only reporting the death.",
@@ -42,7 +43,7 @@
       "heading": "Week 3 — Open the financial accounting",
       "paragraphs": [
         "Week three is where the paperwork volume really starts. If probate was filed, you may receive formal letters testamentary or letters of administration around now — the document that proves to banks and institutions that you have legal authority to act.",
-        "With that authority in hand (or informally, if probate isn't required), this is the week to open an estate bank account if the estate is large enough to warrant one, and to begin the account-by-account process: notifying banks and brokerages, learning each institution's specific process, and flagging or freezing accounts as appropriate.",
+        "With that authority in hand (or informally, if probate isn't required), this is the week to open an estate bank account if the estate is large enough to warrant one, and to begin the account-by-account process: notifying banks and brokerages, learning each institution's specific process — including <a href=\"/guides/how-many-death-certificates-do-i-need\">how many certified death certificates</a> each one will keep — and flagging or freezing accounts as appropriate.",
         "This is also the moment to resist a very natural instinct: paying bills out of your own pocket to keep things moving. <b>Don't.</b> Debts are paid from the estate, in an order set by law — not by whichever creditor calls the loudest. Track what needs paying, but pay it from estate funds once you're able to, not your own."
       ]
     },
@@ -70,6 +71,28 @@
     }
   ],
   "takeaway": "The first 30 days as an executor have a natural shape: get your footing in week one, figure out which legal track you're on in week two, open the real financial accounting in week three, and turn everything into a working inventory by week four. Nothing about it needs to be fast — it needs to be tracked, one week at a time.",
+  "sources": [
+    {
+      "label": "Responsibilities of an estate administrator",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/businesses/small-businesses-self-employed/deceased-taxpayers-understanding-the-general-duties-as-an-estate-administrator"
+    },
+    {
+      "label": "File the final income tax returns of a deceased person",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/individuals/file-the-final-income-tax-returns-of-a-deceased-person"
+    },
+    {
+      "label": "Am I responsible for my spouse's debts after they die?",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/am-i-responsible-to-pay-off-the-debts-of-my-deceased-spouse-en-1467/"
+    },
+    {
+      "label": "Report the death of a Social Security or Medicare beneficiary",
+      "publisher": "USAGov",
+      "url": "https://www.usa.gov/social-security-report-a-death"
+    }
+  ],
   "productSlug": "estate-settlement-companion",
   "productPitch": "The Estate Settlement Companion is built around exactly this pacing — guided tasks organized by phase, not a single overwhelming list, with registers for accounts, debts, and expenses that do the math for you as the months go on."
 }

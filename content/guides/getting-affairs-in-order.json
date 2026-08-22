@@ -2,6 +2,7 @@
   "slug": "getting-affairs-in-order",
   "title": "How to Get Your Affairs in Order: A Calm, Practical Guide",
   "description": "What 'getting your affairs in order' actually means, in what order to do it, and how to make sure the people who'd need your information can find it.",
+  "answer": "Getting your affairs in order generally means gathering information in one findable place: who to contact, which legal and medical documents exist and where the originals are kept, a list of accounts, debts, insurance policies and recurring bills, and your online accounts. Most of the work is inventory. Tell one or two trusted people where it lives.",
   "cluster": "Estate planning",
   "date": "2026-07-14",
   "updated": "2026-07-14",
@@ -37,7 +38,7 @@
       "heading": "Layer 3 — The money map",
       "paragraphs": [
         "Nobody can settle, manage, or protect what they can't find. List every financial account — checking, savings, brokerage, retirement, pensions, HSAs — plus every debt: mortgage, cards, loans. For each, record the institution and roughly what it is; account numbers can live in a more protected place.",
-        "Add the insurance policies: life, health, home, auto, disability, long-term care. Policies people don't know about pay nobody. Unclaimed life insurance is a genuinely large problem for exactly this reason.",
+        "Add the insurance policies: life, health, home, auto, disability, long-term care — including any preneed or burial policy, which is worth listing next to <a href=\"/guides/what-a-funeral-costs\">what a funeral actually costs</a> so the coverage and the bill can be compared. Policies people don't know about pay nobody. Unclaimed life insurance is a genuinely large problem for exactly this reason.",
         "Then the recurring bills — what gets paid automatically, from which account. If someone had to keep your household running for three months, this list is what they'd need."
       ]
     },
@@ -51,7 +52,7 @@
     {
       "heading": "Layer 5 — The handoff",
       "paragraphs": [
-        "Everything above only works if it's findable. Pick one place — a binder, a fireproof box, a single well-marked file — where the inventory lives, and tell the one or two people who'd need it exactly where that is.",
+        "Everything above only works if it's findable. Pick one place — a binder, a fireproof box, a single well-marked file — where the inventory lives, and tell the one or two people who'd need it — usually whoever would be working through <a href=\"/guides/executors-first-30-days\">an executor's first thirty days</a> — exactly where that is.",
         "Then put a review date on the calendar. Once a year is enough: new accounts, changed beneficiaries, moved documents. Fifteen minutes a year keeps the whole thing true.",
         "A note on what this guide is not: it's organization, not legal advice. The documents in Layer 2 have state-specific rules, and an estate attorney is the right person for them. What you can do — today, free, without an appointment — is arrive at that appointment organized. It makes the professional time shorter and cheaper, and it's the part only you can do anyway."
       ]
@@ -72,6 +73,23 @@
     }
   ],
   "takeaway": "Getting your affairs in order is five layers: the people, the documents, the money map, the digital layer, and the handoff. Most of it is inventory, not law — which means most of it can be done at your kitchen table, and each layer is worth having even if you never finish the rest.",
+  "sources": [
+    {
+      "label": "Getting Your Affairs in Order Checklist: Documents to Prepare for the Future",
+      "publisher": "National Institute on Aging (NIH)",
+      "url": "https://www.nia.nih.gov/health/advance-care-planning/getting-your-affairs-order-checklist-documents-prepare-future"
+    },
+    {
+      "label": "Advance Care Planning: Advance Directives for Health Care",
+      "publisher": "National Institute on Aging (NIH)",
+      "url": "https://www.nia.nih.gov/health/advance-care-planning-health-care-directives"
+    },
+    {
+      "label": "Guides for managing someone else's money",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/consumer-tools/managing-someone-elses-money/"
+    }
+  ],
   "productSlug": "estate-planning-organizer",
   "productPitch": "The Estate Planning Organizer turns these five layers into guided tasks and registers that do the math — contacts, documents, accounts, policies, wishes — with a printable summary for the people who'd need it. One file, completely offline."
 }

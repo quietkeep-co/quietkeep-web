@@ -2,6 +2,7 @@
   "slug": "what-to-do-when-someone-dies",
   "title": "What to Do When Someone Dies: The First Weeks, One Step at a Time",
   "description": "A practical checklist for the first days and weeks after a death — what actually has to happen now, what can wait, and how to keep track of it all while grieving.",
+  "answer": "When someone dies, a short list needs attention first: a legal pronouncement of death, notifying close family, checking for funeral wishes, securing the home and dependents, and ordering certified death certificates. Notifications to Social Security, employers, insurers, banks, and credit bureaus follow over the next weeks. Most remaining work unfolds across months.",
   "cluster": "Estate settlement",
   "date": "2026-07-14",
   "updated": "2026-07-14",
@@ -29,7 +30,7 @@
       "heading": "The first two weeks",
       "paragraphs": [
         "Once the services are behind you, the administrative phase begins. Two things make it manageable: finding the documents, and starting a record of everything.",
-        "First, locate the will (and any trust). It names the executor — the person with legal authority to act. If you're that person, your next stop is usually the probate court in the county where the person lived, though whether formal probate is even needed depends on the state and the size of the estate. This is a good moment for one consultation with an estate attorney to learn which track you're on.",
+        "First, locate the will (and any trust). It names the executor — the person with legal authority to act. If you're that person, <a href=\"/guides/executors-first-30-days\">the executor's first 30 days</a> have their own week-by-week shape, and your next stop is usually the probate court in the county where the person lived, though whether formal probate is even needed depends on the state and the size of the estate. This is a good moment for one consultation with an estate attorney to learn which track you're on.",
         "Second — and this is the step that saves the most pain later — <b>start a log.</b> Every call, every letter, every account you find, every expense you pay from your own pocket. Estate settlement routinely takes a year; you will not remember in month nine what the bank told you in week two. Notifications that belong in this window:"
       ],
       "bullets": [
@@ -43,7 +44,7 @@
     {
       "heading": "The first months",
       "paragraphs": [
-        "This is the long middle: closing and transferring accounts one at a time, paying valid bills, canceling subscriptions, filing final tax returns, and eventually distributing what remains according to the will. It's not complicated so much as it is voluminous — dozens of institutions, each with its own forms, each wanting a death certificate.",
+        "This is the long middle: closing and transferring accounts one at a time, paying valid bills, canceling subscriptions, filing final tax returns, and eventually distributing what remains according to the will. It's not complicated so much as it is voluminous — dozens of institutions, each with its own forms, each wanting <a href=\"/guides/how-many-death-certificates-do-i-need\">its own certified death certificate</a>.",
         "Three principles carry you through it. <b>Don't pay the deceased's debts from your own money</b> until you understand what the estate owes and in what order — debts are generally paid from the estate, and the order is set by law, not by whoever calls most aggressively. <b>Don't distribute belongings or money early</b>, however well-meant; the estate's bills come first. And <b>keep the log going</b> — executors can generally be reimbursed for legitimate expenses, but only if they can show them.",
         "Watch the calendar for a few genuine deadlines: the final income tax return (the April after the year of death), estate tax filings where they apply (a nine-month federal deadline, for large estates), and any court dates the probate process sets. Nearly everything else is 'soon,' not 'now.'"
       ]
@@ -71,6 +72,28 @@
     }
   ],
   "takeaway": "Almost nothing has to happen the day someone dies. A short list needs you in the first days, notifications and paperwork fill the first weeks, and the long middle is a matter of working a list one institution at a time — with a log of everything, and nobody's debts paid from your own pocket while you sort out the estate's.",
+  "sources": [
+    {
+      "label": "Dealing with the death of a loved one",
+      "publisher": "USAGov",
+      "url": "https://www.usa.gov/death-loved-one"
+    },
+    {
+      "label": "Agencies to notify when someone dies",
+      "publisher": "USAGov",
+      "url": "https://www.usa.gov/report-a-death"
+    },
+    {
+      "label": "Am I responsible for my spouse's debts after they die?",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/am-i-responsible-to-pay-off-the-debts-of-my-deceased-spouse-en-1467/"
+    },
+    {
+      "label": "Tax responsibilities after a death",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/individuals/deceased-person"
+    }
+  ],
   "productSlug": "estate-settlement-companion",
   "productPitch": "The Estate Settlement Companion holds this entire process in one private file — guided tasks by phase, registers for accounts, debts, and expenses that do the math, and printable summaries for the attorney. Built for exactly this season."
 }

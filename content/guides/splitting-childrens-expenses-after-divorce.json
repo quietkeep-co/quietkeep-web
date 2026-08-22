@@ -2,6 +2,7 @@
   "slug": "splitting-childrens-expenses-after-divorce",
   "title": "Splitting Children's Expenses After Divorce, Without the Monthly Argument",
   "description": "A calm system for sharing kids' costs with your ex — what to track, how to settle up, and how to keep the log from becoming ammunition.",
+  "answer": "Agree in advance on what counts as a shared expense, how each one gets logged, and how often you settle up. For every expense, record what it was, the date, the exact amount, who paid, and whether it has been reimbursed. Keep the log factual and visible to both parents.",
   "cluster": "Co-parenting logistics",
   "date": "2026-08-05",
   "updated": "2026-08-05",
@@ -14,7 +15,7 @@
     {
       "heading": "Agree on the mechanics before the first expense comes up",
       "paragraphs": [
-        "Most of the friction in shared expenses comes from undefined process, not disagreement about the number. A short, explicit agreement on how this works — decided once, calmly — removes most future arguments before they start."
+        "Most of the friction in shared expenses comes from undefined process, not disagreement about the number. A short, explicit agreement on how this works — decided once, calmly — removes most future arguments before they start. If the divorce is recent, this is usually one more line on <a href=\"/guides/after-divorce-checklist\">the after-divorce checklist</a>, and it's worth settling early rather than after the first disputed receipt."
       ],
       "bullets": [
         "What counts as a shared expense (school fees, activities, medical costs) versus a personal one.",
@@ -66,6 +67,28 @@
     }
   ],
   "takeaway": "Most of the friction in splitting children's expenses comes from process, not disagreement about the money. A short upfront agreement on what counts, how it's logged, and how often it settles — plus a running total both parents can see — turns a recurring argument into a routine you barely have to think about.",
+  "sources": [
+    {
+      "label": "Publication 504: Divorced or Separated Individuals",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/publications/p504"
+    },
+    {
+      "label": "About Form 8332, Release of Claim to Exemption for Child",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/forms-pubs/about-form-8332"
+    },
+    {
+      "label": "Child Tax Credit: who qualifies and how to claim it",
+      "publisher": "Internal Revenue Service",
+      "url": "https://www.irs.gov/credits-deductions/individuals/child-tax-credit"
+    },
+    {
+      "label": "How child support is calculated and ordered (one state's example)",
+      "publisher": "California Courts Self Help Guide",
+      "url": "https://selfhelp.courts.ca.gov/child-support"
+    }
+  ],
   "productSlug": "co-parenting-companion",
   "productPitch": "The Co-Parenting Companion holds exactly this record: a shared-expense tracker with a running total, alongside the parenting schedule and your children's care team, all in one private, offline file — a one-time purchase, not another subscription."
 }

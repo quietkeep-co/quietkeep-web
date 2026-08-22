@@ -2,6 +2,7 @@
   "slug": "digital-estate-planning-checklist",
   "title": "The Digital Estate Planning Checklist: Mapping Your Online Life Before Someone Else Has To",
   "description": "A practical, step-by-step checklist for inventorying your accounts, devices, and subscriptions — so your family isn't locked out of your digital life when it matters most.",
+  "answer": "A digital estate plan is a written map of your online life: every email address, financial app, social account, subscription, cloud storage service, and device, with a decision recorded for each and a note on where access instructions are kept. The map records where the keys live, never the passwords themselves.",
   "cluster": "Digital estate planning",
   "date": "2026-07-14",
   "updated": "2026-07-14",
@@ -36,7 +37,7 @@
       "paragraphs": [
         "An account list is only useful if someone can act on it, and acting on it usually starts with unlocking a phone. Two-factor authentication means your phone is not just a device — it's the gatekeeper to almost every account you have.",
         "For each phone, tablet, and computer, record whose it is, what's on it that matters, and — critically — <b>where the unlock information lives</b>. Not the PIN itself; the location of the sealed envelope, the safe, or the password manager entry that holds it.",
-        "This is also the moment to set up the official channels the platforms already offer, because they work far better than any workaround after the fact:"
+        "This is also the moment to set up the official channels the platforms already offer — Apple, Google, and Facebook each have one, walked through step by step in <a href=\"/guides/legacy-contacts-apple-google-facebook\">how to set up legacy contacts on Apple, Google, and Facebook</a> — because they work far better than any workaround after the fact:"
       ],
       "bullets": [
         "<b>Apple Legacy Contact</b> — lets a person you choose access your Apple account and photos after your death, with a death certificate.",
@@ -57,7 +58,7 @@
       "heading": "Phase 4 — Hand it off",
       "paragraphs": [
         "A plan nobody can find is not a plan. The final phase is about making sure the map reaches the right hands.",
-        "Print or write out the summary — every account, the decision for each, where access instructions live — and store it with your estate documents. Tell your digital executor where it is. Then set a yearly reminder to review it: after any new account, any new device, and any change to your legacy-contact settings.",
+        "Print or write out the summary — every account, the decision for each, where access instructions live — and store it with your estate documents, where it sits alongside <a href=\"/guides/getting-affairs-in-order\">the rest of getting your affairs in order</a>. Tell your digital executor where it is. Then set a yearly reminder to review it: after any new account, any new device, and any change to your legacy-contact settings.",
         "One rule keeps this whole exercise safe: <b>the map never contains passwords.</b> A list of accounts with a what-should-happen decision for each is a gift to your family. A list of passwords is a liability sitting in a drawer. Record where your access instructions live — a password manager, a safe, a sealed envelope — and keep the keys themselves out of the document entirely."
       ]
     }
@@ -77,6 +78,23 @@
     }
   ],
   "takeaway": "Your digital life is invisible to the people who would one day need to handle it. One honest afternoon of mapping — accounts, devices, decisions, handoff — turns a locked filing cabinet into something your family can actually follow. The map records where the keys live; it never contains the keys themselves.",
+  "sources": [
+    {
+      "label": "How to add a Legacy Contact for your Apple Account",
+      "publisher": "Apple",
+      "url": "https://support.apple.com/en-us/102631"
+    },
+    {
+      "label": "About Inactive Account Manager",
+      "publisher": "Google",
+      "url": "https://support.google.com/accounts/answer/3036546"
+    },
+    {
+      "label": "About legacy contacts on Facebook",
+      "publisher": "Meta",
+      "url": "https://www.facebook.com/help/1568013990080948"
+    }
+  ],
   "productSlug": "digital-legacy-planner",
   "productPitch": "The Digital Legacy Planner walks you through this exact checklist as a guided app — 35 tasks, an account inventory with a decision for each, a device register, and a printable instruction sheet for your family. Fully offline, and it never stores a password by design."
 }

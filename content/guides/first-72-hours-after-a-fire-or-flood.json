@@ -2,6 +2,7 @@
   "slug": "first-72-hours-after-a-fire-or-flood",
   "title": "The First 72 Hours After a House Fire or Flood",
   "description": "What to do in the days after a loss, in order: safety, the claim, temporary housing, and the records that decide what gets paid months from now.",
+  "answer": "In the first 72 hours, stay out of the building until an official says it is safe, call your insurer's claims line the same day, and record the claim number and adjuster's name. Photograph every room before anything is moved or discarded, and keep every receipt from the first night.",
   "cluster": "Home inventory & insurance claims",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -36,7 +37,7 @@
       "heading": "Do not throw anything away yet",
       "paragraphs": [
         "The instinct to clear ruined belongings is powerful and it is expensive. The adjuster may want to see them, and an item nobody saw is an item that is harder to be paid for.",
-        "If something has to go for health or safety reasons, photograph it first, and keep a written list of what was discarded and why.",
+        "If something has to go for health or safety reasons, photograph it first, and keep a written list of what was discarded and why, checked against <a href=\"/guides/home-inventory-before-a-claim\">any home inventory you made beforehand</a>.",
         "Prevent further damage where you reasonably can — board a window, tarp a roof, shut off water. Most policies expect you to take reasonable steps to stop things getting worse, and reasonable steps are usually reimbursable. Keep those receipts."
       ]
     },
@@ -79,6 +80,28 @@
     }
   ],
   "takeaway": "Safety, then the claims call, then photographs before anything moves. Do not discard damaged items, keep every receipt from the first night, log every conversation, and read anything a restoration company asks you to sign. The first three days decide what the claim looks like six months later.",
+  "sources": [
+    {
+      "label": "After the Fire: Returning to Normal, including the first 24 hours",
+      "publisher": "U.S. Fire Administration, FEMA",
+      "url": "https://www.usfa.fema.gov/prevention/home-fires/after-a-fire/"
+    },
+    {
+      "label": "NFIP Claims Checklist for Policyholders, including the 60-day documentation deadline",
+      "publisher": "National Flood Insurance Program, FEMA",
+      "url": "https://www.floodsmart.gov/claims-checklist"
+    },
+    {
+      "label": "Start a Flood Insurance Claim: reporting, adjusters, and advance payments",
+      "publisher": "National Flood Insurance Program, FEMA",
+      "url": "https://www.floodsmart.gov/recover/start-a-claim"
+    },
+    {
+      "label": "Disaster Preparedness: documenting damage and reviewing your policy",
+      "publisher": "National Association of Insurance Commissioners",
+      "url": "https://content.naic.org/article/consumer-insight-disaster-preparedness"
+    }
+  ],
   "productSlug": "home-inventory-organizer",
   "productPitch": "The Home Inventory & Insurance Claim Organizer has the claim side already built — the call log, the discarded-items list, the living expense register, and the deadlines page — next to the room-by-room inventory you hope you never need."
 }

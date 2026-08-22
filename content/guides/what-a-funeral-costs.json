@@ -2,6 +2,7 @@
   "slug": "what-a-funeral-costs",
   "title": "What a Funeral Actually Costs, Line by Line",
   "description": "A funeral bill is four groups of line items, not one number. What each group holds, what federal law entitles you to see, and the hour of calls that settles it.",
+  "answer": "A funeral bill is not one number. It generally splits into a non-declinable basic services fee, care and transport charges, merchandise such as the casket or urn, and cash advances the funeral home pays out on your behalf. Cemetery costs are usually billed separately. Under the FTC's Funeral Rule, funeral homes provide itemized price lists.",
   "cluster": "Funeral planning",
   "date": "2026-08-13",
   "updated": "2026-08-13",
@@ -69,7 +70,7 @@
     {
       "heading": "What may already be paid for",
       "paragraphs": [
-        "Before assuming a family has to fund the whole thing, check what exists."
+        "Before assuming a family has to fund the whole thing, check what exists — the same inventory that <a href=\"/guides/getting-affairs-in-order\">getting your affairs in order</a> produces will usually surface most of it."
       ],
       "bullets": [
         "<b>A prepaid or preneed plan.</b> Find out what it actually covers and whether it's portable to another funeral home. Read what it guarantees at today's prices versus what it merely sets money aside toward.",
@@ -82,7 +83,7 @@
     {
       "heading": "Why this belongs on an ordinary Tuesday",
       "paragraphs": [
-        "Everything above is easy on a quiet afternoon and nearly impossible in the seventy-two hours after someone dies.",
+        "Everything above is easy on a quiet afternoon and nearly impossible in <a href=\"/guides/what-to-do-when-someone-dies\">the seventy-two hours after someone dies</a>.",
         "That's the actual reason to do it early — not to save money, though you probably will. It's that the version of you making these decisions in grief will accept the first reasonable-sounding number, because arguing about a casket while planning your father's funeral isn't something most people can do. An hour of phone calls now removes that entirely."
       ]
     }
@@ -102,6 +103,33 @@
     }
   ],
   "takeaway": "A funeral bill is four groups of line items plus a separate cemetery bill, not one number. Federal law entitles you to an itemized price list you keep, prices over the phone without giving your name, and the right to decline any package. Three phone calls on an ordinary afternoon settle what's nearly impossible to settle in the week after someone dies.",
+  "sources": [
+    {
+      "label": "The FTC Funeral Rule: your rights when buying funeral goods and services",
+      "publisher": "Federal Trade Commission",
+      "url": "https://consumer.ftc.gov/articles/ftc-funeral-rule"
+    },
+    {
+      "label": "Funeral Costs and Pricing Checklist",
+      "publisher": "Federal Trade Commission",
+      "url": "https://consumer.ftc.gov/articles/funeral-costs-pricing-checklist"
+    },
+    {
+      "label": "How to Read a Funeral Home Price List",
+      "publisher": "Funeral Consumers Alliance",
+      "url": "https://www.funerals.org/get-help/how-to-save-money/how-to-read-a-funeral-home-price-list/"
+    },
+    {
+      "label": "VA burial benefits and memorial items",
+      "publisher": "U.S. Department of Veterans Affairs",
+      "url": "https://www.va.gov/burials-memorials/"
+    },
+    {
+      "label": "What you could get from Survivor benefits (including the lump-sum death payment)",
+      "publisher": "Social Security Administration",
+      "url": "https://www.ssa.gov/survivor/amount"
+    }
+  ],
   "productSlug": "funeral-planning-companion",
   "productPitch": "The Funeral Planning Companion is where the answers go — the price comparison grid, what's already paid for and where those documents live, and the decisions written down before the week nobody can think straight."
 }
