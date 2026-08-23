@@ -9,7 +9,7 @@
   "status": "new",
   "season": "Ongoing care",
   "price": 44.99,
-  "paymentLink": "TODO: GHL fastpaydirect payment link",
+  "paymentLink": "https://quietkeep.gumroad.com/l/batec",
   "demoPath": "/demos/special-needs-care-binder.html",
   "card": {
     "oneLiner": "Service minutes, goal progress, accommodations, and school contact tracked all year, with a letter of intent for their future.",
