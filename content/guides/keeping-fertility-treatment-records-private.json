@@ -1,0 +1,101 @@
+{
+  "slug": "keeping-fertility-treatment-records-private",
+  "title": "Keeping Fertility Treatment Records Private",
+  "description": "Fertility apps have been penalized for sharing what users typed into them. Here is what is worth recording during treatment, and how to keep those records somewhere that cannot share them.",
+  "answer": "Keep fertility records somewhere that has no ability to share them. Consumer fertility apps are usually not covered by HIPAA, and the FTC has penalized two of them for sending health data to advertisers and analytics firms. A file on your own device records the same dates, doses and results without transmitting anything.",
+  "cluster": "Family building",
+  "date": "2026-08-23",
+  "updated": "2026-08-23",
+  "readingMinutes": 8,
+  "intro": [
+    "Fertility treatment produces a surprising amount of paperwork for something so private. Medication names and doses that change between cycles. Monitoring appointments at seven in the morning. Follicle counts, lining measurements, lab values, a retrieval date, an embryo report, a transfer date. Questions you thought of at midnight and forgot by the time you were in the room. Most people start tracking it somewhere within the first month, because no one can hold it in their head.",
+    "Where that tracking lives turns out to matter. The obvious place is an app, and the apps are genuinely good at the tracking part. What is less obvious is that a consumer fertility app sits outside most of the privacy law people assume protects it, and that two of the best-known ones have already been penalized by the Federal Trade Commission for sending what users typed to third parties."
+  ],
+  "sections": [
+    {
+      "heading": "The gap people assume is not there",
+      "paragraphs": [
+        "HIPAA governs health care providers, health plans and the clearinghouses between them. Your clinic is covered. The records your clinic holds are covered. A period or fertility app you downloaded yourself generally is not, because it is not a provider or a plan — it is a company selling software.",
+        "The rule that does reach these apps is the FTC's Health Breach Notification Rule, which applies specifically to health apps and similar technologies that are <em>not</em> covered by HIPAA. That rule exists precisely because the gap exists. It requires notification when identifiable health information is disclosed without authorization — which is a meaningful protection, but a different one from the confidentiality people imagine they already have."
+      ]
+    },
+    {
+      "heading": "What the enforcement record actually shows",
+      "paragraphs": [
+        "This is not hypothetical. In 2021 the FTC finalized an order against Flo Health over its Period and Ovulation Tracker, alleging that despite privacy promises, the company disclosed health data from millions of users to firms providing marketing and analytics services, including the analytics divisions of Facebook and Google, AppsFlyer and Flurry. The order required Flo to obtain affirmative consent before sharing personal health information, notify affected users, and instruct third parties that had received the data to destroy it.",
+        "In 2023 the FTC brought an action against Easy Healthcare, which operates the Premom ovulation app. Easy Healthcare agreed to a $100,000 civil penalty for violating the Health Breach Notification Rule, was permanently barred from sharing users' personal health data with third parties for advertising, and was required to obtain consent before sharing it for other purposes.",
+        "Both companies had privacy policies. That is the part worth sitting with: the promise and the practice were different, and it took a regulator to establish that. A person deciding where to keep their own records cannot audit any of this from the outside."
+      ]
+    },
+    {
+      "heading": "What is worth writing down",
+      "paragraphs": [
+        "Separate from where it lives, treatment generates a specific set of things worth keeping, and most of it is the kind of detail that is obvious at the time and gone three months later."
+      ],
+      "bullets": [
+        "Medications by cycle — name, dose, the date it started and stopped, and what changed from last time. Protocols get adjusted, and the previous protocol becomes the reference point.",
+        "Monitoring visits — date, follicle counts, lining, and the lab values your clinic reports back.",
+        "Costs and what was billed to whom. Fertility coverage is frequently partial, and the running total is otherwise impossible to reconstruct.",
+        "Questions between appointments. The consultation is short and the list is what makes it useful.",
+        "Dates that anchor everything else: retrieval, fertilization report, transfer, the beta and its repeat.",
+        "Who said what. Across a clinic you will speak to several people, and the instruction you were given matters more than who gave it."
+      ]
+    },
+    {
+      "heading": "Where to keep it",
+      "paragraphs": [
+        "The privacy question has a simple structural answer: keep the record somewhere with no ability to transmit it. A file on your own device cannot send your medication log to an analytics firm, because there is nothing in it that sends anything anywhere. That is not a promise about a company's conduct, which is what a privacy policy is — it is a property of the thing itself.",
+        "This is the same reasoning that applies to <a href=\"/guides/organizing-divorce-documents-privately\">organizing documents privately inside a shared household</a>, where the risk is not a company but a synced account that quietly copies to a second person's phone. In both cases the fix is a working space with no sharing surface rather than a stricter setting on a shared one.",
+        "It is also worth checking what a shared household account already syncs. A fertility log in a notes app, a photo of a lab result in a camera roll, or a calendar entry titled with a clinic name will follow whatever sync is switched on. The organizing habits in <a href=\"/guides/first-week-after-a-diagnosis\">the first week after a diagnosis</a> transfer directly here: one place, kept current, that you can hand to someone deliberately rather than by accident."
+      ]
+    }
+  ],
+  "takeaway": "The tracking is worth doing — treatment is too detailed to hold in your head, and the record makes appointments better. The only real decision is whether the place you keep it has any ability to share it. Choosing something that structurally cannot is simpler than trusting that something won't.",
+  "sources": [
+    {
+      "label": "FTC finalizes order with Flo Health over its fertility-tracking app sharing sensitive health data with Facebook, Google and others; consent, user notification, and third-party data destruction required",
+      "publisher": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2021/06/ftc-finalizes-order-flo-health-fertility-tracking-app-shared-sensitive-health-data-facebook-google"
+    },
+    {
+      "label": "Ovulation tracking app Premom barred from sharing health data for advertising; $100,000 civil penalty for violating the Health Breach Notification Rule",
+      "publisher": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2023/05/ovulation-tracking-app-premom-will-be-barred-sharing-health-data-advertising-under-proposed-ftc"
+    },
+    {
+      "label": "Health Breach Notification Rule — applies to health apps and similar technologies not covered by HIPAA",
+      "publisher": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/legal-library/browse/rules/health-breach-notification-rule"
+    },
+    {
+      "label": "U.S. v. Easy Healthcare Corporation — case record, complaint and stipulated order",
+      "publisher": "Federal Trade Commission",
+      "url": "https://www.ftc.gov/legal-library/browse/cases-proceedings/202-3186-easy-healthcare-corporation-us-v"
+    },
+    {
+      "label": "Infertility — overview of causes, testing and treatment options",
+      "publisher": "MedlinePlus, U.S. National Library of Medicine",
+      "url": "https://medlineplus.gov/infertility.html"
+    }
+  ],
+  "productSlug": "family-building-companion",
+  "productPitch": "The Family Building Companion is one offline file that holds the cycle log, the medication changes, the costs, and the questions — on your own device, with nothing to sign into and nowhere for the data to go. It follows the path you are actually on, whether that is IVF, IUI, donor, surrogacy, preservation or male-factor.",
+  "faq": [
+    {
+      "q": "Does HIPAA protect what I type into a fertility app?",
+      "a": "Usually not. HIPAA covers health care providers, health plans and clearinghouses — so your clinic and its records are covered. An app you downloaded yourself is generally a software company rather than a covered entity. The rule that reaches those apps is the FTC's Health Breach Notification Rule, which exists specifically for health technologies that HIPAA does not cover."
+    },
+    {
+      "q": "Have fertility apps actually shared user data?",
+      "a": "Yes, and it is on the record. The FTC finalized an order against Flo Health in 2021 over disclosures to marketing and analytics firms including the analytics divisions of Facebook and Google. In 2023 Easy Healthcare, which operates Premom, agreed to a $100,000 civil penalty for violating the Health Breach Notification Rule and was barred from sharing health data for advertising."
+    },
+    {
+      "q": "What should I track during a fertility cycle?",
+      "a": "Medications by cycle with doses and dates, monitoring visits with follicle counts and lab values, costs and what was billed, the anchor dates like retrieval and transfer, and the questions you think of between appointments. The detail that seems obvious during a cycle is the detail you cannot reconstruct two protocols later."
+    },
+    {
+      "q": "Is an offline file safe if I lose the device?",
+      "a": "Treat it like any other document on that device — the protection is your device passcode and whatever backup you choose. The difference from a cloud app is the number of copies you did not make: an offline file is not sitting on a company's servers or moving through an analytics pipeline, so losing a phone is a device problem rather than a disclosure."
+    }
+  ]
+}
