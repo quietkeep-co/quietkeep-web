@@ -1,0 +1,110 @@
+{
+  "slug": "tracking-fertility-treatment-costs",
+  "title": "Tracking Fertility Treatment Costs: What You Will Actually Be Billed For",
+  "description": "A cycle is not one price. It is a stack of separately billed components, plus medications on a different benefit — and whether your state mandates coverage may not matter at all.",
+  "answer": "Fertility treatment is billed as several separate items, not one cycle price — monitoring, retrieval, lab work, freezing, storage, transfer and medications often bill separately. Before checking whether your state mandates coverage, find out whether your employer's plan is self-insured, because self-insured plans are exempt from state mandates.",
+  "cluster": "Family building",
+  "date": "2026-08-23",
+  "updated": "2026-08-23",
+  "readingMinutes": 8,
+  "intro": [
+    "Almost everyone begins with the same question and the same search: what does a cycle cost. The number that comes back is usually a single figure, and it is usually wrong — not because anyone is lying, but because the thing being priced is not the thing being billed.",
+    "What arrives instead is a sequence of charges from several places over several months, some of them from organisations you did not know were involved. The running total is genuinely difficult to reconstruct afterwards, which is why the useful move is to set up the record before the first charge rather than after the tenth."
+  ],
+  "sections": [
+    {
+      "heading": "The question to ask before the state-mandate question",
+      "paragraphs": [
+        "Most people start by looking up whether their state requires insurers to cover infertility treatment. It is the natural first question and it is the second one.",
+        "The first is whether your employer's plan is <em>self-insured</em> — meaning the employer pays claims out of its own funds and hires an insurance company only to administer the plan. Self-insured plans are exempt from state insurance mandates. If your employer self-insures, a generous mandate in your state does not reach you, and the coverage you get is whatever your employer chose to buy. Many large employers self-insure, and the plan often carries a familiar insurer's name on the card, so there is usually no way to tell from the outside.",
+        "Ask HR directly: is our health plan self-insured or fully insured? It is a routine question with a one-word answer, and it determines whether the rest of your research applies to you at all."
+      ]
+    },
+    {
+      "heading": "Mandates vary more than people expect",
+      "paragraphs": [
+        "Where a mandate does apply, what it requires differs substantially between states. Some cover diagnosis but not treatment. Some cap the number of completed retrievals. Some apply only above an employer-size threshold — commonly exempting smaller employers — and some set age limits on eligibility.",
+        "This is why a general answer is not much use and a specific one has to come from two places: the current law for your state, and your own plan documents. RESOLVE and ASRM both maintain state-by-state summaries, which are the right starting point; your plan's summary of benefits is the thing that actually governs."
+      ]
+    },
+    {
+      "heading": "What the bill is actually made of",
+      "paragraphs": [
+        "A single cycle typically generates charges across several categories, which may be billed by different entities, on different schedules, and against different parts of your benefit."
+      ],
+      "bullets": [
+        "Monitoring — the recurring bloodwork and ultrasounds through a cycle, often billed per visit.",
+        "The retrieval itself, and anesthesia, which is frequently billed separately by a different provider.",
+        "Laboratory work — fertilization, embryo culture, and any specialised technique used.",
+        "Genetic testing, if performed, usually billed by an outside laboratory.",
+        "Freezing, and then storage, which is an ongoing annual charge that continues long after the cycle ends.",
+        "Transfer, and the monitoring around it.",
+        "Medications, which commonly run through the pharmacy benefit rather than the medical one — a separate deductible, a separate approval process, and sometimes a specialty pharmacy you did not choose."
+      ]
+    },
+    {
+      "heading": "What to establish in advance, in writing",
+      "paragraphs": [
+        "The same call that answers the self-insured question can answer most of the rest. What matters is writing the answers down as given, with the date and the name of the person who gave them, because coverage conversations are frequently remembered differently by the two parties later.",
+        "Worth establishing: whether diagnosis and treatment are covered separately; whether preauthorization is required, for which specific services, and who submits it; whether medications fall under the pharmacy benefit; what the deductible and out-of-pocket maximum are and what counts toward them; whether there is a lifetime maximum; and whether the clinic, the lab, and the anesthesia provider are each in network — they are not always the same answer.",
+        "This is the same groundwork as the insurance section of <a href=\"/guides/what-to-bring-to-your-first-fertility-appointment\">what to bring to your first fertility appointment</a>, and it is worth doing before that appointment rather than after it."
+      ]
+    },
+    {
+      "heading": "Keeping the running total",
+      "paragraphs": [
+        "Once treatment starts, the only reliable record is the one you keep as it happens. Two streams need matching: what the clinic and outside providers bill you, and what your plan says it did with each claim. When those disagree — and they do — the useful evidence is a dated note of what you were told and by whom, sitting next to the charge it relates to.",
+        "It is worth recording storage separately from cycle costs, because it recurs annually and is easy to forget until an invoice arrives from a facility you have not thought about in a year.",
+        "Where that record lives matters here for the same reason it matters everywhere else in treatment: it accumulates detailed medical and financial information about you in one place. <a href=\"/guides/keeping-fertility-treatment-records-private\">Keeping fertility treatment records private</a> covers why the obvious option carries a real history, and what a file on your own device does differently."
+      ]
+    }
+  ],
+  "takeaway": "Nobody can tell you what your treatment will cost, because the answer depends on your plan, your state, whether your employer self-insures, and which components you end up using. What is entirely within your control is having a record that can answer it afterwards — and that has to be started before the first bill, not reconstructed after the tenth.",
+  "sources": [
+    {
+      "label": "Insurance Coverage by State — state-by-state summary of infertility coverage laws, and the exemption for employers who self-insure",
+      "publisher": "RESOLVE: The National Infertility Association",
+      "url": "https://resolve.org/learn/financial-resources/insurance-coverage/insurance-coverage-by-state/"
+    },
+    {
+      "label": "State and Territory Infertility Insurance Laws — what each state's mandate requires, including retrieval limits, age limits and employer-size thresholds",
+      "publisher": "American Society for Reproductive Medicine (ReproductiveFacts.org)",
+      "url": "https://www.reproductivefacts.org/patient-advocacy/state-and-territory-infertility-insurance-laws/"
+    },
+    {
+      "label": "Self-insured plan — definition of a plan where the employer bears the claim risk itself",
+      "publisher": "HealthCare.gov, Centers for Medicare & Medicaid Services",
+      "url": "https://www.healthcare.gov/glossary/self-insured-plan/"
+    },
+    {
+      "label": "Preauthorization — what prior approval means and that it is not a guarantee of payment",
+      "publisher": "HealthCare.gov, Centers for Medicare & Medicaid Services",
+      "url": "https://www.healthcare.gov/glossary/preauthorization/"
+    },
+    {
+      "label": "Out-of-pocket maximum — the annual limit, and which costs do and do not count toward it",
+      "publisher": "HealthCare.gov, Centers for Medicare & Medicaid Services",
+      "url": "https://www.healthcare.gov/glossary/out-of-pocket-maximum-limit/"
+    }
+  ],
+  "productSlug": "family-building-companion",
+  "productPitch": "The Family Building Companion keeps the financial side beside the clinical one — what each component cost, what the plan said about it, what you were told and by whom, and the storage charge that recurs long after the cycle ends. One offline file on your own device.",
+  "faq": [
+    {
+      "q": "Does my state's infertility insurance mandate apply to my plan?",
+      "a": "Not if your employer self-insures. Self-insured plans — where the employer pays claims from its own funds and an insurer only administers them — are exempt from state insurance mandates, regardless of how generous your state's law is. Ask HR whether the plan is self-insured or fully insured before researching your state's requirements, because the answer decides whether they apply to you."
+    },
+    {
+      "q": "Why is the cycle price different from what I get billed?",
+      "a": "Because a quoted cycle price usually covers a defined set of services, while a course of treatment generates charges across several: monitoring visits, the retrieval, anesthesia, laboratory work, any genetic testing, freezing, ongoing storage, and transfer. Medications are typically separate again, running through the pharmacy benefit rather than the medical one."
+    },
+    {
+      "q": "What should I ask my insurer before starting?",
+      "a": "Whether diagnosis and treatment are covered separately, whether preauthorization is required and who submits it, whether medications fall under the pharmacy benefit, the deductible and out-of-pocket maximum, whether a lifetime maximum applies, and whether the clinic, laboratory and anesthesia provider are each in network. Record the answers with the date and the name of who gave them."
+    },
+    {
+      "q": "What is the cost people most often forget?",
+      "a": "Storage. Freezing is part of the cycle, but storage is a recurring annual charge that continues indefinitely afterwards, often from a facility billing separately from the clinic. It is worth recording as its own line rather than folded into cycle costs, because it arrives long after the rest of the treatment record has been closed."
+    }
+  ]
+}
