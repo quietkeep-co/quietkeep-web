@@ -80,6 +80,10 @@
     "body": "This is a single file that opens in any browser and works entirely offline. No account. No cloud. No subscription. Nothing you type is ever sent anywhere. It never asks for an insurance ID number, a medical record number, or a password — only what you choose to write down, and only you decide what that is.",
     "cards": [
       {
+        "title": "Why this matters for fertility records specifically",
+        "body": "Consumer fertility apps sit outside HIPAA, and the record is not theoretical. In 2021 the FTC finalized an order against Flo Health over disclosing health data to marketing and analytics firms including the analytics divisions of Facebook and Google. In 2023 Easy Healthcare, which operates Premom, paid a $100,000 penalty for violating the Health Breach Notification Rule. Both companies had privacy policies. This app has no ability to send anything anywhere, which is a different kind of assurance than a policy."
+      },
+      {
         "title": "Zero network requests",
         "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
       },

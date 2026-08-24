@@ -100,6 +100,10 @@
     "body": "Nothing you type is ever sent anywhere — it's saved only in this browser, on this device, and it never asks for a Social Security number, account number, or password by design. That also means anyone who can use this device and this browser can open it: it isn't encrypted or password-protected, so keep it somewhere only you can reach.",
     "cards": [
       {
+        "title": "Why this matters while a separation is underway",
+        "body": "Households run on shared infrastructure — one Apple or Google account holding two people's photos, notes and backups; one browser remembering everything. Ordinary preparation deserves ordinary privacy, and a synced note is not private. This is a file on a device of your own, with no account anyone can be added to. It records what you already know; it is not a place to move or conceal anything, and your attorney's guidance on disclosure always governs."
+      },
+      {
         "title": "Zero network requests",
         "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
       },

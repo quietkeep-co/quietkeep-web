@@ -87,6 +87,10 @@
     "body": "Nothing you type ever leaves your device. It never asks for a Social Security number, an account number, a policy number, a password, or a PIN — there is nowhere in it to put one. That is deliberate: it is what makes the printed pages safe to leave on a fridge or hand to a babysitter.",
     "cards": [
       {
+        "title": "Why this one is deliberately incomplete",
+        "body": "An emergency binder is meant to be found — on a fridge, in a sitter's hand, by whoever arrives first. That is exactly why this one records where things are and who to call, and never account numbers, Social Security numbers, passwords or codes. There is nowhere in it to put them. A binder complete enough to be dangerous is a binder you cannot leave out, which defeats its purpose."
+      },
+      {
         "title": "Zero network requests",
         "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
       },
