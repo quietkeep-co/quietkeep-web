@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { TrackedLink } from "@/components/TrackedLink";
 import type { Metadata } from "next";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -133,9 +134,14 @@ export default function ProductPage({
                   guard it: an unconfigured product shows as not-yet-buyable
                   rather than shipping a broken checkout. */}
               {/^https?:\/\//i.test(p.paymentLink ?? "") ? (
-                <a className="btn btn-big" href={p.paymentLink}>
+                <TrackedLink
+                  className="btn btn-big"
+                  href={p.paymentLink}
+                  event="checkout_click"
+                  data={{ product: p.slug, price: p.price, position: "hero" }}
+                >
                   Get it — ${p.price} once
-                </a>
+                </TrackedLink>
               ) : (
                 <span
                   className="btn btn-big cursor-not-allowed opacity-60"
@@ -271,9 +277,14 @@ export default function ProductPage({
               ))}
             </ul>
             {/^https?:\/\//i.test(p.paymentLink ?? "") ? (
-              <a className="btn btn-big" href={p.paymentLink}>
+              <TrackedLink
+                className="btn btn-big"
+                href={p.paymentLink}
+                event="checkout_click"
+                data={{ product: p.slug, price: p.price, position: "pricecard" }}
+              >
                 Get it — ${p.price}
-              </a>
+              </TrackedLink>
             ) : (
               <span
                 className="btn btn-big cursor-not-allowed opacity-60"

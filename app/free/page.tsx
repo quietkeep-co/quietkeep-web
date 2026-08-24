@@ -6,6 +6,7 @@ import { SectionHead } from "@/components/SectionHead";
 import { Reveal } from "@/components/Reveal";
 import { UpdatesSection } from "@/components/UpdatesSection";
 import { products } from "@/lib/products";
+import { TrackedLink } from "@/components/TrackedLink";
 
 export const metadata: Metadata = {
   title: "The Peace of Mind Checklist — free",
@@ -41,21 +42,24 @@ export default function FreePage() {
             the unchecked boxes are your to-do list.
           </p>
           <div className="flex flex-wrap items-center gap-3.5">
-            <a
+            <TrackedLink
               className="btn btn-big"
               href="/free/quietkeep-peace-of-mind-checklist.html"
+              event="free_checklist"
+              data={{ action: "download" }}
               download
             >
               Download the checklist — free
-            </a>
-            <a
+            </TrackedLink>
+            <TrackedLink
               className="btn btn-ghost btn-big"
               href="/free/quietkeep-peace-of-mind-checklist.html"
-              target="_blank"
-              rel="noopener"
+              event="free_checklist"
+              data={{ action: "open" }}
+              newTab
             >
               Open it in your browser
-            </a>
+            </TrackedLink>
           </div>
           <p className="mt-4 text-[14px] text-ink-faint">
             One small file · Works offline · Printable · Nothing you check is
