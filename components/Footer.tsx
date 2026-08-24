@@ -70,7 +70,15 @@ export function Footer() {
             <ul className="flex list-none flex-col gap-2">
               <li>
                 <Link className="text-ink-soft hover:text-ink" href="/free">
-                  Free checklist
+                  Free checklist &amp; tools
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-ink-soft hover:text-ink"
+                  href="/research/cost-of-end-of-life-planning-tools"
+                >
+                  Research
                 </Link>
               </li>
               <li>

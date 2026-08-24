@@ -68,6 +68,28 @@ export default function FreePage() {
         </div>
       </header>
 
+      <section className="pb-[10px]">
+        <div className="wrap max-w-[760px]">
+          <div className="rounded-xl border border-line bg-card p-[30px]">
+            <div className="mb-2.5 text-[12.5px] uppercase tracking-[0.14em] text-brass">
+              Also free
+            </div>
+            <h2 className="mb-3 text-[24px]">
+              How many death certificates will you need?
+            </h2>
+            <p className="mb-4 text-[16px] text-ink-soft">
+              Most institutions keep the certified copy you send them. The
+              estimator counts what the estate actually contains, then prints
+              the ordering list for the funeral director and the log for
+              tracking each copy once it leaves your hands.
+            </p>
+            <Link className="text-[15px] text-ledger" href="/free/death-certificate-estimator">
+              Open the estimator — free, no email &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <section className="py-[72px]">
         <div className="wrap">
           <SectionHead title="When a checklist isn't enough">

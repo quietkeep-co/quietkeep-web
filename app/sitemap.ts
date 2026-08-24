@@ -22,6 +22,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     })),
     { url: `${base}/free`, changeFrequency: "monthly", priority: 0.7 },
+    {
+      url: `${base}/free/death-certificate-estimator`,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    // Original research. Dated observations, re-run annually — so it is worth
+    // recrawling on the anniversary even though the page rarely changes.
+    {
+      url: `${base}/research/cost-of-end-of-life-planning-tools`,
+      lastModified: "2026-08-24",
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
     { url: `${base}/about`, changeFrequency: "yearly", priority: 0.5 },
     ...products.map((p) => ({
       url: `${base}/${p.slug}`,

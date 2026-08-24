@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Like the Peace of Mind Checklist, this is the artifact people use and keep,
+     not the page meant to be found in search. Left indexable it competes with
+     /free/death-certificate-estimator, which explains it and offers the
+     organizers. Point search at that page instead. -->
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://quietkeep.co/free/death-certificate-estimator">
+<title>Death Certificate Estimator — Quietkeep</title>
+<style>
+  :root{--paper:#F2F1EC;--card:#FBFAF7;--ink:#26332E;--soft:#5C6B63;--faint:#8A968F;--ledger:#3E6B54;--brass:#A8823F;--line:#DAD8CF;--warm:#F6F3EA}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font:16px/1.55 "Seravek","Avenir Next","Segoe UI",system-ui,sans-serif;padding:32px 18px}
+  .page{max-width:820px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:44px 46px}
+  h1,h2,h3{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-weight:600}
+  .kicker{display:flex;align-items:center;gap:10px;color:var(--brass);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px}
+  .kicker::before{content:"";width:26px;border-top:1px solid var(--brass)}
+  h1{font-size:32px;line-height:1.15;margin-bottom:10px}
+  .lede{color:var(--soft);margin-bottom:6px}
+  .note{color:var(--faint);font-size:13.5px;margin-bottom:6px}
+  h2{font-size:20px;margin:30px 0 4px;color:var(--ledger)}
+  .hint{color:var(--faint);font-size:13.5px;margin-bottom:12px}
+  .row{display:flex;gap:14px;align-items:flex-start;padding:9px 2px;border-bottom:1px solid #E8E6DE}
+  .row .lbl{flex:1;color:var(--soft)}
+  .row .lbl b{color:var(--ink);font-weight:600;display:block}
+  .row .lbl span{font-size:13.5px}
+  input[type=number]{width:74px;flex:none;padding:7px 8px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink);font:inherit;font-size:15px;text-align:center}
+  input[type=checkbox]{margin-top:5px;accent-color:var(--ledger);width:16px;height:16px;flex:none}
+  input:focus-visible,button:focus-visible{outline:2px solid var(--ledger);outline-offset:2px}
+  .result{margin:32px 0 0;background:var(--warm);border:1px solid var(--line);border-radius:10px;padding:26px 28px}
+  .big{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:44px;line-height:1;color:var(--ledger)}
+  .big small{font-size:16px;font-family:inherit;color:var(--soft);font-family:"Seravek","Avenir Next","Segoe UI",system-ui,sans-serif}
+  .split{display:flex;flex-wrap:wrap;gap:26px;margin-top:16px}
+  .split div{min-width:150px}
+  .split .n{font-size:22px;color:var(--ink);font-weight:600}
+  .split .k{font-size:13px;color:var(--faint)}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14.5px}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid #E8E6DE;vertical-align:top}
+  th{color:var(--faint);font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+  td.c{width:34px;color:var(--faint)}
+  .ask{margin-top:20px;padding:14px 16px;border-left:3px solid var(--brass);background:#FCFAF4;color:var(--soft);font-size:14.5px}
+  .btnrow{margin:26px 0 0;display:flex;gap:10px;flex-wrap:wrap}
+  button{background:var(--ledger);color:#fff;border:0;border-radius:8px;padding:10px 18px;font:600 15px inherit;cursor:pointer}
+  button.ghost{background:transparent;color:var(--ledger);border:1px solid var(--line)}
+  .foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--faint);font-size:13px}
+  .foot a{color:var(--ledger)}
+  .foot p{margin-bottom:8px}
+  .printonly{display:none}
+  @media print{
+    body{background:#fff;padding:0;font-size:12pt}
+    .page{border:0;padding:8px;max-width:none}
+    .btnrow,.noprint,.hint{display:none}
+    .printonly{display:block}
+    .result{background:#fff;border:1px solid #ccc}
+    h2{margin-top:18px}
+    table{page-break-inside:auto}
+    tr{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="kicker">Quietkeep · Free</div>
+  <h1>How many death certificates will you need?</h1>
+  <p class="lede">Most institutions keep the certified copy you send them, so you are surrendering one per institution rather than showing the same one around. Count what the estate actually contains and the number answers itself.</p>
+  <p class="note">Runs entirely in your browser. Nothing you enter is sent anywhere, and there is no email box on this page because there is nowhere for the answers to go. An organizational tool, not legal advice.</p>
+
+  <h2>The accounts</h2>
+  <p class="hint">Count <b>institutions</b>, not accounts. Three accounts at one bank usually need one certified copy.</p>
+
+  <div class="row">
+    <label class="lbl" for="banks"><b>Banks and credit unions</b><span>Each institution where money was held</span></label>
+    <input type="number" id="banks" min="0" max="99" value="2" inputmode="numeric">
+  </div>
+  <div class="row">
+    <label class="lbl" for="broker"><b>Brokerages and retirement accounts</b><span>401(k), IRA, pension, investment accounts — count the institutions</span></label>
+    <input type="number" id="broker" min="0" max="99" value="1" inputmode="numeric">
+  </div>
+  <div class="row">
+    <label class="lbl" for="life"><b>Life insurance policies</b><span>Including small ones through an employer or a union</span></label>
+    <input type="number" id="life" min="0" max="99" value="1" inputmode="numeric">
+  </div>
+  <div class="row">
+    <label class="lbl" for="annuity"><b>Annuities</b><span>Counted separately from life insurance</span></label>
+    <input type="number" id="annuity" min="0" max="99" value="0" inputmode="numeric">
+  </div>
+
+  <h2>The property</h2>
+  <div class="row">
+    <label class="lbl" for="vehicles"><b>Titled vehicles</b><span>Cars, trucks, boats, trailers, motorcycles</span></label>
+    <input type="number" id="vehicles" min="0" max="99" value="1" inputmode="numeric">
+  </div>
+  <div class="row">
+    <label class="lbl" for="counties"><b>Counties where real estate is owned</b><span>One per county, not one per property</span></label>
+    <input type="number" id="counties" min="0" max="99" value="1" inputmode="numeric">
+  </div>
+
+  <h2>The circumstances</h2>
+  <div class="row">
+    <input type="checkbox" id="probate" checked>
+    <label class="lbl" for="probate"><b>The estate is likely to go through probate</b><span>Tick it if you are unsure — the court keeps a copy if it does</span></label>
+  </div>
+  <div class="row">
+    <input type="checkbox" id="employed" checked>
+    <label class="lbl" for="employed"><b>They were employed at the time of death</b><span>For a final paycheck and unused benefits</span></label>
+  </div>
+  <div class="row">
+    <input type="checkbox" id="ssa">
+    <label class="lbl" for="ssa"><b>Someone will claim Social Security survivor or death benefits</b><span>The funeral director usually reports the death itself, so this is only for a claim</span></label>
+  </div>
+  <div class="row">
+    <input type="checkbox" id="veteran">
+    <label class="lbl" for="veteran"><b>They were a veteran</b><span>For VA burial or survivor benefits</span></label>
+  </div>
+  <div class="row">
+    <label class="lbl" for="cards"><b>Credit cards or loans carrying a balance</b><span>Many accept a photocopy — see the note below the estimate</span></label>
+    <input type="number" id="cards" min="0" max="99" value="0" inputmode="numeric">
+  </div>
+
+  <div class="result" role="status" aria-live="polite">
+    <div class="big"><span id="total">14</span> <small>certified copies</small></div>
+    <div class="split">
+      <div><div class="n" id="nCause">2</div><div class="k">with cause of death</div></div>
+      <div><div class="n" id="nPlain">10</div><div class="k">without cause of death</div></div>
+      <div><div class="n">2</div><div class="k">spare</div></div>
+    </div>
+    <p class="hint" style="margin:14px 0 0">Two spares are included. A copy costs a few dollars; a second trip to the vital records office costs a week.</p>
+  </div>
+
+  <div class="ask" id="askNote"></div>
+
+  <h2>What each copy is for</h2>
+  <p class="hint">Take this to the funeral director — they file with the vital records office and can order the copies as part of that filing. Print it and log each one as it leaves; when an institution says six weeks later that it never arrived, this page is the difference between a phone call and starting over.</p>
+  <table>
+    <thead>
+      <tr><th class="c"></th><th>Goes to</th><th>Version</th><th>Date sent</th><th>How sent</th><th>Back?</th></tr>
+    </thead>
+    <tbody id="rows"></tbody>
+  </table>
+
+  <div class="btnrow noprint">
+    <button type="button" onclick="window.print()">Print this list</button>
+    <button type="button" class="ghost" id="reset">Start over</button>
+  </div>
+
+  <div class="foot">
+    <p class="printonly" style="margin-bottom:10px"><b>An estimate, not a legal requirement.</b> Requirements vary by state and institution. Some accept a photocopy; some return the original once recorded. Both are worth asking about, neither is worth relying on.</p>
+    <p><b>Where this comes from.</b> The list follows the institutions that ordinarily require and keep a certified copy. <a href="/guides/how-many-death-certificates-do-i-need">The full guide</a> explains who asks, who is allowed to order, and why many states issue two versions. Primary sources: <a href="https://www.usa.gov/death-certificate">USAGov on death certificates</a> and <a href="https://www.usa.gov/report-a-death">USAGov on agencies to notify</a>.</p>
+    <p><b>Nothing here was sent anywhere.</b> This page makes no network requests. You can turn off your wi-fi and it will keep working exactly as it does now — the same way everything Quietkeep makes works.</p>
+    <p>Made with care by <a href="https://quietkeep.co">Quietkeep</a> — private, offline organizers for life's hardest moments. If you are settling an estate, the <a href="https://quietkeep.co/estate-settlement-companion">Estate Settlement Companion</a> tracks all of this and 47 guided tasks besides, on your own device.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KEY = "qk-dc-estimator";
+  var NUM = ["banks","broker","life","annuity","vehicles","counties","cards"];
+  var BOX = ["probate","employed","ssa","veteran"];
+  var SPARE = 2;
+
+  function el(id){ return document.getElementById(id); }
+  function n(id){ var v = parseInt(el(id).value, 10); return (isNaN(v) || v < 0) ? 0 : Math.min(v, 99); }
+  function b(id){ return el(id).checked; }
+
+  // Each entry becomes one certified copy and one row in the printed log.
+  // `cause` marks the ones an evaluator of a claim generally wants the
+  // cause-of-death version for.
+  function build(){
+    var out = [];
+    function push(count, label, cause){
+      for (var i = 0; i < count; i++){
+        out.push({
+          label: count > 1 ? label + " (" + (i + 1) + " of " + count + ")" : label,
+          cause: !!cause
+        });
+      }
+    }
+    push(n("banks"),    "Bank or credit union", false);
+    push(n("broker"),   "Brokerage / retirement account", false);
+    push(n("life"),     "Life insurance claim", true);
+    push(n("annuity"),  "Annuity claim", true);
+    push(n("vehicles"), "DMV — vehicle title transfer", false);
+    push(n("counties"), "County recorder — real estate", false);
+    if (b("probate"))  push(1, "Probate court", false);
+    if (b("employed")) push(1, "Employer — final pay and benefits", false);
+    if (b("ssa"))      push(1, "Social Security — survivor or death benefit", false);
+    if (b("veteran"))  push(1, "VA — burial or survivor benefits", true);
+    push(n("cards"),    "Creditor with an outstanding balance", false);
+    return out;
+  }
+
+  function render(){
+    var items = build();
+    var cause = 0;
+    for (var i = 0; i < items.length; i++){ if (items[i].cause) cause++; }
+    var plain = items.length - cause;
+    var total = items.length + SPARE;
+
+    el("total").textContent   = total;
+    el("nCause").textContent  = cause;
+    el("nPlain").textContent  = plain + SPARE;
+
+    var tb = el("rows");
+    tb.textContent = "";
+    for (var j = 0; j < items.length; j++){
+      var tr = document.createElement("tr");
+      tr.innerHTML =
+        '<td class="c">' + (j + 1) + "</td>" +
+        "<td>" + items[j].label.replace(/[<>&]/g, "") + "</td>" +
+        "<td>" + (items[j].cause ? "With cause" : "Standard") + "</td>" +
+        "<td></td><td></td><td></td>";
+      tb.appendChild(tr);
+    }
+    for (var s = 0; s < SPARE; s++){
+      var sp = document.createElement("tr");
+      sp.innerHTML =
+        '<td class="c">' + (items.length + s + 1) + "</td>" +
+        "<td>Spare — held in reserve</td><td>Standard</td><td></td><td></td><td></td>";
+      tb.appendChild(sp);
+    }
+
+    var note = el("askNote");
+    if (n("cards") > 0){
+      note.textContent = "Creditors are the one group worth a phone call first. Many credit card companies and lenders accept a photocopy, and some close a balance on a written notice alone. Ask before you spend a certified copy on each of them.";
+      note.style.display = "block";
+    } else {
+      note.textContent = "Utilities, subscriptions, memberships and most routine account closures usually accept a photocopy, so they are not counted here. Ask before spending a certified copy on any of them.";
+      note.style.display = "block";
+    }
+    save();
+  }
+
+  function save(){
+    try {
+      var s = {};
+      NUM.forEach(function(k){ s[k] = el(k).value; });
+      BOX.forEach(function(k){ s[k] = el(k).checked; });
+      localStorage.setItem(KEY, JSON.stringify(s));
+    } catch (e) { /* private browsing, a full disk — the tool still works */ }
+  }
+
+  function load(){
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      var s = JSON.parse(raw);
+      NUM.forEach(function(k){ if (s[k] !== undefined) el(k).value = s[k]; });
+      BOX.forEach(function(k){ if (s[k] !== undefined) el(k).checked = !!s[k]; });
+    } catch (e) { /* ignore anything unreadable and start fresh */ }
+  }
+
+  NUM.concat(BOX).forEach(function(k){
+    el(k).addEventListener("input", render);
+    el(k).addEventListener("change", render);
+  });
+
+  el("reset").addEventListener("click", function(){
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    NUM.forEach(function(k){ el(k).value = 0; });
+    BOX.forEach(function(k){ el(k).checked = false; });
+    render();
+  });
+
+  load();
+  render();
+})();
+</script>
+</body>
+</html>
