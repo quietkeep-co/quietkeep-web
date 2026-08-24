@@ -7,7 +7,7 @@ export const site = {
   supportEmail: "hello@quietkeep.co",
   tagline: "Private organizers for life's hardest moments.",
   description:
-    "Private, offline organizers for settling an estate, planning ahead, and life's other hard seasons — single-file apps that keep everything on your device.",
+    "Private, offline organizers for settling an estate, caregiving, divorce and life's other hard seasons. Turn what you know into a page somebody else can act on — and keep it on your own device.",
 
   // GoHighLevel "Quietkeep Updates" email form.
   // Paste the embed URL from GHL (Sites -> Forms -> your form -> Share -> the

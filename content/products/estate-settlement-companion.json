@@ -28,12 +28,12 @@
   },
   "band": [
     {
-      "label": "100% offline",
-      "sub": "works with the wi-fi off"
+      "label": "Ready to hand over",
+      "sub": "prints the page someone else needs"
     },
     {
       "label": "Completely private",
-      "sub": "data stays on your device"
+      "sub": "works with the wi-fi off"
     },
     {
       "label": "$14.99 once",

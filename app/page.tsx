@@ -18,8 +18,8 @@ export const metadata: Metadata = {
 };
 
 const homeBand = [
-  { label: "100% offline", sub: "works with the wi-fi off" },
-  { label: "Completely private", sub: "data stays on your device" },
+  { label: "Ready to hand over", sub: "prints the page someone else needs" },
+  { label: "Completely private", sub: "works with the wi-fi off" },
   { label: "One-time purchase", sub: "no subscriptions, ever" },
   { label: "Real apps", sub: "not PDFs or spreadsheets" },
 ];
@@ -46,14 +46,14 @@ export default function HomePage() {
               Quietkeep
             </div>
             <h1 className="mb-5 text-[clamp(38px,5vw,58px)]">
-              Private organizers for life&apos;s hardest moments.
+              Everything the next person needs, ready to hand over.
             </h1>
             <p className="mb-[30px] max-w-[32em] text-[20px] text-ink-soft">
-              Settling an estate. Getting your affairs in order. The seasons
-              nobody prepares you for. Each Quietkeep organizer is a single file
-              that opens in your browser and works completely offline — because
-              the details of your life don&apos;t belong on someone else&apos;s
-              server.
+              Settling an estate. A hospital week. The first IEP meeting.
+              Quietkeep organizers turn what you already know into a page
+              somebody else can act on — an attorney, an adjuster, a sitter, the
+              person who takes over. Everything stays on your device, so handing
+              it over is your decision, not a setting.
             </p>
             <div className="flex flex-wrap items-center gap-3.5">
               <Link className="btn btn-big" href="/#organizers">
