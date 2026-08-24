@@ -1,0 +1,142 @@
+{
+  "order": 9,
+  "slug": "starting-over-bundle",
+  "category": "divorce",
+  "seoDescription": "All three Quietkeep divorce and separation organizers in one private bundle — preparing, co-parenting, and finishing the paperwork. Three offline apps, $77 bought separately, $65 as the set.",
+  "name": "Starting Over Bundle",
+  "kicker": "The Starting Over Bundle",
+  "listingTitle": "Starting Over Bundle | Divorce, Co-Parenting & Post-Divorce Organizers (Offline Apps)",
+  "status": "new",
+  "season": "The complete set",
+  "price": 65,
+  "paymentLink": "https://link.fastpaydirect.com/payment-link/6a8c883ef9c8c807930b9c48",
+  "demoPath": "/demos/divorce-organizer.html",
+  "card": {
+    "oneLiner": "All three divorce and separation organizers — preparing, co-parenting, and finishing — in one set. $77 bought separately.",
+    "bullets": [
+      "Divorce Organizer + Co-Parenting Companion + Post-Divorce Transition Organizer",
+      "Three complete apps, three separate downloads",
+      "$65 for the set — save $12"
+    ]
+  },
+  "hero": {
+    "headline": "Three organizers, for a separation that has three stages.",
+    "lede": "The Divorce Organizer for the inventory your attorney will ask for. The Co-Parenting Companion for the years of shared costs and schedules that follow. The Post-Divorce Transition Organizer for the deeds, titles and beneficiaries the decree does not finish. Three private, offline apps — $77 bought separately, $65 as the set.",
+    "note": "Instant download · Three apps · No subscription · No account · Works on Mac, Windows, tablets & phones",
+    "image": "/images/starting-over-bundle/hero.png",
+    "imageAlt": "The Starting Over Bundle — three Quietkeep divorce and separation organizers"
+  },
+  "band": [
+    { "label": "Ready to hand over", "sub": "prints the page someone else needs" },
+    { "label": "Completely private", "sub": "works with the wi-fi off" },
+    { "label": "$65 once", "sub": "save $12 on the set" },
+    { "label": "Three real apps", "sub": "not PDFs or spreadsheets" }
+  ],
+  "intro": {
+    "heading": "A separation is not one job. It is three, in order.",
+    "body": "Most people buy the organizer for the stage they are standing in, then find the next stage arrives anyway. Preparing for the process is one job. Running two households is a different one, and it lasts for years. Finishing the paperwork — the deeds, the titles, the beneficiary forms nobody mentions — is a third, and it is usually the one that gets abandoned half-done. These are the three apps for those three jobs, bought together."
+  },
+  "features": [
+    {
+      "title": "Divorce Organizer",
+      "body": "Assets and debts inventoried and totalled as you type, records tracked to done, and a one-click summary to take to the first attorney meeting."
+    },
+    {
+      "title": "Co-Parenting Companion",
+      "body": "Shared costs that add themselves up, a schedule written down once, and a one-click caregiver sheet for whoever has the children this weekend."
+    },
+    {
+      "title": "Post-Divorce Transition Organizer",
+      "body": "Every loose end tracked to done — deeds, titles, logins, beneficiaries — with a budget that totals itself and a printable record of what is already finished."
+    },
+    {
+      "title": "Three downloads, not one account",
+      "body": "Each app is a separate file. Keep all three, or use one and put the others aside until you need them. Nothing expires."
+    },
+    {
+      "title": "Nothing is shared with the other household",
+      "body": "There is no sync, no shared folder, and no account the other party could ever be added to. What you record is on your device, and stays there unless you print it."
+    },
+    {
+      "title": "Bought once",
+      "body": "$65 for all three, forever. No subscription, and no upgrade you will be asked to buy later."
+    }
+  ],
+  "screens": [
+    {
+      "img": "/images/divorce-organizer/assets.png",
+      "alt": "Divorce Organizer asset and debt inventory",
+      "captionBold": "Prepare once.",
+      "caption": "The inventory totals itself before the first meeting."
+    },
+    {
+      "img": "/images/co-parenting-companion/expenses.png",
+      "alt": "Co-Parenting Companion shared expense tracker",
+      "captionBold": "Then live with it.",
+      "caption": "Shared costs add themselves up, month after month."
+    },
+    {
+      "img": "/images/post-divorce-transition/documents.png",
+      "alt": "Post-Divorce Transition Organizer document tracker",
+      "captionBold": "Then finish it.",
+      "caption": "The loose ends the decree never mentions, tracked to done."
+    }
+  ],
+  "privacy": {
+    "heading": "Private by design, not by promise",
+    "body": "Between them these apps will hold your finances, your children's schedule, and the record of a separation. None of that should sit on a server, and in these apps it cannot.",
+    "cards": [
+      {
+        "title": "Zero network requests",
+        "body": "Each app is a single file that runs entirely in your browser, on your device. No connections, nothing loaded from the internet. You can run them with the wi-fi off and watch them work normally."
+      },
+      {
+        "title": "No shared account, ever",
+        "body": "There is no login, no cloud, and no sync — which also means there is no account anyone else could be granted access to, now or later. Your backups are files on your own computer."
+      },
+      {
+        "title": "Yours forever",
+        "body": "One purchase, three files, no expiry. There is no server to shut down, so there is nothing that can be taken away from you."
+      }
+    ]
+  },
+  "priceCard": {
+    "sub": "Three apps, one separation. $77 bought separately, $65 as the set.",
+    "bullets": [
+      "Divorce Organizer — complete app",
+      "Co-Parenting Companion — complete app",
+      "Post-Divorce Transition Organizer — complete app",
+      "Three instant downloads in one email",
+      "Free email support, free updates",
+      "No subscription. No account. Ever."
+    ]
+  },
+  "faq": [
+    {
+      "q": "What exactly is included?",
+      "a": "Three complete apps as three separate downloads: the Divorce Organizer, the Co-Parenting Companion, and the Post-Divorce Transition Organizer. $77 bought separately; $65 as the set."
+    },
+    {
+      "q": "I only need one of them right now. Should I still buy the set?",
+      "a": "Only if you expect to need the others. The single organizers are $29, $29 and $19, so the set saves $12 against buying all three. If you are early in the process and unsure how it will go, buying the one you need today is a perfectly sensible choice — nothing is lost by adding another later at full price."
+    },
+    {
+      "q": "Can my ex-partner see any of this?",
+      "a": "No. There is no account, no sync, and no shared folder, so there is nothing for anyone else to be added to. The apps hold your entries in the browser on your own device. Anything the other household sees is something you chose to print and hand over."
+    },
+    {
+      "q": "Is this legal advice?",
+      "a": "No. These are organizers. They record what you already know and help you arrange it, and they never tell you what you are entitled to or what to agree to. For advice about your situation, speak to a licensed attorney in your state."
+    },
+    {
+      "q": "Do I need three separate purchases later if I change computers?",
+      "a": "No. You own the files. Copy them wherever you like. Your entries are saved by the browser rather than inside the file, so use the backup button in each app before you move — then restore it on the new machine."
+    }
+  ],
+  "crossSell": {
+    "heading": "Is a parent or relative involved too?",
+    "body": "Separations often arrive in the same years as caregiving. The <a href=\"/caregiving-companion\">Caregiving Companion</a> organizes that season — medications, appointments, and the care team — with the same privacy promise.",
+    "href": "/caregiving-companion",
+    "cta": "See the Caregiving Companion"
+  }
+}
