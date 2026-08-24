@@ -30,7 +30,7 @@
   "band": [
     {
       "label": "100% offline",
-      "sub": "zero network requests"
+      "sub": "works with the wi-fi off"
     },
     {
       "label": "Completely private",

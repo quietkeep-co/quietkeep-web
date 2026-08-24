@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 const homeBand = [
-  { label: "100% offline", sub: "zero network requests" },
+  { label: "100% offline", sub: "works with the wi-fi off" },
   { label: "Completely private", sub: "data stays on your device" },
   { label: "One-time purchase", sub: "no subscriptions, ever" },
   { label: "Real apps", sub: "not PDFs or spreadsheets" },
