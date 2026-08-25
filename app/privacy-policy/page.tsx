@@ -31,6 +31,26 @@ export default function PrivacyPolicy() {
         We do not sell it.
       </p>
 
+      <h2>What the website measures</h2>
+      <p>
+        The website — not the apps — uses Vercel Web Analytics, a cookieless,
+        aggregate measurement tool. It counts page views and, when you click a
+        checkout or download button, records which product the click was for and
+        its price. It does not use cookies, does not record what you type
+        anywhere, and does not build a profile of you. We use these counts to
+        learn which pages are useful. The free tools and the live demos on this
+        site work like the apps: what you enter into them stays in your browser
+        and is never transmitted.
+      </p>
+
+      <h2>Where you buy matters</h2>
+      <p>
+        If you buy on Etsy or Gumroad rather than here, that transaction is
+        governed by their privacy policies, not ours. Either way, the organizer
+        you download behaves the same: it holds your information on your device
+        and nowhere else.
+      </p>
+
       <h2>Your choices</h2>
       <p>
         You can ask us to remove your email from our updates list at any time by
@@ -38,7 +58,7 @@ export default function PrivacyPolicy() {
         <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a>.
       </p>
 
-      <p className="text-ink-faint">Last updated: 2026.</p>
+      <p className="text-ink-faint">Last updated: August 25, 2026.</p>
     </LegalShell>
   );
 }

@@ -92,7 +92,7 @@
       },
       {
         "title": "Zero network requests",
-        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off."
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections and loads nothing from the internet. You can run it with Wi-Fi off. The file itself isn't encrypted or password-protected — but by design it holds nothing that would be dangerous in the wrong hands, which is exactly what makes an unlocked binder acceptable."
       },
       {
         "title": "Never a password",

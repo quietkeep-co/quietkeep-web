@@ -100,7 +100,7 @@
     "cards": [
       {
         "title": "Zero network requests",
-        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections, calls no servers, and loads nothing from the internet. You can run it with Wi-Fi off."
+        "body": "The app is a single file that runs entirely in your browser, on your device. It makes no connections, calls no servers, and loads nothing from the internet. You can run it with Wi-Fi off. It also means the file itself isn't encrypted or password-protected — anyone who can use this device and this browser can open it. Keep it somewhere only you can reach, and record where accounts live rather than full numbers if the device is shared."
       },
       {
         "title": "Never a password",
