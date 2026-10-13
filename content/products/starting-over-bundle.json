@@ -143,6 +143,10 @@
     {
       "q": "Do I need three separate purchases later if I change computers?",
       "a": "No. You own the files. Copy them wherever you like. Your entries are saved by the browser rather than inside the file, so use the backup button in each app before you move — then restore it on the new machine."
+    },
+    {
+      "q": "What happens if I clear my browser data?",
+      "a": "Your entries would be lost. Each app saves your work in the browser on your device rather than inside the file or on a server, which is the trade for nothing ever leaving your device. Use the backup button in each app whenever you have done real work: it saves one small file that you keep. Restore from it if you clear your browser, switch browsers, or move to a new computer."
     }
   ],
   "crossSell": {

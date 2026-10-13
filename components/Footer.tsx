@@ -92,6 +92,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link className="text-ink-soft hover:text-ink" href="/refunds">
+                  Refunds
+                </Link>
+              </li>
+              <li>
                 <Link className="text-ink-soft hover:text-ink" href="/terms">
                   Terms
                 </Link>

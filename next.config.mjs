@@ -22,6 +22,23 @@ const security = [
 
 const nextConfig = {
   reactStrictMode: true,
+
+  // www.quietkeep.co was serving the whole site at 200 alongside the apex —
+  // two hosts, identical content, no redirect. The canonical tags pointed at
+  // the apex, which is a hint to crawlers rather than an instruction, and did
+  // nothing for anyone who typed or linked the www form. 308 to the apex so
+  // there is one address for the site.
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.quietkeep.co" }],
+        destination: "https://quietkeep.co/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   async headers() {
     return [
       {

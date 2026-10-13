@@ -134,6 +134,10 @@
     {
       "q": "What if it doesn't work for me?",
       "a": "Email <a href=\"mailto:hello@quietkeep.co\">hello@quietkeep.co</a> and we'll make it right. We answer every message."
+    },
+    {
+      "q": "What happens if I clear my browser data?",
+      "a": "Your entries would be lost. They are saved by the browser on your device rather than inside the file or on a server, which is the trade for nothing ever leaving your device. Use the backup button whenever you have done real work: it saves one small file that you keep. Restore from it if you clear your browser, switch browsers, or move to a new computer."
     }
   ],
   "crossSell": {

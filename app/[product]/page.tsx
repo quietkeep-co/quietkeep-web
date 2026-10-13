@@ -155,6 +155,12 @@ export default function ProductPage({
               </Link>
             </div>
             <p className="mt-4 text-[14px] text-ink-faint">{p.hero.note}</p>
+            <p className="mt-2 text-[14px] text-ink-faint">
+              Secure checkout by Gumroad ·{" "}
+              <Link className="text-ledger" href="/refunds">
+                Refunds — email us and we&apos;ll make it right
+              </Link>
+            </p>
           </div>
           <Reveal className="overflow-hidden rounded-xl border border-line shadow-hero">
             <Image
@@ -293,7 +299,16 @@ export default function ProductPage({
                 Coming soon
               </span>
             )}
+            {/* Who you are paying, said before the click rather than
+                discovered after it. The buy button leaves for Gumroad, and
+                an unexpected domain mid-purchase is a reason to stop. */}
             <p className="mt-4 text-[14px] text-ink-faint">
+              Secure checkout by Gumroad · download link emailed immediately ·{" "}
+              <Link className="text-ledger" href="/refunds">
+                refunds
+              </Link>
+            </p>
+            <p className="mt-2 text-[14px] text-ink-faint">
               If anything doesn&apos;t work, email us and we&apos;ll make it
               right:{" "}
               <a className="text-ledger" href={`mailto:${site.supportEmail}`}>

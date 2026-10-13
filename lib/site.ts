@@ -9,12 +9,6 @@ export const site = {
   description:
     "Private, offline organizers for settling an estate, caregiving, divorce and life's other hard seasons. Turn what you know into a page somebody else can act on — and keep it on your own device.",
 
-  // GoHighLevel "Quietkeep Updates" email form.
-  // Paste the embed URL from GHL (Sites -> Forms -> your form -> Share -> the
-  // https://api.leadconnectorhq.com/widget/form/<id> link). Leave empty to show
-  // a plain mailto fallback until it is wired.
-  ghlFormEmbedUrl: process.env.NEXT_PUBLIC_GHL_FORM_URL ?? "",
-
   nav: [
     { label: "Organizers", href: "/organizers" },
     { label: "Our promise", href: "/#promise" },
