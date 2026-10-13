@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LegalShell } from "@/components/LegalShell";
 import { site } from "@/lib/site";
 
@@ -29,13 +30,16 @@ export default function Terms() {
 
       <h2>Refunds &amp; support</h2>
       <p>
-        Because these are instant digital downloads, we handle problems
-        individually. If an organizer doesn&apos;t work for you, email{" "}
-        <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> and
-        we&apos;ll make it right.
+        Every organizer comes with a{" "}
+        <Link href="/refunds">30-day money-back guarantee</Link>. If it
+        isn&apos;t right for you, email{" "}
+        <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> within
+        30 days of buying and we&apos;ll refund you in full, no reason needed.
+        Because these are instant downloads there is nothing to send back —
+        the file stays yours and keeps working.
       </p>
 
-      <p className="text-ink-faint">Last updated: 2026.</p>
+      <p className="text-ink-faint">Last updated: October 13, 2026.</p>
     </LegalShell>
   );
 }

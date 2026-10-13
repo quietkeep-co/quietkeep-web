@@ -3,18 +3,18 @@ import Link from "next/link";
 import { LegalShell } from "@/components/LegalShell";
 import { site } from "@/lib/site";
 
-// A dedicated refunds page, linked from every buy button.
+// The refunds page, linked under every buy button.
 //
-// The policy itself is unchanged from the terms page -- "email us and we'll
-// make it right" -- because committing to a specific guarantee window is the
-// owner's decision, not a copy edit. What changes is that the policy is now
-// findable at the moment of purchase instead of buried in /terms, and it
-// explains the Gumroad mechanics a buyer will otherwise meet unannounced.
+// 2026-10-13: owner authorised an explicit 30-day money-back guarantee,
+// replacing the previous informal "email us and we'll make it right". The
+// wording here is the canonical version -- /terms, the homepage FAQ and the
+// product-page CTA lines all restate it, and all four must say 30 days or
+// none of them should.
 
 export const metadata: Metadata = {
-  title: "Refunds",
+  title: "Refunds — 30-day money-back guarantee",
   description:
-    "How refunds work at Quietkeep: email us and we'll make it right. What to expect, how long it takes, and why the charge says Gumroad.",
+    "Quietkeep organizers come with a 30-day money-back guarantee. Email us within 30 days of buying and we'll refund you in full, no reason needed.",
   alternates: { canonical: "/refunds" },
 };
 
@@ -22,10 +22,13 @@ export default function Refunds() {
   return (
     <LegalShell title="Refunds">
       <p>
-        If an organizer isn&apos;t right for you, email{" "}
-        <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> and
-        we&apos;ll make it right. There is no form to fill in and no reason you
-        have to give.
+        <strong>
+          Every Quietkeep organizer comes with a 30-day money-back guarantee.
+        </strong>{" "}
+        If it isn&apos;t right for you, email{" "}
+        <a href={`mailto:${site.supportEmail}`}>{site.supportEmail}</a> within
+        30 days of buying and we&apos;ll refund you in full. There is no form
+        to fill in and no reason you have to give.
       </p>
 
       <h2>How it works</h2>
@@ -46,6 +49,16 @@ export default function Refunds() {
         refund you, the file stays on your computer and keeps working — we
         have no way to reach into your device and remove it, and would not
         want one. That is the same design that keeps your information private.
+      </p>
+      <p>
+        We would rather trust you than build something that could take a file
+        back.
+      </p>
+
+      <h2>After 30 days</h2>
+      <p>
+        The guarantee is 30 days, but write to us anyway. If something is
+        genuinely wrong we are not going to hide behind a date.
       </p>
 
       <h2>Try it before you buy it</h2>

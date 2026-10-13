@@ -31,6 +31,7 @@ const homeFaq = [
   { q: "What happens to my information if Quietkeep goes away?", a: "Nothing happens to it. There is no server holding your entries, so there is nothing for anyone to switch off. The file keeps working with the wi-fi off, on a computer that never goes online again. This is not a hypothetical in this category: Lantern was decommissioned in September 2024, and Cake closed consumer accounts in June 2025, both after being acquired. We wrote about <a href=\"/guides/when-a-planning-app-shuts-down\">what happens to your data when a planning app shuts down</a>, because it is the question worth asking of any product you put your family's information into — including ours." },
   { q: "Is this legal, tax, or financial advice?", a: "No. Quietkeep organizers are organizational tools. They get you organized for the conversations that need a professional — which is how you keep those bills small." },
   { q: "What if something doesn't work?", a: `Email <a href="mailto:${site.supportEmail}">${site.supportEmail}</a> and we'll make it right. We answer every message.` },
+  { q: "What if I buy it and it isn't right for me?", a: `Every organizer comes with a <a href="/refunds">30-day money-back guarantee</a> — email us within 30 days and we'll refund you in full, no reason needed. You can also try the real app on any product page before paying anything.` },
 ];
 
 export default function HomePage() {

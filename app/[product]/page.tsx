@@ -158,7 +158,7 @@ export default function ProductPage({
             <p className="mt-2 text-[14px] text-ink-faint">
               Secure checkout by Gumroad ·{" "}
               <Link className="text-ledger" href="/refunds">
-                Refunds — email us and we&apos;ll make it right
+                30-day money-back guarantee
               </Link>
             </p>
           </div>
@@ -305,7 +305,7 @@ export default function ProductPage({
             <p className="mt-4 text-[14px] text-ink-faint">
               Secure checkout by Gumroad · download link emailed immediately ·{" "}
               <Link className="text-ledger" href="/refunds">
-                refunds
+                30-day money-back guarantee
               </Link>
             </p>
             <p className="mt-2 text-[14px] text-ink-faint">
