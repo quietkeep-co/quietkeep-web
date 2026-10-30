@@ -11,17 +11,27 @@ import fs from "fs";
 import path from "path";
 import { getProduct, type Category } from "./products";
 
+// A run of paragraphs then bullets, rendered in order after the section's own
+// paragraphs and bullets. Lets one section alternate prose and lists (e.g. a
+// checklist with several labelled sub-lists) without splitting its heading.
+export type GuideSectionPart = {
+  paragraphs?: string[]; // same inline HTML rules as GuideSection.paragraphs
+  bullets?: string[];
+};
+
 export type GuideSection = {
   heading: string;
   paragraphs: string[]; // may contain simple inline HTML (links, <b>)
   bullets?: string[];
+  parts?: GuideSectionPart[]; // optional; sections without one render exactly as before
 };
 
 // A question-shaped long-tail query and its answer. Rendered visibly at the
 // bottom of the guide AND emitted as FAQPage structured data — the two must
 // always come from this same array, because schema that describes questions
 // the page doesn't show is a manual-action risk, not a shortcut.
-// Plain text only, no inline HTML: the answer string goes into JSON-LD verbatim.
+// Plain text, except that an answer may carry inline links (<a>). Links render
+// on the page; faqPageLd strips every tag so the JSON-LD stays plain text.
 export type GuideFaqItem = {
   q: string;
   a: string;
@@ -55,7 +65,7 @@ export type Guide = {
   readingMinutes: number;
   intro: string[]; // opening paragraphs
   sections: GuideSection[];
-  takeaway: string; // closing summary paragraph
+  takeaway?: string; // closing summary paragraph; optional, box omitted when absent
   productSlug: string; // the organizer this guide naturally leads to
   productPitch: string; // one calm sentence bridging guide -> product
   faq?: GuideFaqItem[]; // optional; guides without one render exactly as before
@@ -193,7 +203,7 @@ export function faqPageLd(g: Guide): Record<string, unknown> | null {
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
+      acceptedAnswer: { "@type": "Answer", text: item.a.replace(/<[^>]*>/g, "") },
     })),
   };
 }

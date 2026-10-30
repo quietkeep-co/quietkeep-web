@@ -28,9 +28,18 @@ export function GuideFaq({ guide }: { guide: Guide }) {
               </span>
               {item.q}
             </summary>
-            <p className="mt-2.5 pl-[18px] text-[16.5px] leading-relaxed text-ink-soft">
-              {item.a}
-            </p>
+            {/* Plain answers stay React text; only an answer carrying a tag
+                (an inline link) is rendered as HTML. */}
+            {item.a.includes("<") ? (
+              <p
+                className="mt-2.5 pl-[18px] text-[16.5px] leading-relaxed text-ink-soft [&_a]:text-ledger"
+                dangerouslySetInnerHTML={{ __html: item.a }}
+              />
+            ) : (
+              <p className="mt-2.5 pl-[18px] text-[16.5px] leading-relaxed text-ink-soft">
+                {item.a}
+              </p>
+            )}
           </details>
         ))}
       </div>

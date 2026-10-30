@@ -1,0 +1,266 @@
+{
+  "slug": "in-case-of-emergency-binder-checklist",
+  "title": "In Case of Emergency Binder: What to Put in One, Section by Section",
+  "description": "An in case of emergency binder checklist: the 12 sections to include, what to write as a pointer, where to keep it, and how often to update it.",
+  "answer": "An emergency binder holds the information another person needs to run your household when you cannot. It has 12 sections: who to call; household basics; kids and pets; medical; money and bills; insurance; property; legal documents; digital accounts; final wishes; a \"read me first\" page; and a grab list for leaving fast. Write pointers, not secrets. The binder should be safe to hand to a neighbour.",
+  "cluster": "Family emergency preparedness",
+  "date": "2026-10-30",
+  "updated": "2026-10-30",
+  "readingMinutes": 10,
+  "intro": [
+    "Most emergencies are not the end of anything. They are a night in a hospital, a week where you cannot be reached, or ten minutes to get out of the house. In each case the problem is the same: the information exists, but it is scattered. A phone number lives in one phone. A policy lives in a drawer. The name of the vet lives in your head. A binder puts all of it in one place, written for the person who will actually use it, who is probably not you.",
+    "One decision comes before all the others. This binder is a map, not a set of keys. It records where things are and who to call. It does not record passwords, full account numbers, or Social Security numbers, because a binder that is meant to be found quickly has to be safe to find. What belongs in it, and the small number of things that belong somewhere locked instead, is the whole subject of this guide."
+  ],
+  "sections": [
+    {
+      "heading": "Who this binder is for (and how it differs from a will)",
+      "paragraphs": [
+        "This binder is for any household where one person holds most of the operational knowledge. That is most households. It matters most if you have children, pets, an aging parent nearby, a medical condition, or a partner who would honestly not know where the mortgage is paid from.",
+        "It is not a will, and it does not do a will's job. A will speaks after a death. It names who inherits and who settles the estate, and it usually takes effect through a court process. It says nothing useful during a hospital stay, a fire, or a week of being unreachable, and nobody should be digging through it in those moments. The rules for wills also vary by state.",
+        "The binder covers the living emergency: the hours and weeks when you are alive but unavailable, or when someone else has to act in your house on short notice. The two documents sit side by side. The will is one of the legal documents the binder points to, in Section 8 below."
+      ]
+    },
+    {
+      "heading": "Sections 1 to 3: who to call, household basics, kids and pets",
+      "paragraphs": [
+        "<b>Section 1: Who to call.</b> List people in the order someone should actually call them, and say what each person can do, not just their number. \"Dana, my sister, has a house key and can take the children\" is useful. A name and a number alone is not. Include:"
+      ],
+      "bullets": [
+        "Each adult in the household, with mobile numbers",
+        "Two or three emergency contacts outside the house, with their relationship to you spelled out",
+        "A neighbour with a key, if one exists",
+        "Work numbers and the person to call if you do not arrive",
+        "The non-emergency police line and poison control for your area"
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "<b>Section 2: Household basics.</b> This is the page for the house itself, written for someone standing in it for the first time:"
+          ],
+          "bullets": [
+            "Where the water shut-off is, and what tool it needs",
+            "The breaker panel location, and anything odd about it",
+            "Gas shut-off location, if your home has one",
+            "The alarm code arrangement, described as a pointer (who has it), not the code itself",
+            "The wifi network name, with the password kept wherever you keep passwords, pointed to here",
+            "Where torches, the first aid kit, and the spare keys live"
+          ]
+        },
+        {
+          "paragraphs": [
+            "<b>Section 3: Kids and pets.</b> Write this for a sitter, a grandparent, or a neighbour who has ten minutes of warning:"
+          ],
+          "bullets": [
+            "School and daycare names, addresses, and who is allowed to collect each child",
+            "Pediatrician and dentist, with numbers",
+            "Allergies and daily medication, with doses (the full medical detail goes in Section 4; the essentials belong here too, because this is the page a sitter reads)",
+            "The evening routine in a few lines: food, bedtime, what settles them",
+            "For pets: the vet's number, feeding amounts and times, medication, and who can take them for a few days if the house cannot be occupied"
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Sections 4 to 6: medical, money and bills, insurance",
+      "paragraphs": [
+        "<b>Section 4: Medical.</b> One page per person in the household:"
+      ],
+      "bullets": [
+        "Conditions and diagnoses, in plain words",
+        "Current medications, with dose and timing",
+        "Allergies, with the reaction, not just the name of the drug or food",
+        "Doctors, specialists, and the pharmacy, with numbers",
+        "Health insurance carrier and the number to call (the pointer rule below applies to member numbers: last four digits are usually enough to start a conversation)",
+        "Blood type, if you know it, and any hospital preference"
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "This is the page that gets read out loud in an emergency room. Keep it current above all the others.",
+            "<b>Section 5: Money and bills.</b> The goal is that someone can keep the household paid for a month without you. List:"
+          ],
+          "bullets": [
+            "Bank and credit card institutions, the last four digits of each account, and the number to call",
+            "The bills that leave the account automatically: mortgage or rent, utilities, insurance premiums, subscriptions that matter",
+            "What is paid manually, and roughly when in the month",
+            "Where statements and tax records are kept, as a location, not copies of everything"
+          ]
+        },
+        {
+          "paragraphs": [
+            "Do not write full account numbers here. The institution, the last four digits, and a phone number will get a family member through any conversation they need to have.",
+            "<b>Section 6: Insurance.</b> One block per policy:"
+          ],
+          "bullets": [
+            "Carrier, agent if you have one, and the claims phone number",
+            "Policy type: home or renters, auto, health, life, disability",
+            "Coverage limits, and the date you last checked them",
+            "Where the full policy documents are stored"
+          ]
+        },
+        {
+          "paragraphs": [
+            "Enough to start a claim the same day. Not enough to impersonate you, which is the right line."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Sections 7 to 9: property, legal documents, digital accounts",
+      "paragraphs": [
+        "<b>Section 7: Property.</b> What the household owns and where the proof lives:"
+      ],
+      "bullets": [
+        "The home: deed location, mortgage servicer and the number to call",
+        "Vehicles: make, year, where the title and registration live, insurer (also in Section 6)",
+        "Anything rented or stored elsewhere: storage units, safe deposit box, with locations",
+        "Major valuables and where they are kept, in general terms"
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "<b>Section 8: Legal documents.</b> This section is a locator, not a filing cabinet. For each document, write what it is, where the original is, and who holds a copy:"
+          ],
+          "bullets": [
+            "Will, and the attorney who prepared it, if any",
+            "Powers of attorney and health care proxy or advance directive, if you have them",
+            "Birth certificates, passports, marriage certificate: locations only. The originals belong in a fireproof or locked place, not in a binder designed to be found",
+            "Property deeds and vehicle titles: locations"
+          ]
+        },
+        {
+          "paragraphs": [
+            "If some of these documents do not exist yet, write that down too. \"No power of attorney yet\" is useful information for the person reading, and a clear note to yourself.",
+            "<b>Section 9: Digital accounts.</b> The modern section, and the one most checklists get wrong. Do not write passwords in the binder. Instead:"
+          ],
+          "bullets": [
+            "The email account that everything else resets through, and where its recovery instructions live",
+            "Whether you use a password manager, and who knows how to reach it in an emergency",
+            "The phone: carrier, and where the phone itself is backed up",
+            "The accounts that would matter in the first week: banking, insurance portals, school and medical portals, named as a list without credentials"
+          ]
+        },
+        {
+          "paragraphs": [
+            "The binder records that accounts exist and where the instructions live. The map, never the keys."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Sections 10 to 12: final wishes, the \"read me first\" page, what to grab",
+      "paragraphs": [
+        "<b>Section 10: Final wishes.</b> A short section, and the one people postpone. A few lines are enough to start:"
+      ],
+      "bullets": [
+        "Funeral or memorial preferences, if you have any",
+        "Where any prepaid arrangement or written wishes are kept",
+        "Who should be told, and anyone who should be told first, or not by phone"
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "This is not a legal document and does not replace one. It is guidance for people making decisions quickly, written while you can write it.",
+            "<b>Section 11: The \"read me first\" page.</b> One page at the very front, written to a stranger:"
+          ],
+          "bullets": [
+            "What this binder is and where the sections are",
+            "The first three calls to make, in order",
+            "Where the locked documents live, and who can open them",
+            "The one or two things that cannot wait a day (a pet alone in the house, medication in the fridge)"
+          ]
+        },
+        {
+          "paragraphs": [
+            "Read it as the person arriving at your house at 2 a.m. If it would not help them, rewrite it.",
+            "<b>Section 12: The grab list.</b> The last section, and the shortest. If you have minutes to leave, what comes out, in what order:"
+          ],
+          "bullets": [
+            "People and pets first, then medication",
+            "The binder itself, and the locked document box if it can be carried safely",
+            "Phone chargers, wallet, keys",
+            "Anything irreplaceable that is within reach, named specifically, not \"valuables\""
+          ]
+        },
+        {
+          "paragraphs": [
+            "Print this page twice. One copy with the binder, one somewhere else, such as the car. After a fire or a flood, the order of the next steps matters too, and <a href=\"/guides/first-72-hours-after-a-fire-or-flood\">the first 72 hours after a fire or flood</a> covers them."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "What to write as a pointer instead of the secret itself",
+      "paragraphs": [
+        "This is the section that separates a useful binder from a dangerous one, so it gets its own space.",
+        "A pointer tells the reader where the thing is or who to call. The secret itself opens the account, the safe, or the door. In an emergency, almost every question is a pointer question. Your sister does not need your bank password; she needs the bank's name and the number to call. A sitter does not need your alarm code written down; they need to be let in by someone who has it.",
+        "Write pointers for: passwords and PINs (name the password manager or the locked place, never the code), full account numbers (institution plus last four digits), Social Security numbers (the location of the card), safe combinations and spare keys (who holds them), and original identity documents (their location).",
+        "There is a full companion guide on this, <a href=\"/guides/what-not-to-put-in-an-emergency-binder\">what not to put in an emergency binder</a>, including what to do if a binder built the other way is ever lost or stolen. Read the two together: this guide is the contents list, that one is the safety rules.",
+        "If you would rather start smaller, the free <a href=\"/free\">Peace of Mind Checklist</a> covers the first pass at this material, and the <a href=\"/guides/topics/family-emergency-preparedness\">Family Emergency Preparedness topic hub</a> collects everything Quietkeep has published on the subject."
+      ]
+    },
+    {
+      "heading": "Where to keep the binder, and who should know it exists",
+      "paragraphs": [
+        "Keep it in one fixed place that the household knows: a kitchen drawer, a shelf by the door, a labelled spot in a closet. Fixed matters more than hidden. A binder nobody can find in a hurry is a weekend project, not an emergency tool.",
+        "Two pages can live outside it. The fridge page (contacts, medical essentials, animals, shut-offs) can go on the fridge, because it holds nothing that would be dangerous in a kitchen. The grab list can sit near the door or in the car.",
+        "Tell three kinds of people it exists and where it is: the adults in the house, the emergency contacts named in Section 1, and whoever would realistically arrive first, such as the neighbour with the key. A copy of the non-sensitive pages can go to a relative outside the house, so the information survives a fire that takes the original."
+      ]
+    },
+    {
+      "heading": "How often to update it",
+      "paragraphs": [
+        "The binder is finished when it is written. It stays true only if it is maintained, lightly:"
+      ],
+      "bullets": [
+        "<b>After any change:</b> a new medication, a new school, a new job, a move, a new pet, a changed phone number. These are two-minute edits. Do them the same week.",
+        "<b>Twice a year:</b> one full pass, top to bottom. A common pattern is to tie it to something you already do, such as changing clocks or renewing insurance. Check the medical pages and the contacts first; they go stale fastest.",
+        "<b>The insurance check date</b> in Section 6 tells you when you last verified the policies. If that date is old, the binder is old."
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "A binder that is 90 percent current is still useful. A binder abandoned because keeping it perfect felt like work is not. Aim for current, not perfect."
+          ]
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "How is an emergency binder different from a go bag or emergency kit?",
+      "a": "A kit holds supplies: water, food, batteries, a change of clothes. A binder holds information: who to call, where things are, what the medication is, what to grab first. A household needs both, and they solve different problems. The kit keeps you comfortable for three days. The binder lets another person run your life for three weeks."
+    },
+    {
+      "q": "Should the binder include copies of passports, ID cards, and bank cards?",
+      "a": "No. Keep the originals in a fireproof or locked place and write their locations in the binder. A copy of a card, front and back, is as usable as the card. What the binder needs for each institution is the name, the last four digits, and the number to call. The companion guide on <a href=\"/guides/what-not-to-put-in-an-emergency-binder\">what not to put in an emergency binder</a> works through the full list."
+    },
+    {
+      "q": "Is a paper binder better, or an app?",
+      "a": "Paper works with no power and no login, and anyone can use it, which is why so many families choose it. Its weaknesses are real: one copy, in one house, that goes stale unless someone maintains it by hand. An app or a file on your own device is easier to update, back up, and print fresh pages from. Either format fails the same way, by being built once and never touched again. Pick the one you will actually update."
+    },
+    {
+      "q": "Who should get a copy of the binder?",
+      "a": "Nobody needs the whole thing. The adults in the house should know where it is. One trusted person outside the house, such as a sibling or the first emergency contact, can hold a copy of the non-sensitive pages, so the contacts and instructions survive a fire. The locked documents the binder points to stay locked; a copy of a pointer is harmless, which is the reason for building it this way."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Emergency Financial First Aid Kit (EFFAK)",
+      "publisher": "Ready.gov, FEMA and Operation HOPE",
+      "url": "https://www.ready.gov/emergency-financial-first-aid-kit"
+    },
+    {
+      "label": "Safeguard Critical Documents and Valuables",
+      "publisher": "FEMA",
+      "url": "https://www.ready.gov/sites/default/files/2020-03/fema_safeguard-critical-documents-and-valuables.pdf"
+    },
+    {
+      "label": "Make a Plan",
+      "publisher": "Ready.gov",
+      "url": "https://www.ready.gov/plan"
+    }
+  ],
+  "productSlug": "family-emergency-binder",
+  "productPitch": "The Family Emergency Binder is this guide already built. It opens with the page you hand over: one for the fridge, one for a sitter, one for the closet door. It records who to call, where things are, and what the children and animals need, and it never asks for a Social Security number, an account number, or a password, because there is nowhere in it to put one. It is a single file that runs on your own device, offline, and it prints the pages that are safe to leave where they can be found."
+}

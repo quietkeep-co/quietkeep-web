@@ -63,6 +63,32 @@ export function generateMetadata({
   };
 }
 
+// Paragraphs then bullets — the body of a section, and of each of its parts.
+function SectionBody({ paragraphs, bullets }: { paragraphs?: string[]; bullets?: string[] }) {
+  return (
+    <>
+      {paragraphs?.map((p, i) => (
+        <p
+          key={i}
+          className="mb-5 text-[17px] leading-relaxed text-ink-soft [&_a]:text-ledger [&_b]:text-ink"
+          dangerouslySetInnerHTML={{ __html: p }}
+        />
+      ))}
+      {bullets && (
+        <ul className="mb-5 list-none">
+          {bullets.map((b, i) => (
+            <li
+              key={i}
+              className="border-b border-line-soft py-[9px] text-[16.5px] text-ink-soft before:mr-2.5 before:text-ledger before:content-['✓'] [&_b]:text-ink"
+              dangerouslySetInnerHTML={{ __html: b }}
+            />
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
+
 const guideNav = [
   { label: "All guides", href: "/guides" },
   { label: "Organizers", href: "/organizers" },
@@ -189,33 +215,21 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
           {g.sections.map((s) => (
             <section key={s.heading} className="mt-10">
               <h2 className="mb-4 text-[26px]">{s.heading}</h2>
-              {s.paragraphs.map((p, i) => (
-                <p
-                  key={i}
-                  className="mb-5 text-[17px] leading-relaxed text-ink-soft [&_a]:text-ledger [&_b]:text-ink"
-                  dangerouslySetInnerHTML={{ __html: p }}
-                />
+              <SectionBody paragraphs={s.paragraphs} bullets={s.bullets} />
+              {s.parts?.map((part, i) => (
+                <SectionBody key={i} paragraphs={part.paragraphs} bullets={part.bullets} />
               ))}
-              {s.bullets && (
-                <ul className="mb-5 list-none">
-                  {s.bullets.map((b, i) => (
-                    <li
-                      key={i}
-                      className="border-b border-line-soft py-[9px] text-[16.5px] text-ink-soft before:mr-2.5 before:text-ledger before:content-['✓'] [&_b]:text-ink"
-                      dangerouslySetInnerHTML={{ __html: b }}
-                    />
-                  ))}
-                </ul>
-              )}
             </section>
           ))}
 
-          <div className="mt-12 rounded-xl border border-line bg-ledger-soft p-[26px]">
-            <p
-              className="text-[17px] leading-relaxed text-ink [&_a]:text-ledger"
-              dangerouslySetInnerHTML={{ __html: g.takeaway }}
-            />
-          </div>
+          {g.takeaway && (
+            <div className="mt-12 rounded-xl border border-line bg-ledger-soft p-[26px]">
+              <p
+                className="text-[17px] leading-relaxed text-ink [&_a]:text-ledger"
+                dangerouslySetInnerHTML={{ __html: g.takeaway }}
+              />
+            </div>
+          )}
 
           <GuideFaq guide={g} />
 
