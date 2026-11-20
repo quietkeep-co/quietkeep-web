@@ -1,0 +1,224 @@
+{
+  "slug": "accounts-to-close-after-a-death",
+  "title": "After a Death: Every Account to Cancel, Close, or Transfer",
+  "description": "What to cancel when someone dies, and what to close, transfer, or keep paying: every account type, what each institution asks for, and how to track it.",
+  "answer": "Nearly every account a person leaves behind lands in one of three buckets. Some you close. Some you transfer into a living name. Some you keep paying until the estate settles, because stopping them would cost more than the payments do. This guide is only about those accounts: which bucket each one belongs in, what each institution will ask for, and how to keep track of it all.",
+  "cluster": "Estate settlement",
+  "date": "2026-11-19",
+  "updated": "2026-11-19",
+  "readingMinutes": 15,
+  "intro": [
+    "Nearly every account a person leaves behind lands in one of three buckets. Some you close. Some you transfer into a living name. Some you keep paying until the estate settles, because stopping them would cost more than the payments do. This guide is only about those accounts: which bucket each one belongs in, what each institution will ask for, and how to keep track of it all.",
+    "Very little of it has to happen in the first days. Flagging the main bank account and the credit cards early protects against misuse, and Social Security should be reported promptly. Almost everything else goes more smoothly once you have certified death certificates in hand. If you need the whole first-weeks picture rather than this one job, <a href=\"/guides/what-to-do-when-someone-dies\">what to do when someone dies</a> walks through it in order."
+  ],
+  "sections": [
+    {
+      "heading": "The short answer: close, transfer, or keep paying, in one table",
+      "paragraphs": [],
+      "bullets": [
+        "<b>Bank account in their name alone</b>: Close, through the estate. The bank flags it now and releases the money later, to a named beneficiary or to the estate",
+        "<b>Joint bank account</b>: Keep, then retitle. It usually passes to the surviving owner, who can keep using it",
+        "<b>Credit cards in their name alone</b>: Notify and close. The balance is a debt of the estate, not of the family",
+        "<b>Mortgage and other loans on property</b>: Keep paying. The debt stays with the house or the car until the estate settles",
+        "<b>Social Security, pensions, benefits</b>: Report the death. Payments for the month of death and after must be returned; survivor benefits may apply",
+        "<b>License, passport, voter registration</b>: Cancel. Cancelling them helps protect against identity theft",
+        "<b>Utilities and home services</b>: Transfer, or cancel. Move them into a living name if the home is occupied; cancel what an empty home does not need",
+        "<b>Home, auto, and life insurance</b>: Notify, and keep in force. Cover should not lapse while the estate is open; life insurance is a claim, not a cancellation",
+        "<b>Subscriptions and memberships</b>: Cancel. Ask about refunds for time already paid for",
+        "<b>Phone, email, and online accounts</b>: Keep for now, then close or transfer. The phone receives the sign-in codes you will need to close everything else"
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "Everything below is the detail behind one row of that table."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Before you close anything: the documents every institution will ask for",
+      "paragraphs": [
+        "Every institution has its own process, its own form, and its own idea of what counts as proof. But the same small set of documents comes up again and again, and having them ready turns a dozen different processes into one repeated errand."
+      ],
+      "bullets": [
+        "<b>Certified copies of the death certificate.</b> Most banks, insurers, agencies, and courts want their own certified copy and keep it rather than returning it. Order more than feels necessary at the start. A separate guide covers <a href=\"/guides/how-many-death-certificates-do-i-need\">how many death certificates to order</a> and which institutions ask for which version.",
+        "<b>Proof that you are the person allowed to act.</b> If probate has been opened, this is the letters testamentary or letters of administration the court issued. If it has not, say so. Many institutions will still flag the account, note the death, and tell you exactly what they will need before they can release or close anything.",
+        "<b>The person's Social Security number, and your own photo ID.</b> USAGov notes that most government agencies ask for the Social Security number and certified copies of the death certificate. Private institutions ask for the same pair in their own way.",
+        "<b>One log, started today.</b> Every institution, the date you called, who you spoke with, what they asked for, and what you sent. The tracking section at the end of this guide explains the format. The log is what makes the second and third passes through this list possible."
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "If you are the executor, <a href=\"/guides/executors-first-30-days\">the executor's first 30 days</a> shows where this document-gathering fits in the first month. And at every institution, ask the same three questions: what do you need from me, in what form, and what happens to the account while we wait. The answers differ everywhere. Writing them down is the job."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Bank accounts, credit cards, and loans",
+      "paragraphs": [
+        "<b>Bank and credit union accounts.</b> Call or visit each bank and report the death. What happens next depends on how the account was set up, and the bank will tell you which case you are in."
+      ],
+      "bullets": [
+        "An account in their name alone is usually flagged or frozen once the bank knows, so nobody can draw on it. If the account names a beneficiary, the bank pays that person directly once it has the documents it needs. If it does not, the money becomes part of the estate and is released to the executor through the probate process.",
+        "A joint account usually passes to the surviving owner, who can keep using it. Confirm that with the bank, and retitle the account when the paperwork catches up.",
+        "Stop the debit card attached to a sole account, and review the automatic payments leaving it. Some should stop at once. Some, like insurance premiums and the mortgage, need to keep being paid from somewhere, and the sections below cover those.",
+        "A safe deposit box has its own rules, which vary by state and by whose names are on the box. Ask the bank what it requires before assuming anyone can open it."
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "<b>Credit cards.</b> Notify each card issuer. The account closes, and every card on it stops working, including cards held by family members as authorized users. Anyone who has one of those cards should stop using it as soon as they learn of the death.",
+            "The balance is a debt of the estate. The Consumer Financial Protection Bureau's guidance is that family members are generally not responsible for paying a deceased person's debts from their own money. You may be responsible if you co-signed, if you held the account jointly rather than as an authorized user, or if your state's law says so, as community property rules and some states' rules on necessary expenses can. Being an authorized user, on its own, does not make the balance yours.",
+            "If debt collectors call, they are allowed to contact the executor or the family about the estate's debts. They are not allowed to suggest that you owe the money personally if you do not. Ask for the details of any debt in writing, and pay nothing from your own pocket while you sort out what the estate actually owes.",
+            "<b>Loans.</b> A loan does not end when the borrower dies."
+          ]
+        },
+        {
+          "bullets": [
+            "<b>The mortgage.</b> Keep paying it. The debt stays with the house until the estate settles, the house is sold, or ownership transfers. Notify the loan servicer, tell them who is handling the estate, and ask what they need and what the options are for whoever will keep the house.",
+            "<b>Car loans and other secured loans.</b> The same rule. If the family or the estate will keep the vehicle, keep the payments current and notify the lender. If it will be sold, tell the lender and ask how they handle the payoff.",
+            "<b>Personal loans and other unsecured debts.</b> Notify the lender. These are claims against the estate, paid from estate funds in the order your state's law sets, not in the order the lenders call. Some loans are discharged at death and some are not, so ask each servicer which kind you are dealing with before paying anything."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Government benefits, pensions, and ID",
+      "paragraphs": [
+        "<b>Social Security.</b> In most cases the funeral home reports the death. Give the funeral director the person's Social Security number so they can make the report, and then confirm it actually happened. If no funeral home is involved, report the death yourself. Social Security takes these reports only by phone or in person, not by email or online. The same report reaches Medicare, so there is no separate Medicare call for the death itself.",
+        "One rule catches families out. Social Security cannot pay benefits for the month a person dies. If a payment arrives for that month or any month after, it has to be returned. If the money came by direct deposit, tell the bank as soon as you can and ask it to return the payment for the month of death and any that followed. Ask about survivor benefits on the same call: a spouse and minor children may qualify, and that application is separate from the death report.",
+        "<b>Pensions and employers.</b> Report the death to each pension administrator and to any employer the person worked for or retired from. Some pensions stop. Some continue in part to a surviving spouse, depending on the choice made when the pension started. Ask which applies, and ask the employer about anything else still owed: a final paycheck, unused leave, and life insurance through work.",
+        "<b>Veterans and state benefits.</b> If the person served in the military, notify the Department of Veterans Affairs so payments stop and any survivor or burial benefits can be looked into. If they received state benefits, such as Medicaid, food assistance, unemployment, or disability payments, notify the state programs involved so payments stop and no overpayment builds up for the estate to repay. Each program has its own process.",
+        "<b>Licenses, passport, and voter registration.</b> None of these close an account, but all three protect the person's identity, which is a real target in the months after a death."
+      ],
+      "bullets": [
+        "Cancel the driver's license or state ID through your state's motor vehicle office. The process varies by state.",
+        "Send the passport to the Department of State for cancellation rather than leaving it in a drawer. The Department's website gives the current instructions and address.",
+        "Ask your local election office to remove the name from the voter rolls. Some places update the rolls from death records on their own. Some do not."
+      ]
+    },
+    {
+      "heading": "Utilities and home services: cancel or transfer",
+      "paragraphs": [
+        "The right question for each service is whether the house still needs it.",
+        "If someone will keep living in the home, or it will be sold soon, transfer the accounts into a living person's name: electricity, gas, water and sewer, trash, internet, home security, and regular services like lawn care or snow removal. Utility companies do this routinely. They will want a death certificate copy or the new account holder's details, and transferring avoids a shutoff landing on a house that is still occupied or about to be shown to buyers.",
+        "If the house will sit empty for a while, keep what protects it and cancel the rest. Heat in a cold climate, water, and a security system are protection. Nearly everything else can stop. An empty house with the heat off is how pipes burst, and that damage is far more expensive than a winter of minimum bills.",
+        "Two closing details. Ask each company to send the final bill to whoever is handling the estate, and ask about deposits, which are often refundable and easy to forget. And arrange for the mail to reach the person doing this work, by a hold or a change of address. The mail is also how you will discover accounts nobody knew about, which is the next sections' problem."
+      ]
+    },
+    {
+      "heading": "Insurance: what to notify, what to keep in force",
+      "paragraphs": [
+        "Insurance splits in two. Life insurance is money coming in. The rest is cover that should not lapse while the estate is open.",
+        "<b>Life insurance.</b> This is a claim, not a cancellation. Notify every insurer, including small policies through an employer, a union, or a bank, and start the claim. Insurers generally want a certified death certificate, often the version that shows the cause of death. Claims are one of the faster-moving parts of this process, and the money often helps with the estate's near-term costs.",
+        "<b>Home insurance.</b> Notify the insurer that the owner has died, and ask how the policy should read while the estate is open. Do not let it lapse. The house still stands there, exposed to fire, water, weather, and break-ins, and if the house will sit empty, say so, because an unoccupied home can be treated differently under a policy. Get the insurer's answer in writing.",
+        "<b>Auto insurance.</b> Keep the cars covered until each one is sold or transferred. Nobody should drive an uninsured car, and a car sitting in a driveway is still a car that can be stolen or damaged. Notify the insurer, remove the deceased as a driver when they tell you to, and ask how cover should read in the meantime.",
+        "<b>Health insurance and the rest.</b> Notify the health plan so coverage ends and premiums stop. If a spouse or dependents were covered under the deceased's plan, ask what continuation options exist and what the deadlines are, because those windows can be short and they vary. Then work through the smaller policies the same way: dental and vision, long-term care, disability, and anything else with a premium still being charged. Cancel what has ended, and ask about refunds of premiums paid ahead."
+      ]
+    },
+    {
+      "heading": "Subscriptions and memberships: finding the ones nobody listed",
+      "paragraphs": [
+        "The subscriptions you know about are the easy half. Cancel each one in the account holder's name: streaming services, news and apps, software, gym and club memberships, subscription boxes, delivery plans. Most cancel cleanly. Ask about refunds for time already paid for, especially on annual plans paid recently, because some companies refund them and none will offer if you do not ask.",
+        "The harder half is the subscriptions nobody listed, because the person who knew about them is gone. Work from evidence, in this order:"
+      ],
+      "bullets": [
+        "<b>Bank and card statements from the last few months.</b> Every recurring charge is a line item. Anything you do not recognize is either a subscription to cancel or a question for the tracking list.",
+        "<b>Their email inbox, if you have proper access to it.</b> Search for renewal notices, receipts, and \"your plan\" messages. Subscriptions announce themselves by email more reliably than anywhere else.",
+        "<b>The phone.</b> App subscriptions live in the phone's app store settings, under the account, and many never appear anywhere else.",
+        "<b>The mail.</b> Renewal letters and member statements still arrive on paper for more accounts than people expect."
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "Write each one down as you find it, even before you cancel it. The list is the deliverable; the cancellations are just working through it. And hold off on closing the email account and the phone until this hunt is done. They are the two best finding tools you have, which brings us to the digital accounts themselves."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "Phone, internet, and the digital accounts",
+      "paragraphs": [
+        "<b>Keep the mobile phone working.</b> This is the one account people cancel first and regret most. Banks, card issuers, and government sites send sign-in codes to the phone, and you will need those codes to close the very accounts you are working through. Keep the line active, or transfer it into a living name, until the financial accounts are settled. Home internet is similar if the household still uses it: transfer it rather than cancelling, so the house keeps working while everything else is sorted out.",
+        "<b>Protect the email account.</b> Password resets for nearly everything run through email. Keep the account open and secure while the estate is being settled. Closing it early can lock you out of accounts you still need to reach.",
+        "<b>Use the official handoffs for the big platforms.</b> Apple, Google, and Facebook each have an official process for what happens to an account after a death, and if the person set up a legacy contact in advance, that setting decides who can reach the account and how. The steps for each platform are covered in <a href=\"/guides/legacy-contacts-apple-google-facebook\">the guide to legacy contacts on Apple, Google, and Facebook</a>. Use those official routes rather than logging in as the person who died.",
+        "<b>The rest of the online accounts.</b> Social media, shopping, photo storage, and everything smaller each have their own process for a deceased user's account, usually asking for a death certificate and proof of your relationship or authority. Work through them after the financial accounts, using the list you built in the subscriptions section. Some accounts can be memorialized, some transferred, and some only closed. There is no single form for any of it, which is a reason to log each one as you go."
+      ]
+    },
+    {
+      "heading": "The accounts people forget",
+      "paragraphs": [
+        "A short list of the accounts that surface late on nearly every estate. Check each one now, while the documents are already out."
+      ],
+      "bullets": [
+        "<b>Airline miles and loyalty points.</b> Some programs transfer miles or points to a spouse or to the estate. Some close the account and the balance disappears. Ask the program before the account is closed, because once it is closed there is nothing left to transfer. Policies vary by program.",
+        "<b>Pharmacy accounts and automatic refills.</b> Tell the pharmacy about the death and stop automatic refills and deliveries, so medication does not keep arriving and being charged.",
+        "<b>Medical portals and provider accounts.</b> Notify regular providers. Patient portal accounts can simply be closed once records the family needs are gathered.",
+        "<b>Shopping and delivery accounts.</b> Cancel the subscriptions inside them, not just the account: grocery delivery, meal kits, and reorder plans keep charging until they are stopped individually.",
+        "<b>Toll accounts and parking apps.</b> Cancel the toll account, retire the transponder if the program asks for it, and recover any balance. These accounts are tied to a vehicle that may be sold.",
+        "<b>Storage units.</b> Rent runs until the unit is emptied and the lease is formally ended. Notify the facility, and do not assume that clearing the unit out closes the account.",
+        "<b>Pet insurance and microchip registrations.</b> If a pet is staying with family, transfer the microchip registration to the person now caring for the animal, and decide whether the insurance continues.",
+        "<b>Post office boxes and home security contracts.</b> Close or transfer the box, and end or transfer the monitoring contract so it does not renew on its own."
+      ]
+    },
+    {
+      "heading": "How to track it all so nothing bills the estate twice",
+      "paragraphs": [
+        "This work is dozens of small processes, each moving at its own speed, over months. Nobody holds that in their head, and nobody should try. Keep one register for every account in this guide, with the same fields each time:"
+      ],
+      "bullets": [
+        "The account and the institution",
+        "The date you notified them, and who you spoke with",
+        "What they asked for, and what you sent, and when",
+        "The current status: notified, waiting on documents, waiting on them, closed or transferred",
+        "The confirmation, once it arrives"
+      ],
+      "parts": [
+        {
+          "paragraphs": [
+            "That last field matters most. Ask every institution for confirmation of the closure or transfer in writing, by letter or email, and keep it. A verbal \"that is taken care of\" is how an account quietly bills the estate again three months later. Check the estate's bank statements and the incoming mail against the register once a month. A charge you do not recognize is either a mistake to dispute or an account you have not found yet, and both are easier to deal with in the month they appear.",
+            "Keep this register alongside the death certificate log, so the record of which institution got which copy sits with the record of what each institution did. The <a href=\"/guides/topics/estate-settlement\">Estate Settlement topic hub</a> collects the rest of Quietkeep's guides on this work, including the timelines this guide deliberately does not repeat."
+          ]
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Do I have to pay the credit card bills of the person who died?",
+      "a": "Generally, no. Debts are paid from the estate, out of the money and property the person left, in the order state law sets. You may be responsible if you co-signed the debt, held the account jointly rather than as an authorized user, or live under state rules that share a spouse's debts, such as community property rules. Debt collectors may contact you about the estate's debts, but they are not allowed to suggest the money is owed from your own pocket when it is not. The Consumer Financial Protection Bureau explains the rules in plain language; it is linked in the Sources below."
+    },
+    {
+      "q": "What should I close first?",
+      "a": "Very little has to close in the first days. Report the death to the main bank and the card issuers so the accounts are flagged and the cards stop working, and make sure Social Security has been told. After that, work in roughly the order of this guide. Most closures go faster once you have certified death certificates, and some wait on your letters from the court. Closing things in a rush, before you know what the household still needs, creates more work than it saves."
+    },
+    {
+      "q": "Can I keep using their bank account or credit card?",
+      "a": "Stop using the credit cards, including one you hold as an authorized user. The account closes when the issuer learns of the death, and charges made after that create real problems. A joint bank account is different: it usually passes to the surviving owner, who can keep using it. An account in their name alone belongs to the estate until the bank releases it. Keep your own money and the estate's money separate throughout, and pay estate bills from estate funds once you are able to."
+    },
+    {
+      "q": "How long does all of this take?",
+      "a": "Months, in pieces. Each institution moves at its own pace, some closures wait on probate, and a few accounts will only surface late. Expect to work the list in passes: a first pass to notify, a second to send the documents each place asked for, and a third to collect the written confirmations. The register in the section above is what makes the second and third passes possible instead of starting over each time."
+    }
+  ],
+  "sources": [
+    {
+      "label": "Agencies to notify when someone dies",
+      "publisher": "USAGov",
+      "url": "https://www.usa.gov/report-a-death"
+    },
+    {
+      "label": "Report the death of a Social Security or Medicare beneficiary",
+      "publisher": "USAGov",
+      "url": "https://www.usa.gov/social-security-report-a-death"
+    },
+    {
+      "label": "Am I responsible for my spouse's debts after they die?",
+      "publisher": "Consumer Financial Protection Bureau",
+      "url": "https://www.consumerfinance.gov/ask-cfpb/am-i-responsible-for-my-spouses-debts-after-they-die-en-1467/"
+    }
+  ],
+  "productSlug": "estate-settlement-companion",
+  "productPitch": "The Estate Settlement Companion holds this entire list in one private file: 47 guided tasks across four phases, registers for accounts, debts, and expenses that keep running totals, the contacts for every institution you will call more than once, and a one-click printable summary for the attorney. It runs entirely on your own device, offline, with no account and no subscription, so the record of the estate lives with you and nowhere else."
+}
